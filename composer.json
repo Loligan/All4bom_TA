@@ -1,0 +1,16 @@
+{
+  "name": "root/all4bom_ta",
+  "require": {
+    "behat/behat": "^3.2",
+    "facebook/webdriver": "^1.2"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "authors": [
+    {
+      "name": "Victor Lapytsko",
+      "email": "victor.lapytsko@gmail.com"
+    }
+  ]
+}
