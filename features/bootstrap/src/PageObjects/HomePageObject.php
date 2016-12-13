@@ -7,15 +7,24 @@ class HomePageObject implements PageObject
 {
     private static $LOGIN_BUTTON;
     private static $CABLE_ASSEMLIES_TAB;
+    private static $SIMFONY_TAB_BUTTON;
 
     static function init(){
         HomePageObject::$LOGIN_BUTTON = ".login__link";
         HomePageObject::$CABLE_ASSEMLIES_TAB = "html/body/header/div/div/div[1]/nav/ul/li[2]/a";
+        HomePageObject::$SIMFONY_TAB_BUTTON = ".//*[@title=\"Close Toolbar\"]";
+    }
+
+    private static function closeSymfonyTab($webDriver){
+        $button = $webDriver->findElement(WebDriverBy::xpath(HomePageObject::$SIMFONY_TAB_BUTTON));
+        $button->click();
     }
 
     static function openPage($webDriver)
     {
         $webDriver->get(AppValues::getUrl());
+        self::closeSymfonyTab($webDriver);
+
     }
 
     static function pressOnLoginButton($webDriver){

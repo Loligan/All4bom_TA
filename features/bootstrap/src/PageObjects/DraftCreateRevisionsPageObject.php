@@ -45,6 +45,9 @@ class DraftCreateRevisionsPageObject implements PageObject
     private static $ACCESSORIES_ICON;
     private static $ACCESSORIES_CELL;
     private static $CUSTOM_PART_ICON;
+    private static $COPY_ICON;
+    private static $COPY_QUANTITY;
+    private static $COPY_BUTTON;
 
     static function init()
     {
@@ -83,6 +86,9 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::$ACCESSORIES_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[9]/button";
         DraftCreateRevisionsPageObject::$ACCESSORIES_CELL = "html/body/main/form/div[1]/div/div/div/div[1]/div[4]/ul/li[VALUE]/a";
         DraftCreateRevisionsPageObject::$CUSTOM_PART_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[11]/button";
+        DraftCreateRevisionsPageObject::$COPY_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[12]/button";
+        DraftCreateRevisionsPageObject::$COPY_BUTTON = "html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[1]/button";
+        DraftCreateRevisionsPageObject::$COPY_QUANTITY = "html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[2]/input";
     }
 
 
@@ -331,7 +337,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     {
         self::clickOnLinesIcon($webDriver);
         self::setWeightLine($webDriver, $weight);
-        self::clickOnCurveLinesButton($webDriver);
+        self::clickOnBrokenLinesButton($webDriver);
         self::drawLine($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
     }
 
@@ -375,53 +381,104 @@ class DraftCreateRevisionsPageObject implements PageObject
         $icon->click();
     }
 
-    private static function clickOnUserImageCell($webDriver,$idImage)
+    private static function clickOnUserImageCell($webDriver, $idImage)
     {
         $xpath = str_replace("VALUE", $idImage, DraftCreateRevisionsPageObject::$IMAGE_CELL);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $cell->click();
     }
 
-    static function draftUserImage($webDriver, $idImage=1)
+    static function draftUserImage($webDriver, $idImage = 1)
     {
         self::clickOnUserImageIcon($webDriver);
         //        TODO Add WAIT!!!
         sleep(2);
-        self::clickOnUserImageCell($webDriver,$idImage);
+        self::clickOnUserImageCell($webDriver, $idImage);
     }
 
 
-    private static function clickOnAccessoriesIcon($webDriver){
+    private static function clickOnAccessoriesIcon($webDriver)
+    {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$ACCESSORIES_ICON));
         $icon->click();
     }
 
-    private static function clickOnAccessoriesCell($webDriver, $numberCell){
+    private static function clickOnAccessoriesCell($webDriver, $numberCell)
+    {
         $xpath = str_replace("VALUE", $numberCell, DraftCreateRevisionsPageObject::$ACCESSORIES_CELL);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $cell->click();
     }
 
-    static function draftAcessories($webDriver, $numberCells=1){
+    static function draftAcessories($webDriver, $numberCells = 1)
+    {
         self::clickOnAccessoriesIcon($webDriver);
         //        TODO Add WAIT!!!
         sleep(2);
-        self::clickOnAccessoriesCell($webDriver,$numberCells);
+        self::clickOnAccessoriesCell($webDriver, $numberCells);
 
     }
 
-    private static function clickOnCutomPartIcon($webDriver){
+    private static function clickOnCutomPartIcon($webDriver)
+    {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CUSTOM_PART_ICON));
         $icon->click();
     }
 
-    public static function draftCustomPart($webDriver){
-        //TODO SCROLL DOWN
+    public static function draftCustomPart($webDriver)
+    {
         self::clickOnCutomPartIcon($webDriver);
     }
 
 
+    private static function clickOnDraftPoint($webDriver, $positionX, $positionY)
+    {
+        $mouse = $webDriver->getMouse();
+        $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
+        self::getIndexSize($webDriver);
+        $setFirstPointX = self::getSetX($positionX);
+        $setFirstPointY = self::getSetY($positionY);
+        $canvasCoordinates = $canvas->getCoordinates();
+        $mouse->mouseMove($canvasCoordinates, $setFirstPointY, $setFirstPointX);
+        $mouse->click();
+    }
 
+    private static function clickOnObjectCopy($webDriver, $positionItemX, $positionItemY)
+    {
+        self::clickOnDraftPoint($webDriver, $positionItemX, $positionItemY);
+    }
 
+    private static function clickOnCopyIcon($webDriver)
+    {
+        $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_ICON));
+        $icon->click();
+    }
+
+    private static function setCopyQuantity($webDriver, $quantity)
+    {
+        $qty = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_QUANTITY));
+        $qty->clear();
+        $qty->sendKeys($quantity);
+    }
+
+    private static function clickOnCopyButton($webDriver)
+    {
+        $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_BUTTON));
+        $icon->click();
+    }
+
+    private static function pasteCopyOnDraft($webDriver, $positionCopyX, $positionCopyY)
+    {
+        self::clickOnDraftPoint($webDriver, $positionCopyX, $positionCopyY);
+    }
+
+    public static function draftCopyItems($webDriver, $positionItemX, $positionItemY, $positionCopyX, $positionCopyY, $quantity = 1)
+    {
+        DraftCreateRevisionsPageObject::clickOnObjectCopy($webDriver, $positionItemX, $positionItemY);
+        DraftCreateRevisionsPageObject::clickOnCopyIcon($webDriver);
+        DraftCreateRevisionsPageObject::setCopyQuantity($webDriver, $quantity);
+        DraftCreateRevisionsPageObject::clickOnCopyButton($webDriver);
+        DraftCreateRevisionsPageObject::pasteCopyOnDraft($webDriver, $positionCopyX, $positionCopyY);
+    }
 
 }
