@@ -6,9 +6,12 @@ use Behat\Gherkin\Node\TableNode;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
+
 require_once "src/GettingValues/AppValues.php";
 require_once "src/PageObjects/HomePageObject.php";
 require_once "src/PageObjects/LoginPageObject.php";
+require_once "src/PageObjects/CableAssembliesPageObject.php";
+require_once "src/PageObjects/CreateCableAssembliesPageObject.php";
 
 class FeatureContext implements Context
 {
@@ -20,6 +23,8 @@ class FeatureContext implements Context
         $this->appValue = new AppValues();
         HomePageObject::init();
         LoginPageObject::init();
+        CableAssembliesPageObject::init();
+        CreateCableAssembliesPageObject::init();
     }
 
     /**
@@ -48,7 +53,7 @@ class FeatureContext implements Context
      */
     public function someContext()
     {
-        LoginPageObject::openPage($this->webDriver);
+        CreateCableAssembliesPageObject::openPage($this->webDriver);
     }
 
     /**
@@ -56,9 +61,9 @@ class FeatureContext implements Context
      */
     public function someEvent()
     {
-        LoginPageObject::setInformation($this->webDriver);
-        LoginPageObject::pressLoginButton($this->webDriver);
-        sleep(4);
+        CreateCableAssembliesPageObject::setInformation($this->webDriver,"Create TA test","Company TA","XY001100","Removed in a moment","XZ110011","James Lucker","Eric Cartman","Stan Marsh","Numerical","Image1MB.jpg");
+        CreateCableAssembliesPageObject::clickCreateButton($this->webDriver);
+        sleep(5);
     }
 
     /**

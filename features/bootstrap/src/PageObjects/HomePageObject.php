@@ -1,13 +1,16 @@
 <?php
 
 require "PageObject.php";
+use Facebook\WebDriver\WebDriverBy;
 
 class HomePageObject implements PageObject
 {
     private static $LOGIN_BUTTON;
+    private static $CABLE_ASSEMLIES_TAB;
 
     static function init(){
         HomePageObject::$LOGIN_BUTTON = ".login__link";
+        HomePageObject::$CABLE_ASSEMLIES_TAB = "html/body/header/div/div/div[1]/nav/ul/li[2]/a";
     }
 
     static function openPage($webDriver)
@@ -18,6 +21,11 @@ class HomePageObject implements PageObject
     static function pressOnLoginButton($webDriver){
         $button = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(HomePageObject::$LOGIN_BUTTON));
         $button->click();
+    }
+
+    static function pressOnCableAssembliesTab($webDriver){
+        $tab = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::xpath(HomePageObject::$CABLE_ASSEMLIES_TAB));
+        $tab->click();
     }
 
 

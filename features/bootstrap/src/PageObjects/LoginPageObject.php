@@ -2,6 +2,7 @@
 
 require_once "PageObject.php";
 require_once "LoginPageObject.php";
+use Facebook\WebDriver\WebDriverBy;
 
 class LoginPageObject implements PageObject
 {
