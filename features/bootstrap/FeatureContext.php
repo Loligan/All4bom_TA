@@ -73,9 +73,9 @@ class FeatureContext implements Context
         DraftCreateRevisionsPageObject::draftCopyItems($this->webDriver,100,100,250,250,2);
 //        DraftCreateRevisionsPageObject::drawCurveLineObject($this->webDriver,150,150,200,200,250,200,"Thinnest");
 //        DraftCreateRevisionsPageObject::drawBrokenLineObject($this->webDriver,250,250,300,300,350,300,"Thick");
-//        DraftCreateRevisionsPageObject::drawTextObject($this->webDriver,1,1,"txt","Tahoma","30","#008000");
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,2,2);
-//        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,2);
+        DraftCreateRevisionsPageObject::drawTextObject($this->webDriver,1,1,"txt","Tahoma","30","#008000");
+        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,2,2);
+        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,2);
 //        DraftCreateRevisionsPageObject::draftAcessories($this->webDriver,3);
 //        DraftCreateRevisionsPageObject::draftCustomPart($this->webDriver);
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);

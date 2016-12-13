@@ -6,6 +6,10 @@ use Facebook\WebDriver\WebDriverBy;
 class BOMCreateRevisionPageObject implements PageObject
 {
     private static $REVISION_DESCRIPTION_INPUT;
+    private static $CABLE_BUTTON;
+    private static $CONNECTOR_BUTTON;
+    private static $BOOT_BUTTON;
+    private static $SHTINK_BUTTON;
 
     static function init()
     {
