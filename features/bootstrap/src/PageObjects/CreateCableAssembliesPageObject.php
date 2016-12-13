@@ -69,12 +69,12 @@ class CreateCableAssembliesPageObject implements PageObject
         $projectCheckedBy->sendKeys($checkedBy);
 
         if ($revision == "Numerical") {
-            $projectRevision = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::xpath(CreateCableAssembliesPageObject::$REVISION_TYPE_NUMERICAL));
+            $projectRevision = $webDriver->findElement(WebDriverBy::xpath(CreateCableAssembliesPageObject::$REVISION_TYPE_NUMERICAL));
             $projectRevision->click();
         }
 
         if ($revision == "Alphabetic") {
-            $projectRevision = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::xpath(CreateCableAssembliesPageObject::$REVISION_TYPE_ALPHABETIC));
+            $projectRevision = $webDriver->findElement(WebDriverBy::xpath(CreateCableAssembliesPageObject::$REVISION_TYPE_ALPHABETIC));
             $projectRevision->click();
         }
 
@@ -84,10 +84,11 @@ class CreateCableAssembliesPageObject implements PageObject
         if ($file != "") {
             $projectUploadFiles->sendKeys("/home/meldon/PhpstormProjects/DEMO_All4bom_TA/features/bootstrap/files/" . $file);
         }
+        sleep(1);
     }
 
     static function clickCreateButton($webDriver){
-        $button = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::xpath(CreateCableAssembliesPageObject::$CREATE_BUTTON));
+        $button = $webDriver->findElement(WebDriverBy::xpath(CreateCableAssembliesPageObject::$CREATE_BUTTON));
         $button->click();
     }
 }

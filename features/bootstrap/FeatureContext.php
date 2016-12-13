@@ -12,6 +12,7 @@ require_once "src/PageObjects/HomePageObject.php";
 require_once "src/PageObjects/LoginPageObject.php";
 require_once "src/PageObjects/CableAssembliesPageObject.php";
 require_once "src/PageObjects/CreateCableAssembliesPageObject.php";
+require_once "src/PageObjects/DraftCreateRevisionsPageObject.php";
 
 class FeatureContext implements Context
 {
@@ -25,6 +26,7 @@ class FeatureContext implements Context
         LoginPageObject::init();
         CableAssembliesPageObject::init();
         CreateCableAssembliesPageObject::init();
+        DraftCreateRevisionsPageObject::init();
     }
 
     /**
@@ -53,7 +55,7 @@ class FeatureContext implements Context
      */
     public function someContext()
     {
-        CreateCableAssembliesPageObject::openPage($this->webDriver);
+        DraftCreateRevisionsPageObject::openPage($this->webDriver);
     }
 
     /**
@@ -61,8 +63,18 @@ class FeatureContext implements Context
      */
     public function someEvent()
     {
-        CreateCableAssembliesPageObject::setInformation($this->webDriver,"Create TA test","Company TA","XY001100","Removed in a moment","XZ110011","James Lucker","Eric Cartman","Stan Marsh","Numerical","Image1MB.jpg");
-        CreateCableAssembliesPageObject::clickCreateButton($this->webDriver);
+
+//        DraftCreateRevisionsPageObject::drawDimention($this->webDriver,50,50,100,100,150,100);
+//        DraftCreateRevisionsPageObject::drawCurveObject($this->webDriver,150,150,200,200,250,200,"Thinnest");
+//        DraftCreateRevisionsPageObject::drawBrokenObject($this->webDriver,250,250,300,300,350,300,"Thick");
+//        DraftCreateRevisionsPageObject::drawPlainLineObject($this->webDriver,50,50,100,100,150,100);
+//        DraftCreateRevisionsPageObject::drawCurveLineObject($this->webDriver,150,150,200,200,250,200,"Thinnest");
+//        DraftCreateRevisionsPageObject::drawBrokenLineObject($this->webDriver,250,250,300,300,350,300,"Thick");
+//        DraftCreateRevisionsPageObject::drawTextObject($this->webDriver,1,1,"txt","Tahoma","30","#008000");
+//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,2,2);
+//        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,2);
+//        DraftCreateRevisionsPageObject::draftAcessories($this->webDriver,3);
+        DraftCreateRevisionsPageObject::draftCustomPart($this->webDriver);
         sleep(5);
     }
 

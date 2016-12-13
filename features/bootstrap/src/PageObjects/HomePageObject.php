@@ -19,12 +19,12 @@ class HomePageObject implements PageObject
     }
 
     static function pressOnLoginButton($webDriver){
-        $button = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(HomePageObject::$LOGIN_BUTTON));
+        $button = $webDriver->findElement(WebDriverBy::cssSelector(HomePageObject::$LOGIN_BUTTON));
         $button->click();
     }
 
     static function pressOnCableAssembliesTab($webDriver){
-        $tab = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::xpath(HomePageObject::$CABLE_ASSEMLIES_TAB));
+        $tab = $webDriver->findElement(WebDriverBy::xpath(HomePageObject::$CABLE_ASSEMLIES_TAB));
         $tab->click();
     }
 
