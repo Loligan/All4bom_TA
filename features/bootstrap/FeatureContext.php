@@ -70,18 +70,30 @@ class FeatureContext implements Context
     {
 
         DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,50,50,100,100,150,100);
-        DraftCreateRevisionsPageObject::draftCopyItems($this->webDriver,100,100,250,250,2);
+        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,150,150,200,100);
+//        DraftCreateRevisionsPageObject::draftCopyItems($this->webDriver,100,100,250,250,2);
 //        DraftCreateRevisionsPageObject::drawCurveLineObject($this->webDriver,150,150,200,200,250,200,"Thinnest");
 //        DraftCreateRevisionsPageObject::drawBrokenLineObject($this->webDriver,250,250,300,300,350,300,"Thick");
-        DraftCreateRevisionsPageObject::drawTextObject($this->webDriver,1,1,"txt","Tahoma","30","#008000");
-        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,2,2);
-        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,2);
+//        DraftCreateRevisionsPageObject::drawTextObject($this->webDriver,1,1,"txt","Tahoma","30","#008000");
+//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,2,2);
+//        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,2);
 //        DraftCreateRevisionsPageObject::draftAcessories($this->webDriver,3);
 //        DraftCreateRevisionsPageObject::draftCustomPart($this->webDriver);
-        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver,"HELLO WORD!");
-        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
-        sleep(5);
+//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+//        EDIT CELLS
+//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+//        BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
+//        sleep(3);
+//        BOMCreateRevisionPageObject::setCableData($this->webDriver,2,3,"RF Cable");
+//        sleep(3);
+//        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver,"HELLO WORD!");
+//        sleep(3);
+//        BOMCreateRevisionPageObject::setTableInformation($this->webDriver,1,"Hello","Remarks_1",2,3);
+//        sleep(3);
+//        BOMCreateRevisionPageObject::setTableInformation($this->webDriver,2,"World","Remarks_2",3,4);
+//        sleep(3);
+//        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
+//        sleep(10);
 
     }
 
