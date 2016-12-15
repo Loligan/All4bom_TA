@@ -2,6 +2,7 @@
 
 
 require_once "DraftCreateRevisionsPageObject.php";
+require_once "SimpleWait.php";
 use Facebook\WebDriver\WebDriverBy;
 
 class TabCreateRevisionTabPageObject implements PageObject
@@ -71,8 +72,10 @@ class TabCreateRevisionTabPageObject implements PageObject
 
     public static function clickOnSaveTab($webDriver)
     {
+        $title = $webDriver->getTitle();
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$SAVE_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
+        SimpleWait::waitTitleHide($webDriver,$title);
     }
 
     public static function openPage($webDriver)

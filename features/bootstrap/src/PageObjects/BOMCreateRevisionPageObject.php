@@ -1,6 +1,7 @@
 <?php
 
 require_once "DraftCreateRevisionsPageObject.php";
+require_once "SimpleWait.php";
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -24,6 +25,8 @@ class BOMCreateRevisionPageObject implements PageObject
     private static $TOLERANCE_INPUT;
     private static $CLEAR_CABLE_BUTTON;
     private static $DELETE_CABLE_BUTTON;
+    private static $LEFT_SHRINK_SPAN;
+    private static $RIGHT_SHRINK_SPAN;
 
     static function init()
     {
@@ -31,23 +34,26 @@ class BOMCreateRevisionPageObject implements PageObject
         BOMCreateRevisionPageObject::$CABLE_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Cable\"]";
         BOMCreateRevisionPageObject::$CONNECTOR_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Connector\"]";
         BOMCreateRevisionPageObject::$BOOT_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Boot\"]";
-        BOMCreateRevisionPageObject::$LEFT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Left\"]";
-        BOMCreateRevisionPageObject::$RIGHT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Right\"]";
+        BOMCreateRevisionPageObject::$LEFT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Left \"]";
+        BOMCreateRevisionPageObject::$RIGHT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Right \"]";
         BOMCreateRevisionPageObject::$FAMILY_SELECT = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[1]/div/select";
         BOMCreateRevisionPageObject::$FAMILY_OPTION = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[1]/div/select/option[text()=\"VALUE\"]";
         BOMCreateRevisionPageObject::$CATEGORY_SELECT = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[2]/div/select";
         BOMCreateRevisionPageObject::$CATEGORY_OPTION = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[2]/div/select/option[text()=\"VALUE\"]";
         BOMCreateRevisionPageObject::$LINE_PART_NUMBER = ".//*[@id='selectProductModal']/div/div/div[2]/div/div[2]/table/tbody/tr[VALUE]";
-        BOMCreateRevisionPageObject::$CUSTOMER_PART_NUMBER_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"Cable\"]]/td[8]/input";
-        BOMCreateRevisionPageObject::$REMATKS_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"Cable\"]]/td[9]/textarea";
-        BOMCreateRevisionPageObject::$QUANTITY_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"Cable\"]]/td[10]/input";
-        BOMCreateRevisionPageObject::$TOLERANCE_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"Cable\"]]/td[11]/input";
+        BOMCreateRevisionPageObject::$CUSTOMER_PART_NUMBER_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[8]/input";
+        BOMCreateRevisionPageObject::$REMATKS_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[9]/textarea";
+        BOMCreateRevisionPageObject::$QUANTITY_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[10]/input";
+        BOMCreateRevisionPageObject::$TOLERANCE_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[11]/input";
         BOMCreateRevisionPageObject::$CLEAR_CABLE_BUTTON = "";
         BOMCreateRevisionPageObject::$DELETE_CABLE_BUTTON = "";
+        BOMCreateRevisionPageObject::$LEFT_SHRINK_SPAN = "Left ";
+        BOMCreateRevisionPageObject::$RIGHT_SHRINK_SPAN = "Right ";
     }
 
     public static function setTextInRevisionDescription($webDriver, $text = "Test")
     {
+        SimpleWait::waitShow($webDriver,BOMCreateRevisionPageObject::$REVISION_DESCRIPTION_INPUT);
         $revDesc = $webDriver->findElement(WebDriverBy::xpath(BOMCreateRevisionPageObject::$REVISION_DESCRIPTION_INPUT));
         $revDesc->sendKeys($text);
     }
@@ -59,21 +65,26 @@ class BOMCreateRevisionPageObject implements PageObject
 //TODO ADD WAIT!
     private static function clickOnCableButton($webDrive, $numberCable)
     {
+        SimpleWait::waitShow($webDrive,BOMCreateRevisionPageObject::$CABLE_BUTTON);
         $buttons = $webDrive->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$CABLE_BUTTON));
         if ($numberCable == null) {
-            $buttons[0]->click();
+            SimpleWait::waitingOfClick($webDrive,$buttons[0]);
         }
-        $buttons[$numberCable - 1]->click();
+//        print "\n\n----";
+//        print_r($buttons);
+        SimpleWait::waitingOfClick($webDrive, $buttons[$numberCable - 1]);
     }
 //TODO ADD WAIT!
     private static function clickOnFamilySelect($webDriver)
     {
+        SimpleWait::waitShow($webDriver,BOMCreateRevisionPageObject::$FAMILY_SELECT);
         $select = $webDriver->findElement(WebDriverBy::xpath(BOMCreateRevisionPageObject::$FAMILY_SELECT));
         $select->click();
     }
 //TODO ADD WAIT!
     private static function clickOnCategorySelect($webDriver)
     {
+        SimpleWait::waitShow($webDriver,BOMCreateRevisionPageObject::$CATEGORY_SELECT);
         $select = $webDriver->findElement(WebDriverBy::xpath(BOMCreateRevisionPageObject::$CATEGORY_SELECT));
         $select->click();
     }
@@ -81,6 +92,7 @@ class BOMCreateRevisionPageObject implements PageObject
     private static function setFamilyOption($webDriver, $value)
     {
         $xpath = str_replace("VALUE", $value, BOMCreateRevisionPageObject::$FAMILY_OPTION);
+        SimpleWait::waitShow($webDriver,$xpath);
         $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $select->click();
     }
@@ -88,6 +100,7 @@ class BOMCreateRevisionPageObject implements PageObject
     private static function setCategoryOption($webDriver, $value)
     {
         $xpath = str_replace("VALUE", $value, BOMCreateRevisionPageObject::$CATEGORY_OPTION);
+        SimpleWait::waitShow($webDriver,$xpath);
         $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $select->click();
     }
@@ -96,21 +109,19 @@ class BOMCreateRevisionPageObject implements PageObject
     {
         $number++;
         $xpath = str_replace("VALUE", $number, BOMCreateRevisionPageObject::$LINE_PART_NUMBER);
+        SimpleWait::waitShow($webDriver,$xpath);
         $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $select->click();
+        SimpleWait::waitHide($webDriver,$xpath);
     }
 
 //TODO ADD WAIT!
     private static function selectCableType($webDriver, $familyCable, $categoryCable, $numberLinePartNumber)
     {
-        sleep(1);
         self::clickOnFamilySelect($webDriver);
-        sleep(1);
         self::setFamilyOption($webDriver, $familyCable);
-        sleep(1);
         if ($categoryCable != null) {
             self::clickOnCategorySelect($webDriver);
-            sleep(1);
             self::setCategoryOption($webDriver, $familyCable);
         }
         self::setLinePartNumber($webDriver, $numberLinePartNumber);
@@ -123,55 +134,126 @@ class BOMCreateRevisionPageObject implements PageObject
         self::selectCableType($webDrive, $familyCable, $categoryCable, $numberLinePartNumber);
     }
 //TODO ADD WAIT!
-    private static function setCustomerPartNumberText($webDriver, $numberCable, $text)
+    private static function setCustomerPartNumberText($webDriver, $numberCable, $text,$typeObject)
     {
         if ($text != null) {
-            $inputs = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$CUSTOMER_PART_NUMBER_INPUT));
-            print count($inputs);
+            $xpath = str_replace("TYPE", $typeObject, BOMCreateRevisionPageObject::$CUSTOMER_PART_NUMBER_INPUT);
+            SimpleWait::waitShow($webDriver,$xpath);
+            $inputs = $webDriver->findElements(WebDriverBy::xpath($xpath));
             $input = $inputs[$numberCable-1];
             $input->clear();
             $input->sendKeys($text);
         }
     }
 //TODO ADD WAIT!
-    private static function setRemarksText($webDriver, $numberCable, $text)
+    private static function setRemarksText($webDriver, $numberCable, $text,$typeObject)
     {
         if ($text != null) {
-            $inputs = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$REMATKS_INPUT));
+            $xpath = str_replace("TYPE", $typeObject, BOMCreateRevisionPageObject::$REMATKS_INPUT);
+            SimpleWait::waitShow($webDriver,$xpath);
+            $inputs = $webDriver->findElements(WebDriverBy::xpath($xpath));
             $input = $inputs[$numberCable-1];
             $input->clear();
             $input->sendKeys($text);
         }
     }
 
-
-    private static function setQuantityValue($webDriver, $numberCable, $text)
+//TODO ADD WAIT!
+    private static function setQuantityValue($webDriver, $numberCable, $text,$typeObject)
     {
         if ($text != null) {
-            $inputs = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$QUANTITY_INPUT));
+            $xpath = str_replace("TYPE", $typeObject, BOMCreateRevisionPageObject::$QUANTITY_INPUT);
+            SimpleWait::waitShow($webDriver,$xpath);
+            $inputs = $webDriver->findElements(WebDriverBy::xpath($xpath));
+            $input = $inputs[$numberCable-1];
+            $input->clear();
+            $input->sendKeys($text);
+        }
+    }
+//TODO ADD WAIT!
+    private static function setToleranceValue($webDriver, $numberCable, $text,$typeObject)
+    {
+        if ($text != null) {
+            $xpath = str_replace("TYPE", $typeObject, BOMCreateRevisionPageObject::$TOLERANCE_INPUT);
+            SimpleWait::waitShow($webDriver,$xpath);
+            $inputs = $webDriver->findElements(WebDriverBy::xpath($xpath));
             $input = $inputs[$numberCable-1];
             $input->clear();
             $input->sendKeys($text);
         }
     }
 
-    private static function setToleranceValue($webDriver, $numberCable, $text)
+    public static function setCableInformation($webDriver, $numberCable = 1, $customerPartNumber, $remarks, $qty, $tolerance)
     {
-        if ($text != null) {
-            $inputs = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$TOLERANCE_INPUT));
-            $input = $inputs[$numberCable-1];
-            $input->clear();
-            $input->sendKeys($text);
+        self::setCustomerPartNumberText($webDriver, $numberCable,$customerPartNumber,"Cable");
+        print "2";
+        self::setRemarksText($webDriver,$numberCable,$remarks,"Cable");
+        print "3";
+        self::setQuantityValue($webDriver,$numberCable,$qty,"Cable");
+        print "4";
+        self::setToleranceValue($webDriver,$numberCable,$tolerance,"Cable");
+    }
+
+
+
+
+    private static function clickOnLeftShrinkButton($webDrive, $numberCable)
+    {
+        $buttons = $webDrive->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$LEFT_SHRINK_BUTTON));
+        SimpleWait::waitShow($webDrive,BOMCreateRevisionPageObject::$LEFT_SHRINK_BUTTON);
+        if ($numberCable == null) {
+            SimpleWait::waitingOfClick($webDrive,$buttons[0]);
         }
+        SimpleWait::waitingOfClick($webDrive, $buttons[$numberCable - 1]);
     }
 
-    public static function setTableInformation($webDriver, $numberCable = 1, $customerPartNumber = null, $remarks = null, $qty = null, $tolerance = null)
+    public static function setLeftShrinkInformation($webDriver, $numberCable = 1, $customerPartNumber = null, $remarks = null, $qty = null, $tolerance = null){
+        self::setCustomerPartNumberText($webDriver, $numberCable,$customerPartNumber,BOMCreateRevisionPageObject::$LEFT_SHRINK_SPAN);
+        self::setRemarksText($webDriver,$numberCable,$remarks,BOMCreateRevisionPageObject::$LEFT_SHRINK_SPAN);
+        self::setQuantityValue($webDriver,$numberCable,$qty,BOMCreateRevisionPageObject::$LEFT_SHRINK_SPAN);
+        self::setToleranceValue($webDriver,$numberCable,$tolerance,BOMCreateRevisionPageObject::$LEFT_SHRINK_SPAN);
+    }
+
+
+    private static function selectLeftShrinkType($webDriver,$numberLinePartNumber)
     {
-        self::setCustomerPartNumberText($webDriver, $numberCable,$customerPartNumber);
-        self::setRemarksText($webDriver,$numberCable,$remarks);
-        self::setQuantityValue($webDriver,$numberCable,$qty);
-        self::setToleranceValue($webDriver,$numberCable,$tolerance);
+        self::setLinePartNumber($webDriver, $numberLinePartNumber);
     }
 
+    public static function setLeftShrinkData($webDrive, $numberCable = null, $numberLinePartNumber = 1)
+    {
+        self::clickOnLeftShrinkButton($webDrive, $numberCable);
+        self::selectLeftShrinkType($webDrive, $numberLinePartNumber);
+    }
+
+
+    private static function clickOnRightShrinkButton($webDrive, $numberCable)
+    {
+        $buttons = $webDrive->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$RIGHT_SHRINK_BUTTON));
+        SimpleWait::waitShow($webDrive,BOMCreateRevisionPageObject::$RIGHT_SHRINK_BUTTON);
+        if ($numberCable == null) {
+            SimpleWait::waitingOfClick($webDrive,$buttons[0]);
+        }
+        SimpleWait::waitingOfClick($webDrive, $buttons[$numberCable - 1]);
+    }
+
+    public static function setRightShrinkInformation($webDriver, $numberCable = 1, $customerPartNumber = null, $remarks = null, $qty = null, $tolerance = null){
+        self::setCustomerPartNumberText($webDriver, $numberCable,$customerPartNumber,BOMCreateRevisionPageObject::$RIGHT_SHRINK_SPAN);
+        self::setRemarksText($webDriver,$numberCable,$remarks,BOMCreateRevisionPageObject::$RIGHT_SHRINK_SPAN);
+        self::setQuantityValue($webDriver,$numberCable,$qty,BOMCreateRevisionPageObject::$RIGHT_SHRINK_SPAN);
+        self::setToleranceValue($webDriver,$numberCable,$tolerance,BOMCreateRevisionPageObject::$RIGHT_SHRINK_SPAN);
+    }
+
+
+    private static function selectRightShrinkType($webDriver,$numberLinePartNumber)
+    {
+        self::setLinePartNumber($webDriver, $numberLinePartNumber);
+    }
+
+    public static function setRightShrinkData($webDrive, $numberCable = null, $numberLinePartNumber = 1)
+    {
+        self::clickOnRightShrinkButton($webDrive, $numberCable);
+        self::selectRightShrinkType($webDrive, $numberLinePartNumber);
+    }
 
 }

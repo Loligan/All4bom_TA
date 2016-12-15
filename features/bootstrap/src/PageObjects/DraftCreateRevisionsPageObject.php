@@ -210,10 +210,10 @@ class DraftCreateRevisionsPageObject implements PageObject
         $button->click();
     }
 
-    static function drawDimention($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY)
+    static function drawDimention($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY)
     {
         self::clickOnDimentionButton($webDriver);
-        self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
+        self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, 0, 0);
     }
 
     private static function clickOnIconText($webDriver)
@@ -480,5 +480,4 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::clickOnCopyButton($webDriver);
         DraftCreateRevisionsPageObject::pasteCopyOnDraft($webDriver, $positionCopyX, $positionCopyY);
     }
-
-}
+    }
