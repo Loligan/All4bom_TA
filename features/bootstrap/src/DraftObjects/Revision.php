@@ -4,6 +4,11 @@ use Facebook\WebDriver\WebDriverBy;
 
 require_once "Draft.php";
 require_once "Bom.php";
+require_once "BomItem.php";
+require_once "Notes.php";
+require_once "Note.php";
+require_once "Labels.php";
+require_once "LabelItem.php";
 require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/PageObjects/TabCreateRevisionTabPageObject.php";
 require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/PageObjects/BOMCreateRevisionPageObject.php";
 
@@ -25,6 +30,15 @@ class Revision
     private $REMARKS = ".//*[@id='selected-properties']/table/tbody/tr[VALUE]/td[9]/input/@value";
     private $QTY = ".//*[@id='selected-properties']/table/tbody/tr[VALUE]/td[10]/input/@value";
     private $TOLERANCE = ".//*[@id='selected-properties']/table/tbody/tr[VALUE]/td[11]/input/@value";
+    private $INPUTS_TEXTAREA = "html/body/main/form/div[5]/div/div/div/ul/li/textarea";
+    private $LINES = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[1]";
+    private $ID_LABELS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[1]";
+    private $NUMBER_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[2]/input";
+    private $DESC_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[3]/input";
+    private $HEIGHT_IN_MM_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[4]/input";
+    private $WIDTH_IN_MM_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[5]/input";
+    private $DISTANSE_FROM_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[6]/input";
+    private $TOLERANCE_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[7]/input";
 
     /**
      * RevisionObject constructor.
@@ -38,6 +52,8 @@ class Revision
     {
         $this->bomObject = new Bom();
         $this->draftObject = new Draft();
+        $this->notesObject = new Notes();
+        $this->labelsObject = new Labels();
     }
 
     /**
@@ -95,7 +111,6 @@ class Revision
     private function getAllLinesBomInformation($webDriver)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($webDriver);
-        $bom = new Bom();
         $count = count($webDriver->findElements(WebDriverBy::xpath($this->TABLE_LINE)));
         for ($i = 1; $i <= $count; $i++) {
             $id_part = $webDriver->findElements(WebDriverBy::xpath(self::getXpath($this->ID_PART, $i + 1)));
@@ -119,19 +134,66 @@ class Revision
                 self::getValueFirstElement($quantity),
                 self::getValueFirstElement($tolerance)
             );
-            $bom->addBomLine($boomLine);
+            $this->bomObject->addBomLine($boomLine);
         }
 
         $revDesc = $webDriver->findElement(WebDriverBy::xpath($this->REVISION_DESC))->getAttribute("value");
-        print $revDesc;
-        $bom->setRevisionDesc($revDesc);
-        return $bom;
+        $this->bomObject->setRevisionDesc($revDesc);
+    }
+
+
+    private function getAllNotesLines($webDriver)
+    {
+        $notes = $webDriver->findElements(WebDriverBy::xpath($this->INPUTS_TEXTAREA));
+        $count = count($notes);
+        if ($count > 0) {
+            for ($i = 1; $i <= $count; $i++) {
+                $text = $notes[$i - 1]->getText();
+                print $text;
+                $note = new Note($i, $text);
+                $this->notesObject->addNote($note);
+            }
+
+        } else {
+            return null;
+        }
+    }
+
+    private function getAllLabelsLines($webDriver)
+    {
+        $lines = $webDriver->findElements(WebDriverBy::xpath($this->LINES));
+        $count = count($lines);
+        for ($i = 1; $i <= $count; $i++) {
+            $id = $webDriver->findElements(WebDriverBy::xpath($this->ID_LABELS))[$i - 1];
+            $inputNumberText = $webDriver->findElements(WebDriverBy::xpath($this->NUMBER_INPUTS))[$i - 1];
+            $inputDescText = $webDriver->findElements(WebDriverBy::xpath($this->DESC_INPUTS))[$i - 1];
+            $inputHeight = $webDriver->findElements(WebDriverBy::xpath($this->HEIGHT_IN_MM_INPUTS))[$i - 1];
+            $inputWidth = $webDriver->findElements(WebDriverBy::xpath($this->WIDTH_IN_MM_INPUTS))[$i - 1];
+            $inputDistanceFrom = $webDriver->findElements(WebDriverBy::xpath($this->DISTANSE_FROM_INPUTS))[$i - 1];
+            $inputTolerance = $webDriver->findElements(WebDriverBy::xpath($this->TOLERANCE_INPUTS))[$i - 1];
+
+            $id = $id->getText();
+            $number = $inputNumberText->getAttribute("value");
+            $descText = $inputDescText->getAttribute("value");
+            $height = $inputHeight->getAttribute("value");
+            $width = $inputWidth->getAttribute("value");
+            $distanceFrom = $inputDistanceFrom->getAttribute("value");
+            $tolerance = $inputTolerance->getAttribute("value");
+
+            $labelItem = new LabelItem($id,$number,$descText,$height,$width,$distanceFrom,$tolerance);
+            $this->labelsObject->addLabelItem($labelItem);
+        }
     }
 
     public function getAllItems($webDriver)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($webDriver);
-        $this->bomObject = $this->getAllLinesBomInformation($webDriver);
+        $this->getAllLinesBomInformation($webDriver);
+        TabCreateRevisionTabPageObject::clickOnNotesTab($webDriver);
+        $this->getAllNotesLines($webDriver);
+        TabCreateRevisionTabPageObject::clickOnLabelsTab($webDriver);
+        $this->getAllLabelsLines($webDriver);
+
     }
 
 
