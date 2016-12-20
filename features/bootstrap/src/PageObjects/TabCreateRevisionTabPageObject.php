@@ -3,6 +3,7 @@
 
 require_once "DraftCreateRevisionsPageObject.php";
 require_once "SimpleWait.php";
+require_once "PageObject.php";
 use Facebook\WebDriver\WebDriverBy;
 
 class TabCreateRevisionTabPageObject implements PageObject

@@ -1,7 +1,6 @@
 <?php
 
-require_once "PageObject.php";
-require_once "LoginPageObject.php";
+require_once "HomePageObject.php";
 use Facebook\WebDriver\WebDriverBy;
 
 class LoginPageObject implements PageObject

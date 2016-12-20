@@ -131,3 +131,48 @@ public static function draftCopyItems($webDriver, $positionItemX, $positionItemY
 DraftCreateRevisionsPageObject::draftCopyItems($this->webDriver,100,100,250,250,2);
 
 ```
+
+
+```
+___
+#### Тест сохранения ревизии
+```php
+
+```
+___
+#### Добавление copy object
+```php
+
+    /**
+     * @Given [some context]
+     */
+    public function someContext()
+    {
+    RevisionsPageObjects::createNewRevisionInCableAssembliesByName($this->webDriver,"tst");
+    }
+    
+    
+    public function someEvent()
+    {
+        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,550,100,600,150);
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+             
+        BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
+        BOMCreateRevisionPageObject::setCableInformation($this->webDriver,1,"1234567890AB","1234567890AB",2,3);
+        sleep(1);
+        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver,"HELLO WORD!");
+        
+        $gg = new Revision();
+        $gg->getAllItems($this->webDriver);
+                      
+        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
+    
+        RevisionsPageObjects::clickOnLatestRevision($this->webDriver);
+        $ff = new Revision();
+        $ff->getAllItems($this->webDriver);
+        CompareRevisions::addRevision($gg);
+        CompareRevisions::addRevision($ff);
+        CompareRevisions::compare();
+    }
+    
+```
