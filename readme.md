@@ -176,3 +176,42 @@ ___
     }
     
 ```
+
+#### Пример теста на PINOUT DETAILS
+```php
+public function someContext()
+{
+    RevisionsPageObjects::createNewRevisionInCableAssembliesByName($this->webDriver, "tst");
+}
+          
+public function someEvent()
+{
+    DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
+    DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
+    DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,600,100,100,150);
+            
+    TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+    BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
+    BOMCreateRevisionPageObject::setConnectorData($this->webDriver,1,2);
+    BOMCreateRevisionPageObject::setConnectorData($this->webDriver,2,2);
+    TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($this->webDriver);
+
+    PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
+    PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver,"P1");
+    PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+    PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver,"P2");
+    PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
+    PinoutDetailsCreateRevisionsPageObject::setCheckBoxByNumberCableInLastTable($this->webDriver,1);
+    PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
+    PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver,"P2");
+    PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+    PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver,"P1");
+    PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
+
+    TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+    BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver,"HELLO WORD!");
+
+    $gg = new Revision();
+    $gg->getAllItems($this->webDriver);
+}
+```

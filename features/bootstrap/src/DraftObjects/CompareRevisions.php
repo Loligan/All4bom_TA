@@ -25,7 +25,13 @@ class CompareRevisions
         $count = count(CompareRevisions::$revisions);
         if ($count > 1) {
             for ($i = 1; $i < $count; $i++) {
-                if (var_export(CompareRevisions::$revisions[0], true) != var_export(CompareRevisions::$revisions[$i],true)) {
+                print "\nProcent:";
+                similar_text(var_export(CompareRevisions::$revisions[0], true),var_export(CompareRevisions::$revisions[$i], true),$ggPrecent);
+                print $ggPrecent;
+                print "\n";
+                if (var_export(CompareRevisions::$revisions[0], true) == var_export(CompareRevisions::$revisions[$i], true)) {
+                    return true;
+                } else {
                     throw new Exception("Revisions is not equal");
                 }
             }

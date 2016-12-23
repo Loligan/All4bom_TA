@@ -135,10 +135,10 @@
   },
   "connector": {
     "checkedParams": [
-      {
-        "jsonName":"isConnector",
-        "jsonValue":true
-      },
+//      {
+//        "jsonName":"isConnector",
+//        "jsonValue":true
+//      },
       {
         "jsonName":"isDetail",
         "jsonValue":true

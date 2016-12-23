@@ -50,7 +50,7 @@ class TabCreateRevisionTabPageObject implements PageObject
     public static function clickOnPinoutDetailsTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$PINOUT_DETAILS_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     public static function clickOnPinoutSchemasTab($webDriver)
