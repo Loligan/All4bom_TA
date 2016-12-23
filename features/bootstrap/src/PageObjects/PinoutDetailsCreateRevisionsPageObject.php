@@ -82,9 +82,7 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
     static function setCheckBoxByNumberCableInLastTable($webDriver, $numberCable){
         $countTables = self::getCountTables($webDriver);
         $xpath = str_replace("TABLE", $countTables, PinoutDetailsCreateRevisionsPageObject::$CABLE_CHECKBOXES);
-        print "XPATH: ".$xpath."\n";
         $checkboxes = $webDriver->findElements(WebDriverBy::xpath($xpath));
-        print "Count cb: ".count($checkboxes)."\n";
         $checkbox = $checkboxes[$numberCable-1];
         SimpleWait::waitingOfClick($webDriver,$checkbox);
     }

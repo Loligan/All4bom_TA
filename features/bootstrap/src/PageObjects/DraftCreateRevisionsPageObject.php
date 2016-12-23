@@ -49,6 +49,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     private static $COPY_ICON;
     private static $COPY_QUANTITY;
     private static $COPY_BUTTON;
+    private static $CONNECTOR_CATEGORY_SELECT;
 
     static function init()
     {
@@ -80,8 +81,9 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::$CONNECTOR_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[7]/button";
         DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_OPTION = "html/body/main/form/div[1]/div/div/div/div[1]/div[6]/ul/li/div/select/option[text()=\"VALUE\"]";
         DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_SELECT = "html/body/main/form/div[1]/div/div/div/div[1]/div[6]/ul/li[1]/div/select";
+        DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_SELECT = "html/body/main/form/div[1]/div/div/div/div[1]/div[6]/ul/li[2]/div/select";
         DraftCreateRevisionsPageObject::$CONNECTOR_CELL = "html/body/main/form/div[1]/div/div/div/div[1]/div[8]/ul/li[VALUE]/a";
-        DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_OPTION = "html/body/main/form/div[1]/div/div/div/div[1]/div[8]/ul/li[VALUE]/a";
+        DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_OPTION = "html/body/main/form/div[1]/div/div/div/div[1]/div[6]/ul/li[2]/div/select/option[text()=\"VALUE\"]";
         DraftCreateRevisionsPageObject::$IMAGE_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[8]/button";
         DraftCreateRevisionsPageObject::$IMAGE_CELL = "html/body/main/form/div[1]/div/div/div/div[1]/div[5]/ul/li[VALUE]/a";
         DraftCreateRevisionsPageObject::$ACCESSORIES_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[9]/button";
@@ -90,6 +92,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::$COPY_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[12]/button";
         DraftCreateRevisionsPageObject::$COPY_BUTTON = "html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[1]/button";
         DraftCreateRevisionsPageObject::$COPY_QUANTITY = "html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[2]/input";
+
     }
 
 
@@ -166,7 +169,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         self::setWeightCabel($webDriver, $weight);
         self::clickOnPlainCableButton($webDriver);
         self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
-        CheckJSONValue::check($webDriver,"plainCable");
+        CheckJSONValue::check($webDriver, "plainCable");
     }
 
     static function drawCurveCable($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
@@ -183,7 +186,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         self::setWeightCabel($webDriver, $weight);
         self::clickOnBrokenCableButton($webDriver);
         self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
-        CheckJSONValue::check($webDriver,"brokenCable");
+        CheckJSONValue::check($webDriver, "brokenCable");
     }
 
     static private function drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY)
@@ -368,14 +371,27 @@ class DraftCreateRevisionsPageObject implements PageObject
         $button->click();
     }
 
+    private static function selectCategoryConnector($webDriver, $categoryName)
+    {
+        $hh = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_SELECT));
+        $hh->click();
+        $xpath = str_replace("VALUE", $categoryName, DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_OPTION);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $button = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        $button->click();
+    }
 
-    static function draftConnector($webDriver, $numberCell, $familyName)
+    static function draftConnector($webDriver, $numberCell, $familyName, $categoryName = null)
     {
         self::clickOnConnectorIcon($webDriver);
         self::selectFamilyConnector($webDriver, $familyName);
+        if ($categoryName != null) {
+            SimpleWait::waitShow($webDriver,DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_SELECT);
+            self::selectCategoryConnector($webDriver, $categoryName);
+        }
         self::clickOnConnectorCell($webDriver, $numberCell);
         sleep(2);
-        CheckJSONValue::check($webDriver,"connector");
+        CheckJSONValue::check($webDriver, "connector");
     }
 
     private static function clickOnUserImageIcon($webDriver)
@@ -483,20 +499,22 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::pasteCopyOnDraft($webDriver, $positionCopyX, $positionCopyY);
     }
 
-    private static function mouseButtonDownOnObject($webDriver,$positionX,$positionY){
+    private static function mouseButtonDownOnObject($webDriver, $positionX, $positionY)
+    {
         $mouse = $webDriver->getMouse();
         $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
         self::getIndexSize($webDriver);
         $setFirstPointX = self::getSetX($positionX);
         $setFirstPointY = self::getSetY($positionY);
-        print $setFirstPointX."x".$setFirstPointY;
+        print $setFirstPointX . "x" . $setFirstPointY;
         $canvasCoordinates = $canvas->getCoordinates();
         $mouse->mouseMove($canvasCoordinates, $setFirstPointY, $setFirstPointX);
         $mouse->click();
         $mouse->mouseDown();
     }
 
-    private static function mouseButtonUpOnObject($webDriver,$positionX,$positionY){
+    private static function mouseButtonUpOnObject($webDriver, $positionX, $positionY)
+    {
         $mouse = $webDriver->getMouse();
         $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
         self::getIndexSize($webDriver);
@@ -508,19 +526,19 @@ class DraftCreateRevisionsPageObject implements PageObject
     }
 
 
-    public static function moveLineFamilyObject($webDriver,$firstPositionPointX, $firstPositionPointY,$secondPositionPointX, $secondPositionPointY, $positionMovePointX, $positionMovePointY)
+    public static function moveLineFamilyObject($webDriver, $firstPositionPointX, $firstPositionPointY, $secondPositionPointX, $secondPositionPointY, $positionMovePointX, $positionMovePointY)
     {
         $clickPositionX = (($secondPositionPointX - $firstPositionPointX) / 2) + $firstPositionPointX;
         $clickPositionY = (($secondPositionPointY - $firstPositionPointY) / 2) + $firstPositionPointY;
-        DraftCreateRevisionsPageObject::mouseButtonDownOnObject($webDriver,$clickPositionX,$clickPositionY);
-        DraftCreateRevisionsPageObject::mouseButtonUpOnObject($webDriver,$positionMovePointX,$positionMovePointY);
+        DraftCreateRevisionsPageObject::mouseButtonDownOnObject($webDriver, $clickPositionX, $clickPositionY);
+        DraftCreateRevisionsPageObject::mouseButtonUpOnObject($webDriver, $positionMovePointX, $positionMovePointY);
     }
 
-    public static function moveImageFamilyObject($webDriver,$positionPointX, $positionPointY,$newPositionX,$newPositionY)
+    public static function moveImageFamilyObject($webDriver, $positionPointX, $positionPointY, $newPositionX, $newPositionY)
     {
 
-        print($positionPointX."x".$positionPointY);
-        DraftCreateRevisionsPageObject::mouseButtonDownOnObject($webDriver,$positionPointX,$positionPointY);
-        DraftCreateRevisionsPageObject::mouseButtonUpOnObject($webDriver,$newPositionX,$newPositionY);
+        print($positionPointX . "x" . $positionPointY);
+        DraftCreateRevisionsPageObject::mouseButtonDownOnObject($webDriver, $positionPointX, $positionPointY);
+        DraftCreateRevisionsPageObject::mouseButtonUpOnObject($webDriver, $newPositionX, $newPositionY);
     }
 }

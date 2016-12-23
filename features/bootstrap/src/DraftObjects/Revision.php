@@ -190,14 +190,6 @@ class Revision
         }
     }
 
-    private function getCountItems($webDriver, $xpath)
-    {
-        $items = $webDriver->findElements(WebDriverBy::xpath($xpath));
-        $count = count($items);
-        return $count;
-    }
-
-
 //Please, don't see this function :)
     public function getAllPinoutDetails($webDriver)
     {
@@ -242,10 +234,8 @@ class Revision
                 $headCheckboxCableXpath = str_replace("CABLE", $cableHead, $headCheckboxCableXpath);
                 $checkBoxEnables = $webDriver->findElement(WebDriverBy::xpath($headCheckboxCableXpath))->isSelected();
                 if ($checkBoxEnables) {
-                    print "true";
                     $checkBoxEnables = "true";
                 } else {
-                    print "false";
                     $checkBoxEnables = "false";
                 }
 
@@ -303,7 +293,7 @@ class Revision
         $this->getAllNotesLines($webDriver);
         TabCreateRevisionTabPageObject::clickOnLabelsTab($webDriver);
         $this->getAllLabelsLines($webDriver);
-        sleep(5);
+//        sleep(5);
         TabCreateRevisionTabPageObject::clickOnBOMTab($webDriver);
         $this->getAllLinesBomInformation($webDriver);
         TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($webDriver);

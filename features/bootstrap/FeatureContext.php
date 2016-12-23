@@ -98,6 +98,10 @@ class FeatureContext implements Context
 
 //        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($this->webDriver);
 //        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
+                DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,600,100,100,150);
+        DraftCreateRevisionsPageObject::moveLineFamilyObject($this->webDriver,100,100,550,100,200,1000);
+        sleep(3);
+//        DraftCreateRevisionsPageObject::moveImageFamilyObject($this->webDriver,200,600,400,200);
 //        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RF");
 //        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","IDC");
 //        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","Terminal");
@@ -133,27 +137,26 @@ class FeatureContext implements Context
 //        BOMCreateRevisionPageObject::setCableData($this->webDriver,14,3,"RF Cable");
 
 
-
-        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
-        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
-        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,600,100,100,150);
-
-        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-        BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
-        BOMCreateRevisionPageObject::setConnectorData($this->webDriver,1,2);
-        BOMCreateRevisionPageObject::setConnectorData($this->webDriver,2,2);
-        TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($this->webDriver);
-        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
-        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver,"P1");
-        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
-        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver,"P2");
-        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
-        PinoutDetailsCreateRevisionsPageObject::setCheckBoxByNumberCableInLastTable($this->webDriver,1);
-        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
-        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver,"P2");
-        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
-        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver,"P1");
-        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
+//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver, "1", "RJ");
+//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver, "1", "RJ");
+//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver, 100, 100, 600, 100, 100, 150);
+//
+//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+//        BOMCreateRevisionPageObject::setCableData($this->webDriver, 1, 3, "RF Cable");
+//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver, 1, 2);
+//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver, 2, 2);
+//        TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($this->webDriver);
+//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
+//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver, "P1");
+//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver, "P2");
+//        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
+//        PinoutDetailsCreateRevisionsPageObject::setCheckBoxByNumberCableInLastTable($this->webDriver, 1);
+//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
+//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver, "P2");
+//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver, "P1");
+//        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
 //        PinoutDetailsCreateRevisionsPageObject::setCheckBoxByNumberCableInLastTable($this->webDriver,1);
 //        sleep(10);
 
@@ -207,17 +210,17 @@ class FeatureContext implements Context
 //        BOMCreateRevisionPageObject::setConnectorInformation($this->webDriver,1,"Number","remark");
 //
 
-        //        DraftCreateRevisionsPageObject::drawDimention($this->webDriver,100,100,550,100);
+//                DraftCreateRevisionsPageObject::drawDimention($this->webDriver,100,100,550,100);
 //        DraftCreateRevisionsPageObject::drawPlainLineObject($this->webDriver,100,100,550,100,600,150);
 //        DraftCreateRevisionsPageObject::moveLineFamilyObject($this->webDriver,100,100,550,100,200,1000);
 //        CheckJSONValue::getValue($this->webDriver,"gg");
 
 
 //        sleep(1);
-        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver,"HELLO WORD!");
-        $gg = new Revision();
-        $gg->getAllItems($this->webDriver);
+//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+//        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver, "HELLO WORD!");
+//        $gg = new Revision();
+//        $gg->getAllItems($this->webDriver);
 //
 //        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
 ////
@@ -272,6 +275,160 @@ class FeatureContext implements Context
      */
     public function outcomeBin()
     {
+    }
+
+
+    /**
+     * @Given GHOST
+     */
+    public function GHOST()
+    {
+
+    }
+
+    /**
+     * @When I draft text object
+     */
+    public function iDraftTextObject()
+    {
+        DraftCreateRevisionsPageObject::drawTextObject($this->webDriver);
+    }
+
+    /**
+     * @Then I can see :arg1 object on draft
+     */
+    public function iCanSeeObjectOnDraft($arg1)
+    {
+//        TODO Relase Checked ObjectCreate
+    }
+
+    /**
+     * @Given /^I create revision in "([^"]*)" cable assemblies$/
+     */
+    public function iCreateRevisionInCableAssemblies1($arg1)
+    {
+        RevisionsPageObjects::createNewRevisionInCableAssembliesByName($this->webDriver, $arg1);
+    }
+
+    /**
+     * @When /^I draft (.*) cable object with weight = (.*) on draft$/
+     */
+    public function iDraftCableObjectWithWeightOnDraft($Type, $Weight)
+    {
+        switch ($Type) {
+            case "Plain":
+                DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver, 100, 100, 300, 100, 200, 200, $Weight);
+                break;
+            case "Curve":
+                DraftCreateRevisionsPageObject::drawCurveCable($this->webDriver, 100, 100, 300, 100, 200, 200, $Weight);
+                break;
+            case "Broken":
+                DraftCreateRevisionsPageObject::drawBrokenCable($this->webDriver, 100, 100, 300, 100, 200, 200, $Weight);
+                break;
+        }
+
+    }
+
+    /**
+     * @Then /^I can see (.*) cable object with weight = (.*) on draft$/
+     */
+    public function iCanSeeCableObjectWithWeightOnDraft($Type, $Weight)
+    {
+        //        TODO Relase Checked Cable Object
+    }
+
+    /**
+     * @When /^I draft (.*) line object with weight = (.*) on draft$/
+     */
+    public function iDraftLineObjectWithWeightOnDraft($Type, $Weight)
+    {
+        switch ($Type) {
+            case "Plain":
+                DraftCreateRevisionsPageObject::drawPlainLineObject($this->webDriver, 100, 100, 300, 100, 200, 200, $Weight);
+                break;
+            case "Curve":
+                DraftCreateRevisionsPageObject::drawCurveLineObject($this->webDriver, 100, 100, 300, 100, 200, 200, $Weight);
+                break;
+            case "Broken":
+                DraftCreateRevisionsPageObject::drawBrokenLineObject($this->webDriver, 100, 100, 300, 100, 200, 200, $Weight);
+                break;
+        }
+    }
+
+    /**
+     * @Then /^I can see (.*) line object with weight = (.*) on draft$/
+     */
+    public function iCanSeeLineObjectWithWeightOnDraft($Type, $Weight)
+    {
+        //        TODO Relase Checked Cable Object
+    }
+
+    /**
+     * @When /^I draft (.*) connector from (.*) object (.*) cells images on draft$/
+     */
+    public function iDraftConnectorFromObjectCellsImagesOnDraft($Family, $Category, $Number)
+    {
+        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,$Number,$Family,$Category);
+    }
+
+    /**
+     * @Then /^I can see (.*) connector object on draft$/
+     */
+    public function iCanSeeConnectorObjectOnDraft($Family)
+    {
+        //        TODO Relase Checked Connector Object
+    }
+
+    /**
+     * @When /^I draft user image object from (.*) cells images on draft$/
+     */
+    public function iDraftUserImageObjectFromCellsImagesOnDraft($Number)
+    {
+     DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,$Number);
+    }
+
+    /**
+     * @Then /^I can see (.*) user image on draft$/
+     */
+    public function iCanSeeUserImageOnDraft($Number)
+    {
+        sleep(3);
+        //        TODO Relase Checked user image Object
+    }
+
+    /**
+     * @When /^I draft accessories object from (.*) cells images on draft$/
+     */
+    public function iDraftAccessoriesObjectFromCellsImagesOnDraft($Number)
+    {
+       DraftCreateRevisionsPageObject::draftAcessories($this->webDriver,$Number);
+    }
+
+    /**
+     * @Then /^I can see (.*) accessories on draft$/
+     */
+    public function iCanSeeAccessoriesOnDraft($Number)
+    {
+        sleep(3);
+        //        TODO Relase Checked user image Object
+    }
+
+    /**
+     * @When /^I draft custom part object on draft$/
+     */
+    public function iDraftCustomPartObjectOnDraft()
+    {
+        DraftCreateRevisionsPageObject::draftCustomPart($this->webDriver);
+    }
+
+    /**
+     * @Then /^I can see custom part object on draft$/
+     */
+    public function iCanSeeCustomPartObjectOnDraft()
+    {
+        sleep(3);
+
+        //        TODO Relase Checked user image Object
     }
 
 
