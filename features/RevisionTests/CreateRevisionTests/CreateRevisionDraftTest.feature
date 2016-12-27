@@ -1,10 +1,13 @@
+@Draft @Create
 Feature: Test create draft object, without saving revision
 
+  @Text
   Scenario: Create text object on draft
     Given I create revision in "tst" cable assemblies
     When I draft text object
     Then I can see "Text" object on draft
 
+  @Cable
   Scenario Outline: Create <Type> cable objects with weight <Weight> on draft
     Given I create revision in "tst" cable assemblies
     When I draft <Type> cable object with weight = <Weight> on draft
@@ -23,6 +26,7 @@ Feature: Test create draft object, without saving revision
       | Broken | Normal   |
       | Broken | Thick    |
 
+  @Line
   Scenario Outline: Create <Type> line objects with weight <Weight> on draft
     Given I create revision in "tst" cable assemblies
     When I draft <Type> line object with weight = <Weight> on draft
@@ -41,6 +45,7 @@ Feature: Test create draft object, without saving revision
       | Broken | Normal   |
       | Broken | Thick    |
 
+  @Connector
   Scenario Outline: Create <Family> connector objects on draft
     Given I create revision in "tst" cable assemblies
     When I draft <Family> connector from <Category> object <Number> cells images on draft
@@ -53,7 +58,7 @@ Feature: Test create draft object, without saving revision
       | Headers | Connector | 2      |
       | RJ      |           | 2      |
 
-
+  @UserImage
   Scenario Outline: Create <Number> User image objects on draft
     Given I create revision in "tst" cable assemblies
     When I draft user image object from <Number> cells images on draft
@@ -64,6 +69,7 @@ Feature: Test create draft object, without saving revision
       | 2      |
       | 3      |
 
+  @Accessories
   Scenario Outline: Create <Number> accessories objects on draft
     Given I create revision in "tst" cable assemblies
     When I draft accessories object from <Number> cells images on draft
@@ -73,20 +79,23 @@ Feature: Test create draft object, without saving revision
       | 1      |
       | 2      |
 
+  @CustomPart
   Scenario: Create custom part object on draft
     Given I create revision in "tst" cable assemblies
     When I draft custom part object on draft
     Then I can see custom part object on draft
 
-  @Test
-  Scenario Outline: Create Cable dublicate accessories objects on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft accessories object from <Number> cells images on draft
-    Then I can see <Number> accessories on draft
-    Examples:
-      | Number |
-      | 1      |
-      | 2      |
+    # @Block
+#  Scenario Outline: Create Cable dublicate accessories objects on draft
+#    Given I create revision in "tst" cable assemblies
+#    When I draft accessories object from <Number> cells images on draft
+#    Then I can see <Number> accessories on draft
+#    Examples:
+#      | Number |
+#      | 1      |
+#      | 2      |
+
+
 
 #@Test
 #  Scenario: Some description of the scenario

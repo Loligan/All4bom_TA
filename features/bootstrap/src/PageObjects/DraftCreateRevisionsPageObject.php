@@ -207,7 +207,6 @@ class DraftCreateRevisionsPageObject implements PageObject
         $mouse->click();
         $mouse->mouseMove($canvasCoordinates, $setDimentionPointY, $setDimentionPointX);
         $mouse->click();
-
     }
 
     private static function clickOnDimentionButton($webDriver)

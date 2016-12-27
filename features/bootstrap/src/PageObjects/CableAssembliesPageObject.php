@@ -64,4 +64,14 @@ class CableAssembliesPageObject implements PageObject
             throw new Exception("Cable assembly with name: ".$name." not found");
         }
     }
+
+    public static function clickOnRevisionsLinkByNameCableAssemblies($webDriver,$name){
+        $revision = $webDriver->findElements(WebDriverBy::xpath(self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME,$name)));
+        $count = count($revision);
+        if(count($revision)>0){
+            $revision[$count-1]->click();
+        }else{
+            throw new Exception("Cable assembly with name: ".$name." not found");
+        }
+    }
 }

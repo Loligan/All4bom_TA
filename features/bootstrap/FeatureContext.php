@@ -28,6 +28,8 @@ class FeatureContext implements Context
 {
     private $appValue;
     private $webDriver;
+    private $bufRevision;
+    private $bufCableAssemblies;
 
     public function __construct()
     {
@@ -58,7 +60,7 @@ class FeatureContext implements Context
     {
 
         $capabilities = DesiredCapabilities::chrome();
-        $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities);
+        $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities,90 * 1000,90 * 1000);
         $this->webDriver->manage()->window();
         $this->webDriver->manage()->window()->maximize();
         CompareRevisions::init();
@@ -69,10 +71,17 @@ class FeatureContext implements Context
      */
     public function AfterScenario()
     {
+//        Open cable assembly page
+        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+        CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver,$this->bufCableAssemblies);
+        RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver,$this->bufRevision);
+        CompareRevisions::reset();
+
         if ($this->webDriver) {
             $this->webDriver->quit();
         }
-        CompareRevisions::reset();
+
+
     }
 
 
@@ -98,8 +107,8 @@ class FeatureContext implements Context
 
 //        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($this->webDriver);
 //        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
-                DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,600,100,100,150);
-        DraftCreateRevisionsPageObject::moveLineFamilyObject($this->webDriver,100,100,550,100,200,1000);
+        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver, 100, 100, 600, 100, 100, 150);
+        DraftCreateRevisionsPageObject::moveLineFamilyObject($this->webDriver, 100, 100, 550, 100, 200, 1000);
         sleep(3);
 //        DraftCreateRevisionsPageObject::moveImageFamilyObject($this->webDriver,200,600,400,200);
 //        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RF");
@@ -307,6 +316,7 @@ class FeatureContext implements Context
      */
     public function iCreateRevisionInCableAssemblies1($arg1)
     {
+        $this->bufCableAssemblies=$arg1;
         RevisionsPageObjects::createNewRevisionInCableAssembliesByName($this->webDriver, $arg1);
     }
 
@@ -368,7 +378,7 @@ class FeatureContext implements Context
      */
     public function iDraftConnectorFromObjectCellsImagesOnDraft($Family, $Category, $Number)
     {
-        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,$Number,$Family,$Category);
+        DraftCreateRevisionsPageObject::draftConnector($this->webDriver, $Number, $Family, $Category);
     }
 
     /**
@@ -384,7 +394,7 @@ class FeatureContext implements Context
      */
     public function iDraftUserImageObjectFromCellsImagesOnDraft($Number)
     {
-     DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,$Number);
+        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver, $Number);
     }
 
     /**
@@ -401,7 +411,7 @@ class FeatureContext implements Context
      */
     public function iDraftAccessoriesObjectFromCellsImagesOnDraft($Number)
     {
-       DraftCreateRevisionsPageObject::draftAcessories($this->webDriver,$Number);
+        DraftCreateRevisionsPageObject::draftAcessories($this->webDriver, $Number);
     }
 
     /**
@@ -426,9 +436,210 @@ class FeatureContext implements Context
      */
     public function iCanSeeCustomPartObjectOnDraft()
     {
-        sleep(3);
-
         //        TODO Relase Checked user image Object
+    }
+
+
+    /**
+     * @Then /^I can to see the information the selected line$/
+     */
+    public function iCanToSeeTheInformationTheSelectedLine()
+    {
+        //        TODO Relase Checked user image Object
+    }
+
+    /**
+     * @Given /^I set (.*) family and set (.*) line in table$/
+     */
+    public function iSetFamilyAndSetLineInTable($familyCable, $numberLine)
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::setCableData($this->webDriver, 1, $numberLine, $familyCable);
+    }
+
+    /**
+     * @Given /^I set (.*) line left shrink in table$/
+     */
+    public function iSetLineShrinkInTable($shrinkLineNumber)
+    {
+        BOMCreateRevisionPageObject::setLeftShrinkData($this->webDriver, 1, $shrinkLineNumber);
+    }
+
+
+    /**
+     * @Given /^I set (.*) line right shrink in table$/
+     */
+    public function iSetLineRightShrinkInTable($shrinkLineNumber)
+    {
+        BOMCreateRevisionPageObject::setRightShrinkData($this->webDriver, 1, $shrinkLineNumber);
+    }
+
+    /**
+     * @Then /^I can to see left shrink (.*) line information$/
+     */
+    public function iCanToSeeLeftShringInformation($shrinkLineNumber)
+    {
+        //TODO add checked
+    }
+
+    /**
+     * @Then /^I can to see right shrink (.*) line information$/
+     */
+    public function iCanToSeeRightShringInformation($shrinkLineNumber)
+    {
+        //TODO add checked
+    }
+
+    /**
+     * @Given /^I set (.*) (.*) connector in table$/
+     */
+    public function iSetConnectorInTable($NumberLine, $numberConnector)
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::setConnectorData($this->webDriver, $numberConnector, $NumberLine);
+    }
+
+    /**
+     * @Then /^I can to see (.*) connector in bom table$/
+     */
+    public function iCanToSeeConnectorInBomTable($NumberLine)
+    {
+        //TODO add checked
+    }
+
+//    /**
+//     * @Then /^I can to see (.*) information$/
+//     */
+//    public function iCanToSeeInformation($shrinkLineNumber)
+//    {
+//        //TODO add checked
+//    }
+
+    /**
+     * @Given /^I set Molder params$/
+     */
+    public function iSetMolderParams()
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::clickOnConnetorMolderFlag($this->webDriver, 1);
+    }
+
+    /**
+     * @Given /^I can see Boot object hide in table$/
+     */
+    public function iCanSeeBootObjectHideInTable()
+    {
+        sleep(3);
+        //TODO add checked
+    }
+
+    /**
+     * @Given /^I set (.*) boot in table$/
+     */
+    public function iSetBootInTable($bootLine)
+    {
+        BOMCreateRevisionPageObject::setBootData($this->webDriver, 1, $bootLine);
+    }
+
+    /**
+     * @Given /^I can see (.*) information in table$/
+     */
+    public function iCanSeeInformationInTable($bootLine)
+    {
+        sleep(3);
+        //TODO add checked
+    }
+
+    /**
+     * @Given /^I save revision with name: (.*)$/
+     */
+    public function iSaveRevisionWithName($nameRevision)
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver, $nameRevision);
+        $rev = new Revision();
+        $rev->getAllItems($this->webDriver);
+        CompareRevisions::addRevision($rev);
+        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
+        $this->bufRevision=$nameRevision;
+    }
+
+    /**
+     * @Then /^I open last revision with name: (.*)$/
+     */
+    public function iOpenLastRevisionWithName($nameRevision)
+    {
+        RevisionsPageObjects::openLatestRevisionByName($this->webDriver, $nameRevision);
+    }
+
+    /**
+     * @Given /^I see all save object in opened revision$/
+     */
+    public function iSeeAllSaveObjectInOpenedRevision()
+    {
+        $rev = new Revision();
+        $rev->getAllItems($this->webDriver);
+        CompareRevisions::addRevision($rev);
+        CompareRevisions::compare();
+    }
+
+//    /**
+//     * @Given /^I can to see (.*) information$/
+//     */
+//    public function iCanToSeeInformation($shrinkLineNumber)
+//    {
+//        //TODO add checked
+//    }
+
+    /**
+     * @Given /^I add in Pinout detail shcematic connector with params: first connector (.*) and (.*)$/
+     */
+    public function iAddInPinoutDetailShcematicConnectorWithParamsFirstConnectorAnd($NameFirstConnectorInPinoutDetails, $NameSecondConnectorInPinoutDetails)
+    {
+        TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($this->webDriver);
+        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
+        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver, $NameFirstConnectorInPinoutDetails);
+        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver, $NameSecondConnectorInPinoutDetails);
+        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
+    }
+
+    /**
+     * @When I draft :arg1 cable object with weight = :arg2 on draft on positions First Point X=:arg3 Y=:arg4, Second Point X=:arg5 Y=:arg6, Dimention point X=:arg7 Y=:arg8
+     */
+    public function iDraftPlainCableByPositions($typeCable, $weightCable, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY)
+    {
+
+        switch ($typeCable) {
+            case "Plain":
+                DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weightCable);
+                break;
+            case "Curve":
+                DraftCreateRevisionsPageObject::drawCurveCable($this->webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weightCable);
+                break;
+            case "Broken":
+                DraftCreateRevisionsPageObject::drawBrokenCable($this->webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weightCable);
+                break;
+        }
+    }
+
+    /**
+     * @When I set :arg1 family and set :arg2 line in table in :arg3 cable
+     */
+    public function iSetFamilyAndSetLineInTableInCable($family, $numberLine, $numberCable)
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::setCableData($this->webDriver,$numberCable,$numberLine,$family);
+    }
+
+    /**
+     * @When /^I add labels with information: Number: (.*) Description: (.*) Height: (.*) Width: (.*) Distance: (.*) Tolerance: (.*)$/
+     */
+    public function iAddLabelsWithInformationNumberDescriptionHeightWidthDistanceTolerancePosition($num, $desc, $hght, $wdth, $dstc, $tlrnc)
+    {
+        TabCreateRevisionTabPageObject::clickOnLabelsTab($this->webDriver);
+        LabelsCreateRevisionPageObject::clickOnAddLabelButton($this->webDriver);
+        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver,1,$num,$desc,$hght,$wdth,$dstc,$tlrnc);
     }
 
 

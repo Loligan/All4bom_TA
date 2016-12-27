@@ -370,7 +370,7 @@ class BOMCreateRevisionPageObject implements PageObject
     public static function clickOnConnetorMolderFlag($webDriver,$numberConnector = 1){
         $molders = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$CONNECTOR_MOLDER));
         $molder = $molders[$numberConnector-1];
-        $molder->click();
+        SimpleWait::waitingOfClick($webDriver,$molder);
     }
 
 //    TODO Add [CONNECTED WITH] select value

@@ -38,13 +38,14 @@ class TabCreateRevisionTabPageObject implements PageObject
     public static function clickOnDraftTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$DRAFT_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     public static function clickOnBOMTab($webDriver)
     {
+        SimpleWait::waitShow($webDriver,TabCreateRevisionTabPageObject::$BOM_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$BOM_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     public static function clickOnPinoutDetailsTab($webDriver)
@@ -56,19 +57,19 @@ class TabCreateRevisionTabPageObject implements PageObject
     public static function clickOnPinoutSchemasTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$PINOUT_SCHEMAS_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     public static function clickOnLabelsTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$LABELS_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     public static function clickOnNotesTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$NOTES_TAB));
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     public static function clickOnSaveTab($webDriver)

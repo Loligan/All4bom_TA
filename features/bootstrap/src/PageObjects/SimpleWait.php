@@ -7,16 +7,24 @@ class SimpleWait
 {
     private static $xpathBuf;
     private static $elementBuf;
+
+    public static function waitShowByCSSSelector($webDriver, $xpath){
+        SimpleWait::$xpathBuf = $xpath;
+        $webDriver->wait(20,20)->until(function ($driver){
+            return $driver->findElement(WebDriverBy::cssSelector(SimpleWait::$xpathBuf))->isDisplayed()===true && $driver->findElement(WebDriverBy::cssSelector(SimpleWait::$xpathBuf))->isEnabled()===true;
+        } );
+    }
+
     public static function waitShow($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
-        $webDriver->wait(600,20)->until(function ($driver){
+        $webDriver->wait(20,20)->until(function ($driver){
             return $driver->findElement(WebDriverBy::xpath(SimpleWait::$xpathBuf))->isDisplayed()===true && $driver->findElement(WebDriverBy::xpath(SimpleWait::$xpathBuf))->isEnabled()===true;
         } );
     }
 
     public static function waitHide($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
-        $webDriver->wait(60,20)->until(function ($driver){
+        $webDriver->wait(20,20)->until(function ($driver){
             $gg = false;
             if(count($driver->findElements(WebDriverBy::xpath(SimpleWait::$xpathBuf)))<1){
                 $gg=true;
@@ -38,7 +46,7 @@ class SimpleWait
 
     public static function waitingOfClick($webDriver, $element){
         SimpleWait::$elementBuf = $element;
-        $webDriver->wait(60,20)->until(function ($driver){
+        $webDriver->wait(20,20)->until(function ($driver){
             $gg=false;
             try {
                 SimpleWait::$elementBuf->click();
