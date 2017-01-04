@@ -1,89 +1,131 @@
 @Draft @Create
-Feature: Test create draft object, without saving revision
+Feature: Cоздание объектов в Draft без сохранения
 
-  @Text
-  Scenario: Create text object on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft text object
-    Then I can see "Text" object on draft
+  @Text @Smoke
+  Scenario: Создание на полотне объекта Text
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект "Text" на полотне
+    Then Объект Text появился на Draft
+
+  @Cable @Smoke
+  Scenario Outline: Создание объекта типа Cable разных типов и разной толщины
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    Then Объект Cable типа <Type> с толщиной <Weight> появился на Draft
+    Examples:
+      | Type   | Weight |
+      | Plain  | Normal |
+      | Curve  | Normal |
+      | Broken | Normal |
 
   @Cable
-  Scenario Outline: Create <Type> cable objects with weight <Weight> on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft <Type> cable object with weight = <Weight> on draft
-    Then I can see <Type> cable object with weight = <Weight> on draft
+  Scenario Outline: Создание объекта типа Cable разных типов и разной толщины
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    Then Объект Cable типа <Type> с толщиной <Weight> появился на Draft
     Examples:
       | Type   | Weight   |
-      | Plain  | Thin     |
-      | Plain  | Normal   |
       | Plain  | Thick    |
       | Curve  | Thinnest |
       | Curve  | Thin     |
-      | Curve  | Normal   |
       | Curve  | Thick    |
       | Broken | Thinnest |
       | Broken | Thin     |
-      | Broken | Normal   |
       | Broken | Thick    |
+
+  @Line @Smoke
+  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Line типа <Type> и толщиной <Weight> в Draft
+    Then Объект Line типа <Type> с толщиной <Weight> появился на Draft
+    Examples:
+      | Type   | Weight |
+      | Plain  | Normal |
+      | Curve  | Normal |
+      | Broken | Normal |
 
   @Line
-  Scenario Outline: Create <Type> line objects with weight <Weight> on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft <Type> line object with weight = <Weight> on draft
-    Then I can see <Type> line object with weight = <Weight> on draft
+  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Line типа <Type> и толщиной <Weight> в Draft
+    Then Объект Line типа <Type> с толщиной <Weight> появился на Draft
     Examples:
       | Type   | Weight   |
       | Plain  | Thin     |
-      | Plain  | Normal   |
       | Plain  | Thick    |
       | Curve  | Thinnest |
       | Curve  | Thin     |
-      | Curve  | Normal   |
       | Curve  | Thick    |
       | Broken | Thinnest |
       | Broken | Thin     |
-      | Broken | Normal   |
       | Broken | Thick    |
 
+  @Connector @Smoke
+  Scenario Outline: Создание объекта типа Connector разных семейств
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
+    Then Объект Connector семейства <Family> появился на Draft
+    Examples:
+      | Family | Category  | Number |
+      | RJ     | Connector | 1      |
+
   @Connector
-  Scenario Outline: Create <Family> connector objects on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft <Family> connector from <Category> object <Number> cells images on draft
-    Then I can see <Family> connector object on draft
+  Scenario Outline: Создание объекта типа Connector разных семейств
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
+    Then Объект Connector семейства <Family> появился на Draft
     Examples:
       | Family  | Category  | Number |
-      | RJ      | Connector | 1      |
       | RF      | Connector | 2      |
       | IDC     | IDC pitch | 1      |
       | Headers | Connector | 2      |
       | RJ      |           | 2      |
 
-  @UserImage
-  Scenario Outline: Create <Number> User image objects on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft user image object from <Number> cells images on draft
-    Then I can see <Number> user image on draft
+  @UserImage @Smoke
+  Scenario Outline: Создание объекта User images
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа User image в Draft, номер изображения: <Number>
+    Then Объект User image появился на Draft
     Examples:
       | Number |
       | 1      |
+
+
+  @UserImage
+  Scenario Outline: Создание объекта User images
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа User image в Draft, номер изображения: <Number>
+    Then Объект User image появился на Draft
+    Examples:
+      | Number |
       | 2      |
       | 3      |
 
-  @Accessories
-  Scenario Outline: Create <Number> accessories objects on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft accessories object from <Number> cells images on draft
-    Then I can see <Number> accessories on draft
+  @Accessories @Smoke
+  Scenario Outline: Создание объекта Accessories
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа Accessories в Draft, номер изображения: <Number>
+    Then Объект Accessories появился на Draft
     Examples:
       | Number |
       | 1      |
+
+
+  @Accessories
+  Scenario Outline: Создание объекта Accessories
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа Accessories в Draft, номер изображения: <Number>
+    Then Объект Accessories появился на Draft
+    Examples:
+      | Number |
       | 2      |
 
-  @CustomPart
-  Scenario: Create custom part object on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft custom part object on draft
-    Then I can see custom part object on draft
+  @CustomPart @Smoke
+  Scenario: Создание объекта Custom part
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Custom part в Draft
+    Then Объект Custom part появился на Draft
+
 
     # @Block
 #  Scenario Outline: Create Cable dublicate accessories objects on draft

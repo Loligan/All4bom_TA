@@ -301,7 +301,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When I draft text object
+     * @When /^Создать объект "Text" на полотне$/
      */
     public function iDraftTextObject()
     {
@@ -309,7 +309,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then I can see :arg1 object on draft
+     * @Then /^Объект Text появился на Draft$/
      */
     public function iCanSeeObjectOnDraft($arg1)
     {
@@ -317,7 +317,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I create revision in "([^"]*)" cable assemblies$/
+     * @Given /^Создать ревизию в cable assemblies с именем "([^"]*)"$/
      */
     public function iCreateRevisionInCableAssemblies1($arg1)
     {
@@ -326,7 +326,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When /^I draft (.*) cable object with weight = (.*) on draft$/
+     * @When /^Создать объект Cable типа (.*) и толщиной (.*) в Draft$/
      */
     public function iDraftCableObjectWithWeightOnDraft($Type, $Weight)
     {
@@ -345,7 +345,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can see (.*) cable object with weight = (.*) on draft$/
+     * @Then /^Объект Cable типа (.*) с толщиной (.*) появился на Draft$/
      */
     public function iCanSeeCableObjectWithWeightOnDraft($Type, $Weight)
     {
@@ -353,7 +353,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When /^I draft (.*) line object with weight = (.*) on draft$/
+     * @When /^Создать объект Line типа (.*) и толщиной (.*) в Draft$/
      */
     public function iDraftLineObjectWithWeightOnDraft($Type, $Weight)
     {
@@ -371,7 +371,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can see (.*) line object with weight = (.*) on draft$/
+     * @Then /^Объект Line типа (.*) с толщиной (.*) появился на Draft$/
      */
     public function iCanSeeLineObjectWithWeightOnDraft($Type, $Weight)
     {
@@ -379,7 +379,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When /^I draft (.*) connector from (.*) object (.*) cells images on draft$/
+     * @When /^Создать объект типа Connector семейства (.*), категории (.*) и выбрать кабель №(.*)$/
      */
     public function iDraftConnectorFromObjectCellsImagesOnDraft($Family, $Category, $Number)
     {
@@ -387,7 +387,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can see (.*) connector object on draft$/
+     * @Then /^Объект Connector семейства (.*) появился на Draft$/
      */
     public function iCanSeeConnectorObjectOnDraft($Family)
     {
@@ -395,7 +395,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When /^I draft user image object from (.*) cells images on draft$/
+     * @When /^Создать объект типа User image в Draft, номер изображения: (.*)$/
      */
     public function iDraftUserImageObjectFromCellsImagesOnDraft($Number)
     {
@@ -403,16 +403,16 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can see (.*) user image on draft$/
+     * @Then /^Объект User image появился на Draft$/
      */
-    public function iCanSeeUserImageOnDraft($Number)
+    public function iCanSeeUserImageOnDraft()
     {
         sleep(3);
         //        TODO Relase Checked user image Object
     }
 
     /**
-     * @When /^I draft accessories object from (.*) cells images on draft$/
+     * @When /^Создать объект типа Accessories в Draft, номер изображения: (.*)$/
      */
     public function iDraftAccessoriesObjectFromCellsImagesOnDraft($Number)
     {
@@ -420,16 +420,16 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can see (.*) accessories on draft$/
+     * @Then /^Объект Accessories появился на Draft$/
      */
-    public function iCanSeeAccessoriesOnDraft($Number)
+    public function iCanSeeAccessoriesOnDraft()
     {
         sleep(3);
         //        TODO Relase Checked user image Object
     }
 
     /**
-     * @When /^I draft custom part object on draft$/
+     * @When /^Создать объект Custom part в Draft$/
      */
     public function iDraftCustomPartObjectOnDraft()
     {
@@ -437,7 +437,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can see custom part object on draft$/
+     * @Then /^Объект Custom part появился на Draft$/
      */
     public function iCanSeeCustomPartObjectOnDraft()
     {
@@ -446,7 +446,7 @@ class FeatureContext implements Context
 
 
     /**
-     * @Then /^I can to see the information the selected line$/
+     * @Then /^В таблице будет информация по кабелям согластно выбранной линии$/
      */
     public function iCanToSeeTheInformationTheSelectedLine()
     {
@@ -454,7 +454,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I set (.*) family and set (.*) line in table$/
+     * @Given /^Выбарать семейство кабелей (.*) и выбрать строку (.*) в таблице$/
      */
     public function iSetFamilyAndSetLineInTable($familyCable, $numberLine)
     {
@@ -463,7 +463,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I set (.*) line left shrink in table$/
+     * @Given /^Кликнуть на кнопку \[Left Shrink\] первого кабеля и выбрать (.*) запись в таблице$/
      */
     public function iSetLineShrinkInTable($shrinkLineNumber)
     {
@@ -472,7 +472,7 @@ class FeatureContext implements Context
 
 
     /**
-     * @Given /^I set (.*) line right shrink in table$/
+     * @Given /^Кликнуть на кнопку \[Right Shrink\] первого кабеля и выбрать (.*) запись в таблице$/
      */
     public function iSetLineRightShrinkInTable($shrinkLineNumber)
     {
@@ -480,34 +480,34 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I can to see left shrink (.*) line information$/
+     * @Then /^В таблице будет информация в Left Shrink согластно выбранной линии$/
      */
-    public function iCanToSeeLeftShringInformation($shrinkLineNumber)
+    public function iCanToSeeLeftShringInformation()
     {
         //TODO add checked
     }
 
     /**
-     * @Then /^I can to see right shrink (.*) line information$/
+     * @Then /^В таблице будет информация в Right Shrink согластно выбранной линии$/
      */
-    public function iCanToSeeRightShringInformation($shrinkLineNumber)
+    public function iCanToSeeRightShringInformation()
     {
         //TODO add checked
     }
 
     /**
-     * @Given /^I set (.*) (.*) connector in table$/
+     * @Given  /^Кликнуть на кнопку \[Connector\] ([^"]*) по счету и выбираю (.*) запись в таблице$/
      */
-    public function iSetConnectorInTable($NumberLine, $numberConnector)
+    public function iSetConnectorInTable($numberConnector,$NumberLine)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
         BOMCreateRevisionPageObject::setConnectorData($this->webDriver, $numberConnector, $NumberLine);
     }
 
     /**
-     * @Then /^I can to see (.*) connector in bom table$/
+     * @Then /^В таблице будет информация в Connector согластно выбранным данным$/
      */
-    public function iCanToSeeConnectorInBomTable($NumberLine)
+    public function iCanToSeeConnectorInBomTable()
     {
         //TODO add checked
     }
@@ -521,7 +521,7 @@ class FeatureContext implements Context
 //    }
 
     /**
-     * @Given /^I set Molder params$/
+     * @Given /^Поставить параметр Molder в первом коннекторе$/
      */
     public function iSetMolderParams()
     {
@@ -530,7 +530,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I can see Boot object hide in table$/
+     * @Given /^В таблице объекты шринки скрылись$/
      */
     public function iCanSeeBootObjectHideInTable()
     {
@@ -556,7 +556,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I save revision with name: (.*)$/
+     * @Given /^Сохранить ревизию с именем (.*)$/
      */
     public function iSaveRevisionWithName($nameRevision)
     {
@@ -570,7 +570,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then /^I open last revision with name: (.*)$/
+     * @Then /^Открыть последнюю ревизию с именем (.*)$/
      */
     public function iOpenLastRevisionWithName($nameRevision)
     {
@@ -578,7 +578,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I see all save object in opened revision$/
+     * @Given /^В ревизии все объекты на месте$/
      */
     public function iSeeAllSaveObjectInOpenedRevision()
     {
@@ -597,7 +597,7 @@ class FeatureContext implements Context
 //    }
 
     /**
-     * @Given /^I add in Pinout detail shcematic connector with params: first connector (.*) and (.*)$/
+     * @Given /^Добавить в вкладке Pinout Detail запись с данными: (.*) и (.*)$/
      */
     public function iAddInPinoutDetailShcematicConnectorWithParamsFirstConnectorAnd($NameFirstConnectorInPinoutDetails, $NameSecondConnectorInPinoutDetails)
     {
@@ -638,7 +638,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When /^I add labels with information: Number: (.*) Description: (.*) Height: (.*) Width: (.*) Distance: (.*) Tolerance: (.*)$/
+     * @When /^Добавить Label с следующей информацией: (.*) Description: (.*) Height: (.*) Width: (.*) Distance: (.*) Tolerance: (.*)$/
      */
     public function iAddLabelsWithInformationNumberDescriptionHeightWidthDistanceTolerancePosition($num, $desc, $hght, $wdth, $dstc, $tlrnc)
     {
@@ -648,7 +648,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I set (.*) family cable$/
+     * @Given /^Выбрать семейство кабелей (.*)$/
      */
     public function iSetFamilyCable($FamilyCable)
     {
@@ -658,7 +658,7 @@ class FeatureContext implements Context
 
 
     /**
-     * @Given /^I set (.*) category cable$/
+     * @Given /^Выбрать категорию кабеля (.*)$/
      */
     public function iSetCategoryCable($CategoryCable)
     {
@@ -667,7 +667,7 @@ class FeatureContext implements Context
 
 
     /**
-     * @Given /^I set filter by name: (.*) , with value: (.*)$/
+     * @Given /^Установить в фильтер (.*) значение (.*)$/
      */
     public function iSetFilterByNameWithValue($FilterName, $ValueFilter)
     {
@@ -681,7 +681,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I set first line in table$/
+     * @Given /^Выбрать первую строку в таблице$/
      */
     public function iSetFirstLineInTable()
     {
@@ -689,7 +689,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I set first option in Connected With$/
+     * @Given /^Выбрать первое значение в Connected With$/
      */
     public function iSetFirstOptionInConnectedWith()
     {
@@ -706,7 +706,7 @@ class FeatureContext implements Context
 //    }
 
     /**
-     * @Then /^I see in the table of values for the filter (.*) and the value must be (.*)$/
+     * @Then /^В таблице, значения по стобцу (.*) соответствуют условию: (.*)$/
      */
     public function iSeeInTheTableOfValuesForTheFilterAndTheValueMustBe($FilterName, $Conditions)
     {
@@ -722,7 +722,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given /^I click on first \[(.*)\] button$/
+     * @Given /^Нажать на первую кнопку \[(.*)\] в BOM$/
      */
     public function iClickOnFirstButton($ButtonName)
     {
@@ -742,6 +742,7 @@ class FeatureContext implements Context
         BOMCreateRevisionPageObject::clickOnButtonByName($this->webDriver, $ButtonName);
 
     }
+
 
 
 }

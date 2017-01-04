@@ -1,17 +1,37 @@
-Feature: Test save draft object, without saving revision
+@Draft @Save
+Feature: Сохранение объектов на Draft
 
+  @Text @Smoke
+  Scenario: Создание на полотне объекта Text
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект "Text" на полотне
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
 
-  Scenario Outline: Create <Type> line objects with weight <Weight> on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft <Type> line object with weight = <Weight> on draft
-    And I can see <Type> line object with weight = <Weight> on draft
-    And I save revision with name: <nameRevision>
-    Then I open last revision with name: <nameRevision>
-    And I see all save object in opened revision
+  @Line @Smoke
+  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Line типа <Type> и толщиной <Weight> в Draft
+    And Объект Line типа <Type> с толщиной <Weight> появился на Draft
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
+    Examples:
+      | Type   | Weight   | nameRevision |
+      | Plain  | Normal   | TestSave     |
+
+  @Line
+  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Line типа <Type> и толщиной <Weight> в Draft
+    And Объект Line типа <Type> с толщиной <Weight> появился на Draft
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
     Examples:
       | Type   | Weight   | nameRevision |
       | Plain  | Thin     | TestSave     |
-      | Plain  | Normal   | TestSave     |
       | Plain  | Thick    | TestSave     |
       | Curve  | Thinnest | TestSave     |
       | Curve  | Thin     | TestSave     |
@@ -22,39 +42,61 @@ Feature: Test save draft object, without saving revision
       | Broken | Normal   | TestSave     |
       | Broken | Thick    | TestSave     |
 
-
-  Scenario Outline: Create <Number> User image objects on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft user image object from <Number> cells images on draft
-    And I can see <Number> user image on draft
-    And I save revision with name: <nameRevision>
-    Then I open last revision with name: <nameRevision>
-    And I see all save object in opened revision
+  @UserImage @Smoke
+  Scenario Outline: Создание объекта User images
+    Given  Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа User image в Draft, номер изображения: <Number>
+    And Объект User image появился на Draft
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
     Examples:
       | Number | nameRevision |
       | 1      | TestSave     |
+
+
+  @UserImage
+  Scenario Outline: Создание объекта User images
+    Given  Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа User image в Draft, номер изображения: <Number>
+    And Объект User image появился на Draft
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
+    Examples:
+      | Number | nameRevision |
       | 2      | TestSave     |
       | 3      | TestSave     |
 
-  Scenario Outline: Create <Number> accessories objects on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft accessories object from <Number> cells images on draft
-    And I can see <Number> accessories on draft
-    And I save revision with name: <nameRevision>
-    Then I open last revision with name: <nameRevision>
-    And I see all save object in opened revision
+  @Accessories @Smoke
+  Scenario Outline: Создание объекта Accessories
+    Given  Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа Accessories в Draft, номер изображения: <Number>
+    And Объект Accessories появился на Draft
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
     Examples:
       | Number | nameRevision |
       | 1      | TestSave     |
+
+  @Accessories
+  Scenario Outline: Создание объекта Accessories
+    Given  Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект типа Accessories в Draft, номер изображения: <Number>
+    And Объект Accessories появился на Draft
+    And Сохранить ревизию с именем <nameRevision>
+    Then Открыть последнюю ревизию с именем <nameRevision>
+    And В ревизии все объекты на месте
+    Examples:
+      | Number | nameRevision |
       | 2      | TestSave     |
 
-  Scenario Outline: Create custom part object on draft
-    Given I create revision in "tst" cable assemblies
-    When I draft custom part object on draft
-    And I can see custom part object on draft
-    And I save revision with name: <nameRevision>
-    Then I open last revision with name: <nameRevision>
-    And I see all save object in opened revision
-    Examples:
-      | nameRevision |
-      | TestSave     |
+  @CustomPart @Smoke
+  Scenario: Создание объекта Custom part
+    Given  Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Custom part в Draft
+    And Объект Custom part появился на Draft
+    And Сохранить ревизию с именем TestSave
+    Then Открыть последнюю ревизию с именем TestSave
+    And В ревизии все объекты на месте

@@ -1,19 +1,21 @@
 @Create @Revision @BOM @CableAndConnectorFilter
-Feature: Create object on draft and set information on BOM tab
+Feature: Проверка условий связи коннекторов и кабелей по условию используя Connected With
 
-  @Cable @Smoke
-  Scenario Outline: Add cable object on draft and set line on bom
-    Given I create revision in "tst" cable assemblies
-    When I draft <TypeCable> cable object with weight = <WeightCable> on draft
-    And I draft <FamilyConnector> connector from <CategoryConnector> object <NumberCellConnector> cells images on draft
-    And I set <FamilyCable> family cable
-    And I set <CategoryCable> category cable
-    And I set filter by name: <FilterCableName> , with value: <ValueCableFilter>
-    And I set first line in table
-    And I set first option in Connected With
-    And I click on first [<ButtonName>] button
-    Then I see in the table of values for the filter <FilterConnectorName> and the value must be <Conditions>
-
+  @Cable @Smoke @Test
+  Scenario Outline: Проверка основных условий связи коннекторов и кабелей
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft
+    And Создать объект типа Connector семейства <FamilyConnector>, категории <CategoryConnector> и выбрать кабель №<NumberCellConnector>
+    And Выбрать семейство кабелей <FamilyCable>
+    And Выбрать категорию кабеля <CategoryCable>
+    And Установить в фильтер <FilterCableName> значение <ValueCableFilter>
+    And Выбрать первую строку в таблице
+    And Выбрать первое значение в Connected With
+    And Нажать на первую кнопку [<ButtonName>] в BOM
+    And Выбрать первую строку в таблице
+    And Сохранить ревизию с именем Test Save
+    Then Открыть последнюю ревизию с именем Test Save
+    And В ревизии все объекты на месте
     Examples:
       | TypeCable | WeightCable | FamilyConnector | CategoryConnector | NumberCellConnector | FamilyCable                             | CategoryCable  | FilterCableName | FilterConnectorName   | ValueCableFilter | Conditions | ButtonName     |
       | Plain     | Normal      | RJ              | Connector         | 1                   | Lan Cable                               | Cable          | AWG             | AWG                   | 26               | =          | Connector      |
@@ -33,17 +35,20 @@ Feature: Create object on draft and set information on BOM tab
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Stranded          | 24               | =          | Connector      |
 
   @Cable
-  Scenario Outline: Add cable object on draft and set line on bom
-    Given I create revision in "tst" cable assemblies
-    When I draft <TypeCable> cable object with weight = <WeightCable> on draft
-    And I draft <FamilyConnector> connector from <CategoryConnector> object <NumberCellConnector> cells images on draft
-    And I set <FamilyCable> family cable
-    And I set <CategoryCable> category cable
-    And I set filter by name: <FilterCableName> , with value: <ValueCableFilter>
-    And I set first line in table
-    And I set first option in Connected With
-    And I click on first [<ButtonName>] button
-    Then I see in the table of values for the filter <FilterConnectorName> and the value must be <Conditions>
+  Scenario Outline: Проверка всех условий связи коннекторов и кабелей
+    Given Создать ревизию в cable assemblies с именем "tst"
+    When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft
+    And Создать объект типа Connector семейства <FamilyConnector>, категории <CategoryConnector> и выбрать кабель №<NumberCellConnector>
+    And Выбрать семейство кабелей <FamilyCable>
+    And Выбрать категорию кабеля <CategoryCable>
+    And Установить в фильтер <FilterCableName> значение <ValueCableFilter>
+    And Выбрать первую строку в таблице
+    And Выбрать первое значение в Connected With
+    And Нажать на первую кнопку [<ButtonName>] в BOM
+    And Выбрать первую строку в таблице
+    And Сохранить ревизию с именем Test Save
+    Then Открыть последнюю ревизию с именем Test Save
+    And В ревизии все объекты на месте
     Examples:
       | TypeCable | WeightCable | FamilyConnector | CategoryConnector | NumberCellConnector | FamilyCable                             | CategoryCable       | FilterCableName | FilterConnectorName | ValueCableFilter | Conditions | ButtonName     |
       | Plain     | Normal      | RJ              | Connector         | 1                   | Lan Cable                               | Cable               | Category        | Category            | CAT5E            | =          | Connector      |
