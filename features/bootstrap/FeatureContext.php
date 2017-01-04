@@ -23,6 +23,7 @@ require_once "src/CheckValues/CheckJSONValue.php";
 require_once "src/CheckedDraftObjects/ParserJSON.php";
 require_once "src/DraftObjects/CompareRevisions.php";
 require_once "src/DraftObjects/Revision.php";
+require_once "src/CheckValues/CheckConnectorAndCableInBOM.php";
 
 class FeatureContext implements Context
 {
@@ -30,6 +31,8 @@ class FeatureContext implements Context
     private $webDriver;
     private $bufRevision;
     private $bufCableAssemblies;
+    private $bufFirstBOMTableValueForCheck;
+    private $bufSecondBOMTableValueForCheck;
 
     public function __construct()
     {
@@ -60,7 +63,7 @@ class FeatureContext implements Context
     {
 
         $capabilities = DesiredCapabilities::chrome();
-        $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities,90 * 1000,90 * 1000);
+        $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities, 90 * 1000, 90 * 1000);
         $this->webDriver->manage()->window();
         $this->webDriver->manage()->window()->maximize();
         CompareRevisions::init();
@@ -73,9 +76,11 @@ class FeatureContext implements Context
     {
 //        Open cable assembly page
         $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-        CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver,$this->bufCableAssemblies);
-        RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver,$this->bufRevision);
+        CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+        RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
         CompareRevisions::reset();
+        $this->bufFirstBOMTableValueForCheck = null;
+        $this->bufSecondBOMTableValueForCheck = null;
 
         if ($this->webDriver) {
             $this->webDriver->quit();
@@ -316,7 +321,7 @@ class FeatureContext implements Context
      */
     public function iCreateRevisionInCableAssemblies1($arg1)
     {
-        $this->bufCableAssemblies=$arg1;
+        $this->bufCableAssemblies = $arg1;
         RevisionsPageObjects::createNewRevisionInCableAssembliesByName($this->webDriver, $arg1);
     }
 
@@ -561,7 +566,7 @@ class FeatureContext implements Context
         $rev->getAllItems($this->webDriver);
         CompareRevisions::addRevision($rev);
         TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
-        $this->bufRevision=$nameRevision;
+        $this->bufRevision = $nameRevision;
     }
 
     /**
@@ -629,7 +634,7 @@ class FeatureContext implements Context
     public function iSetFamilyAndSetLineInTableInCable($family, $numberLine, $numberCable)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-        BOMCreateRevisionPageObject::setCableData($this->webDriver,$numberCable,$numberLine,$family);
+        BOMCreateRevisionPageObject::setCableData($this->webDriver, $numberCable, $numberLine, $family);
     }
 
     /**
@@ -639,7 +644,103 @@ class FeatureContext implements Context
     {
         TabCreateRevisionTabPageObject::clickOnLabelsTab($this->webDriver);
         LabelsCreateRevisionPageObject::clickOnAddLabelButton($this->webDriver);
-        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver,1,$num,$desc,$hght,$wdth,$dstc,$tlrnc);
+        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver, 1, $num, $desc, $hght, $wdth, $dstc, $tlrnc);
+    }
+
+    /**
+     * @Given /^I set (.*) family cable$/
+     */
+    public function iSetFamilyCable($FamilyCable)
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::setCableFamily($this->webDriver, 1, $FamilyCable);
+    }
+
+
+    /**
+     * @Given /^I set (.*) category cable$/
+     */
+    public function iSetCategoryCable($CategoryCable)
+    {
+        BOMCreateRevisionPageObject::setCableCategory($this->webDriver, $CategoryCable);
+    }
+
+
+    /**
+     * @Given /^I set filter by name: (.*) , with value: (.*)$/
+     */
+    public function iSetFilterByNameWithValue($FilterName, $ValueFilter)
+    {
+
+        BOMCreateRevisionPageObject::selectCustomValueByName($this->webDriver, $FilterName, $ValueFilter);
+        if ($this->bufFirstBOMTableValueForCheck === null) {
+            $this->bufFirstBOMTableValueForCheck = BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver, $FilterName);
+        } else {
+            $this->bufSecondBOMTableValueForCheck = BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver, $FilterName);
+        }
+    }
+
+    /**
+     * @Given /^I set first line in table$/
+     */
+    public function iSetFirstLineInTable()
+    {
+        BOMCreateRevisionPageObject::clickOnFirstLineInTable($this->webDriver);
+    }
+
+    /**
+     * @Given /^I set first option in Connected With$/
+     */
+    public function iSetFirstOptionInConnectedWith()
+    {
+        BOMCreateRevisionPageObject::clickOnSelectConnectedWithByNumber($this->webDriver);
+        BOMCreateRevisionPageObject::clickOnOprionConnecedWithByNameAndNumber($this->webDriver, 1);
+    }
+
+//    /**
+//     * @Given /^I click on first \[Connector\] button$/
+//     */
+//    public function iClickOnFirstConnectorButton()
+//    {
+//        BOMCreateRevisionPageObject::clickOnConnectorButtonByNumberConnector($this->webDriver, 1);
+//    }
+
+    /**
+     * @Then /^I see in the table of values for the filter (.*) and the value must be (.*)$/
+     */
+    public function iSeeInTheTableOfValuesForTheFilterAndTheValueMustBe($FilterName, $Conditions)
+    {
+        if ($this->bufFirstBOMTableValueForCheck === null) {
+            $this->bufFirstBOMTableValueForCheck = BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver, $FilterName);
+        } else {
+            $this->bufSecondBOMTableValueForCheck = BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver, $FilterName);
+        }
+        if (!CheckConnectorAndCableInBOM::conditions($Conditions, $this->bufFirstBOMTableValueForCheck, $this->bufSecondBOMTableValueForCheck)) {
+            throw  new Error("Values not equals");
+        }
+
+    }
+
+    /**
+     * @Given /^I click on first \[(.*)\] button$/
+     */
+    public function iClickOnFirstButton($ButtonName)
+    {
+        $hood = false;
+        $crimp = false;
+
+        if ($ButtonName == "D-sub hood" && $hood == false) {
+            $hood = true;
+            $this->iClickOnFirstButton("Connector");
+            $this->iSetFirstLineInTable();
+        }
+        if ($ButtonName == "Crimp terminal" && $crimp == false) {
+            $crimp = true;
+            $this->iClickOnFirstButton("Connector");
+            $this->iSetFirstLineInTable();
+        }
+        BOMCreateRevisionPageObject::clickOnButtonByName($this->webDriver, $ButtonName);
+
     }
 
 

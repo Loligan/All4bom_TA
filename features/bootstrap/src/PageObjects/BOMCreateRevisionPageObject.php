@@ -29,6 +29,13 @@ class BOMCreateRevisionPageObject implements PageObject
     private static $CLEAR_BUTTON;
     private static $DELETE_BUTTON;
     private static $CONNECTOR_MOLDER;
+    private static $SELECT_CUSTOM_VALUE;
+    private static $OPTION_CUSTOM_VALUE;
+    private static $HEAD_TABLE_COLUMNS;
+    private static $TABLE_ITEM_VALUE;
+    private static $CONNECTED_WITH_SELECT ;
+    private static $OPTION_CONNECTED_WITH ;
+    private static $BUTTON_BY_NAME;
 
     static function init()
     {
@@ -52,6 +59,13 @@ class BOMCreateRevisionPageObject implements PageObject
         BOMCreateRevisionPageObject::$CLEAR_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[12]/div/a[1]";
         BOMCreateRevisionPageObject::$LEFT_SHRINK_SPAN = "Left ";
         BOMCreateRevisionPageObject::$RIGHT_SHRINK_SPAN = "Right ";
+        BOMCreateRevisionPageObject::$SELECT_CUSTOM_VALUE = ".//*[@id='selectProductModal']/div/div/div[1]/div[2]/div[.//h3/text()=\"VALUE\"]/div/select";
+        BOMCreateRevisionPageObject::$OPTION_CUSTOM_VALUE = ".//*[@id='selectProductModal']/div/div/div[1]/div[2]/div[.//h3/text()=\"VALUE\"]/div/select/option[text()=\"TYPE\"]";
+        BOMCreateRevisionPageObject::$HEAD_TABLE_COLUMNS = ".//*[@id='selectProductModal']/div/div/div[2]/div/div[1]/table/tbody/tr[1]/th";
+        BOMCreateRevisionPageObject::$TABLE_ITEM_VALUE = ".//.//*[@id='selectProductModal']/div/div/div[2]/div/div[2]/table/tbody/tr[2]/td[VALUE]";
+        BOMCreateRevisionPageObject::$CONNECTED_WITH_SELECT = ".//*[@id='selected-properties']/table/tbody/tr/td[3]/div/select";
+        BOMCreateRevisionPageObject::$OPTION_CONNECTED_WITH = ".//*[@id='selected-properties']/table/tbody/tr/td[3]/div/select/option[VALUE]";
+        BOMCreateRevisionPageObject::$BUTTON_BY_NAME = ".//*[@id='selected-properties']/table/tbody/tr/td[2]/button/span[text()=\"VALUE\"]";
     }
 
     public static function setTextInRevisionDescription($webDriver, $text = "Test")
@@ -75,7 +89,6 @@ class BOMCreateRevisionPageObject implements PageObject
         }
         SimpleWait::waitingOfClick($webDrive, $buttons[$numberCable - 1]);
     }
-
     private static function clickOnFamilySelect($webDriver)
     {
         SimpleWait::waitShow($webDriver, BOMCreateRevisionPageObject::$FAMILY_SELECT);
@@ -116,6 +129,14 @@ class BOMCreateRevisionPageObject implements PageObject
         SimpleWait::waitHide($webDriver, $xpath);
     }
 
+    public static function clickOnFirstLineInTable($webDriver){
+        $number = 2;
+        $xpath = str_replace("VALUE", $number, BOMCreateRevisionPageObject::$LINE_PART_NUMBER);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        $select->click();
+        SimpleWait::waitHide($webDriver, $xpath);
+    }
 
     private static function selectCableType($webDriver, $familyCable, $categoryCable, $numberLinePartNumber)
     {
@@ -296,6 +317,16 @@ class BOMCreateRevisionPageObject implements PageObject
     }
 
 
+    public static function clickOnButtonByName($webDriver,$buttonName,$numberObject=1){
+        $xpath = str_replace("VALUE",$buttonName,BOMCreateRevisionPageObject::$BUTTON_BY_NAME);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $buttons = $webDriver->findElements(WebDriverBy::xpath($xpath));
+        if ($numberObject == null) {
+            SimpleWait::waitingOfClick($webDriver, $buttons[0]);
+        }
+        SimpleWait::waitingOfClick($webDriver, $buttons[$numberObject - 1]);
+    }
+
     private static function clickOnConnectorButton($webDrive, $numberCable)
     {
         SimpleWait::waitShow($webDrive, BOMCreateRevisionPageObject::$CONNECTOR_BUTTON);
@@ -304,6 +335,10 @@ class BOMCreateRevisionPageObject implements PageObject
             SimpleWait::waitingOfClick($webDrive, $buttons[0]);
         }
         SimpleWait::waitingOfClick($webDrive, $buttons[$numberCable - 1]);
+    }
+
+    public static function clickOnConnectorButtonByNumberConnector($webDriver, $numberConnector){
+       self::clickOnConnectorButton($webDriver,$numberConnector);
     }
 
     private static function selectConnectorType($webDriver, $numberLinePartNumber)
@@ -367,12 +402,80 @@ class BOMCreateRevisionPageObject implements PageObject
         self::clickOnCleanCableButton($webDriver, $numberCable, "Boot");
     }
 
-    public static function clickOnConnetorMolderFlag($webDriver,$numberConnector = 1){
+    public static function tclickOnConnetorMolderFlag($webDriver, $numberConnector = 1)
+    {
         $molders = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$CONNECTOR_MOLDER));
-        $molder = $molders[$numberConnector-1];
-        SimpleWait::waitingOfClick($webDriver,$molder);
+        $molder = $molders[$numberConnector - 1];
+        SimpleWait::waitingOfClick($webDriver, $molder);
     }
 
+    private static function clickOnSelectCustomByName($webDriver, $nameLabel)
+    {
+        $xpath = str_replace("VALUE", $nameLabel, BOMCreateRevisionPageObject::$SELECT_CUSTOM_VALUE);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        SimpleWait::waitingOfClick($webDriver, $select);
+    }
+
+    private static function clickOnCustomOptionByNameLabelAndValue($webDriver, $nameLabel, $valueOption)
+    {
+        $xpath = str_replace("VALUE", $nameLabel, BOMCreateRevisionPageObject::$OPTION_CUSTOM_VALUE);
+        $xpath = str_replace("TYPE", $valueOption, $xpath);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $option = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        SimpleWait::waitingOfClick($webDriver, $option);
+    }
+
+    public static function selectCustomValueByName($webDriver, $nameLabel, $valueOption)
+    {
+        self::clickOnSelectCustomByName($webDriver, $nameLabel);
+        self::clickOnCustomOptionByNameLabelAndValue($webDriver, $nameLabel, $valueOption);
+    }
+
+
+    public static function setCableFamily($webDriver, $numberCable, $familyCable)
+    {
+        self::clickOnCableButton($webDriver, $numberCable);
+        self::clickOnFamilySelect($webDriver);
+        self::setFamilyOption($webDriver, $familyCable);
+    }
+
+
+    public static function setCableCategory($webDriver, $categoryCable)
+    {
+        self::clickOnCategorySelect($webDriver);
+        self::setCategoryOption($webDriver, $categoryCable);
+    }
+
+    public static function getValueInFirstLineInTableByNameColumn($webDriver, $ValueFilter)
+    {
+        SimpleWait::waitShow($webDriver, BOMCreateRevisionPageObject::$HEAD_TABLE_COLUMNS);
+        $colums = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$HEAD_TABLE_COLUMNS));
+        $numberColumn = 1;
+        foreach ($colums as $column) {
+            if ($column->getText() !== $ValueFilter) {
+                $numberColumn++;
+            }else{
+                break;
+            }
+        }
+        $xpath = str_replace("VALUE", $numberColumn, BOMCreateRevisionPageObject::$TABLE_ITEM_VALUE);
+        SimpleWait::waitShow($webDriver,$xpath);
+       return $webDriver->findElement(WebDriverBy::xpath($xpath))->getText();
+    }
+
+    public static function clickOnSelectConnectedWithByNumber($webDriver, $numberConnector=1){
+        SimpleWait::waitShow($webDriver,BOMCreateRevisionPageObject::$CONNECTED_WITH_SELECT);
+        $selects = $webDriver->findElements(WebDriverBy::xpath(BOMCreateRevisionPageObject::$CONNECTED_WITH_SELECT));
+        SimpleWait::waitingOfClick($webDriver,$selects[$numberConnector-1]);
+    }
+
+    public static function clickOnOprionConnecedWithByNameAndNumber($webDriver,$optionValue,$numberConnector=1){
+        $xpath = str_replace("VALUE",$optionValue+1,BOMCreateRevisionPageObject::$OPTION_CONNECTED_WITH);
+        SimpleWait::waitShow($webDriver,$xpath);
+        $options = $webDriver->findElements(WebDriverBy::xpath($xpath));
+        SimpleWait::waitingOfClick($webDriver,$options[$numberConnector-1]);
+    }
 //    TODO Add [CONNECTED WITH] select value
 
 }

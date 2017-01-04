@@ -41,7 +41,7 @@ Feature: TEXT :)
     And I save revision with name: TestRev
     Then I open last revision with name: TestRev
     And I see all save object in opened revision
-
+@hard
   Scenario: Test save many Row Materials in Pinout Details
     Given I create revision in "tst" cable assemblies
     And I draft Plain cable object with weight = Thin on draft on positions First Point X="100" Y="100", Second Point X="500" Y="100", Dimention point X="200" Y="150"
@@ -59,17 +59,17 @@ Feature: TEXT :)
     And I draft RJ connector from Connector object 1 cells images on draft
     And I draft RJ connector from Connector object 1 cells images on draft
     And I draft RJ connector from Connector object 1 cells images on draft
-    And I set "Row Material" family and set 1 line in table in 1 cable
-    And I set "Row Material" family and set 1 line in table in 2 cable
-    And I set "Row Material" family and set 1 line in table in 3 cable
-    And I set "Row Material" family and set 1 line in table in 4 cable
-    And I set "Row Material" family and set 1 line in table in 5 cable
-    And I set "Row Material" family and set 1 line in table in 6 cable
-    And I set "Row Material" family and set 1 line in table in 7 cable
-    And I set "Row Material" family and set 1 line in table in 8 cable
-    And I set "Row Material" family and set 1 line in table in 9 cable
-    And I set "Row Material" family and set 1 line in table in 10 cable
-    And I set "Row Material" family and set 1 line in table in 11 cable
+    And I set "Row Material" family and set 2 line in table in 1 cable
+    And I set "Row Material" family and set 2 line in table in 2 cable
+    And I set "Row Material" family and set 2 line in table in 3 cable
+    And I set "Row Material" family and set 2 line in table in 4 cable
+    And I set "Row Material" family and set 2 line in table in 5 cable
+    And I set "Row Material" family and set 2 line in table in 6 cable
+    And I set "Row Material" family and set 2 line in table in 7 cable
+    And I set "Row Material" family and set 2 line in table in 8 cable
+    And I set "Row Material" family and set 2 line in table in 9 cable
+    And I set "Row Material" family and set 2 line in table in 10 cable
+    And I set "Row Material" family and set 2 line in table in 11 cable
     And I set 1 1 connector in table
     And I set 1 2 connector in table
     And I set 1 3 connector in table
