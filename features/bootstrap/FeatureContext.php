@@ -311,7 +311,7 @@ class FeatureContext implements Context
     /**
      * @Then /^Объект Text появился на Draft$/
      */
-    public function iCanSeeObjectOnDraft($arg1)
+    public function iCanSeeObjectOnDraft()
     {
 //        TODO Relase Checked ObjectCreate
     }

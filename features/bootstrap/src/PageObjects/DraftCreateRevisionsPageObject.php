@@ -281,13 +281,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         if ($color !== "0000") {
             self::setColorValue($webDriver, $color);
         }
-        self::clickOnButtonText($webDriver);
-        if (($positionX !== null) && ($positionY != null)) {
-//         TODO   func move text
-        }
-        if ($text !== null) {
-//         TODO   func set text
-        }
+
 
     }
 
@@ -416,8 +410,9 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     private static function clickOnAccessoriesIcon($webDriver)
     {
+        SimpleWait::waitShow($webDriver,DraftCreateRevisionsPageObject::$ACCESSORIES_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$ACCESSORIES_ICON));
-        $icon->click();
+        SimpleWait::waitingOfClick($icon);
     }
 
     private static function clickOnAccessoriesCell($webDriver, $numberCell)
@@ -430,7 +425,6 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function draftAcessories($webDriver, $numberCells = 1)
     {
         self::clickOnAccessoriesIcon($webDriver);
-        //        TODO Add WAIT!!!
         sleep(2);
         self::clickOnAccessoriesCell($webDriver, $numberCells);
 
