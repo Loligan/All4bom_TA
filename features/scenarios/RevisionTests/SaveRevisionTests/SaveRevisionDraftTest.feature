@@ -1,7 +1,7 @@
-@Draft @Save
+@Revision @Draft @Save
 Feature: Сохранение объектов на Draft
 
-  @Text @Smoke
+  @Revision @Draft @Save @Text @Smoke
   Scenario: Создание на полотне объекта Text
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект "Text" на полотне
@@ -9,7 +9,7 @@ Feature: Сохранение объектов на Draft
     Then Открыть последнюю ревизию с именем <nameRevision>
     And В ревизии все объекты на месте
 
-  @Line @Smoke
+  @Revision @Draft @Save @Line @Smoke
   Scenario Outline: Создание объекта типа Line разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Line типа <Type> и толщиной <Weight> в Draft

@@ -24,6 +24,9 @@ require_once "src/CheckedDraftObjects/ParserJSON.php";
 require_once "src/DraftObjects/CompareRevisions.php";
 require_once "src/DraftObjects/Revision.php";
 require_once "src/CheckValues/CheckConnectorAndCableInBOM.php";
+require_once "src/PageObjects/CableRowMaterialsPageObject.php";
+require_once "src/PageObjects/CreateCableRowMaterialsPageObject.php";
+
 
 class FeatureContext implements Context
 {
@@ -49,6 +52,8 @@ class FeatureContext implements Context
         NotesCreateRevisionsPageObject::init();
         LabelsCreateRevisionPageObject::init();
         PinoutDetailsCreateRevisionsPageObject::init();
+        CableRowMaterialsPageObject::init();
+        CreateCableRowMaterialsPageObject::init();
         ParserJSON::init("features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
         ParserJSON::getParamsObject("plainCable");
         ParserJSON::getParamsObject("curveCable");
@@ -72,12 +77,36 @@ class FeatureContext implements Context
     /**
      * @AfterScenario
      */
-    public function AfterScenario()
+    public function AfterScenario(Behat\Behat\Hook\Scope\AfterScenarioScope $scope)
     {
+        $modulTag = null;
+        $isSave = false;
+        $tags = $scope->getScenario()->getTags();
+        foreach ($tags as $tag) {
+            if ($tag == "CRM" || $tag == "Revision") {
+                $modulTag = $tag;
+            }
+            if ($tag == "Save" || $tag == "Edit") {
+                $isSave = true;
+            }
+        }
+        if ($modulTag == "Revision" && $isSave == true) {
+            $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+            CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+            RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+        }
+        if ($modulTag == "CRM" && $isSave == true) {
+            $this->webDriver->get("http://all4bom.smartdesign.by/multicable/");
+            CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver,$this->bufRevision);
+        }
+
+
+
 //        Open cable assembly page
-        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-        CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
-        RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+
+//     D   $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+//     D   CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+//     D   RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
         CompareRevisions::reset();
         $this->bufFirstBOMTableValueForCheck = null;
         $this->bufSecondBOMTableValueForCheck = null;
@@ -498,7 +527,7 @@ class FeatureContext implements Context
     /**
      * @Given  /^Кликнуть на кнопку \[Connector\] ([^"]*) по счету и выбираю (.*) запись в таблице$/
      */
-    public function iSetConnectorInTable($numberConnector,$NumberLine)
+    public function iSetConnectorInTable($numberConnector, $NumberLine)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
         BOMCreateRevisionPageObject::setConnectorData($this->webDriver, $numberConnector, $NumberLine);
@@ -743,6 +772,65 @@ class FeatureContext implements Context
 
     }
 
+    /**
+     * @Given /^Создать новый Cable Row Materials$/
+     */
+    public function createNewCableRowMaterials()
+    {
+        CreateCableRowMaterialsPageObject::openPage($this->webDriver);
+    }
+
+    /**
+     * @When /^Нажать на вкладку General Info$/
+     */
+    public function pressOnGeneralInfoTab()
+    {
+        CreateCableRowMaterialsPageObject::clickOnGeneralInfoTab($this->webDriver);
+
+    }
+
+    /**
+     * @Given /^Ввести в поля следующую информацию: "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/
+     */
+    public function setInformationInGeneraiInfo($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
+    {
+        CreateCableRowMaterialsPageObject::setInformationInInputsInGeneralInfo($this->webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38);
+        $this->bufRevision=$arg1;
+    }
+
+    /**
+     * @Given /^Нажать на кнопку Save$/
+     */
+    public function pressOnSaveTab()
+    {
+        CreateCableRowMaterialsPageObject::clickOnSaveTab($this->webDriver);
+    }
+
+    /**
+     * @Then /^В таблице ревизий будет запись с именем (.*)(.*)$/
+     */
+    public function iSeeCRMLineInTableByName($ID, $Part)
+    {
+        $name = $ID . $Part;
+        CableRowMaterialsPageObject::checkCAInTable($this->webDriver, $name);
+    }
+
+    /**
+     * @Given /^Нажать кнопку Edit рядом с записью (.*)(.*) в таблице$/
+     */
+    public function pressEditButtonByNameInCRMTable($id, $partName)
+    {
+        $name = $id . $partName;
+        CableRowMaterialsPageObject::clickOnEditButtonByName($this->webDriver, $name);
+    }
+
+    /**
+     * @Given /^В инпутах будет ранее введенная информация: "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/
+     */
+    public function checkInputValueInGeneralInfoTab($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
+    {
+        CreateCableRowMaterialsPageObject::checkGeneralInfo($this->webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38);
+    }
 
 
 }

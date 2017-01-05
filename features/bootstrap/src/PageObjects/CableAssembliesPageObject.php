@@ -12,12 +12,14 @@ class CableAssembliesPageObject implements PageObject
     private static $REVISION_LINKS;
     private static $FILE_LINK;
     private static $LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME;
+    private static $CABLE_ROW_MATERIALS_TAB;
 
     static function init()
     {
         CableAssembliesPageObject::$CREATE_CABLE_ASSEMLIES_BUTTON = ".btn.btn__create";
         CableAssembliesPageObject::$REVISION_LINKS = "html/body/main/div/div/table/tbody/tr/td[5]/a";
         CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/a";
+        CableAssembliesPageObject::$CABLE_ROW_MATERIALS_TAB = "html/body/header/div/div/div[1]/nav/ul/li[3]/a";
     }
 
     static function openPage($webDriver)
@@ -26,8 +28,13 @@ class CableAssembliesPageObject implements PageObject
         LoginPageObject::setInformation($webDriver);
         LoginPageObject::pressLoginButton($webDriver);
         HomePageObject::pressOnCableAssembliesTab($webDriver);
-
     }
+
+    static function clickOnCableRowMaterialsTab($webDriver){
+        $tab = $webDriver->findElement(WebDriverBy::cssSelector(CableAssembliesPageObject::$CABLE_ROW_MATERIALS_TAB));
+        $tab->click();
+    }
+
 
     static function clickOnCreateCableAssemblyButton($webDriver)
     {
@@ -74,4 +81,5 @@ class CableAssembliesPageObject implements PageObject
             throw new Exception("Cable assembly with name: ".$name." not found");
         }
     }
+
 }

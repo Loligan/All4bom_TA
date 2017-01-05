@@ -1,7 +1,7 @@
 @Create @Revision @BOM @CableAndConnectorFilter
 Feature: Проверка условий связи коннекторов и кабелей по условию используя Connected With
 
-  @Cable @Smoke @Test
+  @Cable @Smoke
   Scenario Outline: Проверка основных условий связи коннекторов и кабелей
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft

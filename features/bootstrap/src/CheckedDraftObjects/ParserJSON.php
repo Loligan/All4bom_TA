@@ -19,14 +19,22 @@ class ParserJSON
         ParserJSON::$uniqueParams = "uniqueParams";
         ParserJSON::$positionsParams = "positionsParams";
         ParserJSON::$dynamicParams = "dynamicParams";
-        $file = file_get_contents($nameFile);
+        try {
+            $file = file_get_contents($nameFile);
+        } catch (Exception $e) {
+            throw new Exception("File " . $nameFile . " for ParserJSON not found.");
+        }
         ParserJSON::$json = json_decode($file, true);
         DraftObjects::init();
     }
 
     private static function getParamsObjectFromJSON($objectName, $typeParams)
     {
-        $arrays = ParserJSON::$json[$objectName][$typeParams];
+        try {
+            $arrays = ParserJSON::$json[$objectName][$typeParams];
+        } catch (Exception $e){
+            throw new Exception("Params with object name: ".$objectName." and params:".$typeParams." not found");
+    }
         $count = count($arrays);
         $object = new DraftObject($objectName);
         $checkedParams = array();
@@ -41,7 +49,7 @@ class ParserJSON
                     $object->addCheckedParam($checkedParam);
                 }
             }
-            array_push($checkedParams,$checkedParam);
+            array_push($checkedParams, $checkedParam);
         }
         return $checkedParams;
     }
@@ -61,7 +69,7 @@ class ParserJSON
                     $paramName->setJsonName($val);
                 }
             }
-            array_push($paramsNames,$paramName);
+            array_push($paramsNames, $paramName);
         }
 
         return $paramsNames;

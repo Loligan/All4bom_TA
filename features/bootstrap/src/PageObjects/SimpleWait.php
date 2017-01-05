@@ -17,13 +17,18 @@ class SimpleWait
 
     public static function waitShow($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
+        try{
         $webDriver->wait(20,20)->until(function ($driver){
             return $driver->findElement(WebDriverBy::xpath(SimpleWait::$xpathBuf))->isDisplayed()===true && $driver->findElement(WebDriverBy::xpath(SimpleWait::$xpathBuf))->isEnabled()===true;
         } );
+        }catch (Exception $e){
+            throw new Exception("File not be show with xpath:".$xpath." \nby url: ".$webDriver->getCurrentURL());
+        }
     }
 
     public static function waitHide($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
+        try{
         $webDriver->wait(20,20)->until(function ($driver){
             $gg = false;
             if(count($driver->findElements(WebDriverBy::xpath(SimpleWait::$xpathBuf)))<1){
@@ -31,10 +36,14 @@ class SimpleWait
             }
             return $gg===true;
         } );
+        }catch (Exception $e){
+            throw new Exception("File not be hide with xpath:".$xpath." \nby url: ".$webDriver->getCurrentURL());
+        }
     }
 
     public static function waitTitleHide($webDriver, $title){
         SimpleWait::$xpathBuf = $title;
+        try{
         $webDriver->wait(180,20)->until(function ($driver){
             $gg = false;
             if($driver->getTitle()!==SimpleWait::$xpathBuf){
@@ -42,10 +51,14 @@ class SimpleWait
             }
             return $gg===true;
         } );
+        }catch (Exception $e){
+            throw new Exception("Page not redirect to ".$title."\n .Actual title: ".$webDriver->getTitle(). "\n and url".$webDriver->getCurrentURL());
+        }
     }
 
     public static function waitingOfClick($webDriver, $element){
         SimpleWait::$elementBuf = $element;
+       try{
         $webDriver->wait(20,20)->until(function ($driver){
             $gg=false;
             try {
@@ -55,5 +68,8 @@ class SimpleWait
             }
             return $gg===true;
         } );
+       }catch (Exception $e){
+           throw new Exception("Object not be clickable");
+       }
     }
 }

@@ -27,16 +27,16 @@ class RevisionsPageObjects implements PageObject
         CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($webDriver);
     }
 
-    static function openLatestRevision($webDriver)
-    {
-        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($webDriver);
-
-        if ($count > 0) {
-            $webDriver->findElements(WebDriverBy::xpath(RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE))[$count - 1]->click();
-        } else {
-            throw new Exception("In cable assembly not found revisions");
-        }
-    }
+//    static function openLatestRevision($webDriver)
+//    {
+//        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($webDriver);
+//
+//        if ($count > 0) {
+//            $webDriver->findElements(WebDriverBy::xpath(RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE))[$count - 1]->click();
+//        } else {
+//            throw new Exception("In cable assembly not found revisions");
+//        }
+//    }
 
     static function clickOnLatestRevision($webDriver)
     {
