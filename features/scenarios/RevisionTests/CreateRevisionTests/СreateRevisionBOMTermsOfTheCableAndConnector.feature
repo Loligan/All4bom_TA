@@ -1,7 +1,6 @@
-@Create @Revision @BOM @CableAndConnectorFilter
 Feature: Проверка условий связи коннекторов и кабелей по условию используя Connected With
 
-  @Cable @Smoke
+  @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke
   Scenario Outline: Проверка основных условий связи коннекторов и кабелей
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft
@@ -34,7 +33,7 @@ Feature: Проверка условий связи коннекторов и к
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Solid             | 24               | =          | Connector      |
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Stranded          | 24               | =          | Connector      |
 
-  @Cable
+  @Create @Revision @BOM @CableAndConnectorFilter @Cable
   Scenario Outline: Проверка всех условий связи коннекторов и кабелей
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft

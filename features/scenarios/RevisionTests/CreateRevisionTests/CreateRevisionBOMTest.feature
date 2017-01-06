@@ -1,8 +1,7 @@
-@Create @Revision @BOM
 Feature: Создание ревизии без сохранения с данными в BOM
 
 
-  @Cable @Smoke
+  @Create @Revision @BOM @Cable @Smoke
   Scenario Outline: Создание объекта Cable с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -15,7 +14,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Flat Cable   | 3          |
       | Plain | Normal | Row Material | 4          |
 
-  @Cable
+  @Create @Revision @BOM @Cable
   Scenario Outline: Создание объекта Cable с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -65,7 +64,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | Row Material | 4          |
 
 
-  @Cable @Shrink @LeftShrink @Smoke
+  @Create @Revision @BOM @Cable @Shrink @LeftShrink @Smoke
   Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -78,7 +77,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable   | 1          | 2                |
       | Plain | Normal | RF Cable    | 2          | 1                |
 
-  @Cable @Shrink @LeftShrink
+  @Create @Revision @BOM @Cable @Shrink @LeftShrink
   Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -110,7 +109,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | RF Cable    | 2          | 2                |
 
 
-  @Cable @Shrink @RightShrink @Smoke
+  @Create @Revision @BOM @Cable @Shrink @RightShrink @Smoke
   Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -123,7 +122,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable   | 1          | 2                |
       | Plain | Normal | RF Cable    | 2          | 1                |
 
-  @Cable @Shrink @RightShrink
+  @Create @Revision @BOM @Cable @Shrink @RightShrink
   Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -154,7 +153,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | Lan Cable   | 1          | 1                |
       | Broken | Thick    | RF Cable    | 2          | 2                |
 
-  @Cable @Shrink @BothShrink @Smoke
+  @Create @Revision @BOM @Cable @Shrink @BothShrink @Smoke
   Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -170,7 +169,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable   | 1          | 2                    | 2                     |
       | Plain | Normal | RF Cable    | 2          | 1                    | 1                     |
 
-  @Cable @Shrink @BothShrink
+  @Create @Revision @BOM @Cable @Shrink @BothShrink
   Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -206,7 +205,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | Lan Cable   | 1          | 1                    | 2                     |
       | Broken | Thick    | RF Cable    | 2          | 2                    | 1                     |
 
-  @Connector @Smoke
+  @Create @Revision @BOM @Connector @Smoke
   Scenario Outline: Создание объекта Connector с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -216,7 +215,7 @@ Feature: Создание ревизии без сохранения с данн
       | Family  | Category  | Number | NumberLine |
       | RJ      | Connector | 1      | 1          |
 
-  @Connector
+  @Create @Revision @BOM @Connector
   Scenario Outline: Создание объекта Connector с данными в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -229,7 +228,7 @@ Feature: Создание ревизии без сохранения с данн
       | Headers | Connector | 2      | 2          |
       | RJ      |           | 2      | 1          |
 
-  @Connector @Molder @Smoke @FAIL_NOT_CLICK_ON_MOLDER
+  @Create @Revision @BOM @Connector @Molder @Smoke @FAIL_NOT_CLICK_ON_MOLDER
   Scenario Outline: Cоздание объекта Connector c меткой Molder в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     And Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -240,7 +239,7 @@ Feature: Создание ревизии без сохранения с данн
       | Family | Category  | Number | NumberLine |
       | RJ     | Connector | 1      | 1          |
 
-  @Connector @Molder @FAIL_NOT_CLICK_ON_MOLDER
+  @Create @Revision @BOM @Connector @Molder @FAIL_NOT_CLICK_ON_MOLDER
   Scenario Outline: Cоздание объекта Connector c меткой Molder в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     And Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>

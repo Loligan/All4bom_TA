@@ -1,7 +1,6 @@
-@Save @Revision @Bom
 Feature: Создание объектов в Draft и BOM. Проверка данных после сохранения
 
-  @Cable @Smoke
+  @Save @Revision @Bom @Cable @Smoke
   Scenario Outline: Сохранение ревизии с объектами cable BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -18,7 +17,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Plain | Normal | Row Material | 4          | Test save    |
 
 
-  @Cable
+  @Save @Revision @Bom @Cable
   Scenario Outline: Сохранение ревизии с объектами cable BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -71,7 +70,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Broken | Thick    | Row Material | 4          | Test save    |
 
 
-  @Cable @Shrink @LeftShrink @Smoke
+  @Save @Revision @Bom @Cable @Shrink @LeftShrink @Smoke
   Scenario Outline: Сохранение ревизии с объектами Cable и Left Shrink в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -88,7 +87,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Plain | Normal | RF Cable    | 2          | 1                | Test save    |
 
 
-  @Cable @Shrink @LeftShrink
+  @Save @Revision @Bom @Cable @Shrink @LeftShrink
   Scenario Outline: Сохранение ревизии с объектами Cable и Left Shrink в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -122,7 +121,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Broken | Thick    | Lan Cable   | 1          | 1                | Test save    |
       | Broken | Thick    | RF Cable    | 2          | 2                | Test save    |
 
-  @Cable @Shrink @RightShrink @Smoke
+  @Save @Revision @Bom @Cable @Shrink @RightShrink @Smoke
   Scenario Outline: Сохранение ревизии с объектами Cable и Right Shrink в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -137,7 +136,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Plain | Normal | Lan Cable   | 1          | 2                | Test save    |
       | Plain | Normal | RF Cable    | 2          | 1                | Test save    |
 
-  @Cable @Shrink @RightShrink
+  @Save @Revision @Bom @Cable @Shrink @RightShrink
   Scenario Outline: Сохранение ревизии с объектами Cable и Right Shrink в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -170,7 +169,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Broken | Thick    | Lan Cable   | 1          | 1                | Test save    |
       | Broken | Thick    | RF Cable    | 2          | 2                | Test save    |
 
-  @Cable @Shrink @BothShrink @Smoke
+  @Save @Revision @Bom @Cable @Shrink @BothShrink @Smoke
   Scenario Outline: Сохранение ревизии с объектами Cable и Left Shrink, Right Shrink в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -187,7 +186,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Plain | Normal | Lan Cable   | 1          | 2                    | 2                     | Test save    |
       | Plain | Normal | RF Cable    | 2          | 1                    | 1                     | Test save    |
 
-  @Cable @Shrink @BothShrink
+  @Save @Revision @Bom @Cable @Shrink @BothShrink
   Scenario Outline: Сохранение ревизии с объектами Cable и Left Shrink, Right Shrink в BOM
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -222,7 +221,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Broken | Thick    | Lan Cable   | 1          | 1                    | 2                     | Test save    |
       | Broken | Thick    | RF Cable    | 2          | 2                    | 1                     | Test save    |
 
-  @Connector @Smoke
+  @Save @Revision @Bom @Connector @Smoke
   Scenario Outline: Сохранение ревизии с объектом Connector
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -236,7 +235,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | RJ     | Connector | 1      | 1          | Test save    |
 
 
-  @Connector
+  @Save @Revision @Bom @Connector
   Scenario Outline: Сохранение ревизии с объектом Connector
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -252,7 +251,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Headers | Connector | 2      | 2          | Test save    |
       | RJ      |           | 2      | 1          | Test save    |
 
-  @Connector @Molder @Smoke @REWRITE
+  @Save @Revision @Bom @Connector @Molder @Smoke @REWRITE
   Scenario Outline: Сохранение ревизии с объектом Connector и меткой Molder
     Given Создать ревизию в cable assemblies с именем "tst"
     And Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -267,7 +266,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | RJ     | Connector | 1      | 1          | Test save    |
 
 
-  @Connector @Molder @REWRITE
+  @Save @Revision @Bom @Connector @Molder @REWRITE
   Scenario Outline: Сохранение ревизии с объектом Connector и меткой Molder
     Given Создать ревизию в cable assemblies с именем "tst"
     And Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -281,3 +280,15 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Family | Category  | Number | NumberLine | nameRevision |
       | RJ     | Connector | 2      | 1          | Test save    |
       | RJ     | Connector | 1      | 2          | Test save    |
+
+  @Save @Revision @Bom @Connector @CustomPart @Test
+  Scenario Outline: Сохранение ревизии с объектом Connector и меткой Molder
+    Given Создать ревизию в cable assemblies с именем "tst"
+    And Создать объект Custom part в Draft
+    And Ввести в BOM следующую информацию: <Category>,<PartNumber>, <ManufactureName>, <Description>,<Datasheet>,<CustomerPartNumber>,<Remarks>,<Quantity>,<Tolerance>
+    And Сохранить ревизию с именем Test revision
+    Then Открыть последнюю ревизию с именем Test revision
+    And В ревизии все объекты на месте
+    Examples:
+      | Category | PartNumber | ManufactureName | Description | Datasheet | CustomerPartNumber | Remarks | Quantity | Tolerance |
+      | 1        | 2          | 3               | 4           | 5         | 6                  | 7       | 8        | 9         |

@@ -82,7 +82,7 @@ class CreateCableAssembliesPageObject implements PageObject
 
         }
         if ($file != "") {
-            $projectUploadFiles->sendKeys("/home/meldon/PhpstormProjects/DEMO_All4bom_TA/features/bootstrap/files/" . $file);
+            $projectUploadFiles->sendKeys("/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/files" . $file);
         }
         sleep(1);
     }
@@ -90,5 +90,23 @@ class CreateCableAssembliesPageObject implements PageObject
     static function clickCreateButton($webDriver){
         $button = $webDriver->findElement(WebDriverBy::xpath(CreateCableAssembliesPageObject::$CREATE_BUTTON));
         $button->click();
+    }
+
+    public static function isCableAssembliesPage($webDriver)
+    {
+        $title = $webDriver->getTitle();
+        $contentFound = stripos($title, "Cable assemblies");
+        if ($contentFound === false) {
+            throw new Exception("In title has not Cable assemblies text. But in title has " . $title . " text");;
+        }
+    }
+
+    public static function isEditCableAssembliesPage($webDriver)
+    {
+        $title = $webDriver->getTitle();
+        $contentFound = stripos($title, "Change cable assembly");
+        if ($contentFound === false) {
+            throw new Exception("In title has not Change cable assembly text. But in title has " . $title . " text");;
+        }
     }
 }

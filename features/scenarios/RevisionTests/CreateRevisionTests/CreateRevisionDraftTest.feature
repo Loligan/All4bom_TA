@@ -1,13 +1,12 @@
-@Draft @Create
 Feature: Cоздание объектов в Draft без сохранения
 
-  @Text @Smoke
+  @Draft @Create @Text @Smoke
   Scenario: Создание на полотне объекта Text
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект "Text" на полотне
     Then Объект Text появился на Draft
 
-  @Cable @Smoke
+  @Draft @Create @Cable @Smoke
   Scenario Outline: Создание объекта типа Cable разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -18,7 +17,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Curve  | Normal |
       | Broken | Normal |
 
-  @Cable
+  @Draft @Create @Cable
   Scenario Outline: Создание объекта типа Cable разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
@@ -33,7 +32,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Broken | Thin     |
       | Broken | Thick    |
 
-  @Line @Smoke
+  @Draft @Create @Line @Smoke
   Scenario Outline: Создание объекта типа Line разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Line типа <Type> и толщиной <Weight> в Draft
@@ -44,7 +43,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Curve  | Normal |
       | Broken | Normal |
 
-  @Line
+  @Draft @Create @Line
   Scenario Outline: Создание объекта типа Line разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Line типа <Type> и толщиной <Weight> в Draft
@@ -60,7 +59,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Broken | Thin     |
       | Broken | Thick    |
 
-  @Connector @Smoke
+  @Draft @Create @Connector @Smoke
   Scenario Outline: Создание объекта типа Connector разных семейств
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -69,7 +68,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Family | Category  | Number |
       | RJ     | Connector | 1      |
 
-  @Connector
+  @Draft @Create @Connector
   Scenario Outline: Создание объекта типа Connector разных семейств
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
@@ -81,7 +80,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Headers | Connector | 2      |
       | RJ      |           | 2      |
 
-  @UserImage @Smoke
+  @Draft @Create @UserImage @Smoke
   Scenario Outline: Создание объекта User images
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа User image в Draft, номер изображения: <Number>
@@ -91,7 +90,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 1      |
 
 
-  @UserImage
+  @Draft @Create @UserImage
   Scenario Outline: Создание объекта User images
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа User image в Draft, номер изображения: <Number>
@@ -101,7 +100,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 2      |
       | 3      |
 
-  @Accessories @Smoke
+  @Draft @Create @Accessories @Smoke
   Scenario Outline: Создание объекта Accessories
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Accessories в Draft, номер изображения: <Number>
@@ -111,7 +110,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 1      |
 
 
-  @Accessories
+  @Draft @Create @Accessories
   Scenario Outline: Создание объекта Accessories
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Accessories в Draft, номер изображения: <Number>
@@ -120,7 +119,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Number |
       | 2      |
 
-  @CustomPart @Smoke
+  @Draft @Create @CustomPart @Smoke
   Scenario: Создание объекта Custom part
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Custom part в Draft

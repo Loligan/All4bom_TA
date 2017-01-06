@@ -66,7 +66,6 @@ class CableRowMaterialsPageObject implements PageObject
 
     public static function deleteAllCRMByName($webDriver, $nameCableAssemblies)
     {
-
         while (true) {
             $xpathLink = str_replace("VALUE", $nameCableAssemblies, self::$LINKS);
             $links = $webDriver->findElements(WebDriverBy::xpath($xpathLink));

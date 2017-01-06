@@ -1,7 +1,6 @@
-@Save @Revision @Labels
 Feature: Save labels information test
 
-  @Labels @Smoke
+  @Save @Revision @Labels @Labels @Smoke
   Scenario Outline: Set Labels text
     Given Создать ревизию в cable assemblies с именем "tst"
     When Добавить Label с следующей информацией: <num> Description: <desc> Height: <hght> Width: <wdth> Distance: <dstc> Tolerance: <tlrnc>
@@ -12,7 +11,7 @@ Feature: Save labels information test
       | num   | desc        | hght  | wdth  | dstc  | tlrnc |
       | Text  | Description | 1     | 2     | 3     | 4     |
 
-  @Labels
+  @Save @Revision @Labels @Labels
   Scenario Outline: Set Labels text
     Given Создать ревизию в cable assemblies с именем "tst"
     When Добавить Label с следующей информацией: <num> Description: <desc> Height: <hght> Width: <wdth> Distance: <dstc> Tolerance: <tlrnc>

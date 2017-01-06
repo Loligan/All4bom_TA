@@ -155,14 +155,6 @@ class CheckConnectorAndCableInBOM
         }
     }
 
-//    private static function isArray($item){
-//        if(gettype($item)==gettype(array())){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
-
     public static function conditions($conditions, $strValueOne, $strValueTwo)
     {
         $numberOne = CheckConnectorAndCableInBOM::getValue($strValueOne);
@@ -186,28 +178,3 @@ class CheckConnectorAndCableInBOM
     }
 
 }
-
-//CheckConnectorAndCableInBOM::conditions("=","16-22","5555");
-
-$str2 = "a2sd";
-$str1 = "asd as2";
-function gg($str1, $str2)
-{
-    if (strlen($str1) > strlen($str2)) {
-        if (strstr($str1, $str2) != null) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        if (strstr($str2, $str1) != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-
-if (gg($str1, $str2)) {
-    print  "true";
-} else print  "false";

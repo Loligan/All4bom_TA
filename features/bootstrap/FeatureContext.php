@@ -26,6 +26,7 @@ require_once "src/DraftObjects/Revision.php";
 require_once "src/CheckValues/CheckConnectorAndCableInBOM.php";
 require_once "src/PageObjects/CableRowMaterialsPageObject.php";
 require_once "src/PageObjects/CreateCableRowMaterialsPageObject.php";
+require_once "src/PageObjects/HeaderPageObject.php";
 
 
 class FeatureContext implements Context
@@ -54,6 +55,7 @@ class FeatureContext implements Context
         PinoutDetailsCreateRevisionsPageObject::init();
         CableRowMaterialsPageObject::init();
         CreateCableRowMaterialsPageObject::init();
+        HeaderPageObject::init();
         ParserJSON::init("features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
         ParserJSON::getParamsObject("plainCable");
         ParserJSON::getParamsObject("curveCable");
@@ -83,13 +85,14 @@ class FeatureContext implements Context
         $isSave = false;
         $tags = $scope->getScenario()->getTags();
         foreach ($tags as $tag) {
-            if ($tag == "CRM" || $tag == "Revision") {
+            if ($tag == "CableRowMaterials" || $tag == "Revision" || $tag == "CableAssemblies") {
                 $modulTag = $tag;
             }
-            if ($tag == "Save" || $tag == "Edit") {
+            if ($tag == "Save" || $tag == "Edit" || $tag == "Create") {
                 $isSave = true;
             }
         }
+
         if ($modulTag == "Revision" && $isSave == true) {
             $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
             CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
@@ -97,16 +100,14 @@ class FeatureContext implements Context
         }
         if ($modulTag == "CRM" && $isSave == true) {
             $this->webDriver->get("http://all4bom.smartdesign.by/multicable/");
-            CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver,$this->bufRevision);
+            CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver, $this->bufRevision);
         }
 
+        if ($modulTag == "CAMain" && $isSave == true) {
+            $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+            CableAssembliesPageObject::deleteAllCableAssembliesByName($this->webDriver, $this->bufRevision);
+        }
 
-
-//        Open cable assembly page
-
-//     D   $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-//     D   CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
-//     D   RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
         CompareRevisions::reset();
         $this->bufFirstBOMTableValueForCheck = null;
         $this->bufSecondBOMTableValueForCheck = null;
@@ -118,216 +119,6 @@ class FeatureContext implements Context
 
     }
 
-
-    /**
-     * @Given [some context]
-     */
-    public function someContext()
-    {
-//        CableAssembliesPageObject::openPage($this->webDriver);
-//        DraftCreateRevisionsPageObject::openPage($this->webDriver);
-//        RevisionsPageObjects::openLatestRevision($this->webDriver);
-//        CableAssembliesPageObject::openCableAssembliesByName($this->webDriver,"tst");
-//        RevisionsPageObjects::openLatestRevisionsByCableAssembliesName($this->webDriver,"tst");
-        RevisionsPageObjects::createNewRevisionInCableAssembliesByName($this->webDriver, "tst");
-    }
-
-    /**
-     * @When [some event]
-     */
-    public function someEvent()
-    {
-
-
-//        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($this->webDriver);
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
-        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver, 100, 100, 600, 100, 100, 150);
-        DraftCreateRevisionsPageObject::moveLineFamilyObject($this->webDriver, 100, 100, 550, 100, 200, 1000);
-        sleep(3);
-//        DraftCreateRevisionsPageObject::moveImageFamilyObject($this->webDriver,200,600,400,200);
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RF");
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","IDC");
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","Terminal");
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,600,100,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,200,600,200,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,300,600,300,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,400,600,400,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,500,600,500,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,600,600,600,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,700,600,700,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,800,600,800,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,900,600,900,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,1000,600,1000,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,1100,600,1100,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,1200,600,1200,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,1300,600,1300,100,150);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,1400,600,1340,100,150);
-
-//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,2,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,3,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,4,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,5,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,6,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,7,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,8,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,9,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,10,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,11,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,12,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,13,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,14,3,"RF Cable");
-
-
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver, "1", "RJ");
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver, "1", "RJ");
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver, 100, 100, 600, 100, 100, 150);
-//
-//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver, 1, 3, "RF Cable");
-//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver, 1, 2);
-//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver, 2, 2);
-//        TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver, "P1");
-//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver, "P2");
-//        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::setCheckBoxByNumberCableInLastTable($this->webDriver, 1);
-//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver, "P2");
-//        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver, "P1");
-//        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
-//        PinoutDetailsCreateRevisionsPageObject::setCheckBoxByNumberCableInLastTable($this->webDriver,1);
-//        sleep(10);
-
-//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver,3,2);
-//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver,4,2);
-//
-//        BOMCreateRevisionPageObject::setConnectorInformation($this->webDriver,1,"Number","remark");
-//        BOMCreateRevisionPageObject::setConnectorInformation($this->webDriver,2,"Number","remark");
-//        BOMCreateRevisionPageObject::setConnectorInformation($this->webDriver,3,"Number","remark");
-//
-//        TabCreateRevisionTabPageObject::clickOnLabelsTab($this->webDriver);
-//        LabelsCreateRevisionPageObject::clickOnAddLabelButton($this->webDriver);
-//        LabelsCreateRevisionPageObject::clickOnAddLabelButton($this->webDriver);
-//        LabelsCreateRevisionPageObject::clickOnAddLabelButton($this->webDriver);
-//        LabelsCreateRevisionPageObject::clickOnAddLabelButton($this->webDriver);
-//        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver, 1, "1", "1", "1", "1", "1", "1");
-//        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver, 2, "2", "2", "2", "2", "2", "2");
-//        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver, 3, "3", "3", "3", "3", "3", "3");
-//        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver, 4, "4", "4", "4", "4", "4", "4");
-//        LabelsCreateRevisionPageObject::setInformationInLabelLine($this->webDriver, 4, "4", "4", "4", "4", "4", "4");
-//
-//        TabCreateRevisionTabPageObject::clickOnNotesTab($this->webDriver);
-//        NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"TEST1");
-//        NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"TEST2");
-//        NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"TEST3");
-//        NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"TEST4");
-//        NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"TEST5");
-//
-//
-//    TabCreateRevisionTabPageObject::clickOnNotesTab($this->webDriver);
-//    NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"GGGGGGG");
-//    NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"GGGGGGG");
-//    NotesCreateRevisionsPageObject::addCustomNotesWithText($this->webDriver,"GGGGGGG");
-
-//MUST HAVE
-//        DraftCreateRevisionsPageObject::draftUserImage($this->webDriver,1);
-
-//        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($this->webDriver);
-//        DraftCreateRevisionsPageObject::drawPlainCable($this->webDriver,100,100,550,100,600,150);
-//        DraftCreateRevisionsPageObject::drawBrokenCable($this->webDriver,200,200,550,300,600,150);
-//        DraftCreateRevisionsPageObject::draftConnector($this->webDriver,"1","RJ");
-//
-//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,2,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver,1,2);
-
-//        BOMCreateRevisionPageObject::setCableInformation($this->webDriver,1,"1234567890AB","1234567890AB",2,3);
-//        BOMCreateRevisionPageObject::setCableInformation($this->webDriver,2,"4234567890AB","1234567890AB",2,3);
-//        BOMCreateRevisionPageObject::setConnectorInformation($this->webDriver,1,"Number","remark");
-//
-
-//                DraftCreateRevisionsPageObject::drawDimention($this->webDriver,100,100,550,100);
-//        DraftCreateRevisionsPageObject::drawPlainLineObject($this->webDriver,100,100,550,100,600,150);
-//        DraftCreateRevisionsPageObject::moveLineFamilyObject($this->webDriver,100,100,550,100,200,1000);
-//        CheckJSONValue::getValue($this->webDriver,"gg");
-
-
-//        sleep(1);
-//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-//        BOMCreateRevisionPageObject::setTextInRevisionDescription($this->webDriver, "HELLO WORD!");
-//        $gg = new Revision();
-//        $gg->getAllItems($this->webDriver);
-//
-//        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
-////
-//
-//        RevisionsPageObjects::clickOnLatestRevision($this->webDriver);
-//        sleep(10);
-//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-//        $ff = new Revision();
-//        $ff->getAllItems($this->webDriver);
-//        CompareRevisions::addRevision($gg);
-//        CompareRevisions::addRevision($ff);
-////        print_r($gg);
-////        print_r($ff);
-//        CompareRevisions::compare();
-
-
-//
-//        CheckJSONValue::getValue($this->webDriver,"l");
-//        CheckJSONValue::equalsCheckedParams($this->webDriver,"plainCable");
-//        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-//        BOMCreateRevisionPageObject::clickOnConnetorMolderFlag($this->webDriver,1);
-//        sleep(4);
-//        BOMCreateRevisionPageObject::clickOnConnetorMolderFlag($this->webDriver,1);
-//        BOMCreateRevisionPageObject::setBootData($this->webDriver,1,2);
-//        sleep(4);
-//        BOMCreateRevisionPageObject::setBootInformation($this->webDriver,1,"GGGG","EEEZ");
-//        sleep(4);
-//        BOMCreateRevisionPageObject::cleanBootData($this->webDriver,1);
-//        sleep(4);
-//        BOMCreateRevisionPageObject::setConnectorData($this->webDriver,1,2);
-//        BOMCreateRevisionPageObject::setConnectorInformation($this->webDriver,1,"Number","remark");
-//        BOMCreateRevisionPageObject::cleanConnectorData($this->webDriver,1);
-//        BOMCreateRevisionPageObject::deleteConnector($this->webDriver,1);
-//        BOMCreateRevisionPageObject::setCableData($this->webDriver,1,3,"RF Cable");
-//        BOMCreateRevisionPageObject::setLeftShrinkData($this->webDriver,1,1);
-//        BOMCreateRevisionPageObject::setRightShrinkData($this->webDriver,1,2);
-//        BOMCreateRevisionPageObject::setCableInformation($this->webDriver,1,"1234567890AB","1234567890AB",2,3);
-//        BOMCreateRevisionPageObject::setLeftShrinkInformation($this->webDriver,1,"1234567890AB","1234567890AB",2,3);
-//        BOMCreateRevisionPageObject::setRightShrinkInformation($this->webDriver,1,"1234567890AB","1234567890AB",2,3);
-//        sleep(3);
-//        BOMCreateRevisionPageObject::cleanLeftShrinkData($this->webDriver,1);
-//        BOMCreateRevisionPageObject::cleanRightShrinkData($this->webDriver,1);
-//        sleep(3);
-//        BOMCreateRevisionPageObject::cleanCableData($this->webDriver,1);
-//        BOMCreateRevisionPageObject::deleteCable($this->webDriver,1);
-
-//        TabCreateRevisionTabPageObject::clickOnSaveTab($this->webDriver);
-    }
-
-    /**
-     * @Then [outcome]bin
-     */
-    public function outcomeBin()
-    {
-    }
-
-
-    /**
-     * @Given GHOST
-     */
-    public function GHOST()
-    {
-
-    }
 
     /**
      * @When /^Создать объект "Text" на полотне$/
@@ -541,14 +332,6 @@ class FeatureContext implements Context
         //TODO add checked
     }
 
-//    /**
-//     * @Then /^I can to see (.*) information$/
-//     */
-//    public function iCanToSeeInformation($shrinkLineNumber)
-//    {
-//        //TODO add checked
-//    }
-
     /**
      * @Given /^Поставить параметр Molder в первом коннекторе$/
      */
@@ -616,14 +399,6 @@ class FeatureContext implements Context
         CompareRevisions::addRevision($rev);
         CompareRevisions::compare();
     }
-
-//    /**
-//     * @Given /^I can to see (.*) information$/
-//     */
-//    public function iCanToSeeInformation($shrinkLineNumber)
-//    {
-//        //TODO add checked
-//    }
 
     /**
      * @Given /^Добавить в вкладке Pinout Detail запись с данными: (.*) и (.*)$/
@@ -726,14 +501,6 @@ class FeatureContext implements Context
         BOMCreateRevisionPageObject::clickOnOprionConnecedWithByNameAndNumber($this->webDriver, 1);
     }
 
-//    /**
-//     * @Given /^I click on first \[Connector\] button$/
-//     */
-//    public function iClickOnFirstConnectorButton()
-//    {
-//        BOMCreateRevisionPageObject::clickOnConnectorButtonByNumberConnector($this->webDriver, 1);
-//    }
-
     /**
      * @Then /^В таблице, значения по стобцу (.*) соответствуют условию: (.*)$/
      */
@@ -795,7 +562,7 @@ class FeatureContext implements Context
     public function setInformationInGeneraiInfo($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
     {
         CreateCableRowMaterialsPageObject::setInformationInInputsInGeneralInfo($this->webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38);
-        $this->bufRevision=$arg1;
+        $this->bufRevision = $arg1;
     }
 
     /**
@@ -830,6 +597,118 @@ class FeatureContext implements Context
     public function checkInputValueInGeneralInfoTab($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
     {
         CreateCableRowMaterialsPageObject::checkGeneralInfo($this->webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38);
+    }
+
+    /**
+     * @Given /^Открыть страницу Cable Assemblies$/
+     */
+    public function openCableAssembliePage()
+    {
+        CableAssembliesPageObject::openPage($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[CREATE CABLE ASSEMBLY\]$/
+     */
+    public function clickOnCreateCableAssemblyButton()
+    {
+        CableAssembliesPageObject::clickOnCreateCableAssemblyButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Ввести следующие данные: "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/
+     */
+    public function setInformationInCreateCableAssembliesPage($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
+    {
+        if ($arg1 != "") {
+            $this->bufRevision = $arg1;
+        }
+        CreateCableAssembliesPageObject::setInformation($this->webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[CREATE\]$/
+     */
+    public function clickOnCreateButtonInCreateAssembliesPage()
+    {
+        CreateCableAssembliesPageObject::clickCreateButton($this->webDriver);
+    }
+
+    /**
+     * @Then /^В таблице будет запись с именем "([^"]*)"$/
+     */
+    public function iSeeCableAssembliesWithName($name)
+    {
+
+        CableAssembliesPageObject::checkCableAssemliesByName($this->webDriver, $name);
+
+    }
+
+    /**
+     * @Given /^Перейти на страницу Cable Assemblies$/
+     */
+    public function goToTheCableAssembliesPage()
+    {
+        HeaderPageObject::clickOnCableAssembliesTab($this->webDriver);
+        HeaderPageObject::clickOnLeaveWithoutSavingButton($this->webDriver);
+    }
+
+    /**
+     * @Then /^Запись не создается, вы остаетесь на странице создания Cable Assemblies$/
+     */
+    public function cableAssembliesNotCreate()
+    {
+        CreateCableAssembliesPageObject::isCableAssembliesPage($this->webDriver);
+    }
+
+    /**
+     * @Given /^Открыть на страницу Cable Assemblies$/
+     */
+    public function openCableAssembliesURL()
+    {
+        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[EDIT\] рядом с записью с именем ([^"]*)$/
+     */
+    public function pressEditButtonByNameCableAssemblies($arg1)
+    {
+        sleep(5);
+        CableAssembliesPageObject::pressLastEditButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[CHANGE\]$/
+     */
+    public function clickOnChangeButtonInCreateCableAssembliespage()
+    {
+        CreateCableAssembliesPageObject::clickCreateButton($this->webDriver);
+    }
+
+    /**
+     * @Then /^Запись не создается, вы остаетесь на странице создания Edit Cable Asseblies$/
+     */
+    public function isEditCableAssembliesPage()
+    {
+        CreateCableAssembliesPageObject::isEditCableAssembliesPage($this->webDriver);
+    }
+
+    /**
+     * @Given /^Открыть ссылку на Cable Assemblies$/
+     */
+    public function openLinkCableAssembliesMain()
+    {
+        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+    }
+
+    /**
+     * @Given /^Ввести в BOM следующую информацию: (.*),(.*), (.*), (.*),(.*),(.*),(.*),(.*),(.*)$/
+     */
+    public function setInformationInCustomerPartNumber($category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity,$tolerance)
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+        BOMCreateRevisionPageObject::setPartNumberInformation($this->webDriver,$category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity,$tolerance,1);
     }
 
 

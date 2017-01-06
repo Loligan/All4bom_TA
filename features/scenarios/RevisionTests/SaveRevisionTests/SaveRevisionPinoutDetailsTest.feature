@@ -1,7 +1,6 @@
-@Save @Revision @PinoutDetails
 Feature: Сохранение ревизии с данными в Pinout Details
 
-  @Smoke
+  @Save @Revision @PinoutDetails @Smoke
   Scenario Outline: Create two connectors and one cable object on draft, with BOM information, and Pinout Schemas information
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft

@@ -1,7 +1,6 @@
-@Revision @Draft @Save
 Feature: Сохранение объектов на Draft
 
-  @Revision @Draft @Save @Text @Smoke
+  @Revision @Draft @Save @Revision @Draft @Save @Text @Smoke
   Scenario: Создание на полотне объекта Text
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект "Text" на полотне
@@ -9,7 +8,7 @@ Feature: Сохранение объектов на Draft
     Then Открыть последнюю ревизию с именем <nameRevision>
     And В ревизии все объекты на месте
 
-  @Revision @Draft @Save @Line @Smoke
+  @Revision @Draft @Save @Revision @Draft @Save @Line @Smoke
   Scenario Outline: Создание объекта типа Line разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Line типа <Type> и толщиной <Weight> в Draft
@@ -21,7 +20,7 @@ Feature: Сохранение объектов на Draft
       | Type   | Weight   | nameRevision |
       | Plain  | Normal   | TestSave     |
 
-  @Line
+  @Revision @Draft @Save @Line
   Scenario Outline: Создание объекта типа Line разных типов и разной толщины
     Given Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Line типа <Type> и толщиной <Weight> в Draft
@@ -42,7 +41,7 @@ Feature: Сохранение объектов на Draft
       | Broken | Normal   | TestSave     |
       | Broken | Thick    | TestSave     |
 
-  @UserImage @Smoke
+  @Revision @Draft @Save @UserImage @Smoke
   Scenario Outline: Создание объекта User images
     Given  Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа User image в Draft, номер изображения: <Number>
@@ -55,7 +54,7 @@ Feature: Сохранение объектов на Draft
       | 1      | TestSave     |
 
 
-  @UserImage
+  @Revision @Draft @Save @UserImage
   Scenario Outline: Создание объекта User images
     Given  Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа User image в Draft, номер изображения: <Number>
@@ -68,7 +67,7 @@ Feature: Сохранение объектов на Draft
       | 2      | TestSave     |
       | 3      | TestSave     |
 
-  @Accessories @Smoke
+  @Revision @Draft @Save @Accessories @Smoke
   Scenario Outline: Создание объекта Accessories
     Given  Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Accessories в Draft, номер изображения: <Number>
@@ -80,7 +79,7 @@ Feature: Сохранение объектов на Draft
       | Number | nameRevision |
       | 1      | TestSave     |
 
-  @Accessories
+  @Revision @Draft @Save @Accessories
   Scenario Outline: Создание объекта Accessories
     Given  Создать ревизию в cable assemblies с именем "tst"
     When Создать объект типа Accessories в Draft, номер изображения: <Number>
@@ -92,7 +91,7 @@ Feature: Сохранение объектов на Draft
       | Number | nameRevision |
       | 2      | TestSave     |
 
-  @CustomPart @Smoke
+  @Revision @Draft @Save @CustomPart @Smoke
   Scenario: Создание объекта Custom part
     Given  Создать ревизию в cable assemblies с именем "tst"
     When Создать объект Custom part в Draft
