@@ -28,26 +28,41 @@ class HeaderPageObject implements PageObject
         //NOPE :)
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnHomeTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$HOME_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCableAssembliesTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$CABLE_ASSEMBLIES_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCableRowMaterialsTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$CABLE_ROW_MATERIALS_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCableUserImagesTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$USER_IMAGES_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnLeaveWithoutSavingButton($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$LEAVE_WITHOUT_SAVING_BUTTON));
         SimpleWait::waitingOfClick($webDriver,$tab);

@@ -32,13 +32,29 @@ class CreateCableAssembliesPageObject implements PageObject
         CreateCableAssembliesPageObject::$CREATE_BUTTON = "html/body/main/div/form/fieldset/button";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         CableAssembliesPageObject::openPage($webDriver);
         CableAssembliesPageObject::clickOnCreateCableAssemblyButton($webDriver);
     }
 
-    static function setInformation($webDriver,$revDetails, $compName, $partNumb, $cableDesc, $drawNumb, $designBy, $approvedBy, $checkedBy, $revision, $file){
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $revDetails
+     * @param string $compName
+     * @param string $partNumb
+     * @param string $cableDesc
+     * @param string $drawNumb
+     * @param string $designBy
+     * @param string $approvedBy
+     * @param string $checkedBy
+     * @param string $revision
+     * @param string $file
+     */
+    static function setInformation($webDriver, $revDetails, $compName, $partNumb, $cableDesc, $drawNumb, $designBy, $approvedBy, $checkedBy, $revision, $file){
         $projectRevDetails = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$REV_DETAILS_INPUT));
         $projectCompany = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$COMPANY_INPUT));
         $projectPartNumber = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$PART_NUMBER_INPUT));
@@ -87,11 +103,18 @@ class CreateCableAssembliesPageObject implements PageObject
         sleep(1);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickCreateButton($webDriver){
         $button = $webDriver->findElement(WebDriverBy::xpath(CreateCableAssembliesPageObject::$CREATE_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
+     */
     public static function isCableAssembliesPage($webDriver)
     {
         $title = $webDriver->getTitle();
@@ -101,6 +124,10 @@ class CreateCableAssembliesPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
+     */
     public static function isEditCableAssembliesPage($webDriver)
     {
         $title = $webDriver->getTitle();

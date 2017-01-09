@@ -23,15 +23,15 @@ class Report
     private $isRerun;
 
     /**
-     * TextReport constructor.
-     * @param $projectId
-     * @param $title
-     * @param $description
-     * @param $isPrivate
-     * @param $status
-     * @param $priority
-     * @param $attachment
-     * @param $assignedUserId
+     * Report constructor.
+     * @param boolean $isPrivate
+     * @param int $status
+     * @param int $priority
+     * @param int $assignedUserId
+     * @param string $urlRedmine
+     * @param string $userRedmine
+     * @param string $passwordRedmine
+     * @param string $nameProject
      */
     public function __construct($isPrivate, $status, $priority, $assignedUserId, $urlRedmine, $userRedmine, $passwordRedmine, $nameProject)
     {
@@ -52,6 +52,9 @@ class Report
     }
 
 
+    /**
+     * @return bool
+     */
     private function isRerun(){
         if(file_exists("scenario.rerun")){
             return true;

@@ -16,16 +16,26 @@ class HomePageObject implements PageObject
         HomePageObject::$SIMFONY_TAB_BUTTON = ".//*[@title=\"Close Toolbar\"]";
         HomePageObject::$CABLE_ROW_MATERIALS_TAB = "html/body/header/div/div/div[1]/nav/ul/li[3]/a";
     }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCableRowMaterialsTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(HomePageObject::$CABLE_ROW_MATERIALS_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function closeSymfonyTab($webDriver){
         $button = $webDriver->findElement(WebDriverBy::xpath(HomePageObject::$SIMFONY_TAB_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         $webDriver->get(AppValues::getUrl());
@@ -33,11 +43,17 @@ class HomePageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function pressOnLoginButton($webDriver){
         $button = $webDriver->findElement(WebDriverBy::cssSelector(HomePageObject::$LOGIN_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function pressOnCableAssembliesTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(HomePageObject::$CABLE_ASSEMLIES_TAB));
         $tab->click();

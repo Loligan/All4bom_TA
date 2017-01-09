@@ -2,6 +2,7 @@
 require_once "LoginPageObject.php";
 require_once "HomePageObject.php";
 use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 class CableAssembliesPageObject implements PageObject
 {
@@ -28,6 +29,9 @@ class CableAssembliesPageObject implements PageObject
         self::$EDIT_ACTION_BUTTONS = "html/body/main/div/div/table/tbody/tr/td[7]/div[1]/a[1]/i";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         LoginPageObject::openPage($webDriver);
@@ -36,6 +40,9 @@ class CableAssembliesPageObject implements PageObject
         HomePageObject::pressOnCableAssembliesTab($webDriver);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCableRowMaterialsTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::cssSelector(CableAssembliesPageObject::$CABLE_ROW_MATERIALS_TAB));
@@ -43,12 +50,19 @@ class CableAssembliesPageObject implements PageObject
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCreateCableAssemblyButton($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::cssSelector(CableAssembliesPageObject::$CREATE_CABLE_ASSEMLIES_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
+     */
     static function openRevisionsPageLatestCableAssembliesOnPage($webDriver)
     {
         print "1";
@@ -63,12 +77,22 @@ class CableAssembliesPageObject implements PageObject
         }
     }
 
+    /**
+     * @param string $xpath
+     * @param string $value
+     * @return string
+     */
     private static function getXpath($xpath, $value)
     {
         $result = str_replace("VALUE", $value, $xpath);
         return $result;
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $name
+     * @throws Exception
+     */
     public static function openCableAssembliesByName($webDriver, $name)
     {
         self::openPage($webDriver);
@@ -81,6 +105,11 @@ class CableAssembliesPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $name
+     * @throws Exception
+     */
     public static function clickOnRevisionsLinkByNameCableAssemblies($webDriver, $name)
     {
         $revision = $webDriver->findElements(WebDriverBy::xpath(self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME, $name)));
@@ -92,6 +121,12 @@ class CableAssembliesPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $name
+     * @return bool
+     * @throws Exception
+     */
     public static function checkCableAssemliesByName($webDriver, $name)
     {
         $revision = $webDriver->findElements(WebDriverBy::xpath(self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME, $name)));
@@ -103,6 +138,10 @@ class CableAssembliesPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $nameCableAssemblies
+     */
     public static function deleteAllCableAssembliesByName($webDriver, $nameCableAssemblies)
     {
         while (true) {
@@ -123,6 +162,9 @@ class CableAssembliesPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function pressLastEditButton($webDriver)
     {
         $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$EDIT_ACTION_BUTTONS));

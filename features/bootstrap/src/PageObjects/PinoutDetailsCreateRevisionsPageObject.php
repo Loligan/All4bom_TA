@@ -32,24 +32,37 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
         PinoutDetailsCreateRevisionsPageObject::$CABLE_CHECKBOXES = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[1]/th/label/span";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         DraftCreateRevisionsPageObject::openPage($webDriver);
         TabCreateRevisionTabPageObject::clickOnPinoutSchemasTab($webDriver);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnSelectFirstConnector($webDriver)
     {
         $select = $webDriver->findElement(WebDriverBy::xpath(PinoutDetailsCreateRevisionsPageObject::$SELECT_FIRST_CONNECTOR));
         $select->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnSelectSecondConnector($webDriver)
     {
         $select = $webDriver->findElement(WebDriverBy::xpath(PinoutDetailsCreateRevisionsPageObject::$SELECT_SECOND_CONNECTOR));
         $select->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $value
+     */
     static function clickOnOptionFirstConnectorByName($webDriver, $value)
     {
         $xpath = str_replace("VALUE", $value, PinoutDetailsCreateRevisionsPageObject::$OPTION_FIRST_CONNECTOR);
@@ -58,6 +71,10 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
         SimpleWait::waitingOfClick($webDriver, $option);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $value
+     */
     static function clickOnOptionSecondConnectorByName($webDriver, $value)
     {
         $xpath = str_replace("VALUE", $value, PinoutDetailsCreateRevisionsPageObject::$OPTION_SECOND_CONNECTOR);
@@ -66,6 +83,9 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
         SimpleWait::waitingOfClick($webDriver, $option);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnAddSchematicConnectionButton($webDriver)
     {
         SimpleWait::waitShow($webDriver,PinoutDetailsCreateRevisionsPageObject::$ADD_SCHEMATIC_CONNECTION_BUTTON);
@@ -73,12 +93,20 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
         SimpleWait::waitingOfClick($webDriver,$button);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @return int
+     */
     private static function getCountTables($webDriver){
         $tables = $webDriver->findElements(WebDriverBy::xpath(PinoutDetailsCreateRevisionsPageObject::$TABLES));
         $count = count($tables);
         return $count;
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $numberCable
+     */
     static function setCheckBoxByNumberCableInLastTable($webDriver, $numberCable){
         $countTables = self::getCountTables($webDriver);
         $xpath = str_replace("TABLE", $countTables, PinoutDetailsCreateRevisionsPageObject::$CABLE_CHECKBOXES);

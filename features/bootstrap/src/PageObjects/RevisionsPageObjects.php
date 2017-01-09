@@ -22,22 +22,18 @@ class RevisionsPageObjects implements PageObject
         RevisionsPageObjects::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($webDriver);
     }
 
-//    static function openLatestRevision($webDriver)
-//    {
-//        CableAssembliesPageObject::openRevisionsPageLatestCableAssembliesOnPage($webDriver);
-//
-//        if ($count > 0) {
-//            $webDriver->findElements(WebDriverBy::xpath(RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE))[$count - 1]->click();
-//        } else {
-//            throw new Exception("In cable assembly not found revisions");
-//        }
-//    }
-
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
+     */
     static function clickOnLatestRevision($webDriver)
     {
         $count = count($webDriver->findElements(WebDriverBy::xpath(RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE)));
@@ -48,11 +44,19 @@ class RevisionsPageObjects implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnCreateRevisionButton($webDriver)
     {
         SimpleWait::waitingOfClick($webDriver, $webDriver->findElement(WebDriverBy::xpath(RevisionsPageObjects::$CREATE_REVISION_BUTTON)));
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $CAMain
+     * @throws Exception
+     */
     static function openLatestRevisionsByCableAssembliesName($webDriver, $CAMain)
     {
         CableAssembliesPageObject::openCableAssembliesByName($webDriver, $CAMain);
@@ -64,12 +68,21 @@ class RevisionsPageObjects implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $CAMain
+     */
     static function createNewRevisionInCableAssembliesByName($webDriver, $CAMain)
     {
         CableAssembliesPageObject::openCableAssembliesByName($webDriver, $CAMain);
         self::clickOnCreateRevisionButton($webDriver);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $nameRevision
+     * @throws Exception
+     */
     public static function openLatestRevisionByName($webDriver, $nameRevision)
     {
         $xpath = str_replace("VALUE", $nameRevision, RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION);
@@ -82,6 +95,10 @@ class RevisionsPageObjects implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $name
+     */
     public static function deleteAllRevisionsByName($webDriver, $name)
     {
         $xpath = str_replace("VALUE", $name, RevisionsPageObjects::$DELETE_REVISIONS_BUTTOMS);

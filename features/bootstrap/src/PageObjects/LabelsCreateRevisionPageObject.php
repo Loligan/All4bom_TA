@@ -31,20 +31,31 @@ class LabelsCreateRevisionPageObject implements PageObject
         LabelsCreateRevisionPageObject::$TOLERANCE_INPUTS = "html/body/main/form/div[4]/div/div/table/tbody/tr/td[7]/input";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         DraftCreateRevisionsPageObject::openPage($webDriver);
         TabCreateRevisionTabPageObject::clickOnLabelsTab($webDriver);
     }
 
-    private static function getCountLines($webDrivers)
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @return int
+     */
+    private static function getCountLines($webDriver)
     {
-        $lines = $webDrivers->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$LINES));
+        $lines = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$LINES));
         $count = count($lines);
         return $count;
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
+     */
     static function clickOnAddLabelButton($webDriver)
     {
         $oldCount = self::getCountLines($webDriver);
@@ -57,6 +68,16 @@ class LabelsCreateRevisionPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $numberLine
+     * @param string $numberText
+     * @param string $descText
+     * @param int $height
+     * @param int $width
+     * @param int $distanceFrom
+     * @param int $tolerance
+     */
     public static function setInformationInLabelLine($webDriver, $numberLine, $numberText, $descText, $height, $width, $distanceFrom, $tolerance)
     {
         $inputNumberText = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$NUMBER_INPUTS))[$numberLine - 1];

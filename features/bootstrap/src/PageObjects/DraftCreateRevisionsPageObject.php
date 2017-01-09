@@ -1,6 +1,7 @@
 <?php
 
 require_once "CreateCableAssembliesPageObject.php";
+require_once "SimpleWait.php";
 require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/CheckValues/CheckJSONValue.php";
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverMouse;
@@ -96,6 +97,9 @@ class DraftCreateRevisionsPageObject implements PageObject
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static private function getIndexSize($webDriver)
     {
         $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
@@ -105,16 +109,27 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::$INDEX_Y = DraftCreateRevisionsPageObject::$CANVAS_WIDTH / DraftCreateRevisionsPageObject::$ABSOLUTE_WIDTH;
     }
 
+    /**
+     * @param int $x
+     * @return int
+     */
     static private function getSetX($x)
     {
         return $x * DraftCreateRevisionsPageObject::$INDEX_X;
     }
 
+    /**
+     * @param int $y
+     * @return int
+     */
     static private function getSetY($y)
     {
         return $y * DraftCreateRevisionsPageObject::$INDEX_Y;
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         CreateCableAssembliesPageObject::openPage($webDriver);
@@ -122,38 +137,54 @@ class DraftCreateRevisionsPageObject implements PageObject
         CreateCableAssembliesPageObject::clickCreateButton($webDriver);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static private function clickOnCableIcon($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABLE_ICON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static private function clickOnPlainCableButton($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$PLAIN_CABLE_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static private function clickOnCurveCableButton($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CURVE_CABLE_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static private function clickOnBrokenCableButton($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$BROKEN_CABLE_BUTTON));
         $button->click();
     }
 
-    static private function setWeightCabel($webDriver, $Weight)
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $weight
+     */
+    static private function setWeightCabel($webDriver, $weight)
     {
         $option = null;
-        if ($Weight === "Thinnest") {
+        if ($weight === "Thinnest") {
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THINNEST));
-        } else if ($Weight === "Thin") {
+        } else if ($weight === "Thin") {
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THIN));
-        } else if ($Weight === "Thick") {
+        } else if ($weight === "Thick") {
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THICK));
         }
 
@@ -163,6 +194,16 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     * @param string $weight
+     */
     static function drawPlainCable($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
     {
         self::clickOnCableIcon($webDriver);
@@ -172,6 +213,16 @@ class DraftCreateRevisionsPageObject implements PageObject
         CheckJSONValue::check($webDriver, "plainCable");
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     * @param string $weight
+     */
     static function drawCurveCable($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
     {
         self::clickOnCableIcon($webDriver);
@@ -181,6 +232,16 @@ class DraftCreateRevisionsPageObject implements PageObject
         CheckJSONValue::check($webDriver, "curveCable");
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     * @param string $weight
+     */
     static function drawBrokenCable($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
     {
         self::clickOnCableIcon($webDriver);
@@ -190,6 +251,15 @@ class DraftCreateRevisionsPageObject implements PageObject
         CheckJSONValue::check($webDriver, "brokenCable");
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     */
     static private function drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY)
     {
         $mouse = $webDriver->getMouse();
@@ -210,56 +280,79 @@ class DraftCreateRevisionsPageObject implements PageObject
         $mouse->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnDimentionButton($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$DIMEMTION_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     */
     static function drawDimention($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY)
     {
         self::clickOnDimentionButton($webDriver);
         self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, 0, 0);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnIconText($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$TEXT_ICON));
         $button->click();
     }
 
-    private static function clickOnButtonText($webDriver)
-    {
-        $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$TEXT_BUTTON));
-        $button->click();
-    }
-
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $value
+     */
     private static function setTextFont($webDriver, $value)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(str_replace("VALUE", $value, DraftCreateRevisionsPageObject::$TEXT_FONT)));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $value
+     */
     private static function setTextSize($webDriver, $value)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(str_replace("VALUE", $value, DraftCreateRevisionsPageObject::$TEXT_SIZE)));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $color
+     */
     private static function setColorValue($webDriver, $color)
     {
         $colorInput = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$TEXT_COLOR));
         $colorInput->sendKeys($color);
     }
 
-    static private function setWeightLine($webDriver, $Weight)
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $weight
+     */
+    static private function setWeightLine($webDriver, $weight)
     {
         $option = null;
-        if ($Weight === "Thinnest") {
+        if ($weight === "Thinnest") {
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_WEIGHT_THINNEST));
-        } else if ($Weight === "Thin") {
+        } else if ($weight === "Thin") {
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_WEIGHT_THIN));
-        } else if ($Weight === "Thick") {
+        } else if ($weight === "Thick") {
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_WEIGHT_THICK));
         }
 
@@ -269,6 +362,15 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionX
+     * @param int $positionY
+     * @param string $text
+     * @param string $font
+     * @param string $size
+     * @param string $color
+     */
     static function drawTextObject($webDriver, $positionX = null, $positionY = null, $text = null, $font = "Arial", $size = "18", $color = "0000")
     {
         self::clickOnIconText($webDriver);
@@ -286,24 +388,36 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnLinesIcon($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_ICON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnPlainLinesButton($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$PLAIN_LINE_BUTTON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnCurveLinesButton($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CURVE_LINE_BUTTON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnBrokenLinesButton($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$BROKEN_LINE_BUTTON));
@@ -311,12 +425,31 @@ class DraftCreateRevisionsPageObject implements PageObject
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     */
     private static function drawLine($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY)
     {
         self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     * @param string $weight
+     */
     static function drawPlainLineObject($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
     {
         self::clickOnLinesIcon($webDriver);
@@ -325,6 +458,16 @@ class DraftCreateRevisionsPageObject implements PageObject
         self::drawLine($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     * @param string $weight
+     */
     static function drawCurveLineObject($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
     {
         self::clickOnLinesIcon($webDriver);
@@ -333,6 +476,16 @@ class DraftCreateRevisionsPageObject implements PageObject
         self::drawLine($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPointX
+     * @param int $firstPointY
+     * @param int $secondPointX
+     * @param int $secondPointY
+     * @param int $dimentionPointX
+     * @param int $dimentionPointY
+     * @param string $weight
+     */
     static function drawBrokenLineObject($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")
     {
         self::clickOnLinesIcon($webDriver);
@@ -341,12 +494,19 @@ class DraftCreateRevisionsPageObject implements PageObject
         self::drawLine($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnConnectorIcon($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_ICON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $cellNumber
+     */
     private static function clickOnConnectorCell($webDriver, $cellNumber)
     {
         $xpath = str_replace("VALUE", $cellNumber, DraftCreateRevisionsPageObject::$CONNECTOR_CELL);
@@ -355,6 +515,10 @@ class DraftCreateRevisionsPageObject implements PageObject
         $cell->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $familyName
+     */
     private static function selectFamilyConnector($webDriver, $familyName)
     {
         $hh = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_SELECT));
@@ -365,6 +529,10 @@ class DraftCreateRevisionsPageObject implements PageObject
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $categoryName
+     */
     private static function selectCategoryConnector($webDriver, $categoryName)
     {
         $hh = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_SELECT));
@@ -375,6 +543,12 @@ class DraftCreateRevisionsPageObject implements PageObject
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $numberCell
+     * @param string $familyName
+     * @param string $categoryName
+     */
     static function draftConnector($webDriver, $numberCell, $familyName, $categoryName = null)
     {
         self::clickOnConnectorIcon($webDriver);
@@ -388,12 +562,19 @@ class DraftCreateRevisionsPageObject implements PageObject
         CheckJSONValue::check($webDriver, "connector");
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnUserImageIcon($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$IMAGE_ICON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $idImage
+     */
     private static function clickOnUserImageCell($webDriver, $idImage)
     {
         $xpath = str_replace("VALUE", $idImage, DraftCreateRevisionsPageObject::$IMAGE_CELL);
@@ -401,6 +582,10 @@ class DraftCreateRevisionsPageObject implements PageObject
         $cell->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $idImage
+     */
     static function draftUserImage($webDriver, $idImage = 1)
     {
         self::clickOnUserImageIcon($webDriver);
@@ -409,13 +594,20 @@ class DraftCreateRevisionsPageObject implements PageObject
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnAccessoriesIcon($webDriver)
     {
         SimpleWait::waitShow($webDriver,DraftCreateRevisionsPageObject::$ACCESSORIES_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$ACCESSORIES_ICON));
-        SimpleWait::waitingOfClick($icon);
+        SimpleWait::waitingOfClick($webDriver,$icon);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $numberCell
+     */
     private static function clickOnAccessoriesCell($webDriver, $numberCell)
     {
         $xpath = str_replace("VALUE", $numberCell, DraftCreateRevisionsPageObject::$ACCESSORIES_CELL);
@@ -423,6 +615,10 @@ class DraftCreateRevisionsPageObject implements PageObject
         $cell->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $numberCells
+     */
     static function draftAcessories($webDriver, $numberCells = 1)
     {
         self::clickOnAccessoriesIcon($webDriver);
@@ -431,18 +627,29 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnCutomPartIcon($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CUSTOM_PART_ICON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function draftCustomPart($webDriver)
     {
         self::clickOnCutomPartIcon($webDriver);
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionX
+     * @param int $positionY
+     */
     private static function clickOnDraftPoint($webDriver, $positionX, $positionY)
     {
         $mouse = $webDriver->getMouse();
@@ -455,17 +662,29 @@ class DraftCreateRevisionsPageObject implements PageObject
         $mouse->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionItemX
+     * @param int $positionItemY
+     */
     private static function clickOnObjectCopy($webDriver, $positionItemX, $positionItemY)
     {
         self::clickOnDraftPoint($webDriver, $positionItemX, $positionItemY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnCopyIcon($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_ICON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $quantity
+     */
     private static function setCopyQuantity($webDriver, $quantity)
     {
         $qty = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_QUANTITY));
@@ -473,17 +692,33 @@ class DraftCreateRevisionsPageObject implements PageObject
         $qty->sendKeys($quantity);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     private static function clickOnCopyButton($webDriver)
     {
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_BUTTON));
         $icon->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionCopyX
+     * @param int $positionCopyY
+     */
     private static function pasteCopyOnDraft($webDriver, $positionCopyX, $positionCopyY)
     {
         self::clickOnDraftPoint($webDriver, $positionCopyX, $positionCopyY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionItemX
+     * @param int $positionItemY
+     * @param int $positionCopyX
+     * @param int $positionCopyY
+     * @param int $quantity
+     */
     public static function draftCopyItems($webDriver, $positionItemX, $positionItemY, $positionCopyX, $positionCopyY, $quantity = 1)
     {
         DraftCreateRevisionsPageObject::clickOnObjectCopy($webDriver, $positionItemX, $positionItemY);
@@ -493,6 +728,11 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::pasteCopyOnDraft($webDriver, $positionCopyX, $positionCopyY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionX
+     * @param int $positionY
+     */
     private static function mouseButtonDownOnObject($webDriver, $positionX, $positionY)
     {
         $mouse = $webDriver->getMouse();
@@ -507,6 +747,11 @@ class DraftCreateRevisionsPageObject implements PageObject
         $mouse->mouseDown();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionX
+     * @param int $positionY
+     */
     private static function mouseButtonUpOnObject($webDriver, $positionX, $positionY)
     {
         $mouse = $webDriver->getMouse();
@@ -520,6 +765,15 @@ class DraftCreateRevisionsPageObject implements PageObject
     }
 
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $firstPositionPointX
+     * @param int $firstPositionPointY
+     * @param int $secondPositionPointX
+     * @param int $secondPositionPointY
+     * @param int $positionMovePointX
+     * @param int $positionMovePointY
+     */
     public static function moveLineFamilyObject($webDriver, $firstPositionPointX, $firstPositionPointY, $secondPositionPointX, $secondPositionPointY, $positionMovePointX, $positionMovePointY)
     {
         $clickPositionX = (($secondPositionPointX - $firstPositionPointX) / 2) + $firstPositionPointX;
@@ -528,6 +782,13 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::mouseButtonUpOnObject($webDriver, $positionMovePointX, $positionMovePointY);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $positionPointX
+     * @param int $positionPointY
+     * @param int $newPositionX
+     * @param int $newPositionY
+     */
     public static function moveImageFamilyObject($webDriver, $positionPointX, $positionPointY, $newPositionX, $newPositionY)
     {
 

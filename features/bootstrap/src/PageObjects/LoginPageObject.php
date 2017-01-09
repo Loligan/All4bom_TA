@@ -17,12 +17,18 @@ class LoginPageObject implements PageObject
         LoginPageObject::$LOGIN_BUTTON = "#_submit";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         HomePageObject::openPage($webDriver);
         HomePageObject::pressOnLoginButton($webDriver);
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function setInformation($webDriver)
     {
         $username = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$USERNAME_INPUT));
@@ -33,6 +39,9 @@ class LoginPageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function pressLoginButton($webDriver){
         $button = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$LOGIN_BUTTON));
         $button->click();

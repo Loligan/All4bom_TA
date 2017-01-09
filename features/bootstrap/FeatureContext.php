@@ -78,6 +78,7 @@ class FeatureContext implements Context
         CompareRevisions::init();
 //        REPORT
         $this->report = new Report(true,1,2,5,"http://127.0.0.1/redmine/","MrRobot","12345678","All4BOM");
+
        $this->report->beforeScenario($scope);
     }
 
@@ -123,6 +124,7 @@ class FeatureContext implements Context
 
 //        REPORT
         $this->report->afterScenario();
+
     }
 
 
@@ -514,7 +516,7 @@ class FeatureContext implements Context
     public function iSetFirstOptionInConnectedWith()
     {
         BOMCreateRevisionPageObject::clickOnSelectConnectedWithByNumber($this->webDriver);
-        BOMCreateRevisionPageObject::clickOnOprionConnecedWithByNameAndNumber($this->webDriver, 1);
+        BOMCreateRevisionPageObject::clickOnOptionConnectedWithByNameAndNumber($this->webDriver, 1);
     }
 
     /**

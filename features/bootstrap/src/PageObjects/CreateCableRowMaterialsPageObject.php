@@ -23,6 +23,9 @@ class CreateCableRowMaterialsPageObject implements PageObject
         self::$INPUTS_GENERAL_INFO = "html/body/main/form/div[2]/div/div[VALUE]/input";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         CableRowMaterialsPageObject::openPage($webDriver);
@@ -30,26 +33,42 @@ class CreateCableRowMaterialsPageObject implements PageObject
 
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnDraftTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$DRAFT_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnBomInfoTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$BOM_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnGeneralInfoTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$GENERAL_INFO_TAB));
         $tab->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnSaveTab($webDriver){
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$SAVE_TAB));
         $tab->click();
     }
 
+    /**
+     * @param string $v
+     * @return string
+     */
     private static function getValue($v)
     {
         if ($v == "GoodMaxString") {
@@ -61,7 +80,48 @@ class CreateCableRowMaterialsPageObject implements PageObject
         return $v;
     }
 
-    static function setInformationInInputsInGeneralInfo($webDriver,$arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $arg1
+     * @param string $arg2
+     * @param string $arg3
+     * @param string $arg4
+     * @param string $arg5
+     * @param string $arg6
+     * @param string $arg7
+     * @param string $arg8
+     * @param string $arg9
+     * @param string $arg10
+     * @param string $arg11
+     * @param string $arg12
+     * @param string $arg13
+     * @param string $arg14
+     * @param string $arg15
+     * @param string $arg16
+     * @param string $arg17
+     * @param string $arg18
+     * @param string $arg19
+     * @param string $arg20
+     * @param string $arg21
+     * @param string $arg22
+     * @param string $arg23
+     * @param string $arg24
+     * @param string $arg25
+     * @param string $arg26
+     * @param string $arg27
+     * @param string $arg28
+     * @param string $arg29
+     * @param string $arg30
+     * @param string $arg31
+     * @param string $arg32
+     * @param string $arg33
+     * @param string $arg34
+     * @param string $arg35
+     * @param string $arg36
+     * @param string $arg37
+     * @param string $arg38
+     */
+    static function setInformationInInputsInGeneralInfo($webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
     {
         $inputs = array();
         for ($i = 1; $i <= 38; $i++) {
@@ -109,6 +169,48 @@ class CreateCableRowMaterialsPageObject implements PageObject
         $inputs[38]->sendKeys(self::getValue($arg38));
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $arg1
+     * @param string $arg2
+     * @param string $arg3
+     * @param string $arg4
+     * @param string $arg5
+     * @param string $arg6
+     * @param string $arg7
+     * @param string $arg8
+     * @param string $arg9
+     * @param string $arg10
+     * @param string $arg11
+     * @param string $arg12
+     * @param string $arg13
+     * @param string $arg14
+     * @param string $arg15
+     * @param string $arg16
+     * @param string $arg17
+     * @param string $arg18
+     * @param string $arg19
+     * @param string $arg20
+     * @param string $arg21
+     * @param string $arg22
+     * @param string $arg23
+     * @param string $arg24
+     * @param string $arg25
+     * @param string $arg26
+     * @param string $arg27
+     * @param string $arg28
+     * @param string $arg29
+     * @param string $arg30
+     * @param string $arg31
+     * @param string $arg32
+     * @param string $arg33
+     * @param string $arg34
+     * @param string $arg35
+     * @param string $arg36
+     * @param string $arg37
+     * @param string $arg38
+     * @throws Exception
+     */
     public static function checkGeneralInfo($webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10, $arg11, $arg12, $arg13, $arg14, $arg15, $arg16, $arg17, $arg18, $arg19, $arg20, $arg21, $arg22, $arg23, $arg24, $arg25, $arg26, $arg27, $arg28, $arg29, $arg30, $arg31, $arg32, $arg33, $arg34, $arg35, $arg36, $arg37, $arg38)
     {
         $inputs = array();

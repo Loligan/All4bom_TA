@@ -29,18 +29,27 @@ class TabCreateRevisionTabPageObject implements PageObject
         TabCreateRevisionTabPageObject::$SAVE_TAB = "html/body/main/div[1]/div/div[1]/div/ul/li[8]/div/i";
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnRevisionsTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$REVISIONS_TAB));
         $tab->click();
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnDraftTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$DRAFT_TAB));
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnBOMTab($webDriver)
     {
         SimpleWait::waitShow($webDriver,TabCreateRevisionTabPageObject::$BOM_TAB);
@@ -48,30 +57,45 @@ class TabCreateRevisionTabPageObject implements PageObject
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnPinoutDetailsTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$PINOUT_DETAILS_TAB));
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnPinoutSchemasTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$PINOUT_SCHEMAS_TAB));
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnLabelsTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$LABELS_TAB));
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnNotesTab($webDriver)
     {
         $tab = $webDriver->findElement(WebDriverBy::xpath(TabCreateRevisionTabPageObject::$NOTES_TAB));
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function clickOnSaveTab($webDriver)
     {
         $title = $webDriver->getTitle();
@@ -80,6 +104,9 @@ class TabCreateRevisionTabPageObject implements PageObject
         SimpleWait::waitTitleHide($webDriver,$title);
     }
 
+    /**
+     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     public static function openPage($webDriver)
     {
         DraftCreateRevisionsPageObject::openPage($webDriver);

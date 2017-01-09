@@ -8,6 +8,10 @@ class SimpleWait
     private static $xpathBuf;
     private static $elementBuf;
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $xpath
+     */
     public static function waitShowByCSSSelector($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
         $webDriver->wait(20,20)->until(function ($driver){
@@ -15,6 +19,11 @@ class SimpleWait
         } );
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $xpath
+     * @throws Exception
+     */
     public static function waitShow($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
         try{
@@ -26,6 +35,11 @@ class SimpleWait
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $xpath
+     * @throws Exception
+     */
     public static function waitHide($webDriver, $xpath){
         SimpleWait::$xpathBuf = $xpath;
         try{
@@ -41,6 +55,11 @@ class SimpleWait
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $title
+     * @throws Exception
+     */
     public static function waitTitleHide($webDriver, $title){
         SimpleWait::$xpathBuf = $title;
         try{
@@ -56,6 +75,11 @@ class SimpleWait
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param Facebook\WebDriver\WebDriverElement $element
+     * @throws Exception
+     */
     public static function waitingOfClick($webDriver, $element){
         SimpleWait::$elementBuf = $element;
        try{

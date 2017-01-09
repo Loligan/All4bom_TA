@@ -1,7 +1,7 @@
 <?php
 
 use Facebook\WebDriver\WebDriverBy;
-
+use Facebook\WebDriver\Remote\RemoteWebDriver;
 require_once "CableAssembliesPageObject.php";
 
 class CableRowMaterialsPageObject implements PageObject
@@ -23,12 +23,18 @@ class CableRowMaterialsPageObject implements PageObject
         self::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function clickOnCreateButton($webDriver)
     {
         $button = $webDriver->findElement(WebDriverBy::cssSelector(CableRowMaterialsPageObject::$CREATE_BUTTON));
         $button->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
     static function openPage($webDriver)
     {
         LoginPageObject::openPage($webDriver);
@@ -37,6 +43,10 @@ class CableRowMaterialsPageObject implements PageObject
         HomePageObject::clickOnCableRowMaterialsTab($webDriver);
     }
 
+    /**
+     * @param string $v
+     * @return string
+     */
     private static function getValue($v)
     {
         if ($v == "GoodMaxString") {
@@ -48,6 +58,11 @@ class CableRowMaterialsPageObject implements PageObject
         return $v;
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $name
+     * @throws Exception
+     */
     static function checkCAInTable($webDriver, $name)
     {
         $pageSource = $webDriver->getPageSource();
@@ -57,6 +72,10 @@ class CableRowMaterialsPageObject implements PageObject
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param $name
+     */
     public static function clickOnEditButtonByName($webDriver, $name)
     {
         $xpath = str_replace('VALUE', $name, CableRowMaterialsPageObject::$EDIT_BUTTON);
@@ -64,6 +83,10 @@ class CableRowMaterialsPageObject implements PageObject
         $editButton->click();
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $nameCableAssemblies
+     */
     public static function deleteAllCRMByName($webDriver, $nameCableAssemblies)
     {
         while (true) {
