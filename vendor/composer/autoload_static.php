@@ -28,6 +28,10 @@ class ComposerStaticInit833129160c6d5779b3f763f7bf4c7d71
         array (
             'Psr\\Log\\' => 8,
         ),
+        'I' => 
+        array (
+            'Interop\\Container\\' => 18,
+        ),
         'F' => 
         array (
             'Facebook\\WebDriver\\' => 19,
@@ -79,6 +83,10 @@ class ComposerStaticInit833129160c6d5779b3f763f7bf4c7d71
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
+        'Interop\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
         'Facebook\\WebDriver\\' => 
         array (
             0 => __DIR__ . '/..' . '/facebook/webdriver/lib',
@@ -86,6 +94,13 @@ class ComposerStaticInit833129160c6d5779b3f763f7bf4c7d71
     );
 
     public static $prefixesPsr0 = array (
+        'R' => 
+        array (
+            'Redmine' => 
+            array (
+                0 => __DIR__ . '/..' . '/kbsali/redmine-api/lib',
+            ),
+        ),
         'B' => 
         array (
             'Behat\\Transliterator' => 

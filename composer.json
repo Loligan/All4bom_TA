@@ -2,7 +2,8 @@
   "name": "root/all4bom_ta",
   "require": {
     "behat/behat": "^3.2",
-    "facebook/webdriver": "^1.2"
+    "facebook/webdriver": "^1.2",
+    "kbsali/redmine-api": "~1.0"
   },
   "config": {
     "bin-dir": "bin/"

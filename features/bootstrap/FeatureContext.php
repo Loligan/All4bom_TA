@@ -27,6 +27,7 @@ require_once "src/CheckValues/CheckConnectorAndCableInBOM.php";
 require_once "src/PageObjects/CableRowMaterialsPageObject.php";
 require_once "src/PageObjects/CreateCableRowMaterialsPageObject.php";
 require_once "src/PageObjects/HeaderPageObject.php";
+require_once "src/BugReport/Report.php";
 
 
 class FeatureContext implements Context
@@ -37,6 +38,7 @@ class FeatureContext implements Context
     private $bufCableAssemblies;
     private $bufFirstBOMTableValueForCheck;
     private $bufSecondBOMTableValueForCheck;
+    private $report;
 
     public function __construct()
     {
@@ -66,7 +68,7 @@ class FeatureContext implements Context
     /**
      * @BeforeScenario
      */
-    public function BeforeScenario()
+    public function BeforeScenario(\Behat\Behat\Hook\Scope\BeforeScenarioScope $scope)
     {
 
         $capabilities = DesiredCapabilities::chrome();
@@ -74,6 +76,9 @@ class FeatureContext implements Context
         $this->webDriver->manage()->window();
         $this->webDriver->manage()->window()->maximize();
         CompareRevisions::init();
+//        REPORT
+        $this->report = new Report(true,1,2,5,"http://127.0.0.1/redmine/","MrRobot","12345678","All4BOM");
+       $this->report->beforeScenario($scope);
     }
 
     /**
@@ -103,7 +108,7 @@ class FeatureContext implements Context
             CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver, $this->bufRevision);
         }
 
-        if ($modulTag == "CAMain" && $isSave == true) {
+        if ($modulTag == "CableAssemblies" && $isSave == true) {
             $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
             CableAssembliesPageObject::deleteAllCableAssembliesByName($this->webDriver, $this->bufRevision);
         }
@@ -116,7 +121,20 @@ class FeatureContext implements Context
             $this->webDriver->quit();
         }
 
+//        REPORT
+        $this->report->afterScenario();
 
+
+    }
+
+
+    /**
+     * @AfterStep
+     * @param \Behat\Behat\Hook\Scope\AfterStepScope $scope
+     */
+    public function afterStep(Behat\Behat\Hook\Scope\AfterStepScope $scope)
+    {
+        $this->report->afterStep($scope);
     }
 
 
