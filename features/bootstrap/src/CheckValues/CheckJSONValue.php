@@ -51,10 +51,8 @@ class CheckJSONValue
 
     private static function equalsCheckedParams($webDriver, $nameObject){
         $names = CompareParams::getAllNameCheckedParamsByObjectName($nameObject);
-        print_r ($names);
         foreach ($names as $name){
             $value = self::getValue($webDriver,$name);
-
             if(!CompareParams::compareCheckedParam($nameObject,$name,$value)){
                 return false;
             }

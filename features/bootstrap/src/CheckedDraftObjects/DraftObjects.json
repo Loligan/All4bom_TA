@@ -6,10 +6,6 @@
         "jsonValue":true
       },
       {
-        "jsonName":"isDetail",
-        "jsonValue":true
-      },
-      {
         "jsonName":"isPlainCable",
         "jsonValue":true
       },
@@ -53,26 +49,6 @@
     "checkedParams": [
       {
         "jsonName":"isCable",
-        "jsonValue":true
-      },
-      {
-        "jsonName":"isDetail",
-        "jsonValue":true
-      },
-      {
-        "jsonName":"isPlainCable",
-        "jsonValue":true
-      },
-      {
-        "jsonName":"lockRotation",
-        "jsonValue":true
-      },
-      {
-        "jsonName":"lockScalingX",
-        "jsonValue":true
-      },
-      {
-        "jsonName":"lockScalingY",
         "jsonValue":true
       }
     ],
@@ -135,12 +111,8 @@
   },
   "connector": {
     "checkedParams": [
-//      {
-//        "jsonName":"isConnector",
-//        "jsonValue":true
-//      },
       {
-        "jsonName":"isDetail",
+        "jsonName":"isConnector",
         "jsonValue":true
       }
     ],

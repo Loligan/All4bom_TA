@@ -13,14 +13,11 @@ class AppValues
      * @param $url
      */
 
-    /*
-     * Запилить парсинг из JSON
-     *
-     * */
+
     public function __construct($url = "http://all4bom.smartdesign.by/", $login = "baruch", $password = "testtest")    {
-        $login = $login;
-        $password = $password;
-        $url = $url;
+        $this->$login = $login;
+        $this->$password = $password;
+        $this->$url = $url;
     }
 
     /**

@@ -178,6 +178,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         self::setWeightCabel($webDriver, $weight);
         self::clickOnCurveCableButton($webDriver);
         self::drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY);
+        CheckJSONValue::check($webDriver, "curveCable");
     }
 
     static function drawBrokenCable($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY, $weight = "Normal")

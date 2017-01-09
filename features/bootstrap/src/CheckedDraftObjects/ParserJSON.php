@@ -15,23 +15,24 @@ class ParserJSON
 
     public static function init($nameFile)
     {
-        ParserJSON::$checkedParams = "checkedParams";
-        ParserJSON::$uniqueParams = "uniqueParams";
-        ParserJSON::$positionsParams = "positionsParams";
-        ParserJSON::$dynamicParams = "dynamicParams";
+        self::$checkedParams = "checkedParams";
+        self::$uniqueParams = "uniqueParams";
+        self::$positionsParams = "positionsParams";
+        self::$dynamicParams = "dynamicParams";
         try {
             $file = file_get_contents($nameFile);
         } catch (Exception $e) {
             throw new Exception("File " . $nameFile . " for ParserJSON not found.");
         }
-        ParserJSON::$json = json_decode($file, true);
+
+        self::$json = json_decode($file, true);
         DraftObjects::init();
     }
 
     private static function getParamsObjectFromJSON($objectName, $typeParams)
     {
         try {
-            $arrays = ParserJSON::$json[$objectName][$typeParams];
+            $arrays = self::$json[$objectName][$typeParams];
         } catch (Exception $e){
             throw new Exception("Params with object name: ".$objectName." and params:".$typeParams." not found");
     }
@@ -56,7 +57,7 @@ class ParserJSON
 
     private static function getParamsNamesFromJSON($objectName, $typeParams)
     {
-        $arrays = ParserJSON::$json[$objectName][$typeParams];
+        $arrays = self::$json[$objectName][$typeParams];
         $count = count($arrays);
         $paramsNames = array();
         for ($i = 0; $i < $count; $i++) {
@@ -77,23 +78,23 @@ class ParserJSON
 
     private static function getCheckedParamsObjectFromJSON($objectName)
     {
-        return self::getParamsObjectFromJSON($objectName, ParserJSON::$checkedParams);
+        return self::getParamsObjectFromJSON($objectName, self::$checkedParams);
 
     }
 
     private static function getUniqueParamsObjectFromJSON($objectName)
     {
-        return self::getParamsNamesFromJSON($objectName, ParserJSON::$uniqueParams);
+        return self::getParamsNamesFromJSON($objectName, self::$uniqueParams);
     }
 
     private static function getPositionsParamsObjectFromJSON($objectName)
     {
-        return self::getParamsNamesFromJSON($objectName, ParserJSON::$positionsParams);
+        return self::getParamsNamesFromJSON($objectName, self::$positionsParams);
     }
 
     private static function getDynamicParamsObjectFromJSON($objectName)
     {
-        return self::getParamsNamesFromJSON($objectName, ParserJSON::$dynamicParams);
+        return self::getParamsNamesFromJSON($objectName, self::$dynamicParams);
     }
 
     public static function getParamsObject($objectName)

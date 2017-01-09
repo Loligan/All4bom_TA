@@ -58,7 +58,7 @@ class FeatureContext implements Context
         CableRowMaterialsPageObject::init();
         CreateCableRowMaterialsPageObject::init();
         HeaderPageObject::init();
-        ParserJSON::init("features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
+        ParserJSON::init("/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
         ParserJSON::getParamsObject("plainCable");
         ParserJSON::getParamsObject("curveCable");
         ParserJSON::getParamsObject("brokenCable");
@@ -123,8 +123,6 @@ class FeatureContext implements Context
 
 //        REPORT
         $this->report->afterScenario();
-
-
     }
 
 

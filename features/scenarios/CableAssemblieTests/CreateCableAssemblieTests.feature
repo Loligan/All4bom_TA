@@ -1,6 +1,6 @@
 Feature: Создание Cable Assemblies
 
-  @CableAssemblies @Create @Smoke @TTest
+  @CableAssemblies @Create @Smoke @Test
   Scenario Outline: Fail 2Создание Cable Assemblies c валидными данными
     Given Открыть страницу Cable Assemblies
     When Нажать кнопку [CREATE CABLE ASSEMBLY]
@@ -11,19 +11,6 @@ Feature: Создание Cable Assemblies
     Examples:
       | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
       | 1  | Create TA test   | Company TA   | XY001100    | Removed in a moment | XZ110011       | James Lucker | Eric Cartman | Stan Marsh | Numerical |                |
-
-  @CableAssemblies @Create @Smoke @TTest
-  Scenario Outline: Fail 2Создание Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
-    When Нажать кнопку [CREATE CABLE ASSEMBLY]
-    And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
-    And Нажать кнопку [CREATE]
-    And Перейти на страницу Cable Assemblies
-    Then В таблице будет запись с именем "<Revision details>"
-    Examples:
-      | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
-      | 1  | 1Create TA test   | Company TA   | XY001100    | Removed in a moment | XZ110011       | James Lucker | Eric Cartman | Stan Marsh | Numerical |                |
-      | 1  | 2Create TA test   | Company TA   | XY001100    | Removed in a moment | XZ110011       | James Lucker | Eric Cartman | Stan Marsh | Numerical |                |
 
   @CableAssemblies @Create
   Scenario Outline: Создание Cable Assemblies c валидными данными
