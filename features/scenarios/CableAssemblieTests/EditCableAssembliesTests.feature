@@ -2,13 +2,17 @@ Feature: Создание и редактирование Cable Assemblies
 
   @CableAssemblies @Edit @Smoke
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
-    When Нажать кнопку [CREATE CABLE ASSEMBLY]
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "Test","Test","Test","Test","Test","Test","Test","Test","Test",""
     And Нажать кнопку [CREATE]
     And Перейти на страницу Cable Assemblies
     And Нажать кнопку [EDIT] рядом с записью с именем Test
-    And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
+    When Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CHANGE]
     Then В таблице будет запись с именем "<ID><Revision details>"
     Examples:
@@ -17,15 +21,19 @@ Feature: Создание и редактирование Cable Assemblies
 
   @CableAssemblies @Edit
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
-    When Нажать кнопку [CREATE CABLE ASSEMBLY]
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "Test","Test","Test","Test","Test","Test","Test","Test","Test",""
     And Нажать кнопку [CREATE]
     And Перейти на страницу Cable Assemblies
     And Нажать кнопку [EDIT] рядом с записью с именем Test
-    And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
+    When  Ввести следующие данные: "<Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CHANGE]
-    Then В таблице будет запись с именем "<ID><Revision details>"
+    Then В таблице будет запись с именем "<Revision details>"
     Examples:
       | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
       | 2  | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               |               |               | Numerical  |                |
@@ -85,43 +93,51 @@ Feature: Создание и редактирование Cable Assemblies
 
   @CableAssemblies @BadData @Edit @Smoke
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
     When Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "Test","Test","Test","Test","Test","Test","Test","Test","Test",""
     And Нажать кнопку [CREATE]
     And Перейти на страницу Cable Assemblies
     And Нажать кнопку [EDIT] рядом с записью с именем Test
-    And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
+    And Ввести следующие данные: "<Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CHANGE]
     Then Запись не создается, вы остаетесь на странице создания Edit Cable Asseblies
     And Открыть ссылку на Cable Assemblies
     And В таблице будет запись с именем "Test"
     Examples:
-      | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
-      |    |                  | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+       | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
+      |                  | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
 
   @CableAssemblies @BadData @Edit
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
     When Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "Test","Test","Test","Test","Test","Test","Test","Test","Test",""
     And Нажать кнопку [CREATE]
     And Перейти на страницу Cable Assemblies
     And Нажать кнопку [EDIT] рядом с записью с именем Test
-    And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
+    And Ввести следующие данные: "<Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CHANGE]
     Then Запись не создается, вы остаетесь на странице создания Edit Cable Asseblies
     And Открыть ссылку на Cable Assemblies
     And В таблице будет запись с именем "Test"
     Examples:
-      | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
-      | 2  | Edit TA test     |              | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 3  | Edit TA test     | Company TA   |              | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 4  | BadMaxString     | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 5  | Edit TA test     | BadMaxString | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 7  | Edit TA test     | Company TA   | BadMaxString | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 8  | Edit TA test     | Company TA   | XY001100     | BadMaxString      | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 9  | Edit TA test     | Company TA   | XY001100     | Desct             | BadMaxString   | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 10 | Edit TA test     | Company TA   | XY001100     | Desct             | XZ110011       | BadMaxString | Eric Cartman | Stan Marsh   | Numerical |                |
-      | 11 | Edit TA test     | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | BadMaxString | Stan Marsh   | Numerical |                |
-      | 12 | Edit TA test     | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | BadMaxString | Numerical |                |
+      | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
+      | Edit TA test     |              | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   |              | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | BadMaxString     | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | BadMaxString | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   | BadMaxString | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   | XY001100     | BadMaxString      | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   | XY001100     | Desct             | BadMaxString   | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   | XY001100     | Desct             | XZ110011       | BadMaxString | Eric Cartman | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | BadMaxString | Stan Marsh   | Numerical |                |
+      | Edit TA test     | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | BadMaxString | Numerical |                |

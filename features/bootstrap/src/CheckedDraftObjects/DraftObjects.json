@@ -1,4 +1,42 @@
 {
+  "dimention": {
+    "checkedParams": [
+      {
+        "jsonName":"comment",
+        "jsonValue":"dimension group"
+      },
+      {
+        "jsonName":"isCustomDimension",
+        "jsonValue":true
+      },
+      {
+        "jsonName":"isDimension",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
   "plainCable": {
     "checkedParams": [
       {
@@ -109,11 +147,207 @@
       }
     ]
   },
+  "plainLine": {
+    "checkedParams": [
+      {
+        "jsonName":"isCable",
+        "jsonValue":true
+      },
+      {
+        "jsonName":"isPlainCable",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
+  "curveLine": {
+    "checkedParams": [
+      {
+        "jsonName":"isCable",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
+  "brokenLine": {
+    "checkedParams": [
+      {
+        "jsonName":"isCable",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
   "connector": {
     "checkedParams": [
       {
         "jsonName":"isConnector",
         "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
+  "userImage": {
+    "checkedParams": [
+      {
+        "jsonName":"isFigure",
+        "jsonValue":true
+      },
+      {
+        "jsonName":"isFigure",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
+  "accessories": {
+    "checkedParams": [
+      {
+        "jsonName":"isFigure",
+        "jsonValue":true
+      },
+      {
+        "jsonName":"isFigure",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
+  },
+  "customPart": {
+    "checkedParams": [
+      {
+        "jsonName":"isCustom",
+        "jsonValue":true
+      },
+      {
+        "jsonName":"comment",
+        "jsonValue":"balloon group"
       }
     ],
     "uniqueParams":[

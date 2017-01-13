@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/meldon/PhpstormProjects/All4bom_TA/vendor/autoload.php';
+require_once '/home/meldon/PhpstormProjects/ReportAll4BomDEMO/vendor/autoload.php';
 
 class RedmineSimpleReport
 {

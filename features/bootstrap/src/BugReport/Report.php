@@ -1,7 +1,7 @@
 <?php
 
 require_once "TextBugReport/TextReport.php";
-require_once "RedmineReport/RedmineSimpleReport.php";
+ require_once "RedmineReport/RedmineSimpleReport.php";
 
 class Report
 {
@@ -16,6 +16,7 @@ class Report
 
     private $textReport;
 
+
     private $urlRedmine;
     private $userRedmine;
     private $passwordRedmine;
@@ -23,15 +24,15 @@ class Report
     private $isRerun;
 
     /**
-     * Report constructor.
-     * @param boolean $isPrivate
-     * @param int $status
-     * @param int $priority
-     * @param int $assignedUserId
-     * @param string $urlRedmine
-     * @param string $userRedmine
-     * @param string $passwordRedmine
-     * @param string $nameProject
+     * TextReport constructor.
+     * @param $projectId
+     * @param $title
+     * @param $description
+     * @param $isPrivate
+     * @param $status
+     * @param $priority
+     * @param $attachment
+     * @param $assignedUserId
      */
     public function __construct($isPrivate, $status, $priority, $assignedUserId, $urlRedmine, $userRedmine, $passwordRedmine, $nameProject)
     {
@@ -52,30 +53,49 @@ class Report
     }
 
 
-    /**
-     * @return bool
-     */
-    private function isRerun(){
-        if(file_exists("scenario.rerun")){
+    private function isRerun()
+    {
+        if (file_exists("scenario.rerun")) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public function afterScenario()
+    private function setAllStepsInTextReport($afterScenarioScope)
     {
+        $fullSteps = "";
+        foreach ($afterScenarioScope->getScenario()->getSteps() as $step) {
+            $fullSteps = $fullSteps . "# " . $step->getText() . "\n";
+
+        }
+        $this->textReport->setFullSteps($fullSteps);
+    }
+
+
+
+    public function afterScenario($afterScenarioScope)
+    {
+        $this->setAllStepsInTextReport($afterScenarioScope);
+
+
         if ($this->isRerun) {
             $this->textReport->afterScenario();
             $report = new RedmineSimpleReport($this->urlRedmine, $this->userRedmine, $this->passwordRedmine, $this->nameProject);
+
+            if($this->textReport->isGiven()){
+//                Set priority with ID=4
+                $this->priority = 4;
+            }
+
             $report->createIssue($this->textReport->getTitle(), $this->textReport->getDescription(), $this->priority, $this->assignedUserId);
         }
     }
 
-    public function afterStep($afterStepScope)
+    public function afterStep($afterStepScope,$webDriver)
     {
         if ($this->isRerun) {
-            $this->textReport->afterStep($afterStepScope);
+            $this->textReport->afterStep($afterStepScope,$webDriver);
         }
     }
 

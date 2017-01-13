@@ -3,7 +3,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Smoke
   Scenario Outline: Создание объекта Cable с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     Then В таблице будет информация по кабелям согластно выбранной линии
@@ -16,7 +22,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable
   Scenario Outline: Создание объекта Cable с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     Then В таблице будет информация по кабелям согластно выбранной линии
@@ -66,7 +78,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Shrink @LeftShrink @Smoke
   Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     And В таблице будет информация по кабелям согластно выбранной линии
@@ -79,7 +97,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Shrink @LeftShrink
   Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     And В таблице будет информация по кабелям согластно выбранной линии
@@ -111,7 +135,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Shrink @RightShrink @Smoke
   Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     And В таблице будет информация по кабелям согластно выбранной линии
@@ -124,7 +154,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Shrink @RightShrink
   Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     And В таблице будет информация по кабелям согластно выбранной линии
@@ -155,8 +191,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Shrink @BothShrink @Smoke
   Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
-    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     And В таблице будет информация по кабелям согластно выбранной линии
@@ -171,8 +212,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Cable @Shrink @BothShrink
   Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
-    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
     And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
     And В таблице будет информация по кабелям согластно выбранной линии
@@ -207,7 +253,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Connector @Smoke
   Scenario Outline: Создание объекта Connector с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
     And Кликнуть на кнопку [Connector] 1 по счету и выбираю <NumberLine> запись в таблице
     Then В таблице будет информация в Connector согластно выбранным данным
@@ -217,7 +269,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Connector
   Scenario Outline: Создание объекта Connector с данными в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
     And Кликнуть на кнопку [Connector] 1 по счету и выбираю <NumberLine> запись в таблице
     Then В таблице будет информация в Connector согластно выбранным данным
@@ -230,7 +288,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Connector @Molder @Smoke @FAIL_NOT_CLICK_ON_MOLDER
   Scenario Outline: Cоздание объекта Connector c меткой Molder в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     And Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
     And Кликнуть на кнопку [Connector] 1 по счету и выбираю <NumberLine> запись в таблице
     When Поставить параметр Molder в первом коннекторе
@@ -241,7 +305,13 @@ Feature: Создание ревизии без сохранения с данн
 
   @Create @Revision @BOM @Connector @Molder @FAIL_NOT_CLICK_ON_MOLDER
   Scenario Outline: Cоздание объекта Connector c меткой Molder в BOM
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     And Создать объект типа Connector семейства <Family>, категории <Category> и выбрать кабель №<Number>
     And Кликнуть на кнопку [Connector] 1 по счету и выбираю <NumberLine> запись в таблице
     When Поставить параметр Molder в первом коннекторе

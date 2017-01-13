@@ -115,7 +115,7 @@ class CreateCableAssembliesPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @throws Exception
      */
-    public static function isCableAssembliesPage($webDriver)
+    static function isCableAssembliesPage($webDriver)
     {
         $title = $webDriver->getTitle();
         $contentFound = stripos($title, "Cable assemblies");
@@ -128,7 +128,7 @@ class CreateCableAssembliesPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @throws Exception
      */
-    public static function isEditCableAssembliesPage($webDriver)
+    static function isEditCableAssembliesPage($webDriver)
     {
         $title = $webDriver->getTitle();
         $contentFound = stripos($title, "Change cable assembly");

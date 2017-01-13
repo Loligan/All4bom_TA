@@ -2,7 +2,13 @@ Feature: Проверка условий связи коннекторов и к
 
   @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke
   Scenario Outline: Проверка основных условий связи коннекторов и кабелей
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft
     And Создать объект типа Connector семейства <FamilyConnector>, категории <CategoryConnector> и выбрать кабель №<NumberCellConnector>
     And Выбрать семейство кабелей <FamilyCable>
@@ -35,7 +41,13 @@ Feature: Проверка условий связи коннекторов и к
 
   @Create @Revision @BOM @CableAndConnectorFilter @Cable
   Scenario Outline: Проверка всех условий связи коннекторов и кабелей
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft
     And Создать объект типа Connector семейства <FamilyConnector>, категории <CategoryConnector> и выбрать кабель №<NumberCellConnector>
     And Выбрать семейство кабелей <FamilyCable>

@@ -21,7 +21,7 @@ class BOMCreateRevisionPageObject implements PageObject
     private static $CATEGORY_OPTION;
     private static $LINE_PART_NUMBER;
     private static $CUSTOMER_PART_NUMBER_INPUT;
-    private static $REMATKS_INPUT;
+    private static $REMARKS_INPUT;
     private static $QUANTITY_INPUT;
     private static $TOLERANCE_INPUT;
     private static $LEFT_SHRINK_SPAN;
@@ -45,12 +45,17 @@ class BOMCreateRevisionPageObject implements PageObject
     private static $REMARKS_INPUTS;
     private static $QUANTITY_INPUTS;
     private static $TOLERANCE_INPUTS;
+    private static $CONNECTOR_BUTTONS;
+    private static $SELECT_CUSTOM_VALUE_CONNECTOR_TABLE;
+    private static $OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE;
+    private static $CONNECTOR_DESCRIPTION_TEXT;
 
     static function init()
     {
         self::$REVISION_DESCRIPTION_INPUT = ".//*[@id='project_version_name']";
         self::$CABLE_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Cable\"]";
         self::$CONNECTOR_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Connector\"]";
+        self::$CONNECTOR_BUTTONS = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Connector\"]";
         self::$CONNECTOR_MOLDER = ".//*[@id='selected-properties']/table/tbody/tr/td[2]/div/label/span";
         self::$BOOT_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Boot\"]";
         self::$LEFT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Left \"]";
@@ -61,7 +66,7 @@ class BOMCreateRevisionPageObject implements PageObject
         self::$CATEGORY_OPTION = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[2]/div/select/option[text()=\"VALUE\"]";
         self::$LINE_PART_NUMBER = ".//*[@id='selectProductModal']/div/div/div[2]/div/div[2]/table/tbody/tr[VALUE]";
         self::$CUSTOMER_PART_NUMBER_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[8]/input";
-        self::$REMATKS_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[9]/textarea";
+        self::$REMARKS_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[9]/textarea";
         self::$QUANTITY_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[10]/input";
         self::$TOLERANCE_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[11]/input";
         self::$DELETE_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[12]/div/a[2]";
@@ -84,6 +89,9 @@ class BOMCreateRevisionPageObject implements PageObject
         self::$REMARKS_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[9]/textarea";
         self::$QUANTITY_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[10]/input";
         self::$TOLERANCE_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[11]/input";
+        self::$SELECT_CUSTOM_VALUE_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"VALUE\"]/div/select ";
+        self::$OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"LABEL\"]/div/select/option[text()=\"VALUE\"]";
+        self::$CONNECTOR_DESCRIPTION_TEXT = ".//*[@id='selected-properties']/table/tbody/tr[./td/button/span[text()=\"Connector\"]]/td[6]";
     }
 
     /**
@@ -100,7 +108,7 @@ class BOMCreateRevisionPageObject implements PageObject
     /**
      * @param @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
-    static function openPage($webDriver)
+    public static function openPage($webDriver)
     {
         DraftCreateRevisionsPageObject::openPage($webDriver);
     }
@@ -109,7 +117,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param $numberCable
      */
-    private static function clickOnCableButton($webDriver, $numberCable)
+    public static function clickOnCableButton($webDriver, $numberCable)
     {
         SimpleWait::waitShow($webDriver, self::$CABLE_BUTTON);
         $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$CABLE_BUTTON));
@@ -122,7 +130,7 @@ class BOMCreateRevisionPageObject implements PageObject
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
-    private static function clickOnFamilySelect($webDriver)
+    public static function clickOnFamilySelect($webDriver)
     {
         SimpleWait::waitShow($webDriver, self::$FAMILY_SELECT);
         $select = $webDriver->findElement(WebDriverBy::xpath(self::$FAMILY_SELECT));
@@ -132,7 +140,7 @@ class BOMCreateRevisionPageObject implements PageObject
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
-    private static function clickOnCategorySelect($webDriver)
+    public static function clickOnCategorySelect($webDriver)
     {
         SimpleWait::waitShow($webDriver, self::$CATEGORY_SELECT);
         $select = $webDriver->findElement(WebDriverBy::xpath(self::$CATEGORY_SELECT));
@@ -143,7 +151,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $value
      */
-    private static function setFamilyOption($webDriver, $value)
+    public static function setFamilyOption($webDriver, $value)
     {
         $xpath = str_replace("VALUE", $value, self::$FAMILY_OPTION);
         SimpleWait::waitShow($webDriver, $xpath);
@@ -155,7 +163,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $value
      */
-    private static function setCategoryOption($webDriver, $value)
+    public static function setCategoryOption($webDriver, $value)
     {
         $xpath = str_replace("VALUE", $value, self::$CATEGORY_OPTION);
         SimpleWait::waitShow($webDriver, $xpath);
@@ -167,7 +175,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $number
      */
-    private static function setLinePartNumber($webDriver, $number)
+    public static function setLinePartNumber($webDriver, $number)
     {
         $number++;
         $xpath = str_replace("VALUE", $number, self::$LINE_PART_NUMBER);
@@ -196,7 +204,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param string $categoryCable
      * @param int $numberLinePartNumber
      */
-    private static function selectCableType($webDriver, $familyCable, $categoryCable, $numberLinePartNumber)
+    public static function selectCableType($webDriver, $familyCable, $categoryCable, $numberLinePartNumber)
     {
         self::clickOnFamilySelect($webDriver);
         self::setFamilyOption($webDriver, $familyCable);
@@ -229,7 +237,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param string $text
      * @param string $typeObject
      */
-    private static function setCustomerPartNumberText($webDriver, $numberCable, $text, $typeObject)
+    public static function setCustomerPartNumberText($webDriver, $numberCable, $text, $typeObject)
     {
         if ($text != null) {
             $xpath = str_replace("TYPE", $typeObject, self::$CUSTOMER_PART_NUMBER_INPUT);
@@ -248,10 +256,10 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param string $text
      * @param string $typeObject
      */
-    private static function setRemarksText($webDriver, $numberCable, $text, $typeObject)
+    public static function setRemarksText($webDriver, $numberCable, $text, $typeObject)
     {
         if ($text != null) {
-            $xpath = str_replace("TYPE", $typeObject, self::$REMATKS_INPUT);
+            $xpath = str_replace("TYPE", $typeObject, self::$REMARKS_INPUT);
             SimpleWait::waitShow($webDriver, $xpath);
             $inputs = $webDriver->findElements(WebDriverBy::xpath($xpath));
             $input = $inputs[$numberCable - 1];
@@ -266,7 +274,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param string $text
      * @param string $typeObject
      */
-    private static function setQuantityValue($webDriver, $numberCable, $text, $typeObject)
+    public static function setQuantityValue($webDriver, $numberCable, $text, $typeObject)
     {
         if ($text != null) {
             $xpath = str_replace("TYPE", $typeObject, self::$QUANTITY_INPUT);
@@ -284,7 +292,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param string $text
      * @param string $typeObject
      */
-    private static function setToleranceValue($webDriver, $numberCable, $text, $typeObject)
+    public static function setToleranceValue($webDriver, $numberCable, $text, $typeObject)
     {
         if ($text != null) {
             $xpath = str_replace("TYPE", $typeObject, self::$TOLERANCE_INPUT);
@@ -317,7 +325,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberCable
      */
-    private static function clickOnLeftShrinkButton($webDriver, $numberCable)
+    public static function clickOnLeftShrinkButton($webDriver, $numberCable)
     {
         $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$LEFT_SHRINK_BUTTON));
         SimpleWait::waitShow($webDriver, self::$LEFT_SHRINK_BUTTON);
@@ -348,7 +356,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberLinePartNumber
      */
-    private static function selectLeftShrinkType($webDriver, $numberLinePartNumber)
+    public static function selectLeftShrinkType($webDriver, $numberLinePartNumber)
     {
         self::setLinePartNumber($webDriver, $numberLinePartNumber);
     }
@@ -378,7 +386,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberCable
      */
-    private static function clickOnRightShrinkButton($webDriver, $numberCable)
+    public static function clickOnRightShrinkButton($webDriver, $numberCable)
     {
         $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$RIGHT_SHRINK_BUTTON));
         SimpleWait::waitShow($webDriver, self::$RIGHT_SHRINK_BUTTON);
@@ -409,7 +417,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberLinePartNumber
      */
-    private static function selectRightShrinkType($webDriver, $numberLinePartNumber)
+    public static function selectRightShrinkType($webDriver, $numberLinePartNumber)
     {
         self::setLinePartNumber($webDriver, $numberLinePartNumber);
     }
@@ -439,7 +447,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param int $numberItem
      * @param string $typeItem
      */
-    private static function clickOnCleanCableButton($webDriver, $numberItem, $typeItem)
+    public static function clickOnCleanCableButton($webDriver, $numberItem, $typeItem)
     {
         $xpath = str_replace("TYPE", $typeItem, self::$CLEAR_BUTTON);
         $buttons = $webDriver->findElements(WebDriverBy::xpath($xpath));
@@ -463,7 +471,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param int $numberItem
      * @param string $typeItem
      */
-    private static function clickOnDeleteCableButton($webDriver, $numberItem, $typeItem)
+    public static function clickOnDeleteCableButton($webDriver, $numberItem, $typeItem)
     {
         $xpath = str_replace("TYPE", $typeItem, self::$DELETE_BUTTON);
         $buttons = $webDriver->findElements(WebDriverBy::xpath($xpath));
@@ -502,7 +510,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberCable
      */
-    private static function clickOnConnectorButton($webDrive, $numberCable)
+    public static function clickOnConnectorButton($webDrive, $numberCable)
     {
         SimpleWait::waitShow($webDrive, self::$CONNECTOR_BUTTON);
         $buttons = $webDrive->findElements(WebDriverBy::xpath(self::$CONNECTOR_BUTTON));
@@ -525,7 +533,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberLinePartNumber
      */
-    private static function selectConnectorType($webDriver, $numberLinePartNumber)
+    public static function selectConnectorType($webDriver, $numberLinePartNumber)
     {
         self::clickOnFamilySelect($webDriver);
         self::setLinePartNumber($webDriver, $numberLinePartNumber);
@@ -577,7 +585,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberLinePartNumber
      */
-    private static function selectBootType($webDriver, $numberLinePartNumber)
+    public static function selectBootType($webDriver, $numberLinePartNumber)
     {
         self::setLinePartNumber($webDriver, $numberLinePartNumber);
     }
@@ -586,7 +594,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberConnector
      */
-    private static function clickOnBootButton($webDriver, $numberConnector)
+    public static function clickOnBootButton($webDriver, $numberConnector)
     {
         SimpleWait::waitShow($webDriver, self::$BOOT_BUTTON);
         $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$BOOT_BUTTON));
@@ -643,7 +651,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $nameLabel
      */
-    private static function clickOnSelectCustomByName($webDriver, $nameLabel)
+    public static function clickOnSelectCustomByName($webDriver, $nameLabel)
     {
         $xpath = str_replace("VALUE", $nameLabel, self::$SELECT_CUSTOM_VALUE);
         SimpleWait::waitShow($webDriver, $xpath);
@@ -656,7 +664,7 @@ class BOMCreateRevisionPageObject implements PageObject
      * @param string $nameLabel
      * @param string $valueOption
      */
-    private static function clickOnCustomOptionByNameLabelAndValue($webDriver, $nameLabel, $valueOption)
+    public static function clickOnCustomOptionByNameLabelAndValue($webDriver, $nameLabel, $valueOption)
     {
         $xpath = str_replace("VALUE", $nameLabel, self::$OPTION_CUSTOM_VALUE);
         $xpath = str_replace("TYPE", $valueOption, $xpath);
@@ -666,7 +674,7 @@ class BOMCreateRevisionPageObject implements PageObject
     }
 
     /**
-     *  @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $nameLabel
      * @param int $valueOption
      */
@@ -799,5 +807,65 @@ class BOMCreateRevisionPageObject implements PageObject
             throw new Exception("Customer part number not be added to BOM tab");
         }
     }
+
+    public static function getConnectorButtoms($webDriver)
+    {
+        $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$CONNECTOR_BUTTONS));
+        return count($buttons);
+    }
+
+    public static function clickOnSelectCustomInConnectorCableByName($webDriver, $nameLabel)
+    {
+        $xpath = str_replace("VALUE", $nameLabel, self::$SELECT_CUSTOM_VALUE_CONNECTOR_TABLE);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        SimpleWait::waitingOfClick($webDriver, $select);
+    }
+
+    public static function clickOnCustomOptionByNameLabelAndValueInConnectorTable($webDriver, $nameLabel, $valueOption)
+    {
+        $xpath = str_replace("LABEL", $nameLabel, self::$OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE);
+        $xpath = str_replace("VALUE", $valueOption, $xpath);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $option = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        SimpleWait::waitingOfClick($webDriver, $option);
+    }
+
+    public static function clickOnLineTableByName($webDriver, $arg1)
+    {
+        $number = $arg1+1;
+        $xpath = str_replace("VALUE", $number, self::$LINE_PART_NUMBER);
+        SimpleWait::waitShow($webDriver, $xpath);
+        $select = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        $select->click();
+        SimpleWait::waitHide($webDriver, $xpath);
+    }
+
+    public static function checkDescriptionValueByNameCableObject($webDriver, $numberConnector, $nameParam, $value)
+    {
+        $descriptions = $webDriver->findElements(WebDriverBy::xpath(self::$CONNECTOR_DESCRIPTION_TEXT));
+        $description = $descriptions[$numberConnector-1];
+        $textDescription = $description->getText();
+        $searchValues = $nameParam." = ".$value;
+        if(stristr($textDescription,$searchValues) == false){
+            throw new Exception("Value ".$nameParam."=".$value." not found in description ".$textDescription);
+        }
+    }
+
+    public static function getNumberCableButtons($webDriver)
+    {
+        $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$CABLE_BUTTON));
+        return count($buttons);
+    }
+
+    public static function checkCategoryInputByNumberInputs($webDriver, $number)
+    {
+        $categoryTextInputs = $webDriver->findElements(WebDriverBy::xpath(self::$CATEGORY_TEXT_INPUTS));
+        $countCategoryTextInputs = count($categoryTextInputs);
+        if($countCategoryTextInputs!=$number){
+            throw new Exception("In bom not be found ".$number." custom part. In BOM ".$countCategoryTextInputs." custom part");
+        }
+    }
+
 
 }

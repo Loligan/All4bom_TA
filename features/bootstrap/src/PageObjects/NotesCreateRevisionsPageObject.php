@@ -41,7 +41,7 @@ class NotesCreateRevisionsPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @throws Exception
      */
-    public static function clickOnInsertOtherNote($webDriver){
+    static function clickOnInsertOtherNote($webDriver){
         $oldCountInputs = self::getCountInputsArea($webDriver);
         SimpleWait::waitShow($webDriver,NotesCreateRevisionsPageObject::$BUTTON_INSERT_OTHERS_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::xpath(NotesCreateRevisionsPageObject::$BUTTON_INSERT_OTHERS_BUTTON));
@@ -56,7 +56,7 @@ class NotesCreateRevisionsPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $text
      */
-    public static function setTextInLastInputs($webDriver, $text){
+    static function setTextInLastInputs($webDriver, $text){
         $count = self::getCountInputsArea($webDriver);
         $input = $webDriver->findElements(WebDriverBy::xpath(NotesCreateRevisionsPageObject::$INPUTS_TEXTAREA))[$count-1];
         $input->sendKeys($text);
@@ -66,7 +66,7 @@ class NotesCreateRevisionsPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $text
      */
-    public static function addCustomNotesWithText($webDriver, $text){
+    static function addCustomNotesWithText($webDriver, $text){
         self::clickOnInsertOtherNote($webDriver);
         self::setTextInLastInputs($webDriver,$text);
     }

@@ -28,7 +28,7 @@ class HomePageObject implements PageObject
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
-    private static function closeSymfonyTab($webDriver){
+    static function closeSymfonyTab($webDriver){
         $button = $webDriver->findElement(WebDriverBy::xpath(HomePageObject::$SIMFONY_TAB_BUTTON));
         $button->click();
     }

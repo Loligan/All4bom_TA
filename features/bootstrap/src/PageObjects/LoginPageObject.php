@@ -47,5 +47,14 @@ class LoginPageObject implements PageObject
         $button->click();
     }
 
+    public static function setCustomInformation($webDriver, $arg1, $arg2)
+    {
+        $username = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$USERNAME_INPUT));
+        $password = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$PASSWORD_INPUT));
+
+        $username->sendKeys($arg1);
+        $password->sendKeys($arg2);
+    }
+
 
 }

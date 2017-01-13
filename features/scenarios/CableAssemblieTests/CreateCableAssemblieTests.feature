@@ -1,8 +1,12 @@
 Feature: Создание Cable Assemblies
 
-  @CableAssemblies @Create @Smoke @Test
-  Scenario Outline: Fail 2Создание Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
+  @CableAssemblies @Create @Smoke
+  Scenario Outline: Создание Cable Assemblies c валидными данными
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
     When Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CREATE]
@@ -14,7 +18,11 @@ Feature: Создание Cable Assemblies
 
   @CableAssemblies @Create
   Scenario Outline: Создание Cable Assemblies c валидными данными
-    Given Открыть страницу Cable Assemblies
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
     When Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "<ID><Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CREATE]
@@ -62,7 +70,7 @@ Feature: Создание Cable Assemblies
       | 40 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                | 中国            |               |               | Numerical  |                |
       | 41 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                | GoodMaxString |               |               | Numerical  |                |
       | 42 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               | James Lucker  |               | Numerical  |                |
-      | 43 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               | J             |               | Numerical  |                |
+      | 43 | Create TA tFail 2est   | Company TA    | XY001100      | Removed in a moment |                |               | J             |               | Numerical  |                |
       | 44 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               | 123           |               | Numerical  |                |
       | 45 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               | Описание      |               | Numerical  |                |
       | 46 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               | עברי          |               | Numerical  |                |
@@ -83,7 +91,7 @@ Feature: Создание Cable Assemblies
     When Нажать кнопку [CREATE CABLE ASSEMBLY]
     And Ввести следующие данные: "<Revision details>","<Company name>","<Part number>","<Cable description>","<Drawing number>","<Design by>","<Approved by>","<Checked by>","<Revision>","<Attached Files>"
     And Нажать кнопку [CREATE]
-    And Открыть страницу Cable Assemblies
+    And Открыть ссылку на Cable Assemblies
     Then Запись не создается, вы остаетесь на странице создания Cable Assemblies
     Examples:
       | Revision details | Company name | Part number  | Cable description | Drawing number | Design by    | Approved by  | Checked by   | Revision  | Attached Files |

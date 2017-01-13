@@ -78,7 +78,7 @@ class LabelsCreateRevisionPageObject implements PageObject
      * @param int $distanceFrom
      * @param int $tolerance
      */
-    public static function setInformationInLabelLine($webDriver, $numberLine, $numberText, $descText, $height, $width, $distanceFrom, $tolerance)
+    static function setInformationInLabelLine($webDriver, $numberLine, $numberText, $descText, $height, $width, $distanceFrom, $tolerance)
     {
         $inputNumberText = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$NUMBER_INPUTS))[$numberLine - 1];
         $inputDescText = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$DESC_INPUTS))[$numberLine - 1];

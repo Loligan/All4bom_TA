@@ -16,6 +16,7 @@ require_once "src/PageObjects/DraftCreateRevisionsPageObject.php";
 require_once "src/PageObjects/TabCreateRevisionTabPageObject.php";
 require_once "src/PageObjects/BOMCreateRevisionPageObject.php";
 require_once "src/PageObjects/RevisionsPageObjects.php";
+require_once "src/PageObjects/PinoutSchemasCreateRevisionPageObject.php";
 require_once "src/PageObjects/NotesCreateRevisionsPageObject.php";
 require_once "src/PageObjects/LabelsCreateRevisionPageObject.php";
 require_once "src/PageObjects/PinoutDetailsCreateRevisionsPageObject.php";
@@ -33,6 +34,7 @@ require_once "src/BugReport/Report.php";
 class FeatureContext implements Context
 {
     private $appValue;
+
     private $webDriver;
     private $bufRevision;
     private $bufCableAssemblies;
@@ -57,29 +59,37 @@ class FeatureContext implements Context
         PinoutDetailsCreateRevisionsPageObject::init();
         CableRowMaterialsPageObject::init();
         CreateCableRowMaterialsPageObject::init();
+        PinoutSchemasCreateRevisionPageObject::init();
         HeaderPageObject::init();
         ParserJSON::init("/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
         ParserJSON::getParamsObject("plainCable");
+        ParserJSON::getParamsObject("plainLine");
         ParserJSON::getParamsObject("curveCable");
+        ParserJSON::getParamsObject("curveLine");
         ParserJSON::getParamsObject("brokenCable");
+        ParserJSON::getParamsObject("brokenLine");
         ParserJSON::getParamsObject("connector");
+        ParserJSON::getParamsObject("dimention");
+        ParserJSON::getParamsObject("userImage");
+        ParserJSON::getParamsObject("accessories");
+        ParserJSON::getParamsObject("customPart");
     }
 
     /**
      * @BeforeScenario
-     */
-    public function BeforeScenario(\Behat\Behat\Hook\Scope\BeforeScenarioScope $scope)
+     */    public function BeforeScenario(\Behat\Behat\Hook\Scope\BeforeScenarioScope $scope)
     {
 
         $capabilities = DesiredCapabilities::chrome();
         $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities, 90 * 1000, 90 * 1000);
         $this->webDriver->manage()->window();
         $this->webDriver->manage()->window()->maximize();
+
+
         CompareRevisions::init();
 //        REPORT
         $this->report = new Report(true,1,2,5,"http://127.0.0.1/redmine/","MrRobot","12345678","All4BOM");
-
-       $this->report->beforeScenario($scope);
+        $this->report->beforeScenario($scope);
     }
 
     /**
@@ -123,8 +133,15 @@ class FeatureContext implements Context
         }
 
 //        REPORT
-        $this->report->afterScenario();
+        $this->report->afterScenario($scope);
+    }
 
+
+    /**
+     * @BeforeStep
+     */
+    public function beforeStep(){
+//        sleep(1);
     }
 
 
@@ -134,7 +151,8 @@ class FeatureContext implements Context
      */
     public function afterStep(Behat\Behat\Hook\Scope\AfterStepScope $scope)
     {
-        $this->report->afterStep($scope);
+        $this->report->afterStep($scope, $this->webDriver);
+
     }
 
 
@@ -727,6 +745,708 @@ class FeatureContext implements Context
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
         BOMCreateRevisionPageObject::setPartNumberInformation($this->webDriver,$category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity,$tolerance,1);
+    }
+
+        /**
+     * @Given /^Кликнуть на полотне по координатам X = "([^"]*)" Y= "([^"]*)"$/
+     */
+    public function clickOnDraftByPoints($X, $Y)
+    {
+        DraftCreateRevisionsPageObject::clickOnDraftPoint($this->webDriver,$X,$Y);
+    }
+
+    /**
+     * @Given /^Ждать "([^"]*)" секунды$/
+     */
+    public function sleepStep($arg1)
+    {
+        sleep($arg1);
+    }
+
+    /**
+     * @Given /^Исключение$/
+     */
+    public function ggex()
+    {
+        throw new Exception("gg");
+    }
+
+    /**
+     * @Given /^Открыть главную страницу$/
+     */
+    public function openHomePage()
+    {
+        HomePageObject::openPage($this->webDriver);
+    }
+
+    /**
+     * @Given /^Кликнуть на кнопку \[LOGIN\]$/
+     */
+    public function clickOnLoginTab()
+    {
+        HomePageObject::pressOnLoginButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Ввести логин и пароль: "([^"]*)", "([^"]*)"$/
+     */
+    public function setCustomLoginAndPass($arg1, $arg2)
+    {
+        LoginPageObject::setCustomInformation($this->webDriver,$arg1,$arg2);
+    }
+
+    /**
+     * @Given /^Ввести стандартный логин и пароль$/
+     */
+    public function setStandartLoginAndPass()
+    {
+        LoginPageObject::setInformation($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[LOGIN\]$/
+     */
+    public function pressOnLoginButton()
+    {
+        LoginPageObject::pressLoginButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Кликнуть на \[CABLE ASSEMBLIES\] в шапке$/
+     */
+    public function clickOnCableAssembliesTab()
+    {
+        HomePageObject::pressOnCableAssembliesTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить если ли в таблице Cable Assemblies с именеим \'([^\']*)\'$/
+     */
+    public function checkCableAssemliesByName($arg1)
+    {
+        if(!CableAssembliesPageObject::checkCableAssemliesByName($this->webDriver,$arg1)){
+            throw new Exception("Cable Assemblies with name ".$arg1." not found");
+        }
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[EDIT\] рядом с cable assmblies с именем \'([^\']*)\'$/
+     */
+    public function pressEditButtonOnCableAssembliesByName($arg1)
+    {
+        $this->bufCableAssemblies  = $arg1;
+        CableAssembliesPageObject::clickOnEditButtonByCableAssembliesName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[CREATE REVISION\]$/
+     */
+    public function clickOnCreateRevisionButton()
+    {
+        RevisionsPageObjects::clickOnCreateRevisionButton($this->webDriver);
+    }
+
+    /**
+     * @Then /^Нажать на иконку \[Text\] на панели иструментов$/
+     */
+    public function clickOnTextIconOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnIconText($this->webDriver);
+    }
+
+    /**
+     * @Then /^Нажать на иконку \[Cable\] на панели иструментов$/
+     */
+    public function clickOnCableIconOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnCableIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Установить настроки Front: "([^"]*)"$/
+     */
+    public function setFrontType($arg1)
+    {
+        DraftCreateRevisionsPageObject::setTextFont($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Установить настроки Front Size: "([^"]*)"$/
+     */
+    public function setFrontSize($arg1)
+    {
+        DraftCreateRevisionsPageObject::setTextSize($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Установить настроки Front Color: "([^"]*)"$/
+     */
+    public function setFrontColor($arg1)
+    {
+        DraftCreateRevisionsPageObject::setColorValue($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[TEXT\] на панели иструментов$/
+     */
+    public function setTextButtonOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnTextButton($this->webDriver);
+    }
+
+    /**
+     * @Then /^Нажать на иконку \[CUSTOM DIMENTION\] на панели иструментов$/
+     */
+    public function clickOnCustomDimentionIconOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnDimentionButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Custom Dimention$/
+     */
+    public function checkLastObjectCustomDimention()
+    {
+        CheckJSONValue::check($this->webDriver, "dimention");
+    }
+
+    /**
+     * @Given /^Установить настройку Weight: "([^"]*)" у объекта Cable$/
+     */
+    public function setWeightSetting($arg1)
+    {
+        DraftCreateRevisionsPageObject::setWeightCabel($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Plain Cable\] на панели иструментов$/
+     */
+    public function clickOnPlainCableButton()
+    {
+        DraftCreateRevisionsPageObject::clickOnPlainCableButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Plain Cable$/
+     */
+    public function checkPlainCableOnDraft()
+    {
+        CheckJSONValue::check($this->webDriver, "plainCable");
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Curve Cable\] на панели иструментов$/
+     */
+    public function clickOnCurveCableButton()
+    {
+        DraftCreateRevisionsPageObject::clickOnCurveCableButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Curve Cable$/
+     */
+    public function checkCurveCable()
+    {
+        CheckJSONValue::check($this->webDriver,"curveCable");
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Broken Cable\] на панели иструментов$/
+     */
+    public function ClickOnBrokenCableButton()
+    {
+        DraftCreateRevisionsPageObject::clickOnBrokenCableButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Broken Cable$/
+     */
+    public function checkBrokenCable()
+    {
+        CheckJSONValue::check($this->webDriver,"brokenCable");
+    }
+
+    /**
+     * @Given /^Нажать на иконку \[Line\] на панели иструментов$/
+     */
+    public function clickOnLineIconOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnLinesIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Plain Line\] на панели иструментов$/
+     */
+    public function clickOnPlainLineButton()
+    {
+        DraftCreateRevisionsPageObject::clickOnPlainLinesButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Plain Line$/
+     */
+    public function checkPlainLine()
+    {
+        CheckJSONValue::check($this->webDriver,"plainLine");
+    }
+
+    /**
+     * @Given /^Установить настройку Weight: "([^"]*)" у объекта Line$/
+     */
+    public function setWeightSettingToLine($arg1)
+    {
+        DraftCreateRevisionsPageObject::setWeightLine($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Curve Line\] на панели иструментов$/
+     */
+    public function clickOnCurveLineButtonOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnCurveLinesButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Curve Line$/
+     */
+    public function checkCurveLine()
+    {
+        CheckJSONValue::check($this->webDriver,"curveLine");
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Broken Line\] на панели иструментов$/
+     */
+    public function clickOnBrokenLine()
+    {
+        DraftCreateRevisionsPageObject::clickOnBrokenLinesButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Broken Line$/
+     */
+    public function checkBrokenLine()
+    {
+        CheckJSONValue::check($this->webDriver,"brokenLine");
+    }
+
+    /**
+     * @When /^Нажать на иконку \[Connector\] на панели иструментов$/
+     */
+    public function clickOnConnectorIconOnDraft()
+    {
+    DraftCreateRevisionsPageObject::clickOnConnectorIcon($this->webDriver);
+    }
+
+
+    /**
+     * @Given /^Открыть выпадающий список Family объекта Connector$/
+     */
+    public function clickOnListConnector()
+    {
+        DraftCreateRevisionsPageObject::selectOnSelectConnector($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" в списке Family объекта Connector$/
+     */
+    public function setFamilyNameConnector($arg1)
+    {
+        DraftCreateRevisionsPageObject::setConnectorFamilyName($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Кликнуть по ячейке №([^"]*) в таблице объектов Connector$/
+     */
+    public function clickOnCell($arg1)
+    {
+        DraftCreateRevisionsPageObject::clickOnConnectorCell($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Connector$/
+     */
+    public function checkConnectorOnDraft()
+    {
+        CheckJSONValue::check($this->webDriver,"connector");
+    }
+
+    /**
+     * @Given /^Перейти на вкладку BOM$/
+     */
+    public function clickOnBomTabOnDraft()
+    {
+        TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^В BOM присутствует "([^"]*)" объект Connector$/
+     */
+    public function checkBOMConnectorByNumber($arg1)
+    {
+        $numberButtons = BOMCreateRevisionPageObject::getConnectorButtoms($this->webDriver);
+        if($numberButtons!=$arg1){
+            throw new Exception("Not ".$arg1." buttons connector in BOM. In BOM tab ".$numberButtons." count buttons connector object");
+        }
+    }
+
+    /**
+     * @Given /^Кликнуть по кнопке \[CONNECTOR\] "([^"]*)" по счету$/
+     */
+    public function clickOnConnectorButtonByNumber($arg1)
+    {
+        BOMCreateRevisionPageObject::clickOnConnectorButtonByNumberConnector($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Открыть выпадающий список с именем "([^"]*)" в таблице коннекторов$/
+     */
+    public function openOptionsConnectorListByNameInBom($arg1)
+    {
+        BOMCreateRevisionPageObject::clickOnSelectCustomInConnectorCableByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" из выпадающего списка "([^"]*)" в таблице коннекторов$/
+     */
+    public function clickOnOptionValueByNameSelect($arg1, $arg2)
+    {
+        BOMCreateRevisionPageObject::clickOnCustomOptionByNameLabelAndValueInConnectorTable($this->webDriver,$arg2,$arg1);
+    }
+
+    /**
+     * @Given /^Выбрать ([^"]*) строку в таблице$/
+     */
+    public function selectLineInTableByNumber($arg1)
+    {
+        BOMCreateRevisionPageObject::clickOnLineTableByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Проверить что в столбце ([^"]*) присутствует значение ([^"]*) в первой строке$/
+     */
+    public function checkValueInTableByName($arg1, $arg2)
+    {
+        if(BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver,$arg1)!=$arg2){
+            throw new Exception("In table not be value ".$arg2." in column with name ".$arg1);
+        }
+    }
+
+    /**
+     * @Given /^Проверить что в Description "([^"]*)" объекта Connector присутствует "([^"]*)" значение которого "([^"]*)"$/
+     */
+    public function checkDescriprionValueByName($arg1, $arg2, $arg3)
+    {
+        BOMCreateRevisionPageObject::checkDescriptionValueByNameCableObject($this->webDriver,$arg1,$arg2,$arg3);
+    }
+
+    /**
+     * @Given /^Перейти на вкладке PINOUT DETAILS$/
+     */
+    public function clickOnPinoutDetailsTab()
+    {
+        TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Открыть выпадающий список Choose connector$/
+     */
+    public function clickOnSelectChooseConnectorInPinoutDetails()
+    {
+        PinoutDetailsCreateRevisionsPageObject::clickOnSelectFirstConnector($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в выпадающем списке Choose connector присутствует значение  "([^"]*)"$/
+     */
+    public function checkChooseConnectorOptionByName($arg1)
+    {
+        PinoutDetailsCreateRevisionsPageObject::checkChooseConnectorValueByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Выбрать значение в выпадабщием списке Choose connector с значением "([^"]*)"$/
+     */
+    public function selectOptionChooseConnectorByValue($arg1)
+    {
+        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Проверить что в выпадающем списке Choose second connector присутствует значение  "([^"]*)"$/
+     */
+    public function checkChooseSecondConnectorOptionByName($arg1)
+    {
+        PinoutDetailsCreateRevisionsPageObject::checkChooseSecondConnectorValueByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Открыть выпадающий список Choose second connector$/
+     */
+    public function clickOnChooseSecondConnectorSelect()
+    {
+      PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать значение в выпадабщием списке Choose second connector с значением "([^"]*)"$/
+     */
+    public function clickOnChooseSecondConnectorOptionByName($arg1)
+    {
+        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[ADD SCHEMATIC CONNECTION\]$/
+     */
+    public function clickOnAddScematicConnectionPinoutDetails()
+    {
+        PinoutDetailsCreateRevisionsPageObject::clickOnAddSchematicConnectionButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^В BOM присутствует "([^"]*)" объект Cable$/
+     */
+    public function checkCableObjectInBom($arg1)
+    {
+        $countObjects = BOMCreateRevisionPageObject::getNumberCableButtons($this->webDriver);
+        if($countObjects !=$arg1){
+            throw new Exception("In bom not found ".$arg1." cable objects. In bom ".$countObjects." cable objects");
+        }
+    }
+
+    /**
+     * @Given /^Кликнуть по кнопку \[CABLE\] "([^"]*)" по счету$/
+     */
+    public function clickOnCableButtonByNumber($arg1)
+    {
+        BOMCreateRevisionPageObject::clickOnCableButton($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Открыть выпадающий список Family объекта CABLE в таблице$/
+     */
+    public function clickOnFamilySelectOnTableCable()
+    {
+        BOMCreateRevisionPageObject::clickOnFamilySelect($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" в выпадающем списке Family в таблице$/
+     */
+    public function selectFamilyOptionByNameInTable($arg1)
+    {
+        BOMCreateRevisionPageObject::setFamilyOption($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Открыть выпадающий список Category объекта CABLE в таблице$/
+     */
+    public function clickOnCategoryselect()
+    {
+        BOMCreateRevisionPageObject::clickOnCategorySelect($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" в выпадающем списке Category в таблице$/
+     */
+    public function setOptionCategoryInTable($arg1)
+    {
+        BOMCreateRevisionPageObject::setCategoryOption($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Проверить что на вкладке PINOUT DETAIL присутствуют "([^"]*)" таблицы$/
+     */
+    public function checkCountTableInPinoutDetails($arg1)
+    {
+        $countTables = PinoutDetailsCreateRevisionsPageObject::getCountTables($this->webDriver);
+        if($countTables!=$arg1){
+            throw new Exception("In pinout not be found".$arg1." .In pinout details tab found ".$countTables." tables");
+        }
+    }
+
+    /**
+     * @Given /^Перейти на вкладку PINOUT SCHEMAS$/
+     */
+    public function clickOnPinoutSchemasTab()
+    {
+        TabCreateRevisionTabPageObject::clickOnPinoutSchemasTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[\+\]$/
+     */
+    public function pressOnPlusButtonInPinoutSchemas()
+    {
+        PinoutSchemasCreateRevisionPageObject::clickOnPlusButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в таблице pinout schemas присутствует значение "([^"]*)"$/
+     */
+    public function checkValueInTablePinoutSchemas($arg1)
+    {
+        PinoutSchemasCreateRevisionPageObject::checkValueInTable($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Выбрать коннектор в таблице pinout schemas с значением "([^"]*)"$/
+     */
+    public function clickOnCheckBoxByNameLabelInPinoutSchemsTable($arg1)
+    {
+        PinoutSchemasCreateRevisionPageObject::selectOnCheckBoxByNameLabel($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в Connection title текст "([^"]*)"$/
+     */
+    public function setConnectionTitleInPinoutSchemas($arg1)
+    {
+        PinoutSchemasCreateRevisionPageObject::setTextInConnectionTitle($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[ADD\] в таблице pinout details$/
+     */
+    public function clickOnAddInPinoutDetailsTable()
+    {
+        PinoutSchemasCreateRevisionPageObject::clickOnAddButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что присутствует вкладка в pinout details с именем "([^"]*)"$/
+     */
+    public function checkNameTabInPinoutSchemas($arg1)
+    {
+        PinoutSchemasCreateRevisionPageObject::checkTabByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Проверить что отсутвтует вкладка в pinout details с именем "([^"]*)"$/
+     */
+    public function checkIsNotVisibleTabByNameInPinoutSchemas($arg1)
+    {
+        PinoutSchemasCreateRevisionPageObject::checkTabByNameNotFound($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Удалить "([^"]*)" объект connector нажав кнопку \[DELETE\]$/
+     */
+    public function deleteConnectorInBomByName($arg1)
+    {
+        BOMCreateRevisionPageObject::deleteConnector($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" в списке Category объекта Connector$/
+     */
+    public function setCategoryOptionsConnectorByNameOnDraft($arg1)
+    {
+        DraftCreateRevisionsPageObject::clickOnOptionsConnectorCategoryByName($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Открыть выпадающий список Category объекта Connector$/
+     */
+    public function openOptionsCategoryConnectorsInDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnCategorySelectConnector($this->webDriver);
+    }
+
+    /**
+     * @Then /^Проверить что последний добавленный элемент является User Image$/
+     */
+    public function checkUserImageOnDraft()
+    {
+        CheckJSONValue::check($this->webDriver,"userImage");
+    }
+
+    /**
+     * @When /^Нажать на иконку \[User image\]$/
+     */
+    public function clickOnUserImageIcon()
+    {
+        DraftCreateRevisionsPageObject::clickOnUserImageIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Кликнуть по ячейке №([^"]*) в таблице объектов User image$/
+     */
+    public function clickOnCellUserImageOnDraft($arg1)
+    {
+        DraftCreateRevisionsPageObject::clickOnUserImageCell($this->webDriver,$arg1);
+    }
+
+    /**
+     * @When /^Нажать на иконку \[Accessories\]$/
+     */
+    public function clickOnAccessoriesIconOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnAccessoriesIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Кликнуть по ячейке №([^"]*) в таблице объектов Accessories$/
+     */
+    public function cickOnAccessoriesCellOnDraft($arg1)
+    {
+        DraftCreateRevisionsPageObject::clickOnAccessoriesCell($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Then /^Проверить что последний добавленный элемент является Accessories$/
+     */
+    public function checkAccessoriesOnDraft()
+    {
+        CheckJSONValue::check($this->webDriver,"accessories");
+    }
+    /**
+     * @When /^Нажать на иконку \[Custom part\]$/
+     */
+    public function нажатьНаИконкуCustomPart()
+    {
+        DraftCreateRevisionsPageObject::draftCustomPart($this->webDriver);
+    }
+
+    /**
+     * @Then /^Проверить что последний добавленный элемент является Custom Part$/
+     */
+    public function checkCustomPartInDarft()
+    {
+        CheckJSONValue::check($this->webDriver,"customPart");
+    }
+
+    /**
+     * @Given /^В BOM присутствует "([^"]*)" объект Custom Part$/
+     */
+    public function checkCustomPartInBom($arg1)
+    {
+        BOMCreateRevisionPageObject::checkCategoryInputByNumberInputs($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать на иконку \[Copy\] на панели иструментов$/
+     */
+    public function clickOnCopyIconDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnCopyIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Установить настройку Quantity на значение (\d+)$/
+     */
+    public function setQTYCopyValueOnDraft($arg1)
+    {
+        DraftCreateRevisionsPageObject::setCopyQuantity($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Copy\]$/
+     */
+    public function clickOnCopyIconOnDraft()
+    {
+        DraftCreateRevisionsPageObject::clickOnCopyButton($this->webDriver);
     }
 
 

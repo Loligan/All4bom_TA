@@ -2,7 +2,13 @@ Feature: Сохранение ревизии с данными в Pinout Details
 
   @Save @Revision @PinoutDetails @Smoke
   Scenario Outline: Create two connectors and one cable object on draft, with BOM information, and Pinout Schemas information
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Создать объект Cable типа <TypeCable> и толщиной <WeightCable> в Draft
     When Создать объект типа Connector семейства <FamilyFirstConnector>, категории <FirstConnectorCategory> и выбрать кабель №<FirstConnectorNumberThumbnail>
     When Создать объект типа Connector семейства <FamilySecondConnector>, категории <SecondConnectorCategory> и выбрать кабель №<SecondConnectorNumberThumbnail>

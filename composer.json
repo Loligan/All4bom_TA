@@ -1,7 +1,7 @@
 {
   "name": "root/all4bom_ta",
   "require": {
-    "behat/behat": "^3.2",
+    "behat/behat": "^3.3",
     "facebook/webdriver": "^1.2",
     "kbsali/redmine-api": "~1.0"
   },
@@ -11,7 +11,7 @@
   "authors": [
     {
       "name": "Victor Lapytsko",
-      "email": "victor.lapuse Behytsko@gmail.com"
+      "email": "victor.lapytsko@gmail.com"
     }
   ]
 }

@@ -2,7 +2,13 @@ Feature: Save labels information test
 
   @Save @Revision @Labels @Labels @Smoke
   Scenario Outline: Set Labels text
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Добавить Label с следующей информацией: <num> Description: <desc> Height: <hght> Width: <wdth> Distance: <dstc> Tolerance: <tlrnc>
     And Сохранить ревизию с именем Test save
     Then Открыть последнюю ревизию с именем Test save
@@ -13,7 +19,13 @@ Feature: Save labels information test
 
   @Save @Revision @Labels @Labels
   Scenario Outline: Set Labels text
-    Given Создать ревизию в cable assemblies с именем "tst"
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
     When Добавить Label с следующей информацией: <num> Description: <desc> Height: <hght> Width: <wdth> Distance: <dstc> Tolerance: <tlrnc>
     And Сохранить ревизию с именем Test save
     Then Открыть последнюю ревизию с именем Test save

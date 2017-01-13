@@ -97,7 +97,7 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @return int
      */
-    private static function getCountTables($webDriver){
+    static function getCountTables($webDriver){
         $tables = $webDriver->findElements(WebDriverBy::xpath(PinoutDetailsCreateRevisionsPageObject::$TABLES));
         $count = count($tables);
         return $count;
@@ -113,5 +113,27 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
         $checkboxes = $webDriver->findElements(WebDriverBy::xpath($xpath));
         $checkbox = $checkboxes[$numberCable-1];
         SimpleWait::waitingOfClick($webDriver,$checkbox);
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $value
+     */
+    public static function checkChooseConnectorValueByName($webDriver, $value)
+    {
+        $xpath = str_replace("VALUE", $value, PinoutDetailsCreateRevisionsPageObject::$OPTION_FIRST_CONNECTOR);
+        $options = $webDriver->findElements(WebDriverBy::xpath($xpath));
+        if(count($options)!=1){
+            throw new Exception("In choose connector ".count($options)." connectors");
+        }
+    }
+
+    public static function checkChooseSecondConnectorValueByName($webDriver, $value)
+    {
+        $xpath = str_replace("VALUE", $value, PinoutDetailsCreateRevisionsPageObject::$OPTION_SECOND_CONNECTOR);
+        $options = $webDriver->findElements(WebDriverBy::xpath($xpath));
+        if(count($options)!=1){
+            throw new Exception("In choose connector ".count($options)." connectors");
+        }
     }
 }
