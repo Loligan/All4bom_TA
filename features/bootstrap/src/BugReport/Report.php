@@ -72,7 +72,9 @@ class Report
         $this->textReport->setFullSteps($fullSteps);
     }
 
+    private function getPriorityID($afterScenarioScope){
 
+    }
 
     public function afterScenario($afterScenarioScope)
     {

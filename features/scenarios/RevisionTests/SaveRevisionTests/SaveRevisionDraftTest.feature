@@ -152,7 +152,7 @@ Feature: Сохранение объектов на Draft
 
 #    FFF COPY
 
-  @Draft @Save @CustomDimention @Copy @Smoke
+  @Revision @Draft @Save @Revision @CustomDimention @Copy @Smoke
   Scenario Outline: Создание копии объекта Custom Dimention
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -179,7 +179,7 @@ Feature: Сохранение объектов на Draft
       | 1   |
       | 5   |
 
-  @Draft @Save @Cable @PlainCable @Smoke @Copy
+  @Revision @Draft @Save @Revision @Cable @PlainCable @Smoke @Copy
   Scenario: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -206,7 +206,7 @@ Feature: Сохранение объектов на Draft
     Then Открыть последнюю ревизию с именем TestSave
     And В ревизии все объекты на месте
 
-  @Draft @Save @Cable @PlainCable @Copy
+  @Revision @Draft @Save @Revision @Cable @PlainCable @Copy
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -241,7 +241,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
 
-  @Draft @Save @Cable @PlainCable @Copy
+  @Revision @Draft @Save @Revision @Save @Cable @PlainCable @Copy
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -275,7 +275,7 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Draft @Save @Cable @CurveCable @Smoke @Copy
+  @Revision @Draft @Save @Revision @Save @Cable @CurveCable @Smoke @Copy
   Scenario: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -304,7 +304,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
 
-  @Draft @Save @Cable @CurveCable @Copy
+  @Revision @Draft @Save @Revision @Cable @CurveCable @Copy
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -340,7 +340,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
 
-  @Draft @Save @Cable @CurveCable @Copy
+  @Revision @Draft @Save @Revision @Cable @CurveCable @Copy
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -375,7 +375,7 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Draft @Save @Cable @BrokenCable @Smoke @Copy
+  @Revision @Draft @Save @Revision @Cable @BrokenCable @Smoke @Copy
   Scenario: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -405,7 +405,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
 
-  @Draft @Save @Cable @BrokenCable @Copy
+  @Revision @Draft @Save @Revision @Cable @BrokenCable @Copy
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -441,7 +441,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
 
-  @Draft @Save @Cable @BrokenCable @Copy
+  @Revision @Draft @Save @Revision @Cable @BrokenCable @Copy
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -476,7 +476,7 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Draft @Save @Line @PlainLine @Smoke @Copy
+  @Revision @Draft @Save @Revision @Line @PlainLine @Smoke @Copy
   Scenario: Создание копии объекта Plain Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -503,7 +503,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
 
-  @Draft @Save @Line @PlainLine @Copy
+  @Revision @Draft @Save @Revision @Line @PlainLine @Copy
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -536,7 +536,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
 
-  @Draft @Save @Line @PlainLine @Copy
+  @Revision @Draft @Save @Revision @Line @PlainLine @Copy
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -568,7 +568,7 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Draft @Save @Line @CurveLine @Smoke @Copy
+  @@Revision @Draft @Save @Revision @Line @CurveLine @Smoke @Copy
   Scenario: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -595,7 +595,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
 
-  @Draft @Save @Line @CurveLine @Copy
+  @Revision @Draft @Save @Revision @Line @CurveLine @Copy
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -628,7 +628,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
 
-  @Draft @Save @Line @CurveLine @Copy
+  @Revision @Draft @Save @Revision @Line @CurveLine @Copy
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -660,7 +660,7 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Draft @Save @Line @BrokenLine @Smoke @Copy
+  @Revision @Draft @Save @Revision @Line @BrokenLine @Smoke @Copy
   Scenario: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -687,7 +687,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
 
-  @Draft @Save @Cable @BrokenLine @Copy
+  @Revision @Draft @Save @Revision @Cable @BrokenLine @Copy
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -720,7 +720,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
 
-  @Draft @Save @Line @BrokenLine @Copy
+  @Revision @Draft @Save @Revision @Line @BrokenLine @Copy
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -752,7 +752,7 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Draft @Save @Connector @Copy @Smoke
+  @Revision @Draft @Save @Revision @Connector @Copy @Smoke
   Scenario: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -780,7 +780,7 @@ Feature: Сохранение объектов на Draft
     Then Открыть последнюю ревизию с именем TestSave
     And В ревизии все объекты на месте
 
-  @Draft @Save @Connector @Copy
+  @Revision @Draft @Save @Revision @Connector @Copy
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -814,7 +814,7 @@ Feature: Сохранение объектов на Draft
       | Headers | Connector | 2      |
       | RJ      | Connector | 2      |
 
-  @Draft @Save @Connector @Copy @Smoke
+  @Revision @Draft @Save @Revision @Connector @Copy @Smoke
   Scenario: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -842,7 +842,7 @@ Feature: Сохранение объектов на Draft
     Then Открыть последнюю ревизию с именем TestSave
     And В ревизии все объекты на месте
 
-  @Draft @Save @Connector @Copy
+  @Revision @Draft @Save @Revision @Connector @Copy
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -876,7 +876,7 @@ Feature: Сохранение объектов на Draft
       | Headers | Connector | 2      |
       | RJ      | Connector | 2      |
 
-  @Draft @Save @UserImage @Copy
+  @Revision @Draft @Save @Revision @UserImage @Copy
   Scenario Outline: Создание копии объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -901,7 +901,7 @@ Feature: Сохранение объектов на Draft
       | 1      |
       | 2      |
 
-  @Draft @Save @UserImage @Copy
+  @Revision @Draft @Save @Revision @UserImage @Copy
   Scenario Outline: Создание копии объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -926,7 +926,7 @@ Feature: Сохранение объектов на Draft
       | 1      |
       | 2      |
 
-  @Draft @Save @Accessories @Smoke @Copy
+  @Revision @Draft @Save @Revision @Accessories @Smoke @Copy
   Scenario Outline: Создание копии объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
