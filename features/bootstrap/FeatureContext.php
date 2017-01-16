@@ -1449,5 +1449,70 @@ class FeatureContext implements Context
         DraftCreateRevisionsPageObject::clickOnCopyButton($this->webDriver);
     }
 
+    /**
+     * @When /^Когда Home page страница загрузится$/
+     */
+    public function whenHomePageLoad()
+    {
+
+    }
+
+
+    /**
+     * @Given /^На странице будет элемент Cable Assemlies tab$/
+     */
+    public function CableAssemliesTabView()
+    {
+        HomePageObject::checkCableAssembliesTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^На странице будет элемент Login Button$/
+     */
+    public function LoginButtonView()
+    {
+        HomePageObject::checkLoginButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^На странице будет элемент User images tab$/
+     */
+    public function UserImagesTabView()
+    {
+        HomePageObject::checkUserImagesTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^На странице будет элемент Cable Row Materials tab$/
+     */
+    public function CableRowMaterialsTabView()
+    {
+        HomePageObject::checkCableRowMaterialsTab($this->webDriver);
+    }
+
+    /**
+     * @Then /^На странице будет поле ввода Username$/
+     */
+    public function UsernameInputView()
+    {
+        LoginPageObject::checkUsernameInput($this->webDriver);
+    }
+
+    /**
+     * @Then /^На странице будет поле ввода Password$/
+     */
+    public function PasswordInputView()
+    {
+        LoginPageObject::checkPasswordInput($this->webDriver);
+    }
+
+    /**
+     * @Then /^На странице будет поле кнопку \[LOGIN\]$/
+     */
+    public function LoginButtonViewInLoginPage()
+    {
+        LoginPageObject::checkLoginButton($this->webDriver);
+    }
+
 
 }

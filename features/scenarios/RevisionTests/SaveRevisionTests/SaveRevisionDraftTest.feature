@@ -926,7 +926,7 @@ Feature: Сохранение объектов на Draft
       | 1      |
       | 2      |
 
-  @Draft @Save @Accessories @Smoke @Copy @Test
+  @Draft @Save @Accessories @Smoke @Copy
   Scenario Outline: Создание копии объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
