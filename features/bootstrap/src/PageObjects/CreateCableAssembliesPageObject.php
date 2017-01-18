@@ -1,5 +1,6 @@
 <?php
 require_once "CableAssembliesPageObject.php";
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 use Facebook\WebDriver\WebDriverBy;
 class CreateCableAssembliesPageObject implements PageObject
 {
@@ -55,33 +56,58 @@ class CreateCableAssembliesPageObject implements PageObject
      * @param string $file
      */
     static function setInformation($webDriver, $revDetails, $compName, $partNumb, $cableDesc, $drawNumb, $designBy, $approvedBy, $checkedBy, $revision, $file){
+        LastPhrase::setPhrase("Поле ввода Revision Details не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$REV_DETAILS_INPUT);
         $projectRevDetails = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$REV_DETAILS_INPUT));
+        LastPhrase::setPhrase("Поле ввода Company Name не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$COMPANY_INPUT);
         $projectCompany = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$COMPANY_INPUT));
+        LastPhrase::setPhrase("Поле ввода Part Number не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$PART_NUMBER_INPUT);
         $projectPartNumber = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$PART_NUMBER_INPUT));
+        LastPhrase::setPhrase("Поле ввода Cable Description не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$CABLE_DESC_INPUT);
         $projectCableDesc = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$CABLE_DESC_INPUT));
+        LastPhrase::setPhrase("Поле ввода Draw Number не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$DRAW_NUMBER_INPUT);
         $projectDrawNumber = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$DRAW_NUMBER_INPUT));
+        LastPhrase::setPhrase("Поле ввода Design By не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$DESIGN_BY_INPUT);
         $projectDesignBy = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$DESIGN_BY_INPUT));
+        LastPhrase::setPhrase("Поле ввода Approved By не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$APPROVED_BY_INPUT);
         $projectApprovedBy = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$APPROVED_BY_INPUT));
+        LastPhrase::setPhrase("Поле ввода Checked By не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$CHECKED_BY_INPUT);
         $projectCheckedBy = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$CHECKED_BY_INPUT));
+        LastPhrase::setPhrase("Поле ввода Upload Files не был найдена на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$UPLOAD_FILES_INPUT);
         $projectUploadFiles = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$UPLOAD_FILES_INPUT));
 
 
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$REV_DETAILS_INPUT);
         $projectRevDetails->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$COMPANY_INPUT);
         $projectCompany->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$PART_NUMBER_INPUT);
         $projectPartNumber->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$CABLE_DESC_INPUT);
         $projectCableDesc->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$DRAW_NUMBER_INPUT);
         $projectDrawNumber->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$DESIGN_BY_INPUT);
         $projectDesignBy->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$APPROVED_BY_INPUT);
         $projectApprovedBy->clear();
+        LastPhrase::setPhrase("Поле ввода Revision Details не было очищенно на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$CHECKED_BY_INPUT);
         $projectCheckedBy->clear();
 
+        LastPhrase::setPhrase("В Поле ввода Revision Details не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$REV_DETAILS_INPUT);
         $projectRevDetails->sendKeys($revDetails);
+        LastPhrase::setPhrase("В Поле ввода Project Company не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$COMPANY_INPUT);
         $projectCompany->sendKeys($compName);
+        LastPhrase::setPhrase("В Поле ввода Part Number не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$PART_NUMBER_INPUT);
         $projectPartNumber->sendKeys($partNumb);
+        LastPhrase::setPhrase("В Поле ввода Cable Description не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$CABLE_DESC_INPUT);
         $projectCableDesc->sendKeys($cableDesc);
+        LastPhrase::setPhrase("В Поле ввода Draw Number не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$DRAW_NUMBER_INPUT);
         $projectDrawNumber->sendKeys($drawNumb);
+        LastPhrase::setPhrase("В Поле ввода Design By не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$DESIGN_BY_INPUT);
         $projectDesignBy->sendKeys($designBy);
+        LastPhrase::setPhrase("В Поле ввода Approved by не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$APPROVED_BY_INPUT);
         $projectApprovedBy->sendKeys($approvedBy);
+        LastPhrase::setPhrase("В Поле ввода Checked By не было введено значение ".$revDetails."на странице Create Cable Assemblies по CssSelector: ".CreateCableAssembliesPageObject::$CHECKED_BY_INPUT);
         $projectCheckedBy->sendKeys($checkedBy);
 
         if ($revision == "Numerical") {
@@ -107,7 +133,9 @@ class CreateCableAssembliesPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function clickCreateButton($webDriver){
+        LastPhrase::setPhrase("Кнопка [CREATE] не была найдена на странице Create Cable Assemblies по xpath: ".CreateCableAssembliesPageObject::$CREATE_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::xpath(CreateCableAssembliesPageObject::$CREATE_BUTTON));
+        LastPhrase::setPhrase("Кнопка [CREATE] не была нажата на странице Create Cable Assemblies по xpath: ".CreateCableAssembliesPageObject::$CREATE_BUTTON);
         $button->click();
     }
 
@@ -118,6 +146,7 @@ class CreateCableAssembliesPageObject implements PageObject
     static function isCableAssembliesPage($webDriver)
     {
         $title = $webDriver->getTitle();
+        LastPhrase::setPhrase("На странице в заголовке: ".$title);
         $contentFound = stripos($title, "Cable assemblies");
         if ($contentFound === false) {
             throw new Exception("In title has not Cable assemblies text. But in title has " . $title . " text");;
@@ -132,6 +161,7 @@ class CreateCableAssembliesPageObject implements PageObject
     {
         $title = $webDriver->getTitle();
         $contentFound = stripos($title, "Change cable assembly");
+        LastPhrase::setPhrase("На странице в заголовке: ".$title);
         if ($contentFound === false) {
             throw new Exception("In title has not Change cable assembly text. But in title has " . $title . " text");;
         }

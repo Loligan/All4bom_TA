@@ -1,48 +1,49 @@
 <?php
 
 require_once "ScenarioGhost.php";
+
 class RunnableTest
 {
 
-private static $url = "http://127.0.0.1/redmine/";
-private static $login = "MrRobot";
-private static $password = "12345678";
+    private static $url = "http://127.0.0.1/redmine/";
+    private static $login = "MrRobot";
+    private static $password = "12345678";
 
 
-    private static $evil_tree = [
-        [
-            "tag" => "00-00",
-            "responsible" => "1",
-            "dependent" => [
-                [
-                    "tag" => "01-00",
-                    "responsible" => "1",
-                    "dependent" => []
-                ],
-                [
-                    "tag" => "01-01",
-                    "responsible" => "1",
-                    "dependent" => [
-                        [
-                            "tag" => "02-00",
-                            "responsible" => "1",
-                            "dependent" => [
-                                [
-                                    "tag" => "02-01",
-                                    "responsible" => "1",
-                                    "dependent" => []
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    ];
+//    private static $evil_tree = [
+//        [
+//            "tag" => "00-00",
+//            "responsible" => "1",
+//            "dependent" => [
+//                [
+//                    "tag" => "01-00",
+//                    "responsible" => "1",
+//                    "dependent" => []
+//                ],
+//                [
+//                    "tag" => "01-01",
+//                    "responsible" => "1",
+//                    "dependent" => [
+//                        [
+//                            "tag" => "02-00",
+//                            "responsible" => "1",
+//                            "dependent" => [
+//                                [
+//                                    "tag" => "02-01",
+//                                    "responsible" => "1",
+//                                    "dependent" => []
+//                                ]
+//                            ]
+//                        ]
+//                    ]
+//                ]
+//            ]
+//        ]
+//    ];
 
     private static function buildScenariosDependent($x, $scenarioGhost = null)
     {
-        $thisScenario = new ScenarioGhost($scenarioGhost, $x['tag'],$x['responsible']);
+        $thisScenario = new ScenarioGhost($scenarioGhost, $x['tag'], $x['responsible']);
         while (true) {
             $countDep = count($x['dependent']);
             if ($countDep > 0) {
@@ -62,7 +63,7 @@ private static $password = "12345678";
      */
     private static function callTestByTag($tag)
     {
-        $execText = "./runnable.sh -t " . $tag;
+        $execText = "/home/meldon/PhpstormProjects/All4bom_TA/RunnableTests/runnable.sh -t " . $tag;
         $resultExec = shell_exec($execText);
 
         if (stripos($resultExec, "Проваленные сценарии") === false) {
@@ -124,7 +125,7 @@ private static $password = "12345678";
             print "REPORT" . $thisScenarioTag . "\n";
 //           echo  $execText = "cd .." . $thisScenarioTag;
 //            TODO
-            $execTextReport= "./record*.sh -t ".$thisScenarioTag;
+            $execTextReport = "./record*.sh -t " . $thisScenarioTag;
             echo shell_exec($execTextReport);
 
         } elseif (
@@ -138,7 +139,9 @@ private static $password = "12345678";
 
     static function run()
     {
-        $scenario = self::buildScenariosDependent(self::$evil_tree[0]);
+        $file = file_get_contents("tests.json");
+        $evil_tree = json_decode($file, true);
+        $scenario = self::buildScenariosDependent($evil_tree[0]);
         self::starScenarioTest($scenario);
 
     }
@@ -167,10 +170,13 @@ private static $password = "12345678";
 
     static function runByTag($tag)
     {
-        $scenario = self::buildScenariosDependent(self::$evil_tree[0]);
+        $file = file_get_contents("/home/meldon/PhpstormProjects/All4bom_TA/RunnableTests/tests.json");
+        $evil_tree = json_decode($file, true);
+        $scenario = self::buildScenariosDependent($evil_tree[0]);
         $scenario = self::getScenarioByTag($tag, $scenario);
-        var_dump($scenario->getTag());
-        self::starScenarioTest($scenario);
+//        var_dump($scenario->getTag());
+//        self::starScenarioTest($scenario);
+       return self::callTestByTag($tag);
     }
 
     static function runByTagAndTitle($tag, $title)

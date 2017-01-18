@@ -1,7 +1,7 @@
 Feature: Создание ревизии без сохранения с данными в BOM
 
 
-  @Create @Revision @BOM @Cable @Smoke
+  @Create @Revision @BOM @Cable @PlainCable @Smoke @ID=04-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -20,7 +20,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Flat Cable   | 3          |
       | Plain | Normal | Row Material | 4          |
 
-  @Create @Revision @BOM @Cable
+  @Create @Revision @BOM @Cable @PlainCable @ID=04-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -42,6 +42,21 @@ Feature: Создание ревизии без сохранения с данн
       | Plain  | Thick    | RF Cable     | 2          |
       | Plain  | Thick    | Flat Cable   | 3          |
       | Plain  | Thick    | Row Material | 4          |
+
+  @Create @Revision @BOM @Cable @CurveCable @ID=04-03 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Curve Cable с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    Then В таблице будет информация по кабелям согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable  | numberLine |
       | Curve  | Thinnest | Lan Cable    | 1          |
       | Curve  | Thinnest | RF Cable     | 2          |
       | Curve  | Thinnest | Flat Cable   | 3          |
@@ -58,6 +73,21 @@ Feature: Создание ревизии без сохранения с данн
       | Curve  | Thick    | RF Cable     | 2          |
       | Curve  | Thick    | Flat Cable   | 3          |
       | Curve  | Thick    | Row Material | 4          |
+
+  @Create @Revision @BOM @Cable @BrokenCable @ID=04-04 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    Then В таблице будет информация по кабелям согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable  | numberLine |
       | Broken | Thinnest | Lan Cable    | 1          |
       | Broken | Thinnest | RF Cable     | 2          |
       | Broken | Thinnest | Flat Cable   | 3          |
@@ -76,7 +106,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | Row Material | 4          |
 
 
-  @Create @Revision @BOM @Cable @Shrink @LeftShrink @Smoke
+  @Create @Revision @BOM @Cable @Shrink @LeftShrink @Smoke @PlainCable @ID=04-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -95,7 +125,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable   | 1          | 2                |
       | Plain | Normal | RF Cable    | 2          | 1                |
 
-  @Create @Revision @BOM @Cable @Shrink @LeftShrink
+  @Create @Revision @BOM @Cable @Shrink @LeftShrink @PlainCable @ID=04-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -115,6 +145,23 @@ Feature: Создание ревизии без сохранения с данн
       | Plain  | Thin     | RF Cable    | 2          | 2                |
       | Plain  | Thick    | Lan Cable   | 1          | 1                |
       | Plain  | Thick    | RF Cable    | 2          | 2                |
+
+  @Create @Revision @BOM @Cable @Shrink @LeftShrink @CurveCable @ID=04-06 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    And В таблице будет информация по кабелям согластно выбранной линии
+    And Кликнуть на кнопку [Left Shrink] первого кабеля и выбрать <shrinkLineNumber> запись в таблице
+    Then В таблице будет информация в Left Shrink согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable | numberLine | shrinkLineNumber |
       | Curve  | Thinnest | Lan Cable   | 1          | 2                |
       | Curve  | Thinnest | RF Cable    | 2          | 1                |
       | Curve  | Thin     | Lan Cable   | 1          | 1                |
@@ -123,6 +170,23 @@ Feature: Создание ревизии без сохранения с данн
       | Curve  | Normal   | RF Cable    | 2          | 1                |
       | Curve  | Thick    | Lan Cable   | 1          | 1                |
       | Curve  | Thick    | RF Cable    | 2          | 2                |
+
+  @Create @Revision @BOM @Cable @Shrink @LeftShrink @BrokenCable @ID=04-07 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable и Left Shrink с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    And В таблице будет информация по кабелям согластно выбранной линии
+    And Кликнуть на кнопку [Left Shrink] первого кабеля и выбрать <shrinkLineNumber> запись в таблице
+    Then В таблице будет информация в Left Shrink согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable | numberLine | shrinkLineNumber |
       | Broken | Thinnest | Lan Cable   | 1          | 2                |
       | Broken | Thinnest | RF Cable    | 2          | 1                |
       | Broken | Thin     | Lan Cable   | 1          | 1                |
@@ -133,7 +197,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | RF Cable    | 2          | 2                |
 
 
-  @Create @Revision @BOM @Cable @Shrink @RightShrink @Smoke
+  @Create @Revision @BOM @Cable @Shrink @RightShrink @Smoke @PlainCable @ID=04-08 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -152,7 +216,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable   | 1          | 2                |
       | Plain | Normal | RF Cable    | 2          | 1                |
 
-  @Create @Revision @BOM @Cable @Shrink @RightShrink
+  @Create @Revision @BOM @Cable @Shrink @RightShrink @PlainCable @ID=04-09 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -172,6 +236,23 @@ Feature: Создание ревизии без сохранения с данн
       | Plain  | Thin     | RF Cable    | 2          | 2                |
       | Plain  | Thick    | Lan Cable   | 1          | 1                |
       | Plain  | Thick    | RF Cable    | 2          | 2                |
+
+  @Create @Revision @BOM @Cable @Shrink @RightShrink @CurveCable @ID=04-10 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    And В таблице будет информация по кабелям согластно выбранной линии
+    And Кликнуть на кнопку [Right Shrink] первого кабеля и выбрать <shrinkLineNumber> запись в таблице
+    Then В таблице будет информация в Right Shrink согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable | numberLine | shrinkLineNumber |
       | Curve  | Thinnest | Lan Cable   | 1          | 2                |
       | Curve  | Thinnest | RF Cable    | 2          | 1                |
       | Curve  | Thin     | Lan Cable   | 1          | 1                |
@@ -180,6 +261,23 @@ Feature: Создание ревизии без сохранения с данн
       | Curve  | Normal   | RF Cable    | 2          | 1                |
       | Curve  | Thick    | Lan Cable   | 1          | 1                |
       | Curve  | Thick    | RF Cable    | 2          | 2                |
+
+  @Create @Revision @BOM @Cable @Shrink @RightShrink @BrokenCable @ID=04-11 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable и Right Shrink с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    And В таблице будет информация по кабелям согластно выбранной линии
+    And Кликнуть на кнопку [Right Shrink] первого кабеля и выбрать <shrinkLineNumber> запись в таблице
+    Then В таблице будет информация в Right Shrink согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable | numberLine | shrinkLineNumber |
       | Broken | Thinnest | Lan Cable   | 1          | 2                |
       | Broken | Thinnest | RF Cable    | 2          | 1                |
       | Broken | Thin     | Lan Cable   | 1          | 1                |
@@ -189,7 +287,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | Lan Cable   | 1          | 1                |
       | Broken | Thick    | RF Cable    | 2          | 2                |
 
-  @Create @Revision @BOM @Cable @Shrink @BothShrink @Smoke
+  @Create @Revision @BOM @Cable @Shrink @BothShrink @Smoke @PlainCable @ID=04-12 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -210,7 +308,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable   | 1          | 2                    | 2                     |
       | Plain | Normal | RF Cable    | 2          | 1                    | 1                     |
 
-  @Create @Revision @BOM @Cable @Shrink @BothShrink
+  @Create @Revision @BOM @Cable @Shrink @BothShrink @PlainCable @ID=04-13 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -234,6 +332,25 @@ Feature: Создание ревизии без сохранения с данн
       | Plain  | Normal   | RF Cable    | 2          | 1                    | 1                     |
       | Plain  | Thick    | Lan Cable   | 1          | 1                    | 2                     |
       | Plain  | Thick    | RF Cable    | 2          | 2                    | 1                     |
+
+  @Create @Revision @BOM @Cable @Shrink @BothShrink @CurveCable @ID=04-14 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    And В таблице будет информация по кабелям согластно выбранной линии
+    And Кликнуть на кнопку [Left Shrink] первого кабеля и выбрать <leftShrinkLineNumber> запись в таблице
+    And Кликнуть на кнопку [Right Shrink] первого кабеля и выбрать <rightShrinkLineNumber> запись в таблице
+    Then В таблице будет информация в Left Shrink согластно выбранной линии
+    And В таблице будет информация в Right Shrink согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable | numberLine | leftShrinkLineNumber | rightShrinkLineNumber |
       | Curve  | Thinnest | Lan Cable   | 1          | 2                    | 2                     |
       | Curve  | Thinnest | RF Cable    | 2          | 1                    | 1                     |
       | Curve  | Thin     | Lan Cable   | 1          | 1                    | 2                     |
@@ -242,6 +359,25 @@ Feature: Создание ревизии без сохранения с данн
       | Curve  | Normal   | RF Cable    | 2          | 1                    | 1                     |
       | Curve  | Thick    | Lan Cable   | 1          | 1                    | 2                     |
       | Curve  | Thick    | RF Cable    | 2          | 2                    | 1                     |
+
+  @Create @Revision @BOM @Cable @Shrink @BothShrink @BrokenCable @ID=04-15 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание объекта Cable и Left, Right Shrink с данными в BOM
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа <Type> и толщиной <Weight> в Draft
+    And Выбарать семейство кабелей <familyCable> и выбрать строку <numberLine> в таблице
+    And В таблице будет информация по кабелям согластно выбранной линии
+    And Кликнуть на кнопку [Left Shrink] первого кабеля и выбрать <leftShrinkLineNumber> запись в таблице
+    And Кликнуть на кнопку [Right Shrink] первого кабеля и выбрать <rightShrinkLineNumber> запись в таблице
+    Then В таблице будет информация в Left Shrink согластно выбранной линии
+    And В таблице будет информация в Right Shrink согластно выбранной линии
+    Examples:
+      | Type   | Weight   | familyCable | numberLine | leftShrinkLineNumber | rightShrinkLineNumber |
       | Broken | Thinnest | Lan Cable   | 1          | 2                    | 2                     |
       | Broken | Thinnest | RF Cable    | 2          | 1                    | 1                     |
       | Broken | Thin     | Lan Cable   | 1          | 1                    | 2                     |
@@ -251,7 +387,7 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thick    | Lan Cable   | 1          | 1                    | 2                     |
       | Broken | Thick    | RF Cable    | 2          | 2                    | 1                     |
 
-  @Create @Revision @BOM @Connector @Smoke
+  @Create @Revision @BOM @Connector @Smoke @ID=04-15 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Connector с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -267,7 +403,7 @@ Feature: Создание ревизии без сохранения с данн
       | Family  | Category  | Number | NumberLine |
       | RJ      | Connector | 1      | 1          |
 
-  @Create @Revision @BOM @Connector
+  @Create @Revision @BOM @Connector @ID=04-16 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Connector с данными в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -286,7 +422,7 @@ Feature: Создание ревизии без сохранения с данн
       | Headers | Connector | 2      | 2          |
       | RJ      |           | 2      | 1          |
 
-  @Create @Revision @BOM @Connector @Molder @Smoke @FAIL_NOT_CLICK_ON_MOLDER
+  @Create @Revision @BOM @Connector @Molder @Smoke @FAIL_NOT_CLICK_ON_MOLDER @ID=04-17 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Cоздание объекта Connector c меткой Molder в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -303,7 +439,7 @@ Feature: Создание ревизии без сохранения с данн
       | Family | Category  | Number | NumberLine |
       | RJ     | Connector | 1      | 1          |
 
-  @Create @Revision @BOM @Connector @Molder @FAIL_NOT_CLICK_ON_MOLDER
+  @Create @Revision @BOM @Connector @Molder @FAIL_NOT_CLICK_ON_MOLDER @ID=04-18  @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Cоздание объекта Connector c меткой Molder в BOM
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

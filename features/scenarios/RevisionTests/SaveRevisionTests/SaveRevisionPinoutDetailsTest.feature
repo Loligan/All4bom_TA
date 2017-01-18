@@ -1,6 +1,6 @@
 Feature: Сохранение ревизии с данными в Pinout Details
 
-  @Save @Revision @PinoutDetails @Smoke
+  @Save @Revision @PinoutDetails @Smoke @ID=09-01  @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Create two connectors and one cable object on draft, with BOM information, and Pinout Schemas information
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

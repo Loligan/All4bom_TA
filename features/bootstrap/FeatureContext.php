@@ -29,6 +29,7 @@ require_once "src/PageObjects/CableRowMaterialsPageObject.php";
 require_once "src/PageObjects/CreateCableRowMaterialsPageObject.php";
 require_once "src/PageObjects/HeaderPageObject.php";
 require_once "src/BugReport/Report.php";
+require_once "src/BugReport/LastPhraseReport/LastPhrase.php";
 
 
 class FeatureContext implements Context
@@ -45,6 +46,7 @@ class FeatureContext implements Context
     public function __construct()
     {
         $this->appValue = new AppValues();
+        LastPhrase::init();
         HomePageObject::init();
         LoginPageObject::init();
         CableAssembliesPageObject::init();
@@ -1512,6 +1514,13 @@ class FeatureContext implements Context
     public function LoginButtonViewInLoginPage()
     {
         LoginPageObject::checkLoginButton($this->webDriver);
+    }
+
+    /**
+     * @Then /^Открылась страница Revision$/
+     */
+    public function checkRevisionPage()
+    {
     }
 
 

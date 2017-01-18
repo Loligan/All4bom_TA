@@ -1,5 +1,6 @@
 <?php
 
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 
 class TextReport
 {
@@ -11,6 +12,15 @@ class TextReport
     private $isGiven;
     private $lastURL;
     private $lastConsoleLog;
+    private $idTest;
+
+    /**
+     * @param mixed $idTest
+     */
+    public function setIdTest($idTest)
+    {
+        $this->idTest = $idTest;
+    }
 
     public function __construct()
     {
@@ -20,20 +30,20 @@ class TextReport
         $this->lastConsoleLog = "";
     }
 
-    public function afterStep($AfterStepScope,$webDriver)
+    public function afterStep($AfterStepScope, $webDriver)
     {
         $textStep = $AfterStepScope->getStep()->getText();
 
         if ($AfterStepScope->getTestResult()->isPassed()) {
             $this->addPassStepLine($textStep);
         } else {
-            if($AfterStepScope->getStep()->getKeywordType() == "Given"){
-                $this->isGiven = true;
-            }
+//            if($AfterStepScope->getStep()->getKeywordType() == "Given"){
+//                $this->isGiven = true;
+//            }
             $this->setFailStepLine($textStep);
 
-            $this->lastURL= $webDriver->getCurrentURL();
-            $this->lastConsoleLog = var_export($webDriver->manage()->getLog("browser"),true);
+            $this->lastURL = $webDriver->getCurrentURL();
+            $this->lastConsoleLog = var_export($webDriver->manage()->getLog("browser"), true);
         }
     }
 
@@ -117,13 +127,11 @@ class TextReport
     }
 
 
-
-
     public function afterScenario()
     {
 //        IF FAIL IN GIVEN STEPS
-        if($this->isGiven){
-            $this->title=$this->failStepLine;
+        if ($this->isGiven) {
+            $this->title = $this->failStepLine;
         }
 
         $this->description = $this->title .
@@ -134,13 +142,14 @@ class TextReport
             $this->description = $this->description . "\n # " . $step;
         }
 
-        $this->description = $this->description.
-            "\n\n*Шаг на котором возникла ошибка:*\n".
+        $this->description = $this->description .
+            "\n\n*Шаг на котором возникла ошибка:*\n" .
             $this->failStepLine .
-        "\n*Последний URL:*\n".$this->lastURL.
-        "\n*Лог с консоли:*\n".$this->lastConsoleLog;
-
-        $this->title = "[TA] ".$this->title;
+            "\n*Последняя фраза:*\n" .
+            LastPhrase::getPhrase() .
+            "\n*Последний URL:*\n" . $this->lastURL .
+            "\n*Лог с консоли:*\n" . $this->lastConsoleLog;
+        $this->title = "[".$this->idTest."] ". $this->title;
     }
 
 

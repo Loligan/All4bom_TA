@@ -1,6 +1,6 @@
 Feature: Создание и редактирование Cable Assemblies
 
-  @CableAssemblies @Edit @Smoke
+  @CableAssemblies @Edit @Smoke @ID=02-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -19,7 +19,7 @@ Feature: Создание и редактирование Cable Assemblies
       | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
       | 1  | Create TA test   | Company TA   | XY001100    | Removed in a moment | XZ110011       | James Lucker | Eric Cartman | Stan Marsh | Numerical |                |
 
-  @CableAssemblies @Edit
+  @CableAssemblies @Edit @ID=02-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -91,7 +91,7 @@ Feature: Создание и редактирование Cable Assemblies
       | 55 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               |               | GoodMaxString | Numerical  |                |
       | 56 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               |               |               | Alphabetic |                |
 
-  @CableAssemblies @BadData @Edit @Smoke
+  @CableAssemblies @BadData @Edit @Smoke @ID=02-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -112,7 +112,7 @@ Feature: Создание и редактирование Cable Assemblies
        | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
       |                  | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
 
-  @CableAssemblies @BadData @Edit
+  @CableAssemblies @BadData @Edit @ID=02-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

@@ -41,8 +41,7 @@ class HomePageObject implements PageObject
     static function openPage($webDriver)
     {
         $webDriver->get(AppValues::getUrl());
-        self::closeSymfonyTab($webDriver);
-
+//        self::closeSymfonyTab($webDriver);
     }
 
     /**

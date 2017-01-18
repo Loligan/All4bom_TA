@@ -1,6 +1,6 @@
 Feature: Создание Cable Assemblies
 
-  @CableAssemblies @Create @Smoke
+  @CableAssemblies @Create @Smoke @ID=01-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -16,7 +16,7 @@ Feature: Создание Cable Assemblies
       | ID | Revision details | Company name | Part number | Cable description   | Drawing number | Design by    | Approved by  | Checked by | Revision  | Attached Files |
       | 1  | Create TA test   | Company TA   | XY001100    | Removed in a moment | XZ110011       | James Lucker | Eric Cartman | Stan Marsh | Numerical |                |
 
-  @CableAssemblies @Create
+  @CableAssemblies @Create @ID=01-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -85,7 +85,7 @@ Feature: Создание Cable Assemblies
       | 55 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               |               | GoodMaxString | Numerical  |                |
       | 56 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               |               |               | Alphabetic |                |
 
-  @CableAssemblies @BadData @Create
+  @CableAssemblies @BadData @Create @ID=01-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание Cable Assemblies c не валидными данными
     Given Открыть страницу Cable Assemblies
     When Нажать кнопку [CREATE CABLE ASSEMBLY]

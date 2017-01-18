@@ -13,14 +13,11 @@ function print_help() {
 }
 
 function run_scenario() {
-cd ..
-touch scenario.rerun
 if [ -z "$TITLE" ];then
 bin/behat --tags="@ID=$TAG";
 else
-bin/behat --tags="@ID=$TAG" --name="$TITLE"
+bin/behat --tags="@ID=$TAG" --name="$TITLE";
 fi
-rm scenario.rerun
 }
 
 
@@ -43,5 +40,12 @@ while getopts "t:g:" opt; do
       ;;
   esac
 done
-
+{
+cd ..
+rm scenario.rerun;
+touch scenario.rerun;
 run_scenario;
+} || {
+rm scenario.rerun;
+}
+rm scenario.rerun;

@@ -1,6 +1,6 @@
 Feature: Проверка условий связи коннекторов и кабелей по условию используя Connected With
 
-  @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke
+  @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke @05-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Проверка основных условий связи коннекторов и кабелей
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -39,7 +39,7 @@ Feature: Проверка условий связи коннекторов и к
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Solid             | 24               | =          | Connector      |
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Stranded          | 24               | =          | Connector      |
 
-  @Create @Revision @BOM @CableAndConnectorFilter @Cable
+  @Create @Revision @BOM @CableAndConnectorFilter @Cable @05-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Проверка всех условий связи коннекторов и кабелей
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

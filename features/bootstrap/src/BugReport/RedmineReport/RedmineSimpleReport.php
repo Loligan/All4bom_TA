@@ -71,12 +71,12 @@ class RedmineSimpleReport
             if (!$this->isCloseStatusIssue($subject)) {
 //               ADD LINES IN COMMENT IN CREATING BUG
                 $this->addLinesInComment($subject,$description);
-                print "ADD COMMENT WITH STEPS IN OPENED ISSUE";
+//                print "ADD COMMENT WITH STEPS IN OPENED ISSUE";
 
             } else {
 //                EDIT CREATING BUG
                 $this->editIssue($subject, $description, $priority_id, $assign_to_id);
-                print "ADD COMMENT AND EDIT STATUS WITH STEPS IN CLOSED ISSUE";
+//                print "ADD COMMENT AND EDIT STATUS WITH STEPS IN CLOSED ISSUE";
             }
         } else {
 //            CREATE NEW BUG
@@ -88,7 +88,7 @@ class RedmineSimpleReport
                 'priority_id' => $priority_id,
                 'assigned_to_id' => $assign_to_id
             ]);
-            print "CREATE NEW ISSUE";
+//            print "CREATE NEW ISSUE";
         }
     }
 

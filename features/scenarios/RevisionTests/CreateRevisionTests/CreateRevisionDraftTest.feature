@@ -1,6 +1,17 @@
 Feature: Cоздание объектов в Draft без сохранения
 
-  @Draft @Create @Text @Smoke
+  @Smoke @Revision @ID=03-00 @PRIORITY=5 @ASSIGNED=1
+  Scenario: Создание на полотне объекта Text
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    Then Открылась страница Revision
+
+  @Draft @Create @Text @Smoke @ID=03-01 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -13,7 +24,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
 
-  @Draft @Create @Text
+  @Draft @Create @Text @ID=03-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -46,7 +57,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Arial           | 18         | 800080 |
 
 
-  @Draft @Create @CustomDimention
+  @Draft @Create @CustomDimention @ID=03-04 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Custom Dimention
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -63,7 +74,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является Custom Dimention
 
 
-  @Draft @Create @Cable @PlainCable @Smoke
+  @Draft @Create @Cable @PlainCable @Smoke @ID=03-05 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -81,7 +92,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Cable
 
-  @Draft @Create @Cable @PlainCable
+  @Draft @Create @Cable @PlainCable @ID=03-06 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -105,7 +116,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Cable @CurveCable @Smoke
+  @Draft @Create @Cable @CurveCable @Smoke @ID=03-07 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -123,7 +134,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Cable
 
-  @Draft @Create @Cable @CurveCable
+  @Draft @Create @Cable @CurveCable @ID=03-08 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -147,7 +158,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Cable @BrokenCable @Smoke
+  @Draft @Create @Cable @BrokenCable @Smoke @ID=03-09 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -165,7 +176,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Cable
 
-  @Draft @Create @Cable @BrokenCable
+  @Draft @Create @Cable @BrokenCable @ID=03-10 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -190,7 +201,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Line @PlainLine @Smoke
+  @Draft @Create @Line @PlainLine @Smoke @ID=03-11 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Plain Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -208,7 +219,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Line
 
-  @Draft @Create @Line @PlainLine
+  @Draft @Create @Line @PlainLine @ID=03-12 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -232,7 +243,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Line @CurveLine
+  @Draft @Create @Line @CurveLine @ID=03-13 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -250,7 +261,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Line
 
-  @Draft @Create @Line @CurveLine
+  @Draft @Create @Line @CurveLine @ID=03-14 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -274,7 +285,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Line @BrokenLine @Smoke
+  @Draft @Create @Line @BrokenLine @Smoke @ID=03-15 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -293,7 +304,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является Broken Line
 
 
-  @Draft @Create @Line @BrokenLine
+  @Draft @Create @Line @BrokenLine @ID=03-16 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -318,7 +329,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Connector @Smoke
+  @Draft @Create @Connector @Smoke @ID=03-17 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -339,7 +350,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "1" объект Connector
 
-  @Draft @Create @Connector
+  @Draft @Create @Connector @ID=03-18 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -367,7 +378,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | RJ      | Connector | 2      |
 
 
-  @Draft @Create @UserImage @Smoke
+  @Draft @Create @UserImage @Smoke @ID=03-19 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -382,7 +393,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является User Image
 
 
-  @Draft @Create @UserImage
+  @Draft @Create @UserImage @ID=03-20 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -400,7 +411,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 2      |
       | 3      |
 
-  @Draft @Create @Accessories @Smoke
+  @Draft @Create @Accessories @Smoke @ID=03-21 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -415,7 +426,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является Accessories
 
 
-  @Draft @Create @CustomPart @Smoke
+  @Draft @Create @CustomPart @Smoke @ID=03-22 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание объекта Custom part
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -432,7 +443,7 @@ Feature: Cоздание объектов в Draft без сохранения
 
 #    FFF COPY
 
-  @Draft @Create @CustomDimention @Copy @Smoke
+  @Draft @Create @CustomDimention @Copy @Smoke @ID=03-23 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Custom Dimention
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -458,7 +469,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 1   |
       | 5   |
 
-  @Draft @Create @Cable @PlainCable @Smoke @Copy
+  @Draft @Create @Cable @PlainCable @Smoke @Copy @ID=03-24 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -486,7 +497,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And В BOM присутствует "2" объект Cable
 
 
-  @Draft @Create @Cable @PlainCable @Copy
+  @Draft @Create @Cable @PlainCable @Copy @ID=03-25 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -520,7 +531,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Cable @PlainCable @Copy
+  @Draft @Create @Cable @PlainCable @Copy @ID=03-26 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -553,7 +564,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Cable @CurveCable @Smoke @Copy
+  @Draft @Create @Cable @CurveCable @Smoke @Copy @ID=03-27 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -581,7 +592,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And В BOM присутствует "2" объект Cable
 
 
-  @Draft @Create @Cable @CurveCable @Copy
+  @Draft @Create @Cable @CurveCable @Copy @ID=03-28 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -615,7 +626,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Cable @CurveCable @Copy
+  @Draft @Create @Cable @CurveCable @Copy @ID=03-29 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -648,7 +659,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Cable @BrokenCable @Smoke @Copy
+  @Draft @Create @Cable @BrokenCable @Smoke @Copy @ID=03-30 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -676,7 +687,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And В BOM присутствует "2" объект Cable
 
 
-  @Draft @Create @Cable @BrokenCable @Copy
+  @Draft @Create @Cable @BrokenCable @Copy @ID=03-31 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -710,7 +721,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Cable @BrokenCable @Copy
+  @Draft @Create @Cable @BrokenCable @Copy @ID=03-32 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -743,7 +754,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Line @PlainLine @Smoke @Copy
+  @Draft @Create @Line @PlainLine @Smoke @Copy @ID=03-33 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Plain Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -768,7 +779,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является Plain Line
 
 
-  @Draft @Create @Line @PlainLine @Copy
+  @Draft @Create @Line @PlainLine @Copy @ID=03-34 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -799,8 +810,8 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Line @PlainLine @Copy
-  Scenario Outline: Создание копии объекта Plain Cable
+  @Draft @Create @Line @PlainLine @Copy @ID=03-35 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Создание копии объекта Plain Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -829,7 +840,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Line @CurveLine @Smoke @Copy
+  @Draft @Create @Line @CurveLine @Smoke @Copy @ID=03-36 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -854,7 +865,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является Curve Line
 
 
-  @Draft @Create @Line @CurveLine @Copy
+  @Draft @Create @Line @CurveLine @Copy @ID=03-37 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -885,7 +896,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Line @CurveLine @Copy
+  @Draft @Create @Line @CurveLine @Copy @ID=03-38 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -915,7 +926,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Line @BrokenLine @Smoke @Copy
+  @Draft @Create @Line @BrokenLine @Smoke @Copy @ID=03-39 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -940,7 +951,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Then Проверить что последний добавленный элемент является Broken Line
 
 
-  @Draft @Create @Cable @BrokenLine @Copy
+  @Draft @Create @Cable @BrokenLine @Copy @ID=03-40 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -971,7 +982,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Thick    |
 
 
-  @Draft @Create @Line @BrokenLine @Copy
+  @Draft @Create @Line @BrokenLine @Copy @ID=03-41 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1001,7 +1012,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Connector @Copy @Smoke
+  @Draft @Create @Connector @Copy @Smoke @ID=03-42 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1027,7 +1038,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Connector
 
-  @Draft @Create @Connector @Copy
+  @Draft @Create @Connector @Copy @ID=03-43 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1059,7 +1070,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Headers | Connector | 2      |
       | RJ      | Connector | 2      |
 
-  @Draft @Create @Connector @Copy @Smoke
+  @Draft @Create @Connector @Copy @Smoke  @ID=03-44 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1085,7 +1096,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Connector
 
-  @Draft @Create @Connector @Copy
+  @Draft @Create @Connector @Copy  @ID=03-45 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1117,7 +1128,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Headers | Connector | 2      |
       | RJ      | Connector | 2      |
 
-  @Draft @Create @UserImage @Copy
+  @Draft @Create @UserImage @Copy  @ID=03-46 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1140,7 +1151,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 1      |
       | 2      |
 
-  @Draft @Create @UserImage @Copy
+  @Draft @Create @UserImage @Copy  @ID=03-47 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1163,7 +1174,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | 1      |
       | 2      |
 
-  @Draft @Create @Accessories @Smoke @Copy
+  @Draft @Create @Accessories @Smoke @Copy  @ID=03-48 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

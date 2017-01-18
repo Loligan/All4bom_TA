@@ -1,6 +1,7 @@
 <?php
 require_once "LoginPageObject.php";
 require_once "HomePageObject.php";
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
@@ -45,7 +46,9 @@ class CableAssembliesPageObject implements PageObject
      */
     static function clickOnCableRowMaterialsTab($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Cable Row Materials в панели не была найдена на странице Cable Assemblies");
         $tab = $webDriver->findElement(WebDriverBy::cssSelector(CableAssembliesPageObject::$CABLE_ROW_MATERIALS_TAB));
+        LastPhrase::setPhrase("Кнопка Cable Row Materials в панели не была нажата на странице Cable Assemblies");
         $tab->click();
     }
 
@@ -55,7 +58,9 @@ class CableAssembliesPageObject implements PageObject
      */
     static function clickOnCreateCableAssemblyButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка [Create Cable Assembly] не была найдена на странице Cable Assemblies");
         $button = $webDriver->findElement(WebDriverBy::cssSelector(CableAssembliesPageObject::$CREATE_CABLE_ASSEMLIES_BUTTON));
+        LastPhrase::setPhrase("Кнопка [Create Cable Assembly] не была нажата на странице Cable Assemblies");
         $button->click();
     }
 
@@ -65,11 +70,8 @@ class CableAssembliesPageObject implements PageObject
      */
     static function openRevisionsPageLatestCableAssembliesOnPage($webDriver)
     {
-        print "1";
         self::openPage($webDriver);
-        print "2";
         $count = count($webDriver->findElements(WebDriverBy::xpath(CableAssembliesPageObject::$REVISION_LINKS)));
-        print "3";
         if ($count > 0) {
             SimpleWait::waitingOfClick($webDriver, $webDriver->findElements(WebDriverBy::xpath(CableAssembliesPageObject::$REVISION_LINKS))[$count - 1]);
         } else {
@@ -111,11 +113,13 @@ class CableAssembliesPageObject implements PageObject
      * @throws Exception
      */
     static function clickOnEditButtonByCableAssembliesName($webDriver, $name){
+        LastPhrase::setPhrase("Не была найдена ссылка на ревизии или Cable Assemblies с именем ".$name);
         $revision = $webDriver->findElements(WebDriverBy::xpath(self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME, $name)));
         $count = count($revision);
         if (count($revision) > 0) {
             $revision[$count - 1]->click();
         } else {
+            LastPhrase::setPhrase("Не была найдена ссылка на ревизии или Cable Assemblies с именем ".$name);
             throw new Exception("Cable assembly with name: " . $name . " not found");
         }
     }
@@ -127,11 +131,14 @@ class CableAssembliesPageObject implements PageObject
      */
     public static function clickOnRevisionsLinkByNameCableAssemblies($webDriver, $name)
     {
+        LastPhrase::setPhrase("Не была найдена ссылка на ревизии с именем ".$name);
         $revision = $webDriver->findElements(WebDriverBy::xpath(self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME, $name)));
         $count = count($revision);
         if (count($revision) > 0) {
+            LastPhrase::setPhrase("Не была нажата ссылка на ревизии с именем ".$name);
             $revision[$count - 1]->click();
         } else {
+            LastPhrase::setPhrase("Не был найдена ссылка на ревизии с именем ".$name);
             throw new Exception("Cable assembly with name: " . $name . " not found");
         }
     }
@@ -144,8 +151,8 @@ class CableAssembliesPageObject implements PageObject
      */
     public static function checkCableAssemliesByName($webDriver, $name)
     {
+        LastPhrase::setPhrase("Cable Assemblies с именеим ".$name." небыла найдена. Поиск проивзодился по наличию линка на Cable revision по xpath: ".self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME, $name));
         $revision = $webDriver->findElements(WebDriverBy::xpath(self::getXpath(CableAssembliesPageObject::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME, $name)));
-        $count = count($revision);
         if (count($revision) > 0) {
             return true;
         } else {

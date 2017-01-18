@@ -72,8 +72,37 @@ class Report
         $this->textReport->setFullSteps($fullSteps);
     }
 
-    private function getPriorityID($afterScenarioScope){
+    /**
+     * @param Behat\Behat\Hook\Scope\AfterScenarioScope $afterScenarioScope
+     */
+    private function getTestID($afterScenarioScope){
+        $tags = $afterScenarioScope->getScenario()->getTags();
+        foreach ($tags as $tag) {
+            if(stristr($tag,"ID=")){
+                preg_match("/(?:ID=)(.*)/",$tag,$result);
+                return $result[1];
+            }
+        }
+    }
 
+    private function getPriorityID($afterScenarioScope){
+        $tags = $afterScenarioScope->getScenario()->getTags();
+        foreach ($tags as $tag) {
+            if(stristr($tag,"PRIORITY=")){
+                preg_match("/(?:PRIORITY=)(.*)/",$tag,$result);
+                return $result[1];
+            }
+        }
+    }
+
+    private function getAssignedID($afterScenarioScope){
+        $tags = $afterScenarioScope->getScenario()->getTags();
+        foreach ($tags as $tag) {
+            if(stristr($tag,"ASSIGNED=")){
+                preg_match("/(?:ASSIGNED=)(.*)/",$tag,$result);
+                return $result[1];
+            }
+        }
     }
 
     public function afterScenario($afterScenarioScope)
@@ -82,15 +111,19 @@ class Report
 
 
         if ($this->isRerun) {
+
+            $this->textReport->setIdTest($this->getTestID($afterScenarioScope));
+            $priority = $this->getPriorityID($afterScenarioScope);
+            $assigned = $this->getAssignedID($afterScenarioScope);
             $this->textReport->afterScenario();
             $report = new RedmineSimpleReport($this->urlRedmine, $this->userRedmine, $this->passwordRedmine, $this->nameProject);
 
-            if($this->textReport->isGiven()){
+//            if($this->textReport->isGiven()){
 //                Set priority with ID=4
-                $this->priority = 4;
-            }
+//                $this->priority = 4;
+//            }
 
-            $report->createIssue($this->textReport->getTitle(), $this->textReport->getDescription(), $this->priority, $this->assignedUserId);
+            $report->createIssue($this->textReport->getTitle(), $this->textReport->getDescription(), $priority, $assigned);
         }
     }
 

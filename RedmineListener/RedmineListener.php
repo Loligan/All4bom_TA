@@ -2,6 +2,7 @@
 
 require_once '../vendor/autoload.php';
 require_once '../RedmineListener/RedmineListener.php';
+require_once '../RunnableTests/RunnableTest.php';
 
 class RedmineListener
 {
@@ -11,11 +12,13 @@ class RedmineListener
     private $newStatus;
     private $closeStatus;
     private $redmineURL;
+    private $login;
+    private $password;
 
     function __construct($redmineURL, $login, $password)
     {
-        $this->client = new \Redmine\Client($redmineURL, $login, $password);
-        $this->projectId = $this->client->project->getIdByName("All4BOM");
+        $this->login = $login;
+        $this->password = $password;
         $this->isPrivate = true;
         $this->newStatus = 1;
         $this->closeStatus = 5;
@@ -28,7 +31,7 @@ class RedmineListener
     {
         $issues = $this->client->issue->all([
             'project_id' => $this->projectId,
-            "assigned_to_id" => 5
+            'assigned_to_id' => 5
         ]);
         if (!empty($issues["issues"])) {
              self::getAllTitles($issues["issues"],$ids,$titles);
@@ -70,14 +73,28 @@ class RedmineListener
         $sleepMinutes*=60;
         while (true) {
             try{
+                $this->client = new \Redmine\Client($this->redmineURL, $this->login, $this->password);
+                $this->projectId = $this->client->project->getIdByName("All4BOM");
             $result = $this->getAllCloseReportWithAssignedRobot($ids,$titles);
+            var_dump($result);
             if ($result == false) {
                 sleep($sleepMinutes);
             } else {
                self::getTitlesAndTags($titles,$titlesWithoutTag,$tags);
-                var_dump($ids);
-                var_dump($tags);
-
+//                var_dump($ids);
+//                var_dump($tags);
+//                TODO запустить тест по тегу, если прошел то закрыть и оставить без Assigned to
+               if(RunnableTest::runByTag($tags[0])){
+                    $this->client->issue->update($ids[0],[
+                        "assigned_to_id" => 1,
+                        "status_id" => 5
+                    ]);
+               }else{
+                   $this->client->issue->update($ids[0],[
+                       "assigned_to_id" => 1,
+                       "status_id" => 2
+                   ]);
+               }
             }
         }catch (Exception $e){};
         }

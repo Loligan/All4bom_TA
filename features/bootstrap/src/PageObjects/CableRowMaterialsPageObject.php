@@ -3,7 +3,7 @@
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 require_once "CableAssembliesPageObject.php";
-
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 class CableRowMaterialsPageObject implements PageObject
 {
     private static $CREATE_BUTTON;
@@ -28,7 +28,9 @@ class CableRowMaterialsPageObject implements PageObject
      */
     static function clickOnCreateButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка [Create cable row materials] на странице Cable Row Materials не была найдена. CssSelector элемента: ".CableRowMaterialsPageObject::$CREATE_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::cssSelector(CableRowMaterialsPageObject::$CREATE_BUTTON));
+        LastPhrase::setPhrase("Кнопка [Create cable row materials] на странице Cable Row Materials не была нажата. CssSelector элемента: ".CableRowMaterialsPageObject::$CREATE_BUTTON);
         $button->click();
     }
 
@@ -65,6 +67,7 @@ class CableRowMaterialsPageObject implements PageObject
      */
     static function checkCAInTable($webDriver, $name)
     {
+        LastPhrase::setPhrase("Cable Row Materials с именем ".$name." не был найден");
         $pageSource = $webDriver->getPageSource();
         $contentFount = strpos($pageSource, substr(self::getValue($name), 0, 10));
         if ($contentFount == false) {
@@ -78,8 +81,10 @@ class CableRowMaterialsPageObject implements PageObject
      */
     public static function clickOnEditButtonByName($webDriver, $name)
     {
+        LastPhrase::setPhrase("Кнопка [EDIT] в строке Cable Row Materials с именем ".$name." не была найдена");
         $xpath = str_replace('VALUE', $name, CableRowMaterialsPageObject::$EDIT_BUTTON);
         $editButton = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Кнопка [EDIT] в строке Cable Row Materials с именем ".$name." не была нажата");
         $editButton->click();
     }
 

@@ -3,6 +3,7 @@
 require_once "CreateCableAssembliesPageObject.php";
 require_once "SimpleWait.php";
 require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/CheckValues/CheckJSONValue.php";
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverMouse;
 
@@ -101,6 +102,7 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static private function getIndexSize($webDriver)
     {
+        LastPhrase::setPhrase("Полотно не было найдено на странице Revision по cssSelector: " . DraftCreateRevisionsPageObject::$CANVAS);
         $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
         DraftCreateRevisionsPageObject::$CANVAS_HEIGHT = $canvas->getSize()->getHeight();
         DraftCreateRevisionsPageObject::$CANVAS_WIDTH = $canvas->getSize()->getWidth();
@@ -141,7 +143,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnCableIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Cable на панели инструментов не была найдена по xpath: " . DraftCreateRevisionsPageObject::$CABLE_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABLE_ICON));
+        LastPhrase::setPhrase("Иконка Cable на панели инструментов не была нажата. Xpath элемента: " . DraftCreateRevisionsPageObject::$CABLE_ICON);
         $icon->click();
     }
 
@@ -150,7 +154,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnPlainCableButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Plain Cable на панели инструментов не была найдена по xpath: " . DraftCreateRevisionsPageObject::$PLAIN_CABLE_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$PLAIN_CABLE_BUTTON));
+        LastPhrase::setPhrase("Кнопка Plain Cable на панели инструментов не была нажата. Xpath элемента: " . DraftCreateRevisionsPageObject::$PLAIN_CABLE_BUTTON);
         $button->click();
     }
 
@@ -159,8 +165,10 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnCurveCableButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Curve Cable на панели инструментов не была найдена по xpath: " . DraftCreateRevisionsPageObject::$CURVE_CABLE_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CURVE_CABLE_BUTTON));
         $button->click();
+        LastPhrase::setPhrase("Кнопка Curve Cable на панели инструментов не была нажата. Xpath элемента: " . DraftCreateRevisionsPageObject::$CURVE_CABLE_BUTTON);
     }
 
     /**
@@ -168,8 +176,11 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnBrokenCableButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Broken Cable на панели инструментов не была найдена по xpath: " . DraftCreateRevisionsPageObject::$BROKEN_CABLE_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$BROKEN_CABLE_BUTTON));
+        LastPhrase::setPhrase("Кнопка Broken Cable на панели инструментов не была нажата. Xpath элемента: " . DraftCreateRevisionsPageObject::$BROKEN_CABLE_BUTTON);
         $button->click();
+
     }
 
     /**
@@ -180,14 +191,19 @@ class DraftCreateRevisionsPageObject implements PageObject
     {
         $option = null;
         if ($weight === "Thinnest") {
+            LastPhrase::setPhrase("Значение в выпадающем списка Weight у объекта Cable не найдено значение " . $weight . " по xpath" . DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THINNEST);
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THINNEST));
         } else if ($weight === "Thin") {
+            LastPhrase::setPhrase("Значение в выпадающем списка Weight у объекта Cable не найдено значение " . $weight . " по xpath" . DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THIN);
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THIN));
         } else if ($weight === "Thick") {
+            LastPhrase::setPhrase("Значение в выпадающем списка Weight у объекта Cable не найдено значение " . $weight . " по xpath" . DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THICK);
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CABEL_WEIGHT_THICK));
+
         }
 
         if ($option != null) {
+            LastPhrase::setPhrase("Значение в выпадающем списка Weight у объекта Cable не выбрано.");
             $option->click();
         }
 
@@ -512,7 +528,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         $xpath = str_replace("VALUE", $cellNumber, DraftCreateRevisionsPageObject::$CONNECTOR_CELL);
         SimpleWait::waitShow($webDriver, $xpath);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
-        SimpleWait::waitingOfClick($webDriver,$cell);
+        SimpleWait::waitingOfClick($webDriver, $cell);
     }
 
     /**
@@ -579,7 +595,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     {
 
         $xpath = str_replace("VALUE", $idImage, DraftCreateRevisionsPageObject::$IMAGE_CELL);
-        SimpleWait::waitShow($webDriver,$xpath);
+        SimpleWait::waitShow($webDriver, $xpath);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $cell->click();
     }
@@ -613,9 +629,9 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function clickOnAccessoriesCell($webDriver, $numberCell)
     {
         $xpath = str_replace("VALUE", $numberCell, DraftCreateRevisionsPageObject::$ACCESSORIES_CELL);
-        SimpleWait::waitShow($webDriver,$xpath);
+        SimpleWait::waitShow($webDriver, $xpath);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
-        SimpleWait::waitingOfClick($webDriver,$cell);
+        SimpleWait::waitingOfClick($webDriver, $cell);
     }
 
     /**
@@ -823,15 +839,15 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     public static function clickOnCategorySelectConnector($webDriver)
     {
-        SimpleWait::waitShow($webDriver,self::$CONNECTOR_CATEGORY_SELECT);
+        SimpleWait::waitShow($webDriver, self::$CONNECTOR_CATEGORY_SELECT);
         $select = $webDriver->findElement(WebDriverBy::xpath(self::$CONNECTOR_CATEGORY_SELECT));
         $select->click();
     }
 
     public static function clickOnOptionsConnectorCategoryByName($webDriver, $nameValue)
     {
-        $xpath = str_replace("VALUE",$nameValue,self::$CONNECTOR_CATEGORY_OPTION);
-        SimpleWait::waitShow($webDriver,$xpath);
+        $xpath = str_replace("VALUE", $nameValue, self::$CONNECTOR_CATEGORY_OPTION);
+        SimpleWait::waitShow($webDriver, $xpath);
         $option = $webDriver->findElement(WebDriverBy::xpath($xpath));
         $option->click();
     }
