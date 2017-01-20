@@ -118,6 +118,7 @@ class PinoutDetailsCreateRevisionsPageObject implements PageObject
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $value
+     * @throws Exception
      */
     public static function checkChooseConnectorValueByName($webDriver, $value)
     {

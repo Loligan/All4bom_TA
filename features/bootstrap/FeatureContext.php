@@ -19,7 +19,9 @@ require_once "src/PageObjects/RevisionsPageObjects.php";
 require_once "src/PageObjects/PinoutSchemasCreateRevisionPageObject.php";
 require_once "src/PageObjects/NotesCreateRevisionsPageObject.php";
 require_once "src/PageObjects/LabelsCreateRevisionPageObject.php";
+require_once "src/PageObjects/CableRowMaterialsBOMPageObject.php";
 require_once "src/PageObjects/PinoutDetailsCreateRevisionsPageObject.php";
+require_once "src/PageObjects/DraftCableRowMaterialsPageObject.php";
 require_once "src/CheckValues/CheckJSONValue.php";
 require_once "src/CheckedDraftObjects/ParserJSON.php";
 require_once "src/DraftObjects/CompareRevisions.php";
@@ -62,6 +64,8 @@ class FeatureContext implements Context
         CableRowMaterialsPageObject::init();
         CreateCableRowMaterialsPageObject::init();
         PinoutSchemasCreateRevisionPageObject::init();
+        DraftCableRowMaterialsPageObject::init();
+        CableRowMaterialsBOMPageObject::init();
         HeaderPageObject::init();
         ParserJSON::init("/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
         ParserJSON::getParamsObject("plainCable");
@@ -74,12 +78,14 @@ class FeatureContext implements Context
         ParserJSON::getParamsObject("dimention");
         ParserJSON::getParamsObject("userImage");
         ParserJSON::getParamsObject("accessories");
+        ParserJSON::getParamsObject("crm");
         ParserJSON::getParamsObject("customPart");
     }
 
     /**
      * @BeforeScenario
-     */    public function BeforeScenario(\Behat\Behat\Hook\Scope\BeforeScenarioScope $scope)
+     */
+    public function BeforeScenario(\Behat\Behat\Hook\Scope\BeforeScenarioScope $scope)
     {
 
         $capabilities = DesiredCapabilities::chrome();
@@ -90,7 +96,7 @@ class FeatureContext implements Context
 
         CompareRevisions::init();
 //        REPORT
-        $this->report = new Report(true,1,2,5,"http://127.0.0.1/redmine/","MrRobot","12345678","All4BOM");
+        $this->report = new Report(true, 1, 2, 5, "http://127.0.0.1/redmine/", "MrRobot", "12345678", "All4BOM");
         $this->report->beforeScenario($scope);
     }
 
@@ -142,7 +148,8 @@ class FeatureContext implements Context
     /**
      * @BeforeStep
      */
-    public function beforeStep(){
+    public function beforeStep()
+    {
 //        sleep(1);
     }
 
@@ -743,18 +750,18 @@ class FeatureContext implements Context
     /**
      * @Given /^Ввести в BOM следующую информацию: (.*),(.*), (.*), (.*),(.*),(.*),(.*),(.*),(.*)$/
      */
-    public function setInformationInCustomerPartNumber($category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity,$tolerance)
+    public function setInformationInCustomerPartNumber($category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity, $tolerance)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-        BOMCreateRevisionPageObject::setPartNumberInformation($this->webDriver,$category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity,$tolerance,1);
+        BOMCreateRevisionPageObject::setPartNumberInformation($this->webDriver, $category, $partNumber, $manufactureName, $description, $datasheet, $customerPartNumber, $remarks, $quantity, $tolerance, 1);
     }
 
-        /**
+    /**
      * @Given /^Кликнуть на полотне по координатам X = "([^"]*)" Y= "([^"]*)"$/
      */
     public function clickOnDraftByPoints($X, $Y)
     {
-        DraftCreateRevisionsPageObject::clickOnDraftPoint($this->webDriver,$X,$Y);
+        DraftCreateRevisionsPageObject::clickOnDraftPoint($this->webDriver, $X, $Y);
     }
 
     /**
@@ -794,7 +801,7 @@ class FeatureContext implements Context
      */
     public function setCustomLoginAndPass($arg1, $arg2)
     {
-        LoginPageObject::setCustomInformation($this->webDriver,$arg1,$arg2);
+        LoginPageObject::setCustomInformation($this->webDriver, $arg1, $arg2);
     }
 
     /**
@@ -826,8 +833,8 @@ class FeatureContext implements Context
      */
     public function checkCableAssemliesByName($arg1)
     {
-        if(!CableAssembliesPageObject::checkCableAssemliesByName($this->webDriver,$arg1)){
-            throw new Exception("Cable Assemblies with name ".$arg1." not found");
+        if (!CableAssembliesPageObject::checkCableAssemliesByName($this->webDriver, $arg1)) {
+            throw new Exception("Cable Assemblies with name " . $arg1 . " not found");
         }
     }
 
@@ -836,8 +843,8 @@ class FeatureContext implements Context
      */
     public function pressEditButtonOnCableAssembliesByName($arg1)
     {
-        $this->bufCableAssemblies  = $arg1;
-        CableAssembliesPageObject::clickOnEditButtonByCableAssembliesName($this->webDriver,$arg1);
+        $this->bufCableAssemblies = $arg1;
+        CableAssembliesPageObject::clickOnEditButtonByCableAssembliesName($this->webDriver, $arg1);
     }
 
     /**
@@ -869,7 +876,7 @@ class FeatureContext implements Context
      */
     public function setFrontType($arg1)
     {
-        DraftCreateRevisionsPageObject::setTextFont($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::setTextFont($this->webDriver, $arg1);
     }
 
     /**
@@ -877,7 +884,7 @@ class FeatureContext implements Context
      */
     public function setFrontSize($arg1)
     {
-        DraftCreateRevisionsPageObject::setTextSize($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::setTextSize($this->webDriver, $arg1);
     }
 
     /**
@@ -885,7 +892,7 @@ class FeatureContext implements Context
      */
     public function setFrontColor($arg1)
     {
-        DraftCreateRevisionsPageObject::setColorValue($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::setColorValue($this->webDriver, $arg1);
     }
 
     /**
@@ -917,7 +924,7 @@ class FeatureContext implements Context
      */
     public function setWeightSetting($arg1)
     {
-        DraftCreateRevisionsPageObject::setWeightCabel($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::setWeightCabel($this->webDriver, $arg1);
     }
 
     /**
@@ -949,7 +956,7 @@ class FeatureContext implements Context
      */
     public function checkCurveCable()
     {
-        CheckJSONValue::check($this->webDriver,"curveCable");
+        CheckJSONValue::check($this->webDriver, "curveCable");
     }
 
     /**
@@ -965,7 +972,7 @@ class FeatureContext implements Context
      */
     public function checkBrokenCable()
     {
-        CheckJSONValue::check($this->webDriver,"brokenCable");
+        CheckJSONValue::check($this->webDriver, "brokenCable");
     }
 
     /**
@@ -989,7 +996,7 @@ class FeatureContext implements Context
      */
     public function checkPlainLine()
     {
-        CheckJSONValue::check($this->webDriver,"plainLine");
+        CheckJSONValue::check($this->webDriver, "plainLine");
     }
 
     /**
@@ -997,7 +1004,7 @@ class FeatureContext implements Context
      */
     public function setWeightSettingToLine($arg1)
     {
-        DraftCreateRevisionsPageObject::setWeightLine($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::setWeightLine($this->webDriver, $arg1);
     }
 
     /**
@@ -1013,7 +1020,7 @@ class FeatureContext implements Context
      */
     public function checkCurveLine()
     {
-        CheckJSONValue::check($this->webDriver,"curveLine");
+        CheckJSONValue::check($this->webDriver, "curveLine");
     }
 
     /**
@@ -1029,7 +1036,7 @@ class FeatureContext implements Context
      */
     public function checkBrokenLine()
     {
-        CheckJSONValue::check($this->webDriver,"brokenLine");
+        CheckJSONValue::check($this->webDriver, "brokenLine");
     }
 
     /**
@@ -1037,7 +1044,7 @@ class FeatureContext implements Context
      */
     public function clickOnConnectorIconOnDraft()
     {
-    DraftCreateRevisionsPageObject::clickOnConnectorIcon($this->webDriver);
+        DraftCreateRevisionsPageObject::clickOnConnectorIcon($this->webDriver);
     }
 
 
@@ -1062,7 +1069,7 @@ class FeatureContext implements Context
      */
     public function clickOnCell($arg1)
     {
-        DraftCreateRevisionsPageObject::clickOnConnectorCell($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::clickOnConnectorCell($this->webDriver, $arg1);
     }
 
     /**
@@ -1070,7 +1077,7 @@ class FeatureContext implements Context
      */
     public function checkConnectorOnDraft()
     {
-        CheckJSONValue::check($this->webDriver,"connector");
+        CheckJSONValue::check($this->webDriver, "connector");
     }
 
     /**
@@ -1087,8 +1094,8 @@ class FeatureContext implements Context
     public function checkBOMConnectorByNumber($arg1)
     {
         $numberButtons = BOMCreateRevisionPageObject::getConnectorButtoms($this->webDriver);
-        if($numberButtons!=$arg1){
-            throw new Exception("Not ".$arg1." buttons connector in BOM. In BOM tab ".$numberButtons." count buttons connector object");
+        if ($numberButtons != $arg1) {
+            throw new Exception("Not " . $arg1 . " buttons connector in BOM. In BOM tab " . $numberButtons . " count buttons connector object");
         }
     }
 
@@ -1097,7 +1104,7 @@ class FeatureContext implements Context
      */
     public function clickOnConnectorButtonByNumber($arg1)
     {
-        BOMCreateRevisionPageObject::clickOnConnectorButtonByNumberConnector($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::clickOnConnectorButtonByNumberConnector($this->webDriver, $arg1);
     }
 
     /**
@@ -1105,7 +1112,7 @@ class FeatureContext implements Context
      */
     public function openOptionsConnectorListByNameInBom($arg1)
     {
-        BOMCreateRevisionPageObject::clickOnSelectCustomInConnectorCableByName($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::clickOnSelectCustomInConnectorCableByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1113,7 +1120,7 @@ class FeatureContext implements Context
      */
     public function clickOnOptionValueByNameSelect($arg1, $arg2)
     {
-        BOMCreateRevisionPageObject::clickOnCustomOptionByNameLabelAndValueInConnectorTable($this->webDriver,$arg2,$arg1);
+        BOMCreateRevisionPageObject::clickOnCustomOptionByNameLabelAndValueInConnectorTable($this->webDriver, $arg2, $arg1);
     }
 
     /**
@@ -1121,7 +1128,7 @@ class FeatureContext implements Context
      */
     public function selectLineInTableByNumber($arg1)
     {
-        BOMCreateRevisionPageObject::clickOnLineTableByName($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::clickOnLineTableByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1129,8 +1136,8 @@ class FeatureContext implements Context
      */
     public function checkValueInTableByName($arg1, $arg2)
     {
-        if(BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver,$arg1)!=$arg2){
-            throw new Exception("In table not be value ".$arg2." in column with name ".$arg1);
+        if (BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver, $arg1) != $arg2) {
+            throw new Exception("In table not be value " . $arg2 . " in column with name " . $arg1);
         }
     }
 
@@ -1139,7 +1146,7 @@ class FeatureContext implements Context
      */
     public function checkDescriprionValueByName($arg1, $arg2, $arg3)
     {
-        BOMCreateRevisionPageObject::checkDescriptionValueByNameCableObject($this->webDriver,$arg1,$arg2,$arg3);
+        BOMCreateRevisionPageObject::checkDescriptionValueByNameCableObject($this->webDriver, $arg1, $arg2, $arg3);
     }
 
     /**
@@ -1163,7 +1170,7 @@ class FeatureContext implements Context
      */
     public function checkChooseConnectorOptionByName($arg1)
     {
-        PinoutDetailsCreateRevisionsPageObject::checkChooseConnectorValueByName($this->webDriver,$arg1);
+        PinoutDetailsCreateRevisionsPageObject::checkChooseConnectorValueByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1171,7 +1178,7 @@ class FeatureContext implements Context
      */
     public function selectOptionChooseConnectorByValue($arg1)
     {
-        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver,$arg1);
+        PinoutDetailsCreateRevisionsPageObject::clickOnOptionFirstConnectorByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1179,7 +1186,7 @@ class FeatureContext implements Context
      */
     public function checkChooseSecondConnectorOptionByName($arg1)
     {
-        PinoutDetailsCreateRevisionsPageObject::checkChooseSecondConnectorValueByName($this->webDriver,$arg1);
+        PinoutDetailsCreateRevisionsPageObject::checkChooseSecondConnectorValueByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1187,7 +1194,7 @@ class FeatureContext implements Context
      */
     public function clickOnChooseSecondConnectorSelect()
     {
-      PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
+        PinoutDetailsCreateRevisionsPageObject::clickOnSelectSecondConnector($this->webDriver);
     }
 
     /**
@@ -1195,7 +1202,7 @@ class FeatureContext implements Context
      */
     public function clickOnChooseSecondConnectorOptionByName($arg1)
     {
-        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver,$arg1);
+        PinoutDetailsCreateRevisionsPageObject::clickOnOptionSecondConnectorByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1212,8 +1219,8 @@ class FeatureContext implements Context
     public function checkCableObjectInBom($arg1)
     {
         $countObjects = BOMCreateRevisionPageObject::getNumberCableButtons($this->webDriver);
-        if($countObjects !=$arg1){
-            throw new Exception("In bom not found ".$arg1." cable objects. In bom ".$countObjects." cable objects");
+        if ($countObjects != $arg1) {
+            throw new Exception("In bom not found " . $arg1 . " cable objects. In bom " . $countObjects . " cable objects");
         }
     }
 
@@ -1222,7 +1229,7 @@ class FeatureContext implements Context
      */
     public function clickOnCableButtonByNumber($arg1)
     {
-        BOMCreateRevisionPageObject::clickOnCableButton($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::clickOnCableButton($this->webDriver, $arg1);
     }
 
     /**
@@ -1238,7 +1245,7 @@ class FeatureContext implements Context
      */
     public function selectFamilyOptionByNameInTable($arg1)
     {
-        BOMCreateRevisionPageObject::setFamilyOption($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::setFamilyOption($this->webDriver, $arg1);
     }
 
     /**
@@ -1254,7 +1261,7 @@ class FeatureContext implements Context
      */
     public function setOptionCategoryInTable($arg1)
     {
-        BOMCreateRevisionPageObject::setCategoryOption($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::setCategoryOption($this->webDriver, $arg1);
     }
 
     /**
@@ -1263,8 +1270,8 @@ class FeatureContext implements Context
     public function checkCountTableInPinoutDetails($arg1)
     {
         $countTables = PinoutDetailsCreateRevisionsPageObject::getCountTables($this->webDriver);
-        if($countTables!=$arg1){
-            throw new Exception("In pinout not be found".$arg1." .In pinout details tab found ".$countTables." tables");
+        if ($countTables != $arg1) {
+            throw new Exception("In pinout not be found" . $arg1 . " .In pinout details tab found " . $countTables . " tables");
         }
     }
 
@@ -1289,7 +1296,7 @@ class FeatureContext implements Context
      */
     public function checkValueInTablePinoutSchemas($arg1)
     {
-        PinoutSchemasCreateRevisionPageObject::checkValueInTable($this->webDriver,$arg1);
+        PinoutSchemasCreateRevisionPageObject::checkValueInTable($this->webDriver, $arg1);
     }
 
     /**
@@ -1297,7 +1304,7 @@ class FeatureContext implements Context
      */
     public function clickOnCheckBoxByNameLabelInPinoutSchemsTable($arg1)
     {
-        PinoutSchemasCreateRevisionPageObject::selectOnCheckBoxByNameLabel($this->webDriver,$arg1);
+        PinoutSchemasCreateRevisionPageObject::selectOnCheckBoxByNameLabel($this->webDriver, $arg1);
     }
 
     /**
@@ -1305,7 +1312,7 @@ class FeatureContext implements Context
      */
     public function setConnectionTitleInPinoutSchemas($arg1)
     {
-        PinoutSchemasCreateRevisionPageObject::setTextInConnectionTitle($this->webDriver,$arg1);
+        PinoutSchemasCreateRevisionPageObject::setTextInConnectionTitle($this->webDriver, $arg1);
     }
 
     /**
@@ -1321,7 +1328,7 @@ class FeatureContext implements Context
      */
     public function checkNameTabInPinoutSchemas($arg1)
     {
-        PinoutSchemasCreateRevisionPageObject::checkTabByName($this->webDriver,$arg1);
+        PinoutSchemasCreateRevisionPageObject::checkTabByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1329,7 +1336,7 @@ class FeatureContext implements Context
      */
     public function checkIsNotVisibleTabByNameInPinoutSchemas($arg1)
     {
-        PinoutSchemasCreateRevisionPageObject::checkTabByNameNotFound($this->webDriver,$arg1);
+        PinoutSchemasCreateRevisionPageObject::checkTabByNameNotFound($this->webDriver, $arg1);
     }
 
     /**
@@ -1337,7 +1344,7 @@ class FeatureContext implements Context
      */
     public function deleteConnectorInBomByName($arg1)
     {
-        BOMCreateRevisionPageObject::deleteConnector($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::deleteConnector($this->webDriver, $arg1);
     }
 
     /**
@@ -1345,7 +1352,7 @@ class FeatureContext implements Context
      */
     public function setCategoryOptionsConnectorByNameOnDraft($arg1)
     {
-        DraftCreateRevisionsPageObject::clickOnOptionsConnectorCategoryByName($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::clickOnOptionsConnectorCategoryByName($this->webDriver, $arg1);
     }
 
     /**
@@ -1361,7 +1368,7 @@ class FeatureContext implements Context
      */
     public function checkUserImageOnDraft()
     {
-        CheckJSONValue::check($this->webDriver,"userImage");
+        CheckJSONValue::check($this->webDriver, "userImage");
     }
 
     /**
@@ -1377,7 +1384,7 @@ class FeatureContext implements Context
      */
     public function clickOnCellUserImageOnDraft($arg1)
     {
-        DraftCreateRevisionsPageObject::clickOnUserImageCell($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::clickOnUserImageCell($this->webDriver, $arg1);
     }
 
     /**
@@ -1393,7 +1400,7 @@ class FeatureContext implements Context
      */
     public function cickOnAccessoriesCellOnDraft($arg1)
     {
-        DraftCreateRevisionsPageObject::clickOnAccessoriesCell($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::clickOnAccessoriesCell($this->webDriver, $arg1);
     }
 
     /**
@@ -1401,8 +1408,9 @@ class FeatureContext implements Context
      */
     public function checkAccessoriesOnDraft()
     {
-        CheckJSONValue::check($this->webDriver,"accessories");
+        CheckJSONValue::check($this->webDriver, "accessories");
     }
+
     /**
      * @When /^Нажать на иконку \[Custom part\]$/
      */
@@ -1416,7 +1424,7 @@ class FeatureContext implements Context
      */
     public function checkCustomPartInDarft()
     {
-        CheckJSONValue::check($this->webDriver,"customPart");
+        CheckJSONValue::check($this->webDriver, "customPart");
     }
 
     /**
@@ -1424,7 +1432,7 @@ class FeatureContext implements Context
      */
     public function checkCustomPartInBom($arg1)
     {
-        BOMCreateRevisionPageObject::checkCategoryInputByNumberInputs($this->webDriver,$arg1);
+        BOMCreateRevisionPageObject::checkCategoryInputByNumberInputs($this->webDriver, $arg1);
     }
 
     /**
@@ -1440,7 +1448,7 @@ class FeatureContext implements Context
      */
     public function setQTYCopyValueOnDraft($arg1)
     {
-        DraftCreateRevisionsPageObject::setCopyQuantity($this->webDriver,$arg1);
+        DraftCreateRevisionsPageObject::setCopyQuantity($this->webDriver, $arg1);
     }
 
     /**
@@ -1521,6 +1529,213 @@ class FeatureContext implements Context
      */
     public function checkRevisionPage()
     {
+    }
+
+    /**
+     * @Given /^Кликнуть на \[CABLE ROW MATERIALS\] в шапке$/
+     */
+    public function clickOnCRMTab()
+    {
+        HomePageObject::clickOnCableRowMaterialsTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[CREATE CABLE ROW MATERIALS\]$/
+     */
+    public function clickOnCreateCableRowMaterialsButton()
+    {
+        CableRowMaterialsPageObject::clickOnCreateButton($this->webDriver);
+    }
+
+    /**
+     * @When /^Нажать на иконку \[Text\] на панели иструментов CRM$/
+     */
+    public function clickOnTextIconCRM()
+    {
+        DraftCableRowMaterialsPageObject::clickOnTextIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[TEXT\] на панели иструментов CRM$/
+     */
+    public function clickOnTextButtonCRM()
+    {
+        DraftCableRowMaterialsPageObject::clickOnTextButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Установить настроки Front: "([^"]*)" CRM$/
+     */
+    public function setFrontTextCRM($arg1)
+    {
+        DraftCableRowMaterialsPageObject::setFrontText($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Установить настроки Front Size: "([^"]*)" CRM$/
+     */
+    public function setFrontSizeCRM($arg1)
+    {
+        DraftCableRowMaterialsPageObject::setFrontSizeText($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Установить настроки Front Color: "([^"]*)" CRM$/
+     */
+    public function setTextColorCRM($arg1)
+    {
+        DraftCableRowMaterialsPageObject::setColorFront($this->webDriver, $arg1);
+    }
+
+    /**
+     * @When /^Нажать на иконку \[CUSTOM DIMENTION\] на панели иструментов CRM$/
+     */
+    public function clickOnCustomDimentionIconCRM()
+    {
+        DraftCableRowMaterialsPageObject::clickOnCustomDimentionIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на иконку \[CABLE ROW MATERIALS\] на панели иструментов CRM$/
+     */
+    public function clickOnCableRowMaterialsIconCRM()
+    {
+        DraftCableRowMaterialsPageObject::clickOnCablerowMaterialsIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Кликнуть по ячейке №([^"]*) в таблице объектов Cable row materials$/
+     */
+    public function clickOnCableRowMaterialsCellCRM($arg1)
+    {
+        DraftCableRowMaterialsPageObject::clickOnCableRowMaterialsCell($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Cable Row Materials$/
+     */
+    public function checkCRMObjectonDraftCRM()
+    {
+        CheckJSONValue::check($this->webDriver, "crm");
+    }
+
+    /**
+     * @Given /^Проверить что последний добавленный элемент является Wrap$/
+     */
+    public function checkWrapOnCRMDraft()
+    {
+    }
+
+    /**
+     * @Given /^Нажать на иконку \[WRAP\] на панели иструментов CRM$/
+     */
+    public function clickOnWrapIconCRM()
+    {
+        DraftCableRowMaterialsPageObject::clickOnWrapIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на иконку \[Copy\] на панели иструментов CRM$/
+     */
+    public function clickOnCopyIconInCRMDraft()
+    {
+        DraftCableRowMaterialsPageObject::clickOnCopyIcon($this->webDriver);
+    }
+
+    /**
+     * @Given /^Установить настройку Quantity на значение (.*) на панели иструментов CRM$/
+     */
+    public function setQTYOnCopyInCRMDraft($QTY)
+    {
+        DraftCableRowMaterialsPageObject::setQTYCopyValue($this->webDriver, $QTY);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Copy\] на панели иструментов CRM$/
+     */
+    public function clickOnCopyButtonDraftCRM()
+    {
+        DraftCableRowMaterialsPageObject::clickOnCloneButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Перейти на вкладку BOM в CRM$/
+     */
+    public function goToBOMCrm()
+    {
+        CableRowMaterialsBOMPageObject::clickOnBOMTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Select Part\] под номером ([^"]*)$/
+     */
+    public function clickOnCustompartButtonInCRMByNumber($arg1)
+    {
+        CableRowMaterialsBOMPageObject::clickOnSelectPartButtonByNumber($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Раскрыть список Family в BOM CRM$/
+     */
+    public function clickOnFamilySelectCRM()
+    {
+        CableRowMaterialsBOMPageObject::clickOnFamilySelect($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" из выпадающего списка Family в CRM$/
+     */
+    public function clickOnFamilyOptionCRM($arg1)
+    {
+        CableRowMaterialsBOMPageObject::setFamilyOption($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Раскрыть список Category в BOM CRM$/
+     */
+    public function clickOnCategorySelectCRM()
+    {
+        CableRowMaterialsBOMPageObject::clickOnCategorySelect($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать значение "([^"]*)" из выпадающего списка Category в CRM$/
+     */
+    public function clickOnCategoryOptionByNameCRM($arg1)
+    {
+        CableRowMaterialsBOMPageObject::setCategoryOption($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Выбрать первую строку в таблице CRM$/
+     */
+    public function clickOnFirstLineInTableCRM()
+    {
+        CableRowMaterialsBOMPageObject::clickOnFirstLineInTable($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в BOM в "([^"]*)" Select Part в столбце Part Number не пустое значение$/
+     */
+    public function checkBOMpartnumberByNumberSelectPartNotNull($arg1)
+    {
+        CableRowMaterialsBOMPageObject::checkPartNumberSelectPartByNumberNotNull($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Перейти на вкладку Draft в CRM$/
+     */
+    public function goDraftTabCRM()
+    {
+        CreateCableRowMaterialsPageObject::clickOnDraftTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в BOM CRM присутствует (\d+) кнопки \[Select Part\]$/
+     */
+    public function checkSelectPartButtomsNumbers($arg1)
+    {
+        CableRowMaterialsBOMPageObject::checkSelectPartBottomsNumbers($this->webDriver,$arg1);
     }
 
 

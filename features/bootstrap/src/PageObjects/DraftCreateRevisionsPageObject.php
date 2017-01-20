@@ -322,7 +322,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnIconText($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Text небыла найдена на панели инструментов. Xpath: ".self::$TEXT_ICON);
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$TEXT_ICON));
+        LastPhrase::setPhrase("Иконка Text небыла нажата. Xpath: ".self::$TEXT_ICON);
         $button->click();
     }
 
@@ -332,7 +334,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function setTextFont($webDriver, $value)
     {
+        LastPhrase::setPhrase("Значение ".$value." из выпадающего списка выбора шрифта небыло найдено. Xpath: ".self::$TEXT_FONT);
         $button = $webDriver->findElement(WebDriverBy::xpath(str_replace("VALUE", $value, DraftCreateRevisionsPageObject::$TEXT_FONT)));
+        LastPhrase::setPhrase("Значение ".$value." из выпадающего списка выбора шрифта небыло нажато. Xpath: ".self::$TEXT_FONT);
         $button->click();
     }
 
@@ -342,7 +346,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function setTextSize($webDriver, $value)
     {
+        LastPhrase::setPhrase("Значение ".$value." из выпадающего списка выбора размера текста небыло найдено. Xpath: ".self::$TEXT_SIZE);
         $button = $webDriver->findElement(WebDriverBy::xpath(str_replace("VALUE", $value, DraftCreateRevisionsPageObject::$TEXT_SIZE)));
+        LastPhrase::setPhrase("Значение ".$value." из выпадающего списка выбора размера текста небыло нажато. Xpath: ".self::$TEXT_SIZE);
         $button->click();
     }
 
@@ -352,7 +358,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function setColorValue($webDriver, $color)
     {
+        LastPhrase::setPhrase("Поле ввода значения цвета текста небыло найдено. Xpath: ".self::$TEXT_COLOR);
         $colorInput = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$TEXT_COLOR));
+        LastPhrase::setPhrase("Значение ".$color." небыло введено в поле ввода цвета текста. Xpath: ".self::$TEXT_COLOR);
         $colorInput->sendKeys($color);
     }
 
@@ -364,18 +372,20 @@ class DraftCreateRevisionsPageObject implements PageObject
     {
         $option = null;
         if ($weight === "Thinnest") {
+            LastPhrase::setPhrase("Значение Thinnest небыло найдено в выборе толщины объекта Line. Xpath: ".self::$LINE_WEIGHT_THINNEST);
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_WEIGHT_THINNEST));
         } else if ($weight === "Thin") {
+            LastPhrase::setPhrase("Значение Thinnest небыло найдено в выборе толщины объекта Line. Xpath: ".self::$LINE_WEIGHT_THIN);
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_WEIGHT_THIN));
         } else if ($weight === "Thick") {
+            LastPhrase::setPhrase("Значение Thinnest небыло найдено в выборе толщины объекта Line. Xpath: ".self::$LINE_WEIGHT_THICK);
             $option = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_WEIGHT_THICK));
         }
-
         if ($option != null) {
             $option->click();
         }
-
     }
+
 
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
@@ -409,7 +419,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnLinesIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Line небыла найдена. Xpath: ".self::$LINE_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$LINE_ICON));
+        LastPhrase::setPhrase("Иконка Line небыла нажата. Xpath: ".self::$LINE_ICON);
         $icon->click();
     }
 
@@ -418,7 +430,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnPlainLinesButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Plain Line небыла найдена. Xpath: ".self::$PLAIN_LINE_BUTTON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$PLAIN_LINE_BUTTON));
+        LastPhrase::setPhrase("Кнопка Plain Line небыла нажата. Xpath: ".self::$PLAIN_LINE_BUTTON);
         $icon->click();
     }
 
@@ -427,7 +441,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnCurveLinesButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Curve Line небыла найдена. Xpath: ".self::$CURVE_LINE_BUTTON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CURVE_LINE_BUTTON));
+        LastPhrase::setPhrase("Кнопка Curve Line небыла нажата. Xpath: ".self::$CURVE_LINE_BUTTON);
         $icon->click();
     }
 
@@ -436,7 +452,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnBrokenLinesButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Broken Line небыла найдена. Xpath: ".self::$BROKEN_LINE_BUTTON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$BROKEN_LINE_BUTTON));
+        LastPhrase::setPhrase("Кнопка Broken Line небыла нажата. Xpath: ".self::$BROKEN_LINE_BUTTON);
         $icon->click();
     }
 
@@ -515,7 +533,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnConnectorIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Connector небыла найдена. Xpath: ".self::$CONNECTOR_ICON);
         $button = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_ICON));
+        LastPhrase::setPhrase("Иконка Connector небыла нажата. Xpath: ".self::$CONNECTOR_ICON);
         $button->click();
     }
 
@@ -526,8 +546,10 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function clickOnConnectorCell($webDriver, $cellNumber)
     {
         $xpath = str_replace("VALUE", $cellNumber, DraftCreateRevisionsPageObject::$CONNECTOR_CELL);
+        LastPhrase::setPhrase("Изображение в ".$cellNumber." ячейке небыло найдено. Xpath: ".$xpath);
         SimpleWait::waitShow($webDriver, $xpath);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Изображение в ".$cellNumber." ячейке небыло нажато. Xpath: ".$xpath);
         SimpleWait::waitingOfClick($webDriver, $cell);
     }
 
@@ -537,11 +559,14 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function selectFamilyConnector($webDriver, $familyName)
     {
-        $hh = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_SELECT));
-        $hh->click();
+        LastPhrase::setPhrase("Кнопка рскрытия списка Family у объекта Connector на Draft не найдена. Xpath: ".self::$CONNECTOR_FAMILY_SELECT);
+        $familySelect = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_SELECT));
+        LastPhrase::setPhrase("Кнопка рскрытия списка Family у объекта Connector на Draft не нажата. Xpath: ".self::$CONNECTOR_FAMILY_SELECT);
+        $familySelect->click();
         $xpath = str_replace("VALUE", $familyName, DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_OPTION);
         SimpleWait::waitShow($webDriver, $xpath);
         $button = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Значение ".$familyName." из выпадающего списка Family у объекта Connector на Draft не выбран. Xpath: ".$xpath);
         $button->click();
     }
 
@@ -551,11 +576,14 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function selectCategoryConnector($webDriver, $categoryName)
     {
+        LastPhrase::setPhrase("Кнопка рскрытия списка Family у объекта Connector на Draft не найдена. Xpath: ".self::$CONNECTOR_CATEGORY_OPTION);
         $hh = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_SELECT));
+        LastPhrase::setPhrase("Кнопка рскрытия списка Family у объекта Connector на Draft не нажата. Xpath: ".self::$CONNECTOR_CATEGORY_OPTION);
         $hh->click();
         $xpath = str_replace("VALUE", $categoryName, DraftCreateRevisionsPageObject::$CONNECTOR_CATEGORY_OPTION);
         SimpleWait::waitShow($webDriver, $xpath);
         $button = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Значение ".$categoryName." из выпадающего списка Family у объекта Connector на Draft не выбран. Xpath: ".$xpath);
         $button->click();
     }
 
@@ -583,7 +611,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnUserImageIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Custom Image на панели иструментов не найдена. Xpath: ".self::$IMAGE_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$IMAGE_ICON));
+        LastPhrase::setPhrase("Иконка Custom Image на панели иструментов не нажата. Xpath: ".self::$IMAGE_ICON);
         $icon->click();
     }
 
@@ -593,10 +623,11 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnUserImageCell($webDriver, $idImage)
     {
-
         $xpath = str_replace("VALUE", $idImage, DraftCreateRevisionsPageObject::$IMAGE_CELL);
+        LastPhrase::setPhrase("Изображение в ".$idImage." ячейке не найдено. Xpath: ".$xpath);
         SimpleWait::waitShow($webDriver, $xpath);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Изображение в ".$idImage." ячейке не нажато. Xpath: ".$xpath);
         $cell->click();
     }
 
@@ -617,8 +648,10 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnAccessoriesIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Accessories на панели иструментов не найдена. Xpath: ".self::$ACCESSORIES_ICON);
         SimpleWait::waitShow($webDriver, DraftCreateRevisionsPageObject::$ACCESSORIES_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$ACCESSORIES_ICON));
+        LastPhrase::setPhrase("Иконка Accessories на панели иструментов не нажата. Xpath: ".self::$ACCESSORIES_ICON);
         SimpleWait::waitingOfClick($webDriver, $icon);
     }
 
@@ -629,8 +662,10 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function clickOnAccessoriesCell($webDriver, $numberCell)
     {
         $xpath = str_replace("VALUE", $numberCell, DraftCreateRevisionsPageObject::$ACCESSORIES_CELL);
+        LastPhrase::setPhrase("Изображение в ".$numberCell." ячейке не найдено. Xpath: ".$xpath);
         SimpleWait::waitShow($webDriver, $xpath);
         $cell = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Изображение в ".$numberCell." ячейке не нажато. Xpath: ".$xpath);
         SimpleWait::waitingOfClick($webDriver, $cell);
     }
 
@@ -651,7 +686,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnCutomPartIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Custom Part на панели инструметов в Draft не была найдена. Xpath: ".self::$CUSTOM_PART_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CUSTOM_PART_ICON));
+        LastPhrase::setPhrase("Иконка Custom Part на панели инструметов в Draft не была нажата. Xpath: ".self::$CUSTOM_PART_ICON);
         $icon->click();
     }
 
@@ -696,7 +733,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnCopyIcon($webDriver)
     {
+        LastPhrase::setPhrase("Иконка Copy на панели инструментов Draft не была найдена. Xpath: ".self::$COPY_ICON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_ICON));
+        LastPhrase::setPhrase("Иконка Copy на панели инструментов Draft не была нажата. Xpath: ".self::$COPY_ICON);
         $icon->click();
     }
 
@@ -706,8 +745,11 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function setCopyQuantity($webDriver, $quantity)
     {
+        LastPhrase::setPhrase("Поле параметра QTY для Copy небыло найдено. Xpath: ".self::$COPY_QUANTITY);
         $qty = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_QUANTITY));
+        LastPhrase::setPhrase("Поле параметра QTY для Copy небыло очищенно. Xpath: ".self::$COPY_QUANTITY);
         $qty->clear();
+        LastPhrase::setPhrase("В поле параметра QTY для Copy небыли введены значения: ".$quantity.". Xpath: ".self::$COPY_QUANTITY);
         $qty->sendKeys($quantity);
     }
 
@@ -716,7 +758,9 @@ class DraftCreateRevisionsPageObject implements PageObject
      */
     static function clickOnCopyButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Copy небыла найдена. Xpath: ".self::$COPY_BUTTON);
         $icon = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$COPY_BUTTON));
+        LastPhrase::setPhrase("Кнопка Copy небыла нажата. Xpath: ".self::$COPY_BUTTON);
         $icon->click();
     }
 
@@ -818,37 +862,47 @@ class DraftCreateRevisionsPageObject implements PageObject
 
     static function clickOnTextButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Text небыла найдена. Xpath: ".self::$TEXT_BUTTON);
         $button = $webDriver->findElement(WebDriverBy::xpath(self::$TEXT_BUTTON));
+        LastPhrase::setPhrase("Кнопка Text небыла нажата. Xpath: ".self::$TEXT_BUTTON);
         $button->click();
     }
 
     public static function selectOnSelectConnector($webDriver)
     {
-        $hh = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_SELECT));
-        $hh->click();
+        LastPhrase::setPhrase("Кнопка раскрытия списка Family у Connector на Draft не найдена. Xpath: ".self::$CONNECTOR_FAMILY_SELECT);
+        $select = $webDriver->findElement(WebDriverBy::xpath(DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_SELECT));
+        LastPhrase::setPhrase("Кнопка раскрытия списка Family у Connector на Draft не нажата. Xpath: ".self::$CONNECTOR_FAMILY_SELECT);
+        $select->click();
 
     }
 
     public static function setConnectorFamilyName($webDriver, $familyName)
     {
         $xpath = str_replace("VALUE", $familyName, DraftCreateRevisionsPageObject::$CONNECTOR_FAMILY_OPTION);
+        LastPhrase::setPhrase("Значение ".$familyName." из выпадающего списка Family Connector на Draft не найдено. Xpath: ".$xpath);
         SimpleWait::waitShow($webDriver, $xpath);
         $button = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Значение ".$familyName." из выпадающего списка Family Connector на Draft не выбрано. Xpath: ".$xpath);
         $button->click();
     }
 
     public static function clickOnCategorySelectConnector($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка раскрытия списка Category у Connector на Draft не найдена. Xpath: ".self::$CONNECTOR_CATEGORY_SELECT);
         SimpleWait::waitShow($webDriver, self::$CONNECTOR_CATEGORY_SELECT);
         $select = $webDriver->findElement(WebDriverBy::xpath(self::$CONNECTOR_CATEGORY_SELECT));
+        LastPhrase::setPhrase("Кнопка раскрытия списка Category у Connector на Draft не нажата. Xpath: ".self::$CONNECTOR_FAMILY_SELECT);
         $select->click();
     }
 
     public static function clickOnOptionsConnectorCategoryByName($webDriver, $nameValue)
     {
         $xpath = str_replace("VALUE", $nameValue, self::$CONNECTOR_CATEGORY_OPTION);
+        LastPhrase::setPhrase("Значение ".$nameValue." из выпадающего списка Category Connector на Draft не найдено. Xpath: ".$xpath);
         SimpleWait::waitShow($webDriver, $xpath);
         $option = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        LastPhrase::setPhrase("Значение ".$nameValue." из выпадающего списка Category Connector на Draft не выбрано. Xpath: ".$xpath);
         $option->click();
     }
 }

@@ -8,7 +8,7 @@ interface PageObject
     static function init();
 
     /**
-     * @param @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function openPage($webDriver);
 

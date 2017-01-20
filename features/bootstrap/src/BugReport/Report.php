@@ -1,7 +1,8 @@
 <?php
 
 require_once "TextBugReport/TextReport.php";
- require_once "RedmineReport/RedmineSimpleReport.php";
+require_once "RedmineReport/RedmineSimpleReport.php";
+require_once "GifRecord/GifRecord.php";
 
 class Report
 {
@@ -15,6 +16,7 @@ class Report
     private $trigerFailStep;
 
     private $textReport;
+    private $gifRecord;
 
 
     private $urlRedmine;
@@ -75,31 +77,34 @@ class Report
     /**
      * @param Behat\Behat\Hook\Scope\AfterScenarioScope $afterScenarioScope
      */
-    private function getTestID($afterScenarioScope){
+    private function getTestID($afterScenarioScope)
+    {
         $tags = $afterScenarioScope->getScenario()->getTags();
         foreach ($tags as $tag) {
-            if(stristr($tag,"ID=")){
-                preg_match("/(?:ID=)(.*)/",$tag,$result);
+            if (stristr($tag, "ID=")) {
+                preg_match("/(?:ID=)(.*)/", $tag, $result);
                 return $result[1];
             }
         }
     }
 
-    private function getPriorityID($afterScenarioScope){
+    private function getPriorityID($afterScenarioScope)
+    {
         $tags = $afterScenarioScope->getScenario()->getTags();
         foreach ($tags as $tag) {
-            if(stristr($tag,"PRIORITY=")){
-                preg_match("/(?:PRIORITY=)(.*)/",$tag,$result);
+            if (stristr($tag, "PRIORITY=")) {
+                preg_match("/(?:PRIORITY=)(.*)/", $tag, $result);
                 return $result[1];
             }
         }
     }
 
-    private function getAssignedID($afterScenarioScope){
+    private function getAssignedID($afterScenarioScope)
+    {
         $tags = $afterScenarioScope->getScenario()->getTags();
         foreach ($tags as $tag) {
-            if(stristr($tag,"ASSIGNED=")){
-                preg_match("/(?:ASSIGNED=)(.*)/",$tag,$result);
+            if (stristr($tag, "ASSIGNED=")) {
+                preg_match("/(?:ASSIGNED=)(.*)/", $tag, $result);
                 return $result[1];
             }
         }
@@ -107,36 +112,34 @@ class Report
 
     public function afterScenario($afterScenarioScope)
     {
+
         $this->setAllStepsInTextReport($afterScenarioScope);
 
 
         if ($this->isRerun) {
-
+            $this->gifRecord->stop();
             $this->textReport->setIdTest($this->getTestID($afterScenarioScope));
             $priority = $this->getPriorityID($afterScenarioScope);
             $assigned = $this->getAssignedID($afterScenarioScope);
             $this->textReport->afterScenario();
             $report = new RedmineSimpleReport($this->urlRedmine, $this->userRedmine, $this->passwordRedmine, $this->nameProject);
 
-//            if($this->textReport->isGiven()){
-//                Set priority with ID=4
-//                $this->priority = 4;
-//            }
-
             $report->createIssue($this->textReport->getTitle(), $this->textReport->getDescription(), $priority, $assigned);
         }
     }
 
-    public function afterStep($afterStepScope,$webDriver)
+    public function afterStep($afterStepScope, $webDriver)
     {
         if ($this->isRerun) {
-            $this->textReport->afterStep($afterStepScope,$webDriver);
+            $this->textReport->afterStep($afterStepScope, $webDriver);
         }
     }
 
     public function beforeScenario($beforeScenarioScope)
     {
         if ($this->isRerun) {
+            $this->gifRecord = new GifRecord();
+            $this->textReport->setAdditionallyLine($this->gifRecord->run());
             $this->textReport->beforeScenario($beforeScenarioScope);
         }
     }

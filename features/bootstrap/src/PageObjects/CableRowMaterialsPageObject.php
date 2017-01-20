@@ -68,6 +68,7 @@ class CableRowMaterialsPageObject implements PageObject
     static function checkCAInTable($webDriver, $name)
     {
         LastPhrase::setPhrase("Cable Row Materials с именем ".$name." не был найден");
+        SimpleWait::waitShowByCSSSelector($webDriver,self::$CREATE_BUTTON);
         $pageSource = $webDriver->getPageSource();
         $contentFount = strpos($pageSource, substr(self::getValue($name), 0, 10));
         if ($contentFount == false) {
@@ -111,4 +112,5 @@ class CableRowMaterialsPageObject implements PageObject
             }
         }
     }
+
 }

@@ -1,6 +1,6 @@
 Feature: Test Cable Row Materials Module
 
-  @CableRowMaterials @Edit @Smoke
+  @CableRowMaterials @Edit @Smoke @ID=11-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Edit cable row materials with good data
     Given Создать новый Cable Row Materials
     When Нажать на вкладку General Info
@@ -19,7 +19,7 @@ Feature: Test Cable Row Materials Module
       | ID | Part number | Description | Customer name | UL File | CASFile | Awg | Material | Construction | Diameter | Material2 | Minimum Average Thickness | Braid | Foil | Drain wire | Pairs number | Conductors number | Outdoor requirements | Material3 | Diameter3 | Average Thickness | Surface | Color | Marking color | Overall diameter | Dielectric strength | Spark test | Temperature rating | Insulation resistance | Conductor resistance | Rating Voltage | Flame test | Tensile strength before aging | Elongation before agling | Elongation after agling | Deformation test | Cold bend test | Heat shock test | Marking |
       | 1  | Test TA     | Description | Customer name | UL File | CASFile | Awg | Material | Construction | Diameter | Material2 | Minimum Average Thickness | Braid | Foil | Drain wire | Pairs number | Conductors number | Outdoor requirements | Material3 | Diameter3 | Average Thickness | Surface | Color | Marking color | Overall diameter | Dielectric strength | Spark test | Temperature rating | Insulation resistance | Conductor resistance | Rating Voltage | Flame test | Tensile strength before aging | Elongation before agling | Elongation after agling | Deformation test | Cold bend test | Heat shock test | Marking |
 
-  @CableRowMaterials @Edit
+  @CableRowMaterials @Edit @ID=11-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Edit cable row materials with good data
     Given Создать новый Cable Row Materials
     When Нажать на вкладку General Info

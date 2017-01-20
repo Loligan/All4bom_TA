@@ -1,20 +1,20 @@
 Feature: Проверка сохранения Cable Row
 
-  @CableRowMaterials @Save @Smoke
+  @CableRowMaterials @Save @Smoke @ID=10-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Сохранение Cable Row Materials с информацией в вкладке General Info
     Given Создать новый Cable Row Materials
     When Нажать на вкладку General Info
-    And Ввести в поля следующую информацию: "<ID><Part number>","<Description>","<Customer name>","<UL File>","<CASFile>","<Awg>","<Material>","<Construction>","<Diameter>","<Material2>","<Minimum Average Thickness>","<Braid>","<Foil>","<Drain wire>","<Pairs number>","<Conductors number>","<Outdoor requirements>","<Material3>","<Diameter3>","<Average Thickness>","<Surface>","<Color>","<Marking color>","<Overall diameter>","<Dielectric strength>","<Spark test>","<Temperature rating>","<Insulation resistance>","<Conductor resistance>","<Rating Voltage>","<Flame test>","<Tensile strength before aging>","<Elongation before agling>","<Elongation after agling>","<Deformation test>","<Cold bend test>","<Heat shock test>","<Marking>"
+    And Ввести в поля следующую информацию: "<Part number>","<Description>","<Customer name>","<UL File>","<CASFile>","<Awg>","<Material>","<Construction>","<Diameter>","<Material2>","<Minimum Average Thickness>","<Braid>","<Foil>","<Drain wire>","<Pairs number>","<Conductors number>","<Outdoor requirements>","<Material3>","<Diameter3>","<Average Thickness>","<Surface>","<Color>","<Marking color>","<Overall diameter>","<Dielectric strength>","<Spark test>","<Temperature rating>","<Insulation resistance>","<Conductor resistance>","<Rating Voltage>","<Flame test>","<Tensile strength before aging>","<Elongation before agling>","<Elongation after agling>","<Deformation test>","<Cold bend test>","<Heat shock test>","<Marking>"
     And Нажать на кнопку Save
-    Then В таблице ревизий будет запись с именем <ID><Part number>
-    And Нажать кнопку Edit рядом с записью <ID><Part number> в таблице
+    Then В таблице ревизий будет запись с именем <Part number>
+    And Нажать кнопку Edit рядом с записью <Part number> в таблице
     And Нажать на вкладку General Info
-    And В инпутах будет ранее введенная информация: "<ID><Part number>","<Description>","<Customer name>","<UL File>","<CASFile>","<Awg>","<Material>","<Construction>","<Diameter>","<Material2>","<Minimum Average Thickness>","<Braid>","<Foil>","<Drain wire>","<Pairs number>","<Conductors number>","<Outdoor requirements>","<Material3>","<Diameter3>","<Average Thickness>","<Surface>","<Color>","<Marking color>","<Overall diameter>","<Dielectric strength>","<Spark test>","<Temperature rating>","<Insulation resistance>","<Conductor resistance>","<Rating Voltage>","<Flame test>","<Tensile strength before aging>","<Elongation before agling>","<Elongation after agling>","<Deformation test>","<Cold bend test>","<Heat shock test>","<Marking>"
+    And В инпутах будет ранее введенная информация: "<Part number>","<Description>","<Customer name>","<UL File>","<CASFile>","<Awg>","<Material>","<Construction>","<Diameter>","<Material2>","<Minimum Average Thickness>","<Braid>","<Foil>","<Drain wire>","<Pairs number>","<Conductors number>","<Outdoor requirements>","<Material3>","<Diameter3>","<Average Thickness>","<Surface>","<Color>","<Marking color>","<Overall diameter>","<Dielectric strength>","<Spark test>","<Temperature rating>","<Insulation resistance>","<Conductor resistance>","<Rating Voltage>","<Flame test>","<Tensile strength before aging>","<Elongation before agling>","<Elongation after agling>","<Deformation test>","<Cold bend test>","<Heat shock test>","<Marking>"
     Examples:
       | ID | Part number | Description | Customer name | UL File | CASFile | Awg | Material | Construction | Diameter | Material2 | Minimum Average Thickness | Braid | Foil | Drain wire | Pairs number | Conductors number | Outdoor requirements | Material3 | Diameter3 | Average Thickness | Surface | Color | Marking color | Overall diameter | Dielectric strength | Spark test | Temperature rating | Insulation resistance | Conductor resistance | Rating Voltage | Flame test | Tensile strength before aging | Elongation before agling | Elongation after agling | Deformation test | Cold bend test | Heat shock test | Marking |
       | 1  | Test TA     | Description | Customer name | UL File | CASFile | Awg | Material | Construction | Diameter | Material2 | Minimum Average Thickness | Braid | Foil | Drain wire | Pairs number | Conductors number | Outdoor requirements | Material3 | Diameter3 | Average Thickness | Surface | Color | Marking color | Overall diameter | Dielectric strength | Spark test | Temperature rating | Insulation resistance | Conductor resistance | Rating Voltage | Flame test | Tensile strength before aging | Elongation before agling | Elongation after agling | Deformation test | Cold bend test | Heat shock test | Marking |
 
-  @CableRowMaterials @Save
+  @CableRowMaterials @Save @ID=10-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Сохранение Cable Row Materials с информацией в вкладке General Info
     Given Создать новый Cable Row Materials
     When Нажать на вкладку General Info

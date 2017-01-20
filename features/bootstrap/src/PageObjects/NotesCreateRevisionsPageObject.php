@@ -1,7 +1,7 @@
 <?php
 
 use Facebook\WebDriver\WebDriverBy;
-
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 require_once "DraftCreateRevisionsPageObject.php";
 require_once "TabCreateRevisionTabPageObject.php";
 require_once "SimpleWait.php";
@@ -13,8 +13,8 @@ class NotesCreateRevisionsPageObject implements PageObject
 
     static function init()
     {
-        NotesCreateRevisionsPageObject::$BUTTON_INSERT_OTHERS_BUTTON = "html/body/main/form/div[5]/div/div/div[2]/button";
-        NotesCreateRevisionsPageObject::$INPUTS_TEXTAREA = "html/body/main/form/div[5]/div/div/div/ul/li/textarea";
+        self::$BUTTON_INSERT_OTHERS_BUTTON = "html/body/main/form/div[5]/div/div/div[2]/button";
+        self::$INPUTS_TEXTAREA = "html/body/main/form/div[5]/div/div/div/ul/li/textarea";
     }
 
     /**
@@ -32,7 +32,7 @@ class NotesCreateRevisionsPageObject implements PageObject
      */
     private static function getCountInputsArea($webDriver)
     {
-        $inputs = $webDriver->findElements(WebDriverBy::xpath(NotesCreateRevisionsPageObject::$INPUTS_TEXTAREA));
+        $inputs = $webDriver->findElements(WebDriverBy::xpath(self::$INPUTS_TEXTAREA));
         $count = count($inputs);
         return  $count;
     }
@@ -42,10 +42,12 @@ class NotesCreateRevisionsPageObject implements PageObject
      * @throws Exception
      */
     static function clickOnInsertOtherNote($webDriver){
+        LastPhrase::setPhrase("Кнопка Insert Other Note небыла найдена. Xpath: ".self::$BUTTON_INSERT_OTHERS_BUTTON);
         $oldCountInputs = self::getCountInputsArea($webDriver);
-        SimpleWait::waitShow($webDriver,NotesCreateRevisionsPageObject::$BUTTON_INSERT_OTHERS_BUTTON);
-        $button = $webDriver->findElement(WebDriverBy::xpath(NotesCreateRevisionsPageObject::$BUTTON_INSERT_OTHERS_BUTTON));
+        SimpleWait::waitShow($webDriver,self::$BUTTON_INSERT_OTHERS_BUTTON);
+        $button = $webDriver->findElement(WebDriverBy::xpath(self::$BUTTON_INSERT_OTHERS_BUTTON));
         $button->click();
+        LastPhrase::setPhrase("Строка не добавилась после нажатия кнопки Insert Others Button");
         $newCountInputs = self::getCountInputsArea($webDriver);
         if($newCountInputs<=$oldCountInputs){
             throw new Exception("Inputs not added");
@@ -58,7 +60,9 @@ class NotesCreateRevisionsPageObject implements PageObject
      */
     static function setTextInLastInputs($webDriver, $text){
         $count = self::getCountInputsArea($webDriver);
-        $input = $webDriver->findElements(WebDriverBy::xpath(NotesCreateRevisionsPageObject::$INPUTS_TEXTAREA))[$count-1];
+        LastPhrase::setPhrase("Поле ввода Note небыло найденно. Xpath: ".self::$INPUTS_TEXTAREA);
+        $input = $webDriver->findElements(WebDriverBy::xpath(self::$INPUTS_TEXTAREA))[$count-1];
+        LastPhrase::setPhrase("В поле ввода Note не были введены данные. Xpath: ".self::$INPUTS_TEXTAREA);
         $input->sendKeys($text);
     }
 

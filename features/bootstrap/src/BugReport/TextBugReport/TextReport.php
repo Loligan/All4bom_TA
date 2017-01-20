@@ -13,6 +13,7 @@ class TextReport
     private $lastURL;
     private $lastConsoleLog;
     private $idTest;
+    private $additionallyLine;
 
     /**
      * @param mixed $idTest
@@ -28,6 +29,14 @@ class TextReport
         $this->isGiven = false;
         $this->lastURL = "";
         $this->lastConsoleLog = "";
+    }
+
+    /**
+     * @param mixed $additionallyLine
+     */
+    public function setAdditionallyLine($additionallyLine)
+    {
+        $this->additionallyLine = $additionallyLine;
     }
 
     public function afterStep($AfterStepScope, $webDriver)
@@ -148,7 +157,9 @@ class TextReport
             "\n*Последняя фраза:*\n" .
             LastPhrase::getPhrase() .
             "\n*Последний URL:*\n" . $this->lastURL .
-            "\n*Лог с консоли:*\n" . $this->lastConsoleLog;
+            "\n*Лог с консоли:*\n" . $this->lastConsoleLog.
+        "\n*Примечания*\nИмя gif:\n".$this->additionallyLine."".
+        "\n";
         $this->title = "[".$this->idTest."] ". $this->title;
     }
 

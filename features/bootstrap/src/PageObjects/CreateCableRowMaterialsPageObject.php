@@ -1,6 +1,6 @@
 <?php
 
-
+require_once "SimpleWait.php";
 use Facebook\WebDriver\WebDriverBy;
 
 require_once "CableRowMaterialsPageObject.php";
@@ -43,7 +43,7 @@ class CreateCableRowMaterialsPageObject implements PageObject
         LastPhrase::setPhrase("Элемент Draft Tab не был найден по xpath: " . CreateCableRowMaterialsPageObject::$DRAFT_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$DRAFT_TAB));
         LastPhrase::setPhrase("Элемент Draft Tab не был нажат. Xpath элемента: " . CreateCableRowMaterialsPageObject::$DRAFT_TAB);
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     /**
@@ -54,7 +54,7 @@ class CreateCableRowMaterialsPageObject implements PageObject
         LastPhrase::setPhrase("Элемент BOM Tab не был найден по xpath: " . CreateCableRowMaterialsPageObject::$BOM_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$BOM_TAB));
         LastPhrase::setPhrase("Элемент BOM Tab не был нажат. Xpath элемента: " . CreateCableRowMaterialsPageObject::$BOM_TAB);
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     /**
@@ -65,7 +65,7 @@ class CreateCableRowMaterialsPageObject implements PageObject
         LastPhrase::setPhrase("Элемент General Info Tab не был найден по xpath:" . CreateCableRowMaterialsPageObject::$GENERAL_INFO_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$GENERAL_INFO_TAB));
         LastPhrase::setPhrase("Элемент General Info Tab не был нажат. Xpath элемента:" . CreateCableRowMaterialsPageObject::$GENERAL_INFO_TAB);
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     /**
@@ -76,7 +76,7 @@ class CreateCableRowMaterialsPageObject implements PageObject
         LastPhrase::setPhrase("Элемент Save Tab не был найден по xpath:" . CreateCableRowMaterialsPageObject::$SAVE_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(CreateCableRowMaterialsPageObject::$SAVE_TAB));
         LastPhrase::setPhrase("Элемент Save Tab не был нажат. Xpath элемента:" . CreateCableRowMaterialsPageObject::$SAVE_TAB);
-        $tab->click();
+        SimpleWait::waitingOfClick($webDriver,$tab);
     }
 
     /**

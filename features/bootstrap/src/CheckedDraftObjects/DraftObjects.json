@@ -372,5 +372,39 @@
         "jsonName":"no"
       }
     ]
+  },
+  "crm": {
+    "checkedParams": [
+      {
+        "jsonName":"cornerStyle",
+        "jsonValue":"rect"
+      },
+      {
+        "jsonName":"canBeWrapped",
+        "jsonValue":true
+      }
+    ],
+    "uniqueParams":[
+      {
+        "name":"id",
+        "jsonName":"id"
+      }
+    ],
+    "positionsParams":[
+      {
+        "name":"y",
+        "jsonName":"top"
+      },
+      {
+        "name":"x",
+        "jsonName":"left"
+      }
+    ],
+    "dynamicParams":[
+      {
+        "name":"no",
+        "jsonName":"no"
+      }
+    ]
   }
 }

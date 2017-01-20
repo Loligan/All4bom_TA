@@ -19,6 +19,7 @@ class RedmineSimpleReport
         $this->isPrivate = true;
         $this->newStatus = 1;
         $this->closeStatus = 5;
+        $this->inProgressStatus = 2;
     }
 
 
@@ -36,6 +37,14 @@ class RedmineSimpleReport
                 'subject' => $subject,
                 'status_id' => $this->closeStatus
             ]);
+
+            if (count($issue['issues']) == 0){
+                $issue = $this->client->issue->all([
+                    'project_id' => $this->projectId,
+                    'subject' => $subject,
+                    'status_id' => $this->inProgressStatus
+                ]);
+            }
         }
         return $issue;
     }

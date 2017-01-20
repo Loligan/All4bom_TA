@@ -1,7 +1,7 @@
 <?php
 
 use Facebook\WebDriver\WebDriverBy;
-
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 require_once "DraftCreateRevisionsPageObject.php";
 require_once "TabCreateRevisionTabPageObject.php";
 require_once "SimpleWait.php";
@@ -58,11 +58,14 @@ class LabelsCreateRevisionPageObject implements PageObject
      */
     static function clickOnAddLabelButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка Add Cusom Label не была найдена. Xpath:".self::$BUTTON_ADD_LABEL);
         $oldCount = self::getCountLines($webDriver);
         SimpleWait::waitShow($webDriver, LabelsCreateRevisionPageObject::$BUTTON_ADD_LABEL);
         $button = $webDriver->findElement(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$BUTTON_ADD_LABEL));
+        LastPhrase::setPhrase("Кнопка Add Cusom Label не была нажата. Xpath:".self::$BUTTON_ADD_LABEL);
         $button->click();
         $newCount = self::getCountLines($webDriver);
+        LastPhrase::setPhrase("Строка label не была добавлена");
         if ($newCount <= $oldCount) {
             throw new Exception("New label not be added by click on [ADD LABEL] button");
         }
@@ -80,25 +83,43 @@ class LabelsCreateRevisionPageObject implements PageObject
      */
     static function setInformationInLabelLine($webDriver, $numberLine, $numberText, $descText, $height, $width, $distanceFrom, $tolerance)
     {
+        LastPhrase::setPhrase("Поле ввода Number в Label небыл найден");
         $inputNumberText = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$NUMBER_INPUTS))[$numberLine - 1];
+        LastPhrase::setPhrase("Поле ввода Number в Description небыл найден");
         $inputDescText = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$DESC_INPUTS))[$numberLine - 1];
+        LastPhrase::setPhrase("Поле ввода Number в Height небыл найден");
         $inputHeight = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$HEIGHT_IN_MM_INPUTS))[$numberLine - 1];
+        LastPhrase::setPhrase("Поле ввода Number в Width небыл найден");
         $inputWidth = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$WIDTH_IN_MM_INPUTS))[$numberLine - 1];
+        LastPhrase::setPhrase("Поле ввода Number в Distance From небыл найден");
         $inputDistanceFrom = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$DISTANSE_FROM_INPUTS))[$numberLine - 1];
+        LastPhrase::setPhrase("Поле ввода Number в Tolerance небыл найден");
         $inputTolerance = $webDriver->findElements(WebDriverBy::xpath(LabelsCreateRevisionPageObject::$TOLERANCE_INPUTS))[$numberLine - 1];
 
+        LastPhrase::setPhrase("Поле ввода Number в Label небыл очищен");
         $inputNumberText->clear();
+        LastPhrase::setPhrase("Поле ввода Description в Label небыл очищен");
         $inputDescText->clear();
+        LastPhrase::setPhrase("Поле ввода Height в Label небыл очищен");
         $inputHeight->clear();
+        LastPhrase::setPhrase("Поле ввода Width в Label небыл очищен");
         $inputWidth->clear();
+        LastPhrase::setPhrase("Поле ввода Distance в Label небыл очищен");
         $inputDistanceFrom->clear();
+        LastPhrase::setPhrase("Поле ввода Tolerance в Label небыл очищен");
         $inputTolerance->clear();
 
+        LastPhrase::setPhrase("В поле ввода Number в Label небыли введены данные ".$numberText);
         $inputNumberText->sendKeys($numberText);
+        LastPhrase::setPhrase("В поле ввода Description в Label небыли введены данные ".$descText);
         $inputDescText->sendKeys($descText);
+        LastPhrase::setPhrase("В поле ввода Height в Label небыли введены данные ".$height);
         $inputHeight->sendKeys($height);
+        LastPhrase::setPhrase("В поле ввода Width в Label небыли введены данные ".$width);
         $inputWidth->sendKeys($width);
+        LastPhrase::setPhrase("В поле ввода Distance в Label небыли введены данные ".$distanceFrom);
         $inputDistanceFrom->sendKeys($distanceFrom);
+        LastPhrase::setPhrase("В поле ввода Tolerance в Label небыли введены данные ".$tolerance);
         $inputTolerance->sendKeys($tolerance);
     }
 }

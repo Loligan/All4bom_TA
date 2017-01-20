@@ -1,5 +1,5 @@
 <?php
-
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 use Facebook\WebDriver\WebDriverBy;
 
 class HeaderPageObject implements PageObject
@@ -32,7 +32,9 @@ class HeaderPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function clickOnHomeTab($webDriver){
+        LastPhrase::setPhrase("Кнопка Home в шапке не найдена. Xpath:".self::$HOME_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$HOME_TAB));
+        LastPhrase::setPhrase("Кнопка Home в шапке не нажата. Xpath:".self::$HOME_TAB);
         $tab->click();
     }
 
@@ -40,7 +42,9 @@ class HeaderPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function clickOnCableAssembliesTab($webDriver){
+        LastPhrase::setPhrase("Кнопка Cable Assemblies в шапке не найдена. Xpath:".self::$CABLE_ASSEMBLIES_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$CABLE_ASSEMBLIES_TAB));
+        LastPhrase::setPhrase("Кнопка Cable Assemblies в шапке не нажата. Xpath:".self::$CABLE_ASSEMBLIES_TAB);
         $tab->click();
     }
 
@@ -48,7 +52,9 @@ class HeaderPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function clickOnCableRowMaterialsTab($webDriver){
+        LastPhrase::setPhrase("Кнопка Cable row materials в шапке не найдена. Xpath:".self::$CABLE_ROW_MATERIALS_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$CABLE_ROW_MATERIALS_TAB));
+        LastPhrase::setPhrase("Кнопка Cable row materials в шапке не нажата. Xpath:".self::$CABLE_ROW_MATERIALS_TAB);
         $tab->click();
     }
 
@@ -56,7 +62,9 @@ class HeaderPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function clickOnCableUserImagesTab($webDriver){
+        LastPhrase::setPhrase("Кнопка User Images в шапке не найдена. Xpath:".self::$USER_IMAGES_TAB);
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$USER_IMAGES_TAB));
+        LastPhrase::setPhrase("Кнопка User Images в шапке не нажата. Xpath:".self::$USER_IMAGES_TAB);
         $tab->click();
     }
 
@@ -64,7 +72,9 @@ class HeaderPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function clickOnLeaveWithoutSavingButton($webDriver){
+        LastPhrase::setPhrase("Кнопка Leave Without Saving не найдена. Xpath:".self::$LEAVE_WITHOUT_SAVING_BUTTON);
         $tab = $webDriver->findElement(WebDriverBy::xpath(self::$LEAVE_WITHOUT_SAVING_BUTTON));
+        LastPhrase::setPhrase("Кнопка User Images в шапке не нажата. Xpath:".self::$USER_IMAGES_TAB);
         SimpleWait::waitingOfClick($webDriver,$tab);
     }
 }

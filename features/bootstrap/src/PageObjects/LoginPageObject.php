@@ -1,6 +1,7 @@
 <?php
 
 require_once "HomePageObject.php";
+require_once "/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/LastPhraseReport/LastPhrase.php";
 use Facebook\WebDriver\WebDriverBy;
 
 class LoginPageObject implements PageObject
@@ -12,9 +13,9 @@ class LoginPageObject implements PageObject
     static function init()
     {
 
-        LoginPageObject::$USERNAME_INPUT = "#username";
-        LoginPageObject::$PASSWORD_INPUT = "#password";
-        LoginPageObject::$LOGIN_BUTTON = "#_submit";
+        self::$USERNAME_INPUT = "#username";
+        self::$PASSWORD_INPUT = "#password";
+        self::$LOGIN_BUTTON = "#_submit";
     }
 
     /**
@@ -31,8 +32,10 @@ class LoginPageObject implements PageObject
      */
     static function setInformation($webDriver)
     {
-        $username = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$USERNAME_INPUT));
-        $password = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$PASSWORD_INPUT));
+        LastPhrase::setPhrase("Поле ввода Username небыло найдено. cssSelector:".self::$USERNAME_INPUT);
+        $username = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(self::$USERNAME_INPUT));
+        LastPhrase::setPhrase("Поле ввода Password небыло найдено. cssSelector:".self::$PASSWORD_INPUT);
+        $password = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(self::$PASSWORD_INPUT));
 
         $username->sendKeys(AppValues::getLogin());
         $password->sendKeys(AppValues::getPassword());
@@ -43,7 +46,9 @@ class LoginPageObject implements PageObject
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     static function pressLoginButton($webDriver){
-        $button = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$LOGIN_BUTTON));
+        LastPhrase::setPhrase("Кнопка login небыла найдена. cssSelector: ".self::$LOGIN_BUTTON);
+        $button = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(self::$LOGIN_BUTTON));
+        LastPhrase::setPhrase("Кнопка login небыла нажата. cssSelector: ".self::$LOGIN_BUTTON);
         $button->click();
     }
 
@@ -54,18 +59,24 @@ class LoginPageObject implements PageObject
      */
     public static function setCustomInformation($webDriver, $arg1, $arg2)
     {
-        $username = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$USERNAME_INPUT));
-        $password = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(LoginPageObject::$PASSWORD_INPUT));
+        LastPhrase::setPhrase("Поле ввода Username небыло найдено. cssSelector:".self::$USERNAME_INPUT);
+        $username = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(self::$USERNAME_INPUT));
+        LastPhrase::setPhrase("Поле ввода Password небыло найдено. cssSelector:".self::$PASSWORD_INPUT);
+        $password = $webDriver->findElement(\Facebook\WebDriver\WebDriverBy::cssSelector(self::$PASSWORD_INPUT));
 
+        LastPhrase::setPhrase("В поле ввода Username не были отправленны данные. cssSelector:".self::$USERNAME_INPUT);
         $username->sendKeys($arg1);
+        LastPhrase::setPhrase("В поле ввода Username не были отправленны данные. cssSelector:".self::$USERNAME_INPUT);
         $password->sendKeys($arg2);
     }
 
     /**
-     *  Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @var Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
      */
     public static function checkUsernameInput($webDriver)
     {
+        LastPhrase::setPhrase("Поле ввода username небыло найденно. cssSelector: ".self::$USERNAME_INPUT);
         $tab = $webDriver->findElements(WebDriverBy::cssSelector(self::$USERNAME_INPUT));
         if(count($tab)!=1){
             throw new Exception("username input not found");
@@ -73,18 +84,25 @@ class LoginPageObject implements PageObject
     }
 
     /**
-     *  Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @var Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
      */
     public static function checkPasswordInput($webDriver)
     {
+        LastPhrase::setPhrase("Поле ввода password небыло найденно. cssSelector: ".self::$PASSWORD_INPUT);
         $tab = $webDriver->findElements(WebDriverBy::cssSelector(self::$PASSWORD_INPUT));
         if(count($tab)!=1){
             throw new Exception("password input not found");
         }
     }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @throws Exception
+     */
     public static function checkLoginButton($webDriver)
     {
+        LastPhrase::setPhrase("Кнопка login небыла найденна. cssSelector: ".self::$LOGIN_BUTTON);
         $tab = $webDriver->findElements(WebDriverBy::cssSelector(self::$LOGIN_BUTTON));
         if(count($tab)!=1){
             throw new Exception("password input not found");

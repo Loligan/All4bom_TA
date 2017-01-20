@@ -1,7 +1,7 @@
 Feature: Home page тестриование
 
   @HomePage @Smoke @ID=00-00 @PRIORITY=5 @ASSIGNED=1
-    Scenario: Загрузка страницы
+  Scenario: Загрузка страницы
     Given Открыть главную страницу
 
 
