@@ -57,7 +57,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Arial           | 18         | 800080 |
 
 
-  @Draft @Create @CustomDimention @ID=03-04 @PRIORITY=5 @ASSIGNED=1
+  @Draft @Smoke @Create @CustomDimention @ID=03-04 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Custom Dimention
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -243,7 +243,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Normal   |
       | Thick    |
 
-  @Draft @Create @Line @CurveLine @ID=03-13 @PRIORITY=5 @ASSIGNED=1
+  @Draft @Smoke @Create @Line @CurveLine @ID=03-13 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -261,7 +261,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Line
 
-  @Draft @Create @Line @CurveLine @ID=03-14 @PRIORITY=5 @ASSIGNED=1
+  @Draft @Smoke @Create @Line @CurveLine @ID=03-14 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -497,7 +497,7 @@ Feature: Cоздание объектов в Draft без сохранения
     And В BOM присутствует "2" объект Cable
 
 
-  @Draft @Create @Cable @PlainCable @Copy @ID=03-25 @PRIORITY=5 @ASSIGNED=1
+  @Draft @Create @Cable @Smoke @PlainCable @Copy @ID=03-25 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

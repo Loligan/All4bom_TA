@@ -1,7 +1,7 @@
 Feature: Test Cable Row Materials Module
 
   @CableRowMaterials @Edit @Smoke @ID=11-01 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Edit cable row materials with good data
+  Scenario Outline: Редактирование Cable Row Materials с валидными данными
     Given Создать новый Cable Row Materials
     When Нажать на вкладку General Info
     And Ввести в поля следующую информацию: "Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test","Test"

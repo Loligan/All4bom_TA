@@ -1,7 +1,7 @@
 Feature: Save labels information test
 
   @Save @Revision @Labels @Labels @Smoke @ID=08-01 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Set Labels text
+  Scenario Outline: Сохранение данных в вкладке Labels
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -18,7 +18,7 @@ Feature: Save labels information test
       | Text  | Description | 1     | 2     | 3     | 4     |
 
   @Save @Revision @Labels @Labels @ID=08-02 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Set Labels text
+  Scenario Outline: Сохранение данных в вкладке Labels
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль

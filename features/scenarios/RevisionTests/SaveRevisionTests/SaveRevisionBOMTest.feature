@@ -20,7 +20,7 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Plain | Normal | Lan Cable    | 1          | Test save    |
       | Plain | Normal | RF Cable     | 2          | Test save    |
       | Plain | Normal | Flat Cable   | 3          | Test save    |
-      | Plain | Normal | Row Material | 4          | Test save    |
+      | Plain | Normal | Row Material | 1          | Test save    |
 
 
   @Save @Revision @Bom @Cable @PlainCable @ID=06-02 @PRIORITY=5 @ASSIGNED=1
@@ -43,11 +43,11 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Plain | Thin   | Lan Cable    | 1          | Test save    |
       | Plain | Thin   | RF Cable     | 2          | Test save    |
       | Plain | Thin   | Flat Cable   | 3          | Test save    |
-      | Plain | Thin   | Row Material | 4          | Test save    |
+      | Plain | Thin   | Row Material | 1          | Test save    |
       | Plain | Thick  | Lan Cable    | 1          | Test save    |
       | Plain | Thick  | RF Cable     | 2          | Test save    |
       | Plain | Thick  | Flat Cable   | 3          | Test save    |
-      | Plain | Thick  | Row Material | 4          | Test save    |
+      | Plain | Thick  | Row Material | 1          | Test save    |
 
   @Save @Revision @Bom @Cable @CurveCable @ID=06-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Сохранение ревизии с объектами cable BOM
@@ -69,19 +69,19 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Curve | Thinnest | Lan Cable    | 1          | Test save    |
       | Curve | Thinnest | RF Cable     | 2          | Test save    |
       | Curve | Thinnest | Flat Cable   | 3          | Test save    |
-      | Curve | Thinnest | Row Material | 4          | Test save    |
+      | Curve | Thinnest | Row Material | 1          | Test save    |
       | Curve | Thin     | Lan Cable    | 1          | Test save    |
       | Curve | Thin     | RF Cable     | 2          | Test save    |
       | Curve | Thin     | Flat Cable   | 3          | Test save    |
-      | Curve | Thin     | Row Material | 4          | Test save    |
+      | Curve | Thin     | Row Material | 1          | Test save    |
       | Curve | Normal   | Lan Cable    | 1          | Test save    |
       | Curve | Normal   | RF Cable     | 2          | Test save    |
       | Curve | Normal   | Flat Cable   | 3          | Test save    |
-      | Curve | Normal   | Row Material | 4          | Test save    |
+      | Curve | Normal   | Row Material | 1         | Test save    |
       | Curve | Thick    | Lan Cable    | 1          | Test save    |
       | Curve | Thick    | RF Cable     | 2          | Test save    |
       | Curve | Thick    | Flat Cable   | 3          | Test save    |
-      | Curve | Thick    | Row Material | 4          | Test save    |
+      | Curve | Thick    | Row Material | 1          | Test save    |
 
   @Save @Revision @Bom @Cable @BrokenCable @ID=06-04 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Сохранение ревизии с объектами cable BOM
@@ -103,19 +103,19 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
       | Broken | Thinnest | Lan Cable    | 1          | Test save    |
       | Broken | Thinnest | RF Cable     | 2          | Test save    |
       | Broken | Thinnest | Flat Cable   | 3          | Test save    |
-      | Broken | Thinnest | Row Material | 4          | Test save    |
+      | Broken | Thinnest | Row Material | 1          | Test save    |
       | Broken | Thin     | Lan Cable    | 1          | Test save    |
       | Broken | Thin     | RF Cable     | 2          | Test save    |
       | Broken | Thin     | Flat Cable   | 3          | Test save    |
-      | Broken | Thin     | Row Material | 4          | Test save    |
+      | Broken | Thin     | Row Material | 1          | Test save    |
       | Broken | Normal   | Lan Cable    | 1          | Test save    |
       | Broken | Normal   | RF Cable     | 2          | Test save    |
       | Broken | Normal   | Flat Cable   | 3          | Test save    |
-      | Broken | Normal   | Row Material | 4          | Test save    |
+      | Broken | Normal   | Row Material | 1          | Test save    |
       | Broken | Thick    | Lan Cable    | 1          | Test save    |
       | Broken | Thick    | RF Cable     | 2          | Test save    |
       | Broken | Thick    | Flat Cable   | 3          | Test save    |
-      | Broken | Thick    | Row Material | 4          | Test save    |
+      | Broken | Thick    | Row Material | 1          | Test save    |
 
 
   @Save @Revision @Bom @Cable @Shrink @LeftShrink @Smoke @PlainCable @ID=06-05 @PRIORITY=5 @ASSIGNED=1

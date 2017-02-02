@@ -92,7 +92,7 @@ Feature: Создание и редактирование Cable Assemblies
       | 56 | Create TA test   | Company TA    | XY001100      | Removed in a moment |                |               |               |               | Alphabetic |                |
 
   @CableAssemblies @BadData @Edit @Smoke @ID=02-02 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Редактирование Cable Assemblies c валидными данными
+  Scenario Outline: Редактирование Cable Assemblies c невалидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -113,7 +113,7 @@ Feature: Создание и редактирование Cable Assemblies
       |                  | Company TA   | XY001100     | Desct             | XZ110011       | James Lucker | Eric Cartman | Stan Marsh   | Numerical |                |
 
   @CableAssemblies @BadData @Edit @ID=02-03 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Редактирование Cable Assemblies c валидными данными
+  Scenario Outline: Редактирование Cable Assemblies c невалидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль

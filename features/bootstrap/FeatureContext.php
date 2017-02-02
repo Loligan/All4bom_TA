@@ -105,6 +105,8 @@ class FeatureContext implements Context
      */
     public function AfterScenario(Behat\Behat\Hook\Scope\AfterScenarioScope $scope)
     {
+
+
         $modulTag = null;
         $isSave = false;
         $tags = $scope->getScenario()->getTags();
@@ -142,6 +144,7 @@ class FeatureContext implements Context
 
 //        REPORT
         $this->report->afterScenario($scope);
+
     }
 
 

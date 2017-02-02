@@ -54,7 +54,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | Row Material Additional                 | Drain wire          |
       | Row Material Additional                 | Braid               |
 
-  @Test @Smoke @CableRowMaterials @BOM @ID=13-03 @PRIORITY=5 @ASSIGNED=1
+  @Smoke @CableRowMaterials @BOM @ID=13-03 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -81,7 +81,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
     And Проверить что в BOM CRM присутствует 2 кнопки [Select Part]
     And Ждать "10" секунды
 
-  @Test @Smoke @CableRowMaterials @BOM @ID=13-04 @PRIORITY=5 @ASSIGNED=1
+   @Smoke @CableRowMaterials @BOM @ID=13-04 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -108,7 +108,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
     And Проверить что в BOM CRM присутствует 6 кнопки [Select Part]
     And Ждать "10" секунды
 
-  @Test @Smoke @CableRowMaterials @BOM @ID=13-05 @PRIORITY=5 @ASSIGNED=1
+   @Smoke @CableRowMaterials @BOM @ID=13-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

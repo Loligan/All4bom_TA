@@ -1,7 +1,7 @@
 Feature: Сохранение объектов на Draft
 
   @Revision @Draft @Save @Revision @Draft @Save @Text @Smoke @ID-07-01 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание на полотне объекта Text
+  Scenario: Создание и сохранение на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -15,7 +15,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
   @Revision @Draft @Save @Revision @Draft @Save @Line @PlainLine @Smoke  @ID-07-02 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+  Scenario Outline: Создание и сохранение объекта типа Line разных типов и разной толщины
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -33,7 +33,7 @@ Feature: Сохранение объектов на Draft
       | Plain  | Normal   | TestSave     |
 
   @Revision @Draft @Save @Line @ID-07-03 @PlainLine @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+  Scenario Outline: Создание и сохранение объекта типа Line разных типов и разной толщины
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -52,7 +52,7 @@ Feature: Сохранение объектов на Draft
       | Plain  | Thick    | TestSave     |
 
   @Revision @Draft @Save @Line @ID-07-04 @CurveLine @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+  Scenario Outline: Создание и сохранение объекта типа Line разных типов и разной толщины
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -73,7 +73,7 @@ Feature: Сохранение объектов на Draft
       | Curve  | Thick    | TestSave     |
 
   @Revision @Draft @Save @Line @ID-07-05 @BrokenLine @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта типа Line разных типов и разной толщины
+  Scenario Outline: Создание и сохранение объекта типа Line разных типов и разной толщины
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -94,7 +94,7 @@ Feature: Сохранение объектов на Draft
       | Broken | Thick    | TestSave     |
 
   @Revision @Draft @Save @UserImage @Smoke @ID-07-06 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта User images
+  Scenario Outline: Создание и сохранение объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -113,7 +113,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @UserImage @ID-07-07 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта User images
+  Scenario Outline: Создание и сохранение объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -132,7 +132,7 @@ Feature: Сохранение объектов на Draft
       | 3      | TestSave     |
 
   @Revision @Draft @Save @Accessories @Smoke @ID-07-08 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта Accessories
+  Scenario Outline: Создание и сохранение объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -150,7 +150,7 @@ Feature: Сохранение объектов на Draft
       | 1      | TestSave     |
 
   @Revision @Draft @Save @Accessories @ID-07-09 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание объекта Accessories
+  Scenario Outline: Создание и сохранение объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -168,7 +168,7 @@ Feature: Сохранение объектов на Draft
       | 2      | TestSave     |
 
   @Revision @Draft @Save @CustomPart @Smoke @ID-07-10 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание объекта Custom part
+  Scenario: Создание и сохранение объекта Custom part
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -187,7 +187,7 @@ Feature: Сохранение объектов на Draft
 #    FFF COPY
 
   @Revision @Draft @Save @Revision @CustomDimention @Copy @Smoke @ID-07-11 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Custom Dimention
+  Scenario Outline: Создание и сохранение копии объекта Custom Dimention
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -214,7 +214,7 @@ Feature: Сохранение объектов на Draft
       | 5   |
 
   @Revision @Draft @Save @Revision @Cable @PlainCable @Smoke @Copy @ID-07-12 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Plain Cable
+  Scenario: Создание и сохранение копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -241,7 +241,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
   @Revision @Draft @Save @Revision @Cable @PlainCable @Copy @ID-07-13 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Plain Cable
+  Scenario Outline: Создание и сохранение копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -276,7 +276,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Save @Cable @PlainCable @Copy @ID-07-14 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Plain Cable
+  Scenario Outline: Создание и сохранение копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -310,7 +310,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
   @Revision @Draft @Save @Revision @Save @Cable @CurveCable @Smoke @Copy @ID-07-15 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Curve Cable
+  Scenario: Создание и сохранение копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -339,7 +339,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Cable @CurveCable @Copy @ID-07-16 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Curve Cable
+  Scenario Outline: Создание и сохранение копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -375,7 +375,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Cable @CurveCable @Copy @ID-07-17 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Curve Cable
+  Scenario Outline: Создание и сохранение копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -410,7 +410,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
   @Revision @Draft @Save @Revision @Cable @BrokenCable @Smoke @Copy @ID-07-18 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Broken Cable
+  Scenario: Создание и сохранение копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -440,7 +440,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Cable @BrokenCable @Copy @ID-07-19 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Broken Cable
+  Scenario Outline: Создание и сохранение копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -476,7 +476,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Cable @BrokenCable @Copy @ID-07-20 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Broken Cable
+  Scenario Outline: Создание и сохранение копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -511,7 +511,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
   @Revision @Draft @Save @Revision @Line @PlainLine @Smoke @Copy @ID-07-21 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Plain Line
+  Scenario: Создание и сохранение копии объекта Plain Line
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -538,7 +538,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Line @PlainLine @Copy @ID-07-22 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Plain Cable
+  Scenario Outline: Создание и сохранение копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -571,7 +571,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Line @PlainLine @Copy @ID-07-23 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Plain Cable
+  Scenario Outline: Создание и сохранение копии объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -602,8 +602,8 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @@Revision @Draft @Save @Revision @Line @CurveLine @Smoke @Copy @ID-07-24 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Curve Cable
+  @@Revision @Draft @Save @Revision @Line @CurveLine @Copy @ID-07-24 @PRIORITY=5 @ASSIGNED=1
+  Scenario: Создание и сохранение копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -630,7 +630,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Line @CurveLine @Copy @ID-07-25 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Curve Cable
+  Scenario Outline: Создание и сохранение копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -663,7 +663,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Line @CurveLine @Copy @ID-07-26 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Curve Cable
+  Scenario Outline: Создание и сохранение копии объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -695,7 +695,7 @@ Feature: Сохранение объектов на Draft
       | Thick    |
 
   @Revision @Draft @Save @Revision @Line @BrokenLine @Smoke @Copy @ID-07-27 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Broken Cable
+  Scenario: Создание и сохранение копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -722,7 +722,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Cable @BrokenLine @Copy @ID-07-28 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Broken Cable
+  Scenario Outline: Создание и сохранение копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -755,7 +755,7 @@ Feature: Сохранение объектов на Draft
 
 
   @Revision @Draft @Save @Revision @Line @BrokenLine @Copy @ID-07-29 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Broken Cable
+  Scenario Outline: Создание и сохранение копии объекта Broken Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -786,8 +786,8 @@ Feature: Сохранение объектов на Draft
       | Normal   |
       | Thick    |
 
-  @Revision @Draft @Save @Revision @Connector @Copy @Smoke @ID-07-30 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Connector
+  @Revision @Draft @Save @Revision @Connector @Copy @ID-07-30 @PRIORITY=5 @ASSIGNED=1
+  Scenario: Создание и сохранение копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -815,7 +815,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
   @Revision @Draft @Save @Revision @Connector @Copy @ID-07-31 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Connector
+  Scenario Outline: Создание и сохранение копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -849,7 +849,7 @@ Feature: Сохранение объектов на Draft
       | RJ      | Connector | 2      |
 
   @Revision @Draft @Save @Revision @Connector @Copy @Smoke @ID-07-32 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Создание копии объекта Connector
+  Scenario: Создание и сохранение копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -877,7 +877,7 @@ Feature: Сохранение объектов на Draft
     And В ревизии все объекты на месте
 
   @Revision @Draft @Save @Revision @Connector @Copy @ID-07-33 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Connector
+  Scenario Outline: Создание и сохранение копии объекта Connector
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -911,7 +911,7 @@ Feature: Сохранение объектов на Draft
       | RJ      | Connector | 2      |
 
   @Revision @Draft @Save @Revision @UserImage @Copy @ID-07-34 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта User images
+  Scenario Outline: Создание и сохранение копии объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -936,7 +936,7 @@ Feature: Сохранение объектов на Draft
       | 2      |
 
   @Revision @Draft @Save @Revision @UserImage @Copy @ID-07-35 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта User images
+  Scenario Outline: Создание и сохранение копии объекта User images
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль
@@ -961,7 +961,7 @@ Feature: Сохранение объектов на Draft
       | 2      |
 
   @Revision @Draft @Save @Revision @Accessories @Smoke @Copy @ID-07-36 @PRIORITY=5 @ASSIGNED=1
-  Scenario Outline: Создание копии объекта Accessories
+  Scenario Outline: Создание и сохранение копии объекта Accessories
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
     And Ввести стандартный логин и пароль

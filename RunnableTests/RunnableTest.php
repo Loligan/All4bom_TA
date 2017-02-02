@@ -65,7 +65,7 @@ class RunnableTest
     {
         $execText = "/home/meldon/PhpstormProjects/All4bom_TA/RunnableTests/runnable.sh -t " . $tag;
         $resultExec = shell_exec($execText);
-
+//        print $resultExec;
         if (stripos($resultExec, "Проваленные сценарии") === false) {
             return true;
         } else {
@@ -123,7 +123,6 @@ class RunnableTest
             ($thisResultScenario == false && $resultLastScenario == null)
         ) {
             print "REPORT" . $thisScenarioTag . "\n";
-//           echo  $execText = "cd .." . $thisScenarioTag;
 //            TODO
             $execTextReport = "./record*.sh -t " . $thisScenarioTag;
             echo shell_exec($execTextReport);
@@ -145,6 +144,7 @@ class RunnableTest
         self::starScenarioTest($scenario);
 
     }
+
 
     /**
      * @param string $tag
@@ -176,7 +176,7 @@ class RunnableTest
         $scenario = self::getScenarioByTag($tag, $scenario);
 //        var_dump($scenario->getTag());
 //        self::starScenarioTest($scenario);
-       return self::callTestByTag($tag);
+        return self::callTestByTag($tag);
     }
 
     static function runByTagAndTitle($tag, $title)
@@ -190,5 +190,36 @@ class RunnableTest
             return false;
         }
     }
-}
 
+    static function runSmoke()
+    {
+        $file = file_get_contents("tests.json");
+        $evil_tree = json_decode($file, true);
+        $scenario = self::buildSmokeScenariosDependent($evil_tree[0]);
+//        var_dump($scenario);
+        self::starScenarioTest($scenario);
+
+    }
+
+
+    private static function buildSmokeScenariosDependent($x, $scenarioGhost = null)
+    {
+        if ($x['isSmoke'] == true) {
+            $thisScenario = new ScenarioGhost($scenarioGhost, $x['tag'], $x['responsible']);
+            while (true) {
+                $countDep = count($x['dependent']);
+                if ($countDep > 0) {
+                    for ($i = 0; $i < $countDep; $i++) {
+                        $result = self::buildSmokeScenariosDependent($x['dependent'][$i], $thisScenario);
+                        if($result!==null)
+                        $thisScenario->addScenarioDep($result);
+                    }
+                }
+                return $thisScenario;
+                break;
+            }
+        }else{
+            return null;
+        }
+    }
+}

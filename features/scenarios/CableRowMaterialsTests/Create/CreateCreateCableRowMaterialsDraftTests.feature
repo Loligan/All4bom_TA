@@ -70,7 +70,7 @@ Feature: Создание объектов на Draft CRM без сохране�
     And Ждать "2" секунды
     And Проверить что последний добавленный элемент является Cable Row Materials
 
-  @Smoke @CableRowMaterials @Draft @CRMObject @ID=12-05 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @Draft @CRMObject @ID=12-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -142,7 +142,7 @@ Feature: Создание объектов на Draft CRM без сохране�
       | 1   |
       | 5   |
 
-  @Smoke @CableRowMaterials @Copy @Draft @Text @ID=12-09 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @Copy @Draft @Text @ID=12-09 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта копии объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

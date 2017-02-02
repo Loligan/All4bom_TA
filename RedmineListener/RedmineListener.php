@@ -25,8 +25,6 @@ class RedmineListener
         $this->redmineURL = $redmineURL;
     }
 
-
-
     private function getAllCloseReportWithAssignedRobot(&$ids,&$titles)
     {
         $issues = $this->client->issue->all([

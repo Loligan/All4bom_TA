@@ -18,7 +18,7 @@ Feature: Создание ревизии без сохранения с данн
       | Plain | Normal | Lan Cable    | 1          |
       | Plain | Normal | RF Cable     | 2          |
       | Plain | Normal | Flat Cable   | 3          |
-      | Plain | Normal | Row Material | 4          |
+      | Plain | Normal | Row Material | 1          |
 
   @Create @Revision @BOM @Cable @PlainCable @ID=04-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable с данными в BOM
@@ -37,11 +37,11 @@ Feature: Создание ревизии без сохранения с данн
       | Plain  | Thin     | Lan Cable    | 1          |
       | Plain  | Thin     | RF Cable     | 2          |
       | Plain  | Thin     | Flat Cable   | 3          |
-      | Plain  | Thin     | Row Material | 4          |
+      | Plain  | Thin     | Row Material | 1         |
       | Plain  | Thick    | Lan Cable    | 1          |
       | Plain  | Thick    | RF Cable     | 2          |
       | Plain  | Thick    | Flat Cable   | 3          |
-      | Plain  | Thick    | Row Material | 4          |
+      | Plain  | Thick    | Row Material | 1          |
 
   @Create @Revision @BOM @Cable @CurveCable @ID=04-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Curve Cable с данными в BOM
@@ -60,19 +60,19 @@ Feature: Создание ревизии без сохранения с данн
       | Curve  | Thinnest | Lan Cable    | 1          |
       | Curve  | Thinnest | RF Cable     | 2          |
       | Curve  | Thinnest | Flat Cable   | 3          |
-      | Curve  | Thinnest | Row Material | 4          |
+      | Curve  | Thinnest | Row Material | 1          |
       | Curve  | Thin     | Lan Cable    | 1          |
       | Curve  | Thin     | RF Cable     | 2          |
       | Curve  | Thin     | Flat Cable   | 3          |
-      | Curve  | Thin     | Row Material | 4          |
+      | Curve  | Thin     | Row Material | 1          |
       | Curve  | Normal   | Lan Cable    | 1          |
       | Curve  | Normal   | RF Cable     | 2          |
       | Curve  | Normal   | Flat Cable   | 3          |
-      | Curve  | Normal   | Row Material | 4          |
+      | Curve  | Normal   | Row Material | 1          |
       | Curve  | Thick    | Lan Cable    | 1          |
       | Curve  | Thick    | RF Cable     | 2          |
       | Curve  | Thick    | Flat Cable   | 3          |
-      | Curve  | Thick    | Row Material | 4          |
+      | Curve  | Thick    | Row Material | 1          |
 
   @Create @Revision @BOM @Cable @BrokenCable @ID=04-04 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание объекта Cable с данными в BOM
@@ -91,19 +91,19 @@ Feature: Создание ревизии без сохранения с данн
       | Broken | Thinnest | Lan Cable    | 1          |
       | Broken | Thinnest | RF Cable     | 2          |
       | Broken | Thinnest | Flat Cable   | 3          |
-      | Broken | Thinnest | Row Material | 4          |
+      | Broken | Thinnest | Row Material | 1          |
       | Broken | Thin     | Lan Cable    | 1          |
       | Broken | Thin     | RF Cable     | 2          |
       | Broken | Thin     | Flat Cable   | 3          |
-      | Broken | Thin     | Row Material | 4          |
+      | Broken | Thin     | Row Material | 1          |
       | Broken | Normal   | Lan Cable    | 1          |
       | Broken | Normal   | RF Cable     | 2          |
       | Broken | Normal   | Flat Cable   | 3          |
-      | Broken | Normal   | Row Material | 4          |
+      | Broken | Normal   | Row Material | 1         |
       | Broken | Thick    | Lan Cable    | 1          |
       | Broken | Thick    | RF Cable     | 2          |
       | Broken | Thick    | Flat Cable   | 3          |
-      | Broken | Thick    | Row Material | 4          |
+      | Broken | Thick    | Row Material | 1         |
 
 
   @Create @Revision @BOM @Cable @Shrink @LeftShrink @Smoke @PlainCable @ID=04-05 @PRIORITY=5 @ASSIGNED=1
