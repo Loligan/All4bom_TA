@@ -1,4 +1,11 @@
 # README ALL4BOM TA
+
+* **run-all-scenario-regression.sh** - запуск всех сценариев
+* **run all-smoke.sh** - запуск всех smoke сценариев
+* **listener-bug-redmine.sh** - запуск слушателя багов redmine
+
+--OLD--
+
 Сетка рабочей области с координатами для построения тестов Draft
 ![](https://s26.postimg.org/mybgnbdy1/array.jpg)
 ======
