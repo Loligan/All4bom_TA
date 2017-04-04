@@ -1,13 +1,4 @@
-Feature: Home page тестриование
-
-  @HomePage @Smoke @ID=00-00 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Загрузка страницы
-    Given Открыть главную страницу
-
-
-  @HomePage @Smoke @ID=00-01 @PRIORITY=5 @ASSIGNED=1
-  Scenario: Наличие кнопки Cable Assemlies Tab
-    Given Открыть главную страницу
+Feature: Home page тестриованиеную страницу
     When Когда Home page страница загрузится
     And На странице будет элемент Cable Assemlies tab
 
@@ -16,6 +7,16 @@ Feature: Home page тестриование
     Given Открыть главную страницу
     When Когда Home page страница загрузится
     And На странице будет элемент Cable Row Materials tab
+
+  @HomePage @Smoke @ID=00-00 @PRIORITY=5 @ASSIGNED=1
+  Scenario: Загрузка страницы
+    Given Открыть главную страницу
+
+
+
+  @HomePage @Smoke @ID=00-01 @PRIORITY=5 @ASSIGNED=1
+  Scenario: Наличие кнопки Cable Assemlies Tab
+    Given Открыть глав
 
   @HomePage @Smoke @ID=00-03 @PRIORITY=5 @ASSIGNED=1
   Scenario: Наличие кнопки User Images Tab

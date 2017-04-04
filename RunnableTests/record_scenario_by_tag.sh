@@ -41,7 +41,7 @@ while getopts "t:g:" opt; do
   esac
 done
 {
-cd ..
+cd /home/meldon/PhpstormProjects/All4bom_TA
 rm scenario.rerun;
 touch scenario.rerun;
 run_scenario;

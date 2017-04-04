@@ -6,11 +6,12 @@ Feature: gg
     When Ждать "0" секунды
     Then Ждать "0" секунды
 
-  @Test
+  @Test666
   Scenario: ez1
     Given Ждать "0" секунды
     When Ждать "0" секунды
     Then Ждать "0" секунды
+    And Исключение
 
   @Test
   Scenario: ez2

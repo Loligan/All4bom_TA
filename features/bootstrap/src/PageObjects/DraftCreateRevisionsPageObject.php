@@ -103,7 +103,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     static private function getIndexSize($webDriver)
     {
         LastPhrase::setPhrase("Полотно не было найдено на странице Revision по cssSelector: " . DraftCreateRevisionsPageObject::$CANVAS);
-        $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
+        $canvas = $webDriver->findElements(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS))[0];
         DraftCreateRevisionsPageObject::$CANVAS_HEIGHT = $canvas->getSize()->getHeight();
         DraftCreateRevisionsPageObject::$CANVAS_WIDTH = $canvas->getSize()->getWidth();
         DraftCreateRevisionsPageObject::$INDEX_X = DraftCreateRevisionsPageObject::$CANVAS_HEIGHT / DraftCreateRevisionsPageObject::$ABSOLUTE_HEIGHT;
@@ -278,7 +278,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function drawCabel($webDriver, $firstPointX, $firstPointY, $secondPointX, $secondPointY, $dimentionPointX, $dimentionPointY)
     {
         $mouse = $webDriver->getMouse();
-        $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
+        $canvas = $webDriver->findElements(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS))[0];
         self::getIndexSize($webDriver);
         $setFirstPointX = self::getSetX($firstPointX);
         $setFirstPointY = self::getSetY($firstPointY);
@@ -709,7 +709,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function clickOnDraftPoint($webDriver, $positionX, $positionY)
     {
         $mouse = $webDriver->getMouse();
-        $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
+        $canvas = $webDriver->findElements(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS))[0];
         self::getIndexSize($webDriver);
         $setFirstPointX = self::getSetX($positionX);
         $setFirstPointY = self::getSetY($positionY);
@@ -799,7 +799,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function mouseButtonDownOnObject($webDriver, $positionX, $positionY)
     {
         $mouse = $webDriver->getMouse();
-        $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
+        $canvas = $webDriver->findElements(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS))[0];
         self::getIndexSize($webDriver);
         $setFirstPointX = self::getSetX($positionX);
         $setFirstPointY = self::getSetY($positionY);
@@ -818,7 +818,8 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function mouseButtonUpOnObject($webDriver, $positionX, $positionY)
     {
         $mouse = $webDriver->getMouse();
-        $canvas = $webDriver->findElement(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS));
+        SimpleWait::waitShowByCSSSelector($webDriver,DraftCreateRevisionsPageObject::$CANVAS);
+        $canvas = $webDriver->findElements(WebDriverBy::cssSelector(DraftCreateRevisionsPageObject::$CANVAS))[0];
         self::getIndexSize($webDriver);
         $setFirstPointX = self::getSetX($positionX);
         $setFirstPointY = self::getSetY($positionY);

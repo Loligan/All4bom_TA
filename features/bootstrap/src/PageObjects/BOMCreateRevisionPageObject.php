@@ -477,7 +477,9 @@ class BOMCreateRevisionPageObject implements PageObject
      */
     public static function setRightShrinkData($webDrive, $numberCable = null, $numberLinePartNumber = 1)
     {
+        print ("clickOnRightShrinkButton");
         self::clickOnRightShrinkButton($webDrive, $numberCable);
+        print ("selectRightShrinkType");
         self::selectRightShrinkType($webDrive, $numberLinePartNumber);
     }
 

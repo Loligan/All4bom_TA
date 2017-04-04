@@ -17,8 +17,8 @@ class RevisionsPageObjects implements PageObject
     {
         RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE = "html/body/main/div/div/table/tbody/tr/td[5]/div[1]/a[2]/i";
         RevisionsPageObjects::$CREATE_REVISION_BUTTON = "html/body/main/div/div/div/div/a[1][./span[text()=\"Create revision\"]]";
-        RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[1]";
-        RevisionsPageObjects::$DELETE_REVISIONS_BUTTOMS = "html/body/main/div/div/table/tbody/tr[.//td[3][text()=\"VALUE\"]]/td[5]/div[1]/a[2]";
+        RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[2]";
+        RevisionsPageObjects::$DELETE_REVISIONS_BUTTOMS = "html/body/main/div/div/table/tbody/tr[.//td[3][text()=\"VALUE\"]]/td[5]/div[1]/a[3]";
         RevisionsPageObjects::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
     }
 

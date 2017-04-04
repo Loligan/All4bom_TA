@@ -158,7 +158,7 @@ class TextReport
             LastPhrase::getPhrase() .
             "\n*Последний URL:*\n" . $this->lastURL .
             "\n*Лог с консоли:*\n" . $this->lastConsoleLog.
-        "\n*Примечания*\nИмя gif:\n".$this->additionallyLine."".
+        "\n*Примечания*\nИмя gif:\n"."file:///home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/BugReport/GifRecord/gif/".$this->additionallyLine."".
         "\n";
         $this->title = "[".$this->idTest."] ". $this->title;
     }

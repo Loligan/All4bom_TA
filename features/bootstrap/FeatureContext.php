@@ -38,6 +38,9 @@ class FeatureContext implements Context
 {
     private $appValue;
 
+    /**
+     * @var Facebook\WebDriver\Remote\RemoteWebDriver  $webDriver
+     */
     private $webDriver;
     private $bufRevision;
     private $bufCableAssemblies;
@@ -90,6 +93,7 @@ class FeatureContext implements Context
 
         $capabilities = DesiredCapabilities::chrome();
         $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities, 90 * 1000, 90 * 1000);
+//        $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", DesiredCapabilities::firefox(), 90 * 1000, 90 * 1000);
         $this->webDriver->manage()->window();
         $this->webDriver->manage()->window()->maximize();
 
@@ -138,13 +142,11 @@ class FeatureContext implements Context
         $this->bufFirstBOMTableValueForCheck = null;
         $this->bufSecondBOMTableValueForCheck = null;
 
-        if ($this->webDriver) {
             $this->webDriver->quit();
-        }
 
 //        REPORT
         $this->report->afterScenario($scope);
-
+//        shell_exec("killall chrome");
     }
 
 

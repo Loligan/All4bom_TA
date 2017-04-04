@@ -293,7 +293,7 @@ class Revision
         $this->getAllNotesLines($webDriver);
         TabCreateRevisionTabPageObject::clickOnLabelsTab($webDriver);
         $this->getAllLabelsLines($webDriver);
-//        sleep(5);
+        sleep(5);
         TabCreateRevisionTabPageObject::clickOnBOMTab($webDriver);
         $this->getAllLinesBomInformation($webDriver);
         TabCreateRevisionTabPageObject::clickOnPinoutDetailsTab($webDriver);

@@ -76,6 +76,7 @@ class RedmineSimpleReport
 
     public function createIssue($subject, $description, $priority_id, $assign_to_id)
     {
+        try{
         if ($this->isCreateIssue($subject)) {
             if (!$this->isCloseStatusIssue($subject)) {
 //               ADD LINES IN COMMENT IN CREATING BUG
@@ -98,6 +99,9 @@ class RedmineSimpleReport
                 'assigned_to_id' => $assign_to_id
             ]);
 //            print "CREATE NEW ISSUE";
+        }
+        }catch (Exception $e){
+            print $e;
         }
     }
 

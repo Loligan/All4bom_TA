@@ -57,10 +57,11 @@ class Report
 
     private function isRerun()
     {
-        if (file_exists("scenario.rerun")) {
+        if (file_exists("/home/meldon/PhpstormProjects/All4bom_TA/scenario.rerun")) {
             return true;
         } else {
             return false;
+
         }
     }
 
@@ -120,10 +121,10 @@ class Report
             $this->gifRecord->stop();
             $this->textReport->setIdTest($this->getTestID($afterScenarioScope));
             $priority = $this->getPriorityID($afterScenarioScope);
-            $assigned = $this->getAssignedID($afterScenarioScope);
+//            $assigned = $this->getAssignedID($afterScenarioScope);
+            $assigned = 1;
             $this->textReport->afterScenario();
             $report = new RedmineSimpleReport($this->urlRedmine, $this->userRedmine, $this->passwordRedmine, $this->nameProject);
-
             $report->createIssue($this->textReport->getTitle(), $this->textReport->getDescription(), $priority, $assigned);
         }
     }
