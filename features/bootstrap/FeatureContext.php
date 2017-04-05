@@ -1743,5 +1743,21 @@ class FeatureContext implements Context
         CableRowMaterialsBOMPageObject::checkSelectPartBottomsNumbers($this->webDriver,$arg1);
     }
 
+    /**
+     * @Given /^Нажать "([^"]*)" кнопку Alternative$/
+     */
+    public function clickOnAlternativeButtonByNumber($num)
+    {
+        BOMCreateRevisionPageObject::clickOnAlternativeButtonByNumber($this->webDriver,$num);
+    }
+
+    /**
+     * @Given /^В таблице находится ([^"]*) строки альтернативной детали$/
+     */
+    public function checkAddingAlternativeLineIntable($numb)
+    {
+        BOMCreateRevisionPageObject::checkAlternativeLineByNumber($this->webDriver, $numb);
+    }
+
 
 }

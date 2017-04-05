@@ -1,6 +1,6 @@
-Feature: Проверка условий связи коннекторов и кабелей по условию используя Connected With
+Feature: Cохранение ревизии с привязками cable и connector в BOM
 
-  @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke @05-01 @PRIORITY=5 @ASSIGNED=1
+  @Save @Revision @BOM @CableAndConnectorFilter @Cable @Smoke @ID=14-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Проверка основных условий связи коннекторов и кабелей
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -17,10 +17,7 @@ Feature: Проверка условий связи коннекторов и к
     And Выбрать первую строку в таблице
     And Выбрать первое значение в Connected With
     And Нажать на первую кнопку [<ButtonName>] в BOM
-    And Выбрать первую строку в таблице
-    And Сохранить ревизию с именем Test Save
-    Then Открыть последнюю ревизию с именем Test Save
-    And В ревизии все объекты на месте
+    Then В таблице, значения по стобцу <FilterConnectorName> соответствуют условию: <Conditions>
     Examples:
       | TypeCable | WeightCable | FamilyConnector | CategoryConnector | NumberCellConnector | FamilyCable                             | CategoryCable  | FilterCableName | FilterConnectorName   | ValueCableFilter | Conditions | ButtonName     |
       | Plain     | Normal      | RJ              | Connector         | 1                   | Lan Cable                               | Cable          | AWG             | AWG                   | 26               | =          | Connector      |
@@ -39,7 +36,7 @@ Feature: Проверка условий связи коннекторов и к
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Solid             | 24               | =          | Connector      |
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Multiconductor | AWG             | AWG Stranded          | 24               | =          | Connector      |
 
-  @Create @Revision @BOM @CableAndConnectorFilter @Cable @05-02 @PRIORITY=5 @ASSIGNED=1
+  @Save @Revision @BOM @CableAndConnectorFilter @Cable @ID=14-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Проверка всех условий связи коннекторов и кабелей
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -56,10 +53,7 @@ Feature: Проверка условий связи коннекторов и к
     And Выбрать первую строку в таблице
     And Выбрать первое значение в Connected With
     And Нажать на первую кнопку [<ButtonName>] в BOM
-    And Выбрать первую строку в таблице
-    And Сохранить ревизию с именем Test Save
-    Then Открыть последнюю ревизию с именем Test Save
-    And В ревизии все объекты на месте
+    Then В таблице, значения по стобцу <FilterConnectorName> соответствуют условию: <Conditions>
     Examples:
       | TypeCable | WeightCable | FamilyConnector | CategoryConnector | NumberCellConnector | FamilyCable                             | CategoryCable       | FilterCableName | FilterConnectorName | ValueCableFilter | Conditions | ButtonName     |
       | Plain     | Normal      | RJ              | Connector         | 1                   | Lan Cable                               | Cable               | Category        | Category            | CAT5E            | =          | Connector      |
@@ -133,4 +127,3 @@ Feature: Проверка условий связи коннекторов и к
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Miltipair flex      | AWG             | AWG Stranded        | 26               | =          | Connector      |
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Wire                | AWG             | AWG Stranded        | 24               | =          | Connector      |
       | Plain     | Normal      | Terminal Block  | Connector         | 1                   | Multicondactor / Multipair Cable / Wire | Wire                | AWG             | AWG Stranded        | 26               | =          | Connector      |
-

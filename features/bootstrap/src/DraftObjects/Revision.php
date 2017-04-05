@@ -205,8 +205,8 @@ class Revision
 
         $SELECT_FIRST_CONNECTOR = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[LINE]/td[1]/div/select";
         $SELECT_SECOND_CONNECTOR = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[LINE]/td[COUNT]/div/select";
-        $CHECK_BOX_LINE = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[LINE]/td[CABLE]/label/input[1]";
-        $TEXT_INPUT_LINE = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[LINE]/td[CABLE]/label/input[2]";
+        $CHECK_BOX_LINE = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[LINE]/td[CABLE]/div/div/label/input[1]";
+        $TEXT_INPUT_LINE = "html/body/main/form/div[2]/div/div/table[TABLE]/tbody/tr[LINE]/td[CABLE]/div/div/label/input[2]";
 
 //        without columns with action buttons
         $countColums = count($webDriver->findElements(WebDriverBy::xpath($COLUMNS))) - 1;

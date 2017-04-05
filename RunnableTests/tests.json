@@ -35,8 +35,64 @@
                     "responsible": "1",
                     "description": "Создание на полотне объекта Text @Smoke",
                     "isSmoke": true,
+  {
+    "tag": "00-00",
+    "responsible": "1",
+    "description": "Загрузка страницы @Smoke",
+    "isSmoke": true,
+    "dependent": [
+      {
+        "tag": "00-01",
+        "responsible": "1",
+        "description": "Наличие кнопки Cable Assemlies Tab @Smoke",
+        "isSmoke": true,
+        "dependent": [
+          {
+            "tag": "01-00",
+            "responsible": "1",
+            "description": "Создание Cable Assemblies c валидными данными @Smoke",
+            "isSmoke": true,
+            "dependent": [
+              {
+                "tag": "01-01",
+                "responsible": "1",
+                "description": "Создание Cable Assemblies c валидными данными",
+                "isSmoke": false,
+                "dependent": []
+              },
+              {
+                "tag": "03-00",
+                "responsible": "1",
+                "description": "Создание на полотне объекта Text @Smoke",
+                "isSmoke": true,
+                "dependent": [
+                  {
+                    "tag": "03-01",
+                    "responsible": "1",
+                    "description": "Создание на полотне объекта Text @Smoke",
+                    "isSmoke": true,
                     "dependent": [
                       {
+                        "tag": "03-02",
+                        "responsible": "1",
+                        "description": "Создание на полотне объекта Text",
+                        "isSmoke": false,
+                        "dependent": []
+                      },
+                      {
+                        "tag": "07-01",
+                        "responsible": "1",
+                        "description": "Создание и сохранение на полотне объекта Text @Smoke",
+                        "isSmoke": true,
+                        "dependent": []
+                      },
+                      {
+                        "tag": "03-04",
+                        "responsible": "1",
+                        "description": "Создание на полотне объекта Custom Dimention @Smoke",
+                        "isSmoke": true,
+                        "dependent": [
+                          {
                         "tag": "03-02",
                         "responsible": "1",
                         "description": "Создание на полотне объекта Text",
@@ -129,7 +185,39 @@
                             "responsible": "1",
                             "description": "Создание объекта Cable с данными в BOM @Smoke",
                             "isSmoke": true,
-                            "dependent": []
+                            "dependent": [
+
+                              {
+                                "tag": "04-19",
+                                "responsible": "1",
+                                "description": "Проверка работы добавления альтернативных деталей @Smoke",
+                                "isSmoke": true,
+                                "dependent": [
+
+                                  {
+                                    "tag": "04-20",
+                                    "responsible": "1",
+                                    "description": "Проверка работы добавления альтернативных деталей",
+                                    "isSmoke": false,
+                                    "dependent": []
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "14-00",
+                                "responsible": "1",
+                                "description": "Проверка основных условий связи коннекторов и кабелей",
+                                "isSmoke": false,
+                                "dependent": []
+                              },
+                              {
+                                "tag": "14-01",
+                                "responsible": "1",
+                                "description": "Проверка всех условий связи коннекторов и кабелей",
+                                "isSmoke": false,
+                                "dependent": []
+                              }
+                            ]
                           },
                           {
                             "tag": "04-02",
@@ -883,7 +971,7 @@
                           {
                             "tag": "03-47",
                             "responsible": "1",
-                            "description": "Создание копии объекта User images",
+                            "description": "-Создание копии объекта User images",
                             "isSmoke": false,
                             "dependent": [
                               {

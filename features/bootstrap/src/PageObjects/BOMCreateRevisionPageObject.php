@@ -10,6 +10,7 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 
 class BOMCreateRevisionPageObject implements PageObject
 {
+    private static $ALTERNATIVE_BUTTONS;
     private static $REVISION_DESCRIPTION_INPUT;
     private static $CABLE_BUTTON;
     private static $CONNECTOR_BUTTON;
@@ -93,6 +94,7 @@ class BOMCreateRevisionPageObject implements PageObject
         self::$SELECT_CUSTOM_VALUE_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"VALUE\"]/div/select ";
         self::$OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"LABEL\"]/div/select/option[text()=\"VALUE\"]";
         self::$CONNECTOR_DESCRIPTION_TEXT = ".//*[@id='selected-properties']/table/tbody/tr[./td/button/span[text()=\"Connector\"]]/td[6]";
+        self::$ALTERNATIVE_BUTTONS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[2]/div/button";
     }
 
     /**
@@ -949,7 +951,7 @@ class BOMCreateRevisionPageObject implements PageObject
         LastPhrase::setPhrase("Не удалось нажать на строку с значением PartNumber = ".$arg1);
         $select->click();
         LastPhrase::setPhrase("Таблица не исчезла после клика по строке в таблице");
-        SimpleWait::waitHide($webDriver, $xpath);
+//        SimpleWait::waitHide($webDriver, $xpath);
     }
 
     public static function checkDescriptionValueByNameCableObject($webDriver, $numberConnector, $nameParam, $value)
@@ -975,6 +977,37 @@ class BOMCreateRevisionPageObject implements PageObject
         $countCategoryTextInputs = count($categoryTextInputs);
         if($countCategoryTextInputs!=$number){
             throw new Exception("In bom not be found ".$number." custom part. In BOM ".$countCategoryTextInputs." custom part");
+        }
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $number
+     */
+    public static function clickOnAlternativeButtonByNumber($webDriver, $number)
+    {
+        print "find".PHP_EOL;
+        $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$ALTERNATIVE_BUTTONS));
+        print "COUNT ALT BUTTONS: ".count($buttons);
+        print "click".PHP_EOL;
+        $buttons[$number-1]->click();
+        print "exit".PHP_EOL;
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param int $number
+     * @throws Exception
+     */
+    public static function checkAlternativeLineByNumber($webDriver, $number)
+    {
+        $lines = $webDriver->findElements(WebDriverBy::xpath("//*[@id=\"selected-properties\"]/table/tbody/tr"));
+        $buttons = $webDriver->findElements(WebDriverBy::xpath("//*[@id=\"selected-properties\"]/table/tbody/tr/td[2]/button"));
+        $countLines = count($lines)-1;
+        $countButtons = count($buttons);
+        $altLines = $countLines-$countButtons;
+        if($altLines != $number){
+            throw new Exception("Count alternative lines no be equal ".$number." Number of alt. lines in page = ".$altLines);
         }
     }
 
