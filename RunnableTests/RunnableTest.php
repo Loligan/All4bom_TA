@@ -8,6 +8,7 @@ class RunnableTest
     private static $url = "http://127.0.0.1/redmine/";
     private static $login = "MrRobot";
     private static $password = "12345678";
+    private static $arrOk = array();
 
 
 //    private static $evil_tree = [
@@ -90,7 +91,7 @@ class RunnableTest
         } else {
             print "NO OK." . $scenario->getTag() . "\n";
             self::definitionOfResult($scenario);
-
+            array_push(self::$arrOk,$scenario->getTag());
             return false;
         }
     }
@@ -142,7 +143,9 @@ class RunnableTest
         $evil_tree = json_decode($file, true);
         $scenario = self::buildScenariosDependent($evil_tree[0]);
         self::starScenarioTest($scenario);
-
+        print PHP_EOL.PHP_EOL."=========FAILS=========";
+        print_r(self::$arrOk);
+        print PHP_EOL.PHP_EOL."=======================";
     }
 
 
@@ -198,7 +201,9 @@ class RunnableTest
         $scenario = self::buildSmokeScenariosDependent($evil_tree[0]);
 //        var_dump($scenario);
         self::starScenarioTest($scenario);
-
+        print PHP_EOL.PHP_EOL."=========FAILS=========";
+        print_r(self::$arrOk);
+        print PHP_EOL.PHP_EOL."=======================";
     }
 
 
@@ -223,3 +228,4 @@ class RunnableTest
         }
     }
 }
+

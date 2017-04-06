@@ -1759,5 +1759,13 @@ class FeatureContext implements Context
         BOMCreateRevisionPageObject::checkAlternativeLineByNumber($this->webDriver, $numb);
     }
 
+    /**
+     * @Given /^Перейти на вкладку Draft$/
+     */
+    public function clickOnDraftButtonOnCreateRevisionPage()
+    {
+        TabCreateRevisionTabPageObject::clickOnDraftTab($this->webDriver);
+    }
+
 
 }

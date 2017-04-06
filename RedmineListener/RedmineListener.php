@@ -80,7 +80,9 @@ class RedmineListener
             } else {
                self::getTitlesAndTags($titles,$titlesWithoutTag,$tags);
 //                var_dump($ids);
-//                var_dump($tags);
+                $tags = array_unique($tags);
+                var_dump($tags);
+                var_dump($tags[0]);
 //                TODO запустить тест по тегу, если прошел то закрыть и оставить без Assigned to
                if(RunnableTest::runByTag($tags[0])){
                     $this->client->issue->update($ids[0],[

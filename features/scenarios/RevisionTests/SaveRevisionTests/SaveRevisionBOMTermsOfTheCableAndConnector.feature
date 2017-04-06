@@ -14,9 +14,11 @@ Feature: Cохранение ревизии с привязками cable и con
     And Выбрать семейство кабелей <FamilyCable>
     And Выбрать категорию кабеля <CategoryCable>
     And Установить в фильтер <FilterCableName> значение <ValueCableFilter>
-    And Выбрать первую строку в таблице
+    And Выбрать 1 строку в таблице
+    And Ждать "2" секунды
     And Выбрать первое значение в Connected With
     And Нажать на первую кнопку [<ButtonName>] в BOM
+    And Ждать "2" секунды
     Then В таблице, значения по стобцу <FilterConnectorName> соответствуют условию: <Conditions>
     Examples:
       | TypeCable | WeightCable | FamilyConnector | CategoryConnector | NumberCellConnector | FamilyCable                             | CategoryCable  | FilterCableName | FilterConnectorName   | ValueCableFilter | Conditions | ButtonName     |
@@ -50,7 +52,9 @@ Feature: Cохранение ревизии с привязками cable и con
     And Выбрать семейство кабелей <FamilyCable>
     And Выбрать категорию кабеля <CategoryCable>
     And Установить в фильтер <FilterCableName> значение <ValueCableFilter>
-    And Выбрать первую строку в таблице
+    And Ждать "2" секунды
+    And Выбрать 1 строку в таблице
+    And Ждать "2" секунды
     And Выбрать первое значение в Connected With
     And Нажать на первую кнопку [<ButtonName>] в BOM
     Then В таблице, значения по стобцу <FilterConnectorName> соответствуют условию: <Conditions>
