@@ -1,6 +1,6 @@
 Feature: Проверка условий связи коннекторов и кабелей по условию используя Connected With
 
-  @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke @05-01 @PRIORITY=5 @ASSIGNED=1
+  @Create @Revision @BOM @CableAndConnectorFilter @Cable @Smoke @05-01-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Проверка основных условий связи коннекторов и кабелей
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
