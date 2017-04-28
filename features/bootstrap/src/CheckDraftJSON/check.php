@@ -68,7 +68,7 @@ class  Checker
                 print "RESULT CHECK: ";
                 var_dump($resultCheck);
                 if($resultCheck=true){
-                    $passDataForCheck[$keyCellDataForCheck] = true;
+                    $passDataForCheck[$keyCellDataForCheck] = true; //Проблема с индексом, разобраться!
                 }
                 print "-----------------------------------------".PHP_EOL;
             }
