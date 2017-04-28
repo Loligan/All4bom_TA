@@ -52,36 +52,61 @@ class  Checker
         $passObjects = array_fill(0, $countDataForCheck, false);
         $passDataForCheck = array_fill(0, $countDataForCheck, false);
 
-        for ($indexObject = 0; $indexObject < $countObjects; $indexObject++) {
-            $resultCheckObject = false;
-            foreach ($dataForCheck as $key => $value) {
-                $resultCheckData = true;
-                if ($passObjects[$key] == true) {
-                    continue;
-                }
+        foreach ($dataForCheck as $keyCellData => $valueCellData) {
 
-//                CHECK OBJECTS
+            foreach ($this->objects as $cellObjectKey => $cellObjectValue) {
 
-                foreach ($this->objects[$indexObject] as $keyObject => $valueObject) {
 
-                    if ($value == $valueObject) {
-//                        if ($dataForCheck[$indexDataForCheck] == $value) {
-//                            $resultCheckData = false;
-//                        }
+                foreach ($cellObjectValue as $objectKey => $objectValue) {
+
+                    $resultCellData = true;
+
+                    foreach ($valueCellData as $dataKey => $dataValue) {
+                        if($valueCellData != $objectValue){
+                            $resultCellData = false;
+                           break;
+                        }
                     }
+
+                    if($resultCellData==true){
+                        break;
+                    }
+
                 }
-
-//                FINAL CHECK BEFORE CHECK ALL OBJECTS IN CLASS
-                if ($resultCheckData == true) {
-                    $resultCheckObject = true;
-                    $passObjects[$indexObject] = true;
-                    $passDataForCheck[$key] = true;
-                    print "f ";
-                }
-
-
             }
+
         }
+
+//        for ($indexObject = 0; $indexObject < $countObjects; $indexObject++) {
+//            $resultCheckObject = false;
+//            foreach ($dataForCheck as $key => $value) {
+//                $resultCheckData = true;
+//                if ($passObjects[$key] == true) {
+//                    continue;
+//                }
+//
+////                CHECK OBJECTS
+//
+//                foreach ($this->objects[$indexObject] as $keyObject => $valueObject) {
+//
+//                    if ($value == $valueObject) {
+////                        if ($dataForCheck[$indexDataForCheck] == $value) {
+////                            $resultCheckData = false;
+////                        }
+//                    }
+//                }
+//
+////                FINAL CHECK BEFORE CHECK ALL OBJECTS IN CLASS
+//                if ($resultCheckData == true) {
+//                    $resultCheckObject = true;
+//                    $passObjects[$indexObject] = true;
+//                    $passDataForCheck[$key] = true;
+//                    print "f ";
+//                }
+//
+//
+//            }
+//        }
     }
 
 //        for ($i = 0; $i < $countObjects; $i++) {
