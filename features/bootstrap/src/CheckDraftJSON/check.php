@@ -52,25 +52,15 @@ class  Checker
         $passObjects = array_fill(0, $countDataForCheck, false);
         $passDataForCheck = array_fill(0, $countDataForCheck, false);
 
-        foreach ($dataForCheck as $keyCellData => $valueCellData) {
+        foreach ($dataForCheck as $cellDataKey => $cellDataValue) { // Ячейки массива из данных которые проверяем
 
-            foreach ($this->objects as $cellObjectKey => $cellObjectValue) {
+            foreach ($this->objects as $cellObjectKey => $cellObjectValue) { // Данные из ячейки массива которые проверяем
 
 
-                foreach ($cellObjectValue as $objectKey => $objectValue) {
+                foreach ($cellObjectValue as $valueObjectKey => $valueObjectValue) { // Ячейки массива из данных которыми мы проверям
 
-                    $resultCellData = true;
 
-                    foreach ($valueCellData as $dataKey => $dataValue) {
-                        if($valueCellData != $objectValue){
-                            $resultCellData = false;
-                           break;
-                        }
-                    }
-
-                    if($resultCellData==true){
-                        break;
-                    }
+                    foreach ($cellDataValue as $valueDataKey => $valueDataValue) { //Данные  из ячейки массива которыми мы проверяем
 
                 }
             }
