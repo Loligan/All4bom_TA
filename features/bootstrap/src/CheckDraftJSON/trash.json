@@ -28,7 +28,7 @@
       "editable": true,
       "canFocusControl": true,
       "zIndex": 0,
-      "fontSize": "18",
+      "fontSize": "181",
       "fontWeight": "normal",
       "fontFamily": "Arial",
       "fontStyle": "",
@@ -37,7 +37,8 @@
       "textAlign": "left",
       "textBackgroundColor": "",
       "charSpacing": 0,
-      "styles": {}
+      "styles": {},
+      "text":"Example text2"
     },
     {
       "type": "i-text",
@@ -76,7 +77,8 @@
       "textAlign": "left",
       "textBackgroundColor": "",
       "charSpacing": 0,
-      "styles": {}
+      "styles": {},
+      "text":"Example text"
     }
   ]
 }

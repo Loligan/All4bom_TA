@@ -49,113 +49,59 @@ class  Checker
             return false;
         }
 
+
         $passObjects = array_fill(0, $countDataForCheck, false);
         $passDataForCheck = array_fill(0, $countDataForCheck, false);
 
-        foreach ($dataForCheck as $cellDataKey => $cellDataValue) { // Ячейки массива из данных которые проверяем
-//                      1
-            foreach ($this->objects as $cellObjectKey => $cellObjectValue) { // Данные из ячейки массива которые проверяем
+        foreach ($dataForCheck as $keyCellDataForCheck => $valueCellDataForCheck) {
+            foreach ($this->objects as $keyCellObject => $valueCellObject) {
+                $resultCheck = true;
+                foreach ($valueCellObject as $keyItemObject => $valueItemObject){
+                    if($valueCellDataForCheck[$keyItemObject] == $valueItemObject && !is_array($valueItemObject)){
+                        print $keyItemObject."   ".$valueCellDataForCheck[$keyItemObject]." == ".$valueItemObject.PHP_EOL;
 
-//                      2
-//                Если всё круто в 3 то пьём пиво
-                foreach ($cellObjectValue as $valueObjectKey => $valueObjectValue) { // Ячейки массива из данных которыми мы проверям
-
-//                              3
-//                    Если гуд с 4 то записываем в ячеюку что всё гуд, брейкаем и идем в 2
-                    foreach ($cellDataValue as $valueDataKey => $valueDataValue) { //Данные  из ячейки массива которыми мы проверяем
-//                 4
-//            Если всё гуд то передаем в 3 что всё гуд, брейкаем
+                    }else if($valueCellDataForCheck[$keyItemObject] != $valueItemObject ){
+                        $resultCheck = false;
                     }
-                }
 
+                }
+                print "RESULT CHECK: ";
+                var_dump($resultCheck);
+                if($resultCheck=true){
+                    $passDataForCheck[$keyCellDataForCheck] = true;
+                }
+                print "-----------------------------------------".PHP_EOL;
             }
         }
+
+        var_dump($passDataForCheck);
     }
 
-//        for ($indexObject = 0; $indexObject < $countObjects; $indexObject++) {
-//            $resultCheckObject = false;
-//            foreach ($dataForCheck as $key => $value) {
-//                $resultCheckData = true;
-//                if ($passObjects[$key] == true) {
-//                    continue;
-//                }
-//
-////                CHECK OBJECTS
-//
-//                foreach ($this->objects[$indexObject] as $keyObject => $valueObject) {
-//
-//                    if ($value == $valueObject) {
-////                        if ($dataForCheck[$indexDataForCheck] == $value) {
-////                            $resultCheckData = false;
-////                        }
-//                    }
-//                }
-//
-////                FINAL CHECK BEFORE CHECK ALL OBJECTS IN CLASS
-//                if ($resultCheckData == true) {
-//                    $resultCheckObject = true;
-//                    $passObjects[$indexObject] = true;
-//                    $passDataForCheck[$key] = true;
-//                    print "f ";
-//                }
-//
-//
-//            }
-//        }
 
-
-//        for ($i = 0; $i < $countObjects; $i++) {
-//            for ($j = 0; $j < $countData; $j++) {
-//                print $i;
-//                if ($passData[$j] == true) {
-//                    continue;
-//                }
-//                $result = true;
-//                foreach ($this->objects[$i] as $key => $value) {
-//                    if (is_array($value) && $result == true && array_key_exists($key, $data[$j])) {
-//                        $result = self::checkArray($data[$j][$key], $value);
-//                    } else {
-//                        if (!is_array($value) && array_key_exists($key, $data[$j]) == true) {
-//                            if ($data[$j][$key] != $value) {
-//                                $result = false;
-//                            }
-//                        }
-//                    }
-//                }
-//                if ($result == true) {
-//                    $passObjects[$i] = true;
-//                    $passData[$j] = true;
-//                    print "TRUE: obj[" . $i . "] == data[" . $j . "]" . PHP_EOL;
-//                }
-//            }
-//
-//        }
-//        var_dump($passObjects);
-//        var_dump($passData);
-
-
-        function getObjects()
-        {
-            return $this->objects;
-        }
-
-        function Check($json)
-        {
-            $this->checkObject($json);
-        }
+    function getObjects()
+    {
+        return $this->objects;
     }
+
+    function Check($json)
+    {
+        $this->checkObject($json);
+    }
+}
 
 $checker = new Checker();
 
 //$result = $checker->checkObject("plain-cable.json", $trash, 0, null);
 //
-$checker->addObject("text", array(
-["text" => "Example text"]
-));
-
-$checker->addObject("text", array(
-["text" => "Example text2"]
-));
+$checker->addObject("text", null);
+$checker->addObject("text", null);
+//$checker->addObject("text", array(
+//    ["text" => "Example text"]
+//));
+//
+//$checker->addObject("text", array(
+//    ["text" => "Example text2"]
+//));
 //$checker->addObject("plain-cable", null);
 //var_dump($checker->getObjects());
 $checker->check($trash);
