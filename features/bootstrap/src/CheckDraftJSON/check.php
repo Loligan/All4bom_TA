@@ -53,19 +53,24 @@ class  Checker
         $passDataForCheck = array_fill(0, $countDataForCheck, false);
 
         foreach ($dataForCheck as $cellDataKey => $cellDataValue) { // Ячейки массива из данных которые проверяем
-
+//                      1
             foreach ($this->objects as $cellObjectKey => $cellObjectValue) { // Данные из ячейки массива которые проверяем
 
-
+//                      2
+//                Если всё круто в 3 то пьём пиво
                 foreach ($cellObjectValue as $valueObjectKey => $valueObjectValue) { // Ячейки массива из данных которыми мы проверям
 
-
+//                              3
+//                    Если гуд с 4 то записываем в ячеюку что всё гуд и брейкаем и идем в 2
                     foreach ($cellDataValue as $valueDataKey => $valueDataValue) { //Данные  из ячейки массива которыми мы проверяем
-
+//                 4
+//            Если всё гуд то передаем в 3 что всё гуд брейкаем
+                    }
                 }
-            }
 
+            }
         }
+    }
 
 //        for ($indexObject = 0; $indexObject < $countObjects; $indexObject++) {
 //            $resultCheckObject = false;
@@ -97,7 +102,7 @@ class  Checker
 //
 //            }
 //        }
-    }
+
 
 //        for ($i = 0; $i < $countObjects; $i++) {
 //            for ($j = 0; $j < $countData; $j++) {
@@ -129,27 +134,27 @@ class  Checker
 //        var_dump($passData);
 
 
-    function getObjects()
-    {
-        return $this->objects;
-    }
+        function getObjects()
+        {
+            return $this->objects;
+        }
 
-    function Check($json)
-    {
-        $this->checkObject($json);
+        function Check($json)
+        {
+            $this->checkObject($json);
+        }
     }
-}
 
 $checker = new Checker();
 
 //$result = $checker->checkObject("plain-cable.json", $trash, 0, null);
 //
 $checker->addObject("text", array(
-    ["text" => "Example text"]
+["text" => "Example text"]
 ));
 
 $checker->addObject("text", array(
-    ["text" => "Example text2"]
+["text" => "Example text2"]
 ));
 //$checker->addObject("plain-cable", null);
 //var_dump($checker->getObjects());
