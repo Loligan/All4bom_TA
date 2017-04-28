@@ -11,13 +11,21 @@ class HomePageObject implements PageObject
     private static $SIMFONY_TAB_BUTTON;
     private static $CABLE_ROW_MATERIALS_TAB;
     private static $USER_IMAGES_TAB;
+    private static $TENDERS_TAB;
+    private static $WELCOME_TAB;
+    private static $SUPPLIER_PANEL_BUTTON;
+    private static $LOGOUT_BUTTON;
 
     static function init(){
-        HomePageObject::$LOGIN_BUTTON = ".login__link";
-        HomePageObject::$CABLE_ASSEMLIES_TAB = "html/body/header/div/div/div[1]/nav/ul/li[2]/a";
-        HomePageObject::$USER_IMAGES_TAB= "html/body/header/div/div/div[1]/nav/ul/li[4]/a";
-        HomePageObject::$SIMFONY_TAB_BUTTON = ".//*[@title=\"Close Toolbar\"]";
-        HomePageObject::$CABLE_ROW_MATERIALS_TAB = "html/body/header/div/div/div[1]/nav/ul/li[3]/a";
+        self::$LOGIN_BUTTON = ".login__link";
+        self::$CABLE_ASSEMLIES_TAB = "html/body/header/div/div/div[1]/nav/ul/li[2]/a";
+        self::$USER_IMAGES_TAB= "html/body/header/div/div/div[1]/nav/ul/li[4]/a";
+        self::$SIMFONY_TAB_BUTTON = ".//*[@title=\"Close Toolbar\"]";
+        self::$CABLE_ROW_MATERIALS_TAB = "html/body/header/div/div/div[1]/nav/ul/li[3]/a";
+        self::$TENDERS_TAB = "/html/body/header/div/div/div[1]/nav/ul/li[5]/a";
+        self::$WELCOME_TAB = "/html/body/header/div/div/div[2]/div[1]/a";
+        self::$SUPPLIER_PANEL_BUTTON = "/html/body/header/div/div/div[2]/div[1]/ul/li/a[text()=\"Supplier panel\"]";
+        self::$LOGOUT_BUTTON = "/html/body/header/div/div/div[2]/div[1]/ul/li/a[text()=\"Logout\"]";
     }
 
     /**
@@ -47,7 +55,7 @@ class HomePageObject implements PageObject
     {
         LastPhrase::setPhrase("Сайт не открыт по URL: ".AppValues::getUrl());
         $webDriver->get(AppValues::getUrl());
-//        self::closeSymfonyTab($webDriver);
+        self::closeSymfonyTab($webDriver);
     }
 
     /**
@@ -113,6 +121,53 @@ class HomePageObject implements PageObject
             throw new Exception("user images tab not found");
         }
     }
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    public static function clickOnTendersTab($webDriver){
+     $tab = $webDriver->findElement(WebDriverBy::xpath(self::$TENDERS_TAB));
+     $tab->click();
+    }
 
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    private static function clickOnWelcomeTab($webDriver){
+        $tab = $webDriver->findElement(WebDriverBy::xpath(self::$WELCOME_TAB));
+        $tab->click();
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    private static function clickOnSupplierPanelButton($webDriver){
+        $tab = $webDriver->findElement(WebDriverBy::xpath(self::$SUPPLIER_PANEL_BUTTON));
+        $tab->click();
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    public static function clickOnSupplierPanel($webDriver){
+        self::clickOnWelcomeTab($webDriver);
+        self::clickOnSupplierPanelButton($webDriver);
+    }
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    public static function logout($webDriver)
+    {
+        self::clickOnWelcomeTab($webDriver);
+        self::clickOnLogoutButton($webDriver);
+    }
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    private static function clickOnLogoutButton($webDriver)
+    {
+        $button = $webDriver->findElement(WebDriverBy::xpath(self::$LOGOUT_BUTTON));
+        $button->click();
+
+    }
 
 }

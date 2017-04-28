@@ -17,6 +17,7 @@ class CableAssembliesPageObject implements PageObject
     private static $DELETE_BUTTOM;
     private static $LINKS;
     private static $ACCEPT_DELETE_REVISION_BUTTON;
+    private static $CREATE_FOR_PDF_BUTTON;
 
     static function init()
     {
@@ -28,6 +29,7 @@ class CableAssembliesPageObject implements PageObject
         self::$LINKS = "html/body/main/div/div/table/tbody/tr/td[text()[.='VALUE']]/following-sibling::td[position()=4]/div/a[1]";
         self::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
         self::$EDIT_ACTION_BUTTONS = "html/body/main/div/div/table/tbody/tr/td[7]/div[1]/a[1]/i";
+        self::$CREATE_FOR_PDF_BUTTON = "/html/body/main/div/div/div/div/a[2]";
     }
 
     /**
@@ -192,6 +194,15 @@ class CableAssembliesPageObject implements PageObject
         $buttons = $webDriver->findElements(WebDriverBy::xpath(self::$EDIT_ACTION_BUTTONS));
         $button = $buttons[count($buttons)-1];
         $button->click();
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    public static function clickOnCreateForPDFButton($webDriver)
+    {
+       $button = $webDriver->findElement(WebDriverBy::xpath(self::$CREATE_FOR_PDF_BUTTON));
+       $button->click();
     }
 
 }

@@ -12,6 +12,7 @@ class RevisionsPageObjects implements PageObject
     private static $EDIT_REVISION_BUTTON_BY_NAME_REVISION;
     private static $DELETE_REVISIONS_BUTTOMS;
     private static $ACCEPT_DELETE_REVISION_BUTTON;
+    private static $CREATE_TENDER_REVISION_BUTTON_BY_NAME_REVISION;
 
     static function init()
     {
@@ -20,6 +21,7 @@ class RevisionsPageObjects implements PageObject
         RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[2]";
         RevisionsPageObjects::$DELETE_REVISIONS_BUTTOMS = "html/body/main/div/div/table/tbody/tr[.//td[3][text()=\"VALUE\"]]/td[5]/div[1]/a[3]";
         RevisionsPageObjects::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
+        RevisionsPageObjects::$CREATE_TENDER_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[1]";
     }
 
     /**
@@ -120,5 +122,16 @@ class RevisionsPageObjects implements PageObject
                 break;
             }
         }
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param string $name
+     */
+    public static function clickOnCreateTenderByNameRevision($webDriver, $name)
+    {
+        $xpath = str_replace("VALUE", $name, self::$CREATE_TENDER_REVISION_BUTTON_BY_NAME_REVISION);
+        $buttons = $webDriver->findElements(WebDriverBy::xpath($xpath));
+        $buttons[count($buttons)-1]->click();
     }
 }

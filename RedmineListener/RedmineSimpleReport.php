@@ -14,7 +14,7 @@ class RedmineSimpleReport
     public function __construct($redmineURL, $login, $password)
     {
         $this->client = new \Redmine\Client($redmineURL, $login, $password);
-        $this->projectId = $this->client->project->getIdByName("All4BOM");
+        $this->projectId = $this->client->project->getIdByName("All4BOM AT Reports");
         $this->isPrivate = true;
         $this->newStatus = 1;
         $this->closeStatus = 5;
@@ -80,15 +80,15 @@ class RedmineSimpleReport
         } else {
 //            CREATE NEW BUG
 //            $this->getAttachJSON($images);
-            $this->client->issue->create([
+           var_dump($this->client->issue->create([
                 'subject' => $subject,
                 'description' => $description,
                 'project_id' => $this->projectId,
                 'is_private' => $this->isPrivate,
-                'priority_id' => $priority_id,
+                'priority_id' => 3,
                 'assigned_to_id' => $assign_to_id,
 
-            ]);
+            ]));
             print "CREATE NEW ISSUE";
         }
     }
@@ -144,4 +144,3 @@ class RedmineSimpleReport
         '.$image_txt);
     }
 }
-

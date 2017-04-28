@@ -112,7 +112,7 @@ class CableRowMaterialsBOMPageObject implements PageObject
     public static function clickOnFirstLineInTable($webDriver)
     {
         $number = 2;
-        $xpath = str_replace("VALUE", $number, self::$LINE_PART_NUMBER);
+        $xpath = "//*[@id=\"selectPartModal\"]/div/div/div[2]/div/div[2]/table/tbody/tr[2]";
         LastPhrase::setPhrase("В таблице выбора не появилась строка с данными под номером 1 Xpath элемента: ".self::$LINE_PART_NUMBER);
         SimpleWait::waitShow($webDriver, $xpath);
         $select = $webDriver->findElement(WebDriverBy::xpath($xpath));

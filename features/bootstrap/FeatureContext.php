@@ -21,7 +21,10 @@ require_once "src/PageObjects/NotesCreateRevisionsPageObject.php";
 require_once "src/PageObjects/LabelsCreateRevisionPageObject.php";
 require_once "src/PageObjects/CableRowMaterialsBOMPageObject.php";
 require_once "src/PageObjects/PinoutDetailsCreateRevisionsPageObject.php";
+require_once "src/PageObjects/CableAssemblyForPDF.php";
+require_once "src/PageObjects/RevisionFromPDF.php";
 require_once "src/PageObjects/DraftCableRowMaterialsPageObject.php";
+require_once "src/PageObjects/TenderAnswerPageObject.php";
 require_once "src/CheckValues/CheckJSONValue.php";
 require_once "src/CheckedDraftObjects/ParserJSON.php";
 require_once "src/DraftObjects/CompareRevisions.php";
@@ -29,7 +32,14 @@ require_once "src/DraftObjects/Revision.php";
 require_once "src/CheckValues/CheckConnectorAndCableInBOM.php";
 require_once "src/PageObjects/CableRowMaterialsPageObject.php";
 require_once "src/PageObjects/CreateCableRowMaterialsPageObject.php";
+require_once "src/PageObjects/SupplierPanelPageObject.php";
+require_once "src/PageObjects/TenderPageObject.php";
+require_once "src/PageObjects/TenderAnswersPageObject.php";
+require_once "src/PageObjects/TendersPageObject.php";
 require_once "src/PageObjects/HeaderPageObject.php";
+require_once "src/PageObjects/TenderAnswerViewPageObject.php";
+require_once "src/PageObjects/ChangeTenderPageObject.php";
+require_once "src/PageObjects/BuyerTendersPageObject.php";
 require_once "src/BugReport/Report.php";
 require_once "src/BugReport/LastPhraseReport/LastPhrase.php";
 
@@ -39,10 +49,12 @@ class FeatureContext implements Context
     private $appValue;
 
     /**
-     * @var Facebook\WebDriver\Remote\RemoteWebDriver  $webDriver
+     * @var Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      */
     private $webDriver;
     private $bufRevision;
+    private $bufPartNumberInBom;
+    private $bufDescInBom;
     private $bufCableAssemblies;
     private $bufFirstBOMTableValueForCheck;
     private $bufSecondBOMTableValueForCheck;
@@ -55,8 +67,10 @@ class FeatureContext implements Context
         HomePageObject::init();
         LoginPageObject::init();
         CableAssembliesPageObject::init();
+        TenderAnswersPageObject::init();
         CreateCableAssembliesPageObject::init();
         DraftCreateRevisionsPageObject::init();
+        TenderAnswerViewPageObject::init();
         TabCreateRevisionTabPageObject::init();
         BOMCreateRevisionPageObject::init();
         CheckJSONValue::init();
@@ -68,7 +82,15 @@ class FeatureContext implements Context
         CreateCableRowMaterialsPageObject::init();
         PinoutSchemasCreateRevisionPageObject::init();
         DraftCableRowMaterialsPageObject::init();
+        SupplierPanelPageObject::init();
         CableRowMaterialsBOMPageObject::init();
+        BuyerTendersPageObject::init();
+        TenderPageObject::init();
+        TenderAnswerPageObject::init();
+        TendersPageObject::init();
+        CableAssemblyForPDF::init();
+        RevisionFromPDF::init();
+        ChangeTenderPageObject::init();
         HeaderPageObject::init();
         ParserJSON::init("/home/meldon/PhpstormProjects/All4bom_TA/features/bootstrap/src/CheckedDraftObjects/DraftObjects.json");
         ParserJSON::getParamsObject("plainCable");
@@ -100,7 +122,8 @@ class FeatureContext implements Context
 
         CompareRevisions::init();
 //        REPORT
-        $this->report = new Report(true, 1, 2, 5, "http://127.0.0.1/redmine/", "MrRobot", "12345678", "All4BOM");
+//        $this->report = new Report(true, 1, 2, 5, "https://redmine.smartdesign.by/", "v.lapytsko", "", "All4BOM AT Reports");
+        $this->report = new Report(true, 1, 2, 5, "127.0.0.1/redmine", "MrRobot", "12345678", "All4BOM");
         $this->report->beforeScenario($scope);
     }
 
@@ -115,38 +138,73 @@ class FeatureContext implements Context
         $isSave = false;
         $tags = $scope->getScenario()->getTags();
         foreach ($tags as $tag) {
-            if ($tag == "CableRowMaterials" || $tag == "Revision" || $tag == "CableAssemblies") {
+            if ($tag == "CableRowMaterials" || $tag == "Revision" || $tag == "Tender" || $tag == "CableAssemblies" || $tag == "RevisionPDF") {
                 $modulTag = $tag;
             }
-            if ($tag == "Save" || $tag == "Edit" || $tag == "Create") {
+            if ($tag === "Save" || $tag === "Edit" || $tag === "Create") {
                 $isSave = true;
             }
         }
 
         if ($modulTag == "Revision" && $isSave == true) {
-            $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-            CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
-            RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+//            $this->webDriver->get("http://all4cables.com/user/project/");
+            try {
+                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+                RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+            } catch (Exception $e) {
+            }
         }
-        if ($modulTag == "CRM" && $isSave == true) {
-            $this->webDriver->get("http://all4bom.smartdesign.by/multicable/");
-            CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver, $this->bufRevision);
+        if ($modulTag == "RevisionPDF" && $isSave == true) {
+//            $this->webDriver->get("http://all4cables.com/user/project/");
+            try {
+                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+                RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+            } catch (Exception $e) {
+            }
+        }
+        if ($modulTag == "CableRowMaterials" && $isSave == true) {
+//            $this->webDriver->get("http://all4cables.com/multicable/");
+            try {
+                $this->webDriver->get("http://all4bom.smartdesign.by/multicable/");
+                CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver, $this->bufRevision);
+            } catch (Exception $e) {
+            }
+        }
+        if ($modulTag == "Tender" && $isSave == true) {
+            try {
+                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+                RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+                $this->webDriver->get("http://all4bom.smartdesign.by/tender/");
+                TendersPageObject::deleteAll($this->webDriver);
+            } catch (Exception $e) {
+            }
         }
 
         if ($modulTag == "CableAssemblies" && $isSave == true) {
-            $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-            CableAssembliesPageObject::deleteAllCableAssembliesByName($this->webDriver, $this->bufRevision);
+//            $this->webDriver->get("http://all4cables.com/user/project/");
+            try {
+                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                CableAssembliesPageObject::deleteAllCableAssembliesByName($this->webDriver, $this->bufRevision);
+            } catch (Exception $e) {
+            }
         }
 
         CompareRevisions::reset();
         $this->bufFirstBOMTableValueForCheck = null;
         $this->bufSecondBOMTableValueForCheck = null;
 
-            $this->webDriver->quit();
+        $this->webDriver->quit();
 
 //        REPORT
-        $this->report->afterScenario($scope);
-//        shell_exec("killall chrome");
+        try {
+            $this->report->afterScenario($scope);
+//            shell_exec("killall chrome");
+        } catch (Exception $e) {
+        }
+
     }
 
 
@@ -547,6 +605,7 @@ class FeatureContext implements Context
      */
     public function iSetFirstOptionInConnectedWith()
     {
+        sleep(1);
         BOMCreateRevisionPageObject::clickOnSelectConnectedWithByNumber($this->webDriver);
         BOMCreateRevisionPageObject::clickOnOptionConnectedWithByNameAndNumber($this->webDriver, 1);
     }
@@ -716,6 +775,7 @@ class FeatureContext implements Context
      */
     public function openCableAssembliesURL()
     {
+//        $this->webDriver->get("http://all4cables.com/user/project/");
         $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
     }
 
@@ -749,6 +809,7 @@ class FeatureContext implements Context
      */
     public function openLinkCableAssembliesMain()
     {
+//        $this->webDriver->get("http://all4cables.com/user/project/");
         $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
     }
 
@@ -1740,7 +1801,7 @@ class FeatureContext implements Context
      */
     public function checkSelectPartButtomsNumbers($arg1)
     {
-        CableRowMaterialsBOMPageObject::checkSelectPartBottomsNumbers($this->webDriver,$arg1);
+        CableRowMaterialsBOMPageObject::checkSelectPartBottomsNumbers($this->webDriver, $arg1);
     }
 
     /**
@@ -1748,7 +1809,7 @@ class FeatureContext implements Context
      */
     public function clickOnAlternativeButtonByNumber($num)
     {
-        BOMCreateRevisionPageObject::clickOnAlternativeButtonByNumber($this->webDriver,$num);
+        BOMCreateRevisionPageObject::clickOnAlternativeButtonByNumber($this->webDriver, $num);
     }
 
     /**
@@ -1765,6 +1826,418 @@ class FeatureContext implements Context
     public function clickOnDraftButtonOnCreateRevisionPage()
     {
         TabCreateRevisionTabPageObject::clickOnDraftTab($this->webDriver);
+    }
+
+    /**
+     * @When /^Нажать кнопку \[CREATE FOR PDF\]$/
+     */
+    public function clickOnCreateForPDFButton()
+    {
+        CableAssembliesPageObject::clickOnCreateForPDFButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[CREATE FROM PDF\]$/
+     */
+    public function clickOnCreateFromPDFButtonOnCableAssemblyPage()
+    {
+        CableAssemblyForPDF::clickOnCreateFromPdfButton($this->webDriver);
+    }
+
+    /**
+     * @When /^Ввести в поле Revision description данные "([^"]*)" на странице CREATE REVISION FROM PDF$/
+     */
+    public function setTextInRevDescOnCreateRevFromPDF($arg1)
+    {
+        RevisionFromPDF::setTextInRevisionDescInput($this->webDriver, $arg1);
+        $this->bufRevision=$arg1;
+    }
+
+    /**
+     * @Given /^Выбрать стандартный файл для PDF input на странице CREATE REVISION FROM PDF$/
+     */
+    public function setFileForPDFInputOnRevisionFromPdfPage()
+    {
+        RevisionFromPDF::setDefaultFileInPDFFileInput($this->webDriver);
+    }
+
+    /**
+     * @Given /^Выбрать стандартный файл для Excel input на странице CREATE REVISION FROM PDF$/
+     */
+    public function setFileForExcelInputOnRevisionFromPdfPage()
+    {
+        RevisionFromPDF::setDefaultFileInExcelFileInput($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на кнопку \[Create\] на странице CREATE REVISION FROM PDF$/
+     */
+    public function clickOnCreateButtonOnRevisionFromPdfPage()
+    {
+        RevisionFromPDF::clickOnCreateButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на чекбокс дочерней категории "([^"]*)" с именем "([^"]*)" на страницу Create From PDF$/
+     */
+    public function clickOnSubCatecoriesByNameOnCreateRevPdfPage($arg1, $arg2)
+    {
+        RevisionFromPDF::clickOnCheckBoxSubCategoriesByName($this->webDriver, $arg1, $arg2);
+    }
+
+    /**
+     * @Given /^Проверить что чекбокс нажат в дочерней категории "([^"]*)" с именем "([^"]*)" на страницу Create From PDF$/
+     */
+    public function checkIsClickableCheckboxByNameInCableByPdfPage($arg1, $arg2)
+    {
+        RevisionFromPDF::checkCheckboxByName($this->webDriver, $arg1, $arg2);
+    }
+
+    /**
+     * @Given /^Проверить что в поле Revision description данные "([^"]*)" на странице CREATE REVISION FROM PDF$/
+     */
+    public function checkDescriptionInCableByPdfPage($arg1)
+    {
+        RevisionFromPDF::checkDescriptionPage($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку Create Tender рядом с последней ревизией с именем "([^"]*)"$/
+     */
+    public function clickOnCreateTenderByNameRevision($arg1)
+    {
+        RevisionsPageObjects::clickOnCreateTenderByNameRevision($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Запомнить PartNumber и Description$/
+     */
+    public function savePartNumberAndDescInBom()
+    {
+        $this->bufDescInBom = BOMCreateRevisionPageObject::getAllDescInBom($this->webDriver);
+        $this->bufPartNumberInBom = BOMCreateRevisionPageObject::getAllPartNumberInBom($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что Part Number и Description соответствуют в Create Tender$/
+     */
+    public function checkPartNumberAndDescInTenders()
+    {
+        TenderPageObject::checkPartNumbersAndDesc($this->webDriver, $this->bufPartNumberInBom, $this->bufDescInBom);
+    }
+
+    /**
+     * @Given /^Выбрать данные в Price type: "([^"]*)" на странице Create Tender$/
+     */
+    public function setPriceTypeInCreateTenderPage($arg1)
+    {
+        TenderPageObject::setTenderByName($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Target price "([^"]*)" на странице Create Tender$/
+     */
+    public function setTargPriceInCreateTenderPage($arg1)
+    {
+        $arg1 = str_replace(".",",",$arg1);
+        TenderPageObject::setTargetPrice($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Quantity "([^"]*)" на странице Create Tender$/
+     */
+    public function setQuantityOnCreateTenderPage($arg1)
+    {
+        TenderPageObject::setQTY($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Supply at "([^"]*)", "([^"]*)","([^"]*)" на странице Create Tender$/
+     */
+    public function setSupplyAtInCreateTenderPage($arg1, $arg2, $arg3)
+    {
+        TenderPageObject::setSupplyAt($this->webDriver, $arg1, $arg2, $arg3);
+    }
+
+    /**
+     * @Given /^Ввести Shipment method "([^"]*)" на странице Create Tender$/
+     */
+    public function setShipmentMethodOnCreateTenderPage($arg1)
+    {
+        TenderPageObject::setShipmentMethod($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Shipment to "([^"]*)" на странице Create Tender$/
+     */
+    public function setShipmentToOnCreateTender($arg1)
+    {
+        TenderPageObject::setShipmentTo($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Special requirments "([^"]*)" на странице Create Tender$/
+     */
+    public function setSpecialRequirmentsOnCreateTender($arg1)
+    {
+        TenderPageObject::setSpecialReq($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Additional information "([^"]*)" на странице Create Tender$/
+     */
+    public function setAdditionalInformationOnCreateTender($arg1)
+    {
+        TenderPageObject::setAdditionalInformation($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Ввести Countries information "([^"]*)" на странице Create Tender$/
+     */
+    public function setCountriesInformationOnCreateTender($arg1)
+    {
+        TenderPageObject::setCountriesInformation($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[Create\] на странице Create Tender$/
+     */
+    public function clickOnCreateButtonOnCreateTender()
+    {
+        TenderPageObject::clickOnCreateButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Кликнуть на таб TENDERS$/
+     */
+    public function clickOnTendersTab()
+    {
+        HomePageObject::clickOnTendersTab($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[Tenders\] на странице Buyer Tenders$/
+     */
+    public function clickOnTendersButtonOnBuyerTenders()
+    {
+        BuyerTendersPageObject::clickOnTendersButtom($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[Edit\] рядом с первым тендером в списке$/
+     */
+    public function clickOnEditButtonOnLastTenderInTable()
+    {
+        TendersPageObject::clickOnLastEditButtonInTable($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в поле "([^"]*)" значение "([^"]*)"$/
+     */
+    public function checkValueInChangeTenderPage($arg1, $arg2)
+    {
+        ChangeTenderPageObject::checkValueByName($this->webDriver, $arg1, $arg2);
+    }
+
+    /**
+     * @Given /^Перейти в Supplier Panel$/
+     */
+    public function goToSupplierPanel()
+    {
+        HomePageObject::clickOnSupplierPanel($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку Tenders на странице Supplier$/
+     */
+    public function clickOnTendersButtonBySupplierPanel()
+    {
+        SupplierPanelPageObject::clickOnTendersButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку Tenders на странице Supplier Panel$/
+     */
+    public function clickOnLastEditButton()
+    {
+            SupplierPanelPageObject::clickOnTendersButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[Edit\] рядом с последней записью на странице SuplierPanel$/
+     */
+    public function clickOnLastEditButtonOnSuppliesPanel()
+    {
+        SupplierPanelPageObject::clickOnLastEditButtons($this->webDriver);
+    }
+
+    /**
+     * @Given /^Развернуть список Tender Information$/
+     */
+    public function showTenderInformation()
+    {
+        TenderAnswerPageObject::clickOnTenderInformation($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в поле "([^"]*)" значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function checkSupplierTenderInformation($arg1, $arg2)
+    {
+        TenderAnswerPageObject::checkValueByName($this->webDriver,$arg1,$arg2);
+    }
+
+    /**
+     * @Given /^Разлогиниться$/
+     */
+    public function logout()
+    {
+        HomePageObject::logout($this->webDriver);
+    }
+
+    /**
+     * @Given /^Авторизоваться\. Логин: "([^"]*)", пароль "([^"]*)"$/
+     */
+    public function loginByCustomUsernameAndPassword($arg1, $arg2)
+    {
+       $this->webDriver->get("http://all4bom.smartdesign.by/login");
+       LoginPageObject::setCustomInformation($this->webDriver,$arg1,$arg2);
+       LoginPageObject::pressLoginButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Ввести в поле Price Fixed значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setInPriceFixedSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInTargetPriceInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Minimum Order Quantity значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setMinimumOrderInSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInMinimumOrderQTYInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Minimum Package Quantity значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setMinimumPackQTYInSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInMinimumPackageQTYInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Lead Time значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setLeadTimeInSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInLeadTimeInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Shipment method значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setShipmentMethodInSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInShipmentMethodInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Shipment to значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setShipmentToInSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInShipmentToInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Payment Terms значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setPaymentTermsInSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInPaymentTermsInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Ввести в поле Additional information значение "([^"]*)" на странице Supplier\->Tender\->Answer$/
+     */
+    public function setAddotopmaInformationinSTA($arg1)
+    {
+        TenderAnswerPageObject::setTextInAdditionalInformationInput($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Нажать кнопку \[Answer\] на странице Supplier\->Tender\->Answer$/
+     */
+    public function clickOnAnswerButtonInSTA()
+    {
+        TenderAnswerPageObject::clickOnAnswerButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на последнюю кнопку \[new answers\]$/
+     */
+    public function clickOnLastNewAnswerInTendersPage()
+    {
+        TendersPageObject::clickOnLastNewAnswersButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Нажать на последнюю кнопку \[View\] на странице tender answers$/
+     */
+    public function clickLastViewOnTenderAnswerPage()
+    {
+        TenderAnswersPageObject::clickOnLastViewButton($this->webDriver);
+    }
+
+    /**
+     * @Given /^Проверить что в поле "([^"]*)" значение "([^"]*)" на странице view tender answer$/
+     */
+    public function checkValueByNameOnViewTenderAnswerPage($arg1, $arg2)
+    {
+        TenderAnswerViewPageObject::checkAnswerFromSite($this->webDriver,$arg1,$arg2);
+    }
+
+    /**
+     * @Given /^Проверить что Part Number и Description соответствуют в Tender Answer$/
+     */
+    public function checkCustomPartNumbAndDescOnTenderAnswerPage()
+    {
+        TenderAnswerViewPageObject::checkPartNumberAndDescription($this->webDriver,$this->bufPartNumberInBom,$this->bufDescInBom);
+    }
+
+    /**
+     * @Given /^Ввести Price для каждой детали значение "([^"]*)" на странице Create Tender$/
+     */
+    public function setPriceInDetailInCreateTender($arg1)
+    {
+        TenderPageObject::setInPricesDetails($this->webDriver, $arg1);
+    }
+
+    /**
+     * @Given /^Проверить что в поле price для каждой детали значение "([^"]*)"$/
+     */
+    public function checkPriceOnEditTenderPage($arg1)
+    {
+        ChangeTenderPageObject::checkDetailsPage($this->webDriver,$arg1);
+    }
+
+    /**
+     * @Given /^Консоль "([^"]*)"$/
+     */
+    public function консоль($arg1)
+    {
+        echo PHP_EOL.$arg1.PHP_EOL;
+    }
+
+    /**
+     * @Then /^Начать трэш$/
+     */
+    public function начатьТрэш()
+    {
     }
 
 

@@ -56,7 +56,7 @@ class DraftCreateRevisionsPageObject implements PageObject
     static function init()
     {
         DraftCreateRevisionsPageObject::$CANVAS = ".upper-canvas";
-        DraftCreateRevisionsPageObject::$ABSOLUTE_HEIGHT = 650;
+        DraftCreateRevisionsPageObject::$ABSOLUTE_HEIGHT = 1300;
         DraftCreateRevisionsPageObject::$ABSOLUTE_WIDTH = 1450;
         DraftCreateRevisionsPageObject::$CABLE_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[4]/button";
         DraftCreateRevisionsPageObject::$PLAIN_CABLE_BUTTON = "html/body/main/form/div[1]/div/div/div/div[1]/div[2]/ul/li[1]/button[1]";

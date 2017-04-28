@@ -96,7 +96,7 @@ class RedmineSimpleReport
                 'project_id' => $this->projectId,
                 'is_private' => $this->isPrivate,
                 'priority_id' => $priority_id,
-                'assigned_to_id' => $assign_to_id
+                'assigned_to_id' => 333
             ]);
 //            print "CREATE NEW ISSUE";
         }
@@ -113,7 +113,7 @@ class RedmineSimpleReport
 
         $this->client->issue->update($id, [
             'priority_id' => $priority_id,
-            'assigned_to_id' => $assign_to_id,
+            'assigned_to_id' => 333,
             'status_id' => $this->newStatus
         ]);
     }

@@ -51,7 +51,8 @@ class BOMCreateRevisionPageObject implements PageObject
     private static $SELECT_CUSTOM_VALUE_CONNECTOR_TABLE;
     private static $OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE;
     private static $CONNECTOR_DESCRIPTION_TEXT;
-
+    private static $PART_NUMBER_TEXTS;
+    private static $DESCRIPTIONS_TEXTS;
     static function init()
     {
         self::$REVISION_DESCRIPTION_INPUT = ".//*[@id='project_version_name']";
@@ -95,6 +96,8 @@ class BOMCreateRevisionPageObject implements PageObject
         self::$OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"LABEL\"]/div/select/option[text()=\"VALUE\"]";
         self::$CONNECTOR_DESCRIPTION_TEXT = ".//*[@id='selected-properties']/table/tbody/tr[./td/button/span[text()=\"Connector\"]]/td[6]";
         self::$ALTERNATIVE_BUTTONS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[2]/div/button";
+        self::$PART_NUMBER_TEXTS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[4]";
+        self::$DESCRIPTIONS_TEXTS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[6]";
     }
 
     /**
@@ -1009,6 +1012,71 @@ class BOMCreateRevisionPageObject implements PageObject
         if($altLines != $number){
             throw new Exception("Count alternative lines no be equal ".$number." Number of alt. lines in page = ".$altLines);
         }
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    public static function saveAllPartNumberAndDescInBom($webDriver)
+    {
+        $partNumbersItems = $webDriver->findElements(WebDriverBy::xpath(self::$PART_NUMBER_TEXTS));
+        $descriptionsItems = $webDriver->findElements(WebDriverBy::xpath(self::$DESCRIPTIONS_TEXTS));
+
+        $partNumbersValues = array();
+        $descValues = array();
+        foreach ($partNumbersItems as $partNumbersItem){
+            $text = $partNumbersItem->getText();
+            if($text!=""){
+            array_push($partNumbersValues,$text);
+            }
+        }
+        foreach ($descriptionsItems as $descriptionsItem){
+            $text = $descriptionsItem->getText();
+            if($text!=""){
+                array_push($descValues,$text);
+            }
+        }
+
+        var_dump($descValues);
+        var_dump($partNumbersValues);
+
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @return array
+     */
+    public static function getAllDescInBom($webDriver)
+    {
+        $descriptionsItems = $webDriver->findElements(WebDriverBy::xpath(self::$DESCRIPTIONS_TEXTS));
+
+        $descValues = array();
+        foreach ($descriptionsItems as $descriptionsItem){
+            $text = $descriptionsItem->getText();
+            if($text!=""){
+                array_push($descValues,$text);
+            }
+        }
+        return $descValues;
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @return array
+     */
+    public static function getAllPartNumberInBom($webDriver)
+    {
+        $partNumbersItems = $webDriver->findElements(WebDriverBy::xpath(self::$PART_NUMBER_TEXTS));
+
+        $partNumbersValues = array();
+        foreach ($partNumbersItems as $partNumbersItem){
+            $text = $partNumbersItem->getText();
+            if($text!=""){
+                array_push($partNumbersValues,$text);
+            }
+        }
+
+        return $partNumbersValues;
     }
 
 

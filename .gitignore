@@ -1,2 +1,3 @@
 /vendor
 composer.lock
+/features/bootstrap/src/BugReport/GifRecord/gif/*

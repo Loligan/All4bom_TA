@@ -5,9 +5,9 @@ require_once "ScenarioGhost.php";
 class RunnableTest
 {
 
-    private static $url = "http://127.0.0.1/redmine/";
-    private static $login = "MrRobot";
-    private static $password = "12345678";
+    private static $url = "https://redmine.smartdesign.by/";
+    private static $login = "v.lapytsko";
+    private static $password = "53775377";
     private static $arrOk = array();
 
 
