@@ -166,4 +166,58 @@ class CreateCableAssembliesPageObject implements PageObject
             throw new Exception("In title has not Change cable assembly text. But in title has " . $title . " text");;
         }
     }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver  $webDriver
+     * @param $arg1
+     * @param $arg2
+     * @param $arg3
+     * @param $arg4
+     * @param $arg5
+     * @param $arg6
+     * @param $arg7
+     * @param $arg8
+     * @param $arg9
+     * @param $arg10
+     */
+    public static function checkValues($webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
+    {
+        $projectRevDetails = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$REV_DETAILS_INPUT));
+        $projectCompany = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$COMPANY_INPUT));
+        $projectPartNumber = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$PART_NUMBER_INPUT));
+        $projectCableDesc = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$CABLE_DESC_INPUT));
+        $projectDrawNumber = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$DRAW_NUMBER_INPUT));
+        $projectDesignBy = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$DESIGN_BY_INPUT));
+        $projectApprovedBy = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$APPROVED_BY_INPUT));
+        $projectCheckedBy = $webDriver->findElement(WebDriverBy::cssSelector(CreateCableAssembliesPageObject::$CHECKED_BY_INPUT));
+
+        if ($projectRevDetails->getText()!=$arg1){
+            throw new Exception("value not be good save. ".$arg1);
+        }
+        if ($projectCompany->getText()!=$arg2){
+            throw new Exception("value not be good save. ".$arg2);
+        }
+
+        if ($projectPartNumber->getText()!=$arg3){
+            throw new Exception("value not be good save. ".$arg3);
+        }
+
+        if ($projectCableDesc->getText()!=$arg4){
+            throw new Exception("value not be good save. ".$arg4);
+        }
+
+        if ($projectDrawNumber->getText()!=$arg5){
+            throw new Exception("value not be good save. ".$arg5);
+        }
+        if ($projectDesignBy->getText()!=$arg6){
+            throw new Exception("value not be good save. ".$arg6);
+        }
+        if ($projectApprovedBy->getText()!=$arg7){
+            throw new Exception("value not be good save. ".$arg7);
+        }
+        if ($projectCheckedBy->getText()!=$arg8){
+            throw new Exception("value not be good save. ".$arg8);
+        }
+    }
+
 }

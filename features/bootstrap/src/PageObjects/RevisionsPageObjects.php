@@ -16,12 +16,12 @@ class RevisionsPageObjects implements PageObject
 
     static function init()
     {
-        RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE = "html/body/main/div/div/table/tbody/tr/td[5]/div[1]/a[2]/i";
+        RevisionsPageObjects::$LINKS_TO_REVISIONS_PAGE = "html/body/main/div/div/div[3]/table/tbody/tr/td[5]/div[1]/a[2]/i";
         RevisionsPageObjects::$CREATE_REVISION_BUTTON = "html/body/main/div/div/div/div/a[1][./span[text()=\"Create revision\"]]";
-        RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[2]";
-        RevisionsPageObjects::$DELETE_REVISIONS_BUTTOMS = "html/body/main/div/div/table/tbody/tr[.//td[3][text()=\"VALUE\"]]/td[5]/div[1]/a[3]";
-        RevisionsPageObjects::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
-        RevisionsPageObjects::$CREATE_TENDER_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[1]";
+        RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/div[3]/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[2]";
+        RevisionsPageObjects::$DELETE_REVISIONS_BUTTOMS = "html/body/main/div/div/div[3]/table/tbody/tr[.//td[3][text()=\"VALUE\"]]/td[5]/div[1]/a[4]";
+        RevisionsPageObjects::$ACCEPT_DELETE_REVISION_BUTTON = "//*[@id=\"deleteModalVALUE\"]/div/div/form/div[2]/button[1]";
+        RevisionsPageObjects::$CREATE_TENDER_REVISION_BUTTON_BY_NAME_REVISION = "html/body/main/div/div/div[3]/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/div[1]/a[1]";
     }
 
     /**
@@ -133,5 +133,24 @@ class RevisionsPageObjects implements PageObject
         $xpath = str_replace("VALUE", $name, self::$CREATE_TENDER_REVISION_BUTTON_BY_NAME_REVISION);
         $buttons = $webDriver->findElements(WebDriverBy::xpath($xpath));
         $buttons[count($buttons)-1]->click();
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param $nameRevision
+     * @throws Exception
+     */
+    public static function openGetDraftPageByRevisionName($webDriver, $nameRevision)
+    {
+        $xpath = str_replace("VALUE", $nameRevision, RevisionsPageObjects::$EDIT_REVISION_BUTTON_BY_NAME_REVISION);
+        $revisions = $webDriver->findElements(WebDriverBy::xpath($xpath));
+        $countRevisions = count($revisions);
+        if ($countRevisions > 0) {
+            $href = $revisions[$countRevisions - 1]->getAttribute("href");
+            $revisionGetDraftHref = str_replace("edit","get-draft",$href);
+            $webDriver->get($revisionGetDraftHref);
+        } else {
+            throw  new Exception("Revision '" . $nameRevision . " not found");
+        }
     }
 }

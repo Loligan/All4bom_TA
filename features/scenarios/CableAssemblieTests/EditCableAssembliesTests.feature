@@ -1,6 +1,6 @@
 Feature: Создание и редактирование Cable Assemblies
 
-  @CableAssemblies @Edit @Smoke @ID=02-00 @PRIORITY=5 @ASSIGNED=1
+  @CableAssemblies @Edit @Smoke @ID=02-00gg @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Редактирование Cable Assemblies c валидными данными
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

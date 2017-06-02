@@ -53,51 +53,54 @@ class BOMCreateRevisionPageObject implements PageObject
     private static $CONNECTOR_DESCRIPTION_TEXT;
     private static $PART_NUMBER_TEXTS;
     private static $DESCRIPTIONS_TEXTS;
+    private static $CUSTOM_INPUT_BY_NAME_IN_TABLE;
+
     static function init()
     {
         self::$REVISION_DESCRIPTION_INPUT = ".//*[@id='project_version_name']";
-        self::$CABLE_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Cable\"]";
-        self::$CONNECTOR_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Connector\"]";
-        self::$CONNECTOR_BUTTONS = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Connector\"]";
-        self::$CONNECTOR_MOLDER = ".//*[@id='selected-properties']/table/tbody/tr/td[2]/div/label/span";
-        self::$BOOT_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Boot\"]";
-        self::$LEFT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Left \"]";
-        self::$RIGHT_SHRINK_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr/td/button/span[text()=\"Right \"]";
+        self::$CABLE_BUTTON = ".//div[2]/table/tbody/tr/td/button/span[text()=\"Cable\"]";
+        self::$CONNECTOR_BUTTON = './/div[2]/table/tbody/tr/td/button/span[text()="Connector"]';
+        self::$CONNECTOR_BUTTONS = './/div[2]/table/tbody/tr/td/button/span[text()="Connector"]';
+        self::$CONNECTOR_MOLDER = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[2]/div/label/span";
+        self::$BOOT_BUTTON = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td/button/span[text()=\"Boot\"]";
+        self::$LEFT_SHRINK_BUTTON = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td/button/span[text()=\"Left \"]";
+        self::$RIGHT_SHRINK_BUTTON = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td/button/span[text()=\"Right \"]";
         self::$FAMILY_SELECT = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[1]/div/select";
         self::$FAMILY_OPTION = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[1]/div/select/option[text()=\"VALUE\"]";
         self::$CATEGORY_SELECT = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[2]/div/select";
         self::$CATEGORY_OPTION = ".//*[@id='selectProductModal']/div/div/div[1]/div[1]/div[2]/div/select/option[text()=\"VALUE\"]";
         self::$LINE_PART_NUMBER = ".//*[@id='selectProductModal']/div/div/div[2]/div/div[2]/table/tbody/tr[VALUE]";
-        self::$CUSTOMER_PART_NUMBER_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[8]/input";
-        self::$REMARKS_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[9]/textarea";
-        self::$QUANTITY_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[10]/input";
-        self::$TOLERANCE_INPUT = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[11]/input";
-        self::$DELETE_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[12]/div/a[2]";
-        self::$CLEAR_BUTTON = ".//*[@id='selected-properties']/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[12]/div/a[1]";
+        self::$CUSTOMER_PART_NUMBER_INPUT = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[8]/input";
+        self::$REMARKS_INPUT = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[9]/textarea";
+        self::$QUANTITY_INPUT = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[10]/input";
+        self::$TOLERANCE_INPUT = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[11]/input";
+        self::$DELETE_BUTTON = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[12]/div/a[2]";
+        self::$CLEAR_BUTTON = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[.//td/button/span[text()=\"TYPE\"]]/td[12]/div/a[1]";
         self::$LEFT_SHRINK_SPAN = "Left ";
         self::$RIGHT_SHRINK_SPAN = "Right ";
         self::$SELECT_CUSTOM_VALUE = ".//*[@id='selectProductModal']/div/div/div[1]/div[2]/div[.//h3/text()=\"VALUE\"]/div/select";
         self::$OPTION_CUSTOM_VALUE = ".//*[@id='selectProductModal']/div/div/div[1]/div[2]/div[.//h3/text()=\"VALUE\"]/div/select/option[text()=\"TYPE\"]";
         self::$HEAD_TABLE_COLUMNS = ".//*[@id='selectProductModal']/div/div/div[2]/div/div[1]/table/tbody/tr[1]/th";
         self::$TABLE_ITEM_VALUE = ".//.//*[@id='selectProductModal']/div/div/div[2]/div/div[2]/table/tbody/tr[2]/td[VALUE]";
-        self::$CONNECTED_WITH_SELECT = ".//*[@id='selected-properties']/table/tbody/tr/td[3]/div/select";
-        self::$OPTION_CONNECTED_WITH = ".//*[@id='selected-properties']/table/tbody/tr/td[3]/div/select/option[VALUE]";
-        self::$BUTTON_BY_NAME = ".//*[@id='selected-properties']/table/tbody/tr/td[2]/button/span[text()=\"VALUE\"]";
-        self::$CATEGORY_TEXT_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[2]/textarea";
-        self::$PART_NUMBER_TEXT_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[4]/textarea";
+        self::$CONNECTED_WITH_SELECT = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[3]/div/select";
+        self::$OPTION_CONNECTED_WITH = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[3]/div/select/option[VALUE]";
+        self::$BUTTON_BY_NAME = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[2]/button/span[text()=\"VALUE\"]";
+        self::$CATEGORY_TEXT_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[2]/textarea";
+        self::$PART_NUMBER_TEXT_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[4]/textarea";
         self::$MANUFACTURE_NAME_TEXT_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[5]/textarea";
-        self::$DESCRIPTION_TEXT_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[6]/textarea";
-        self::$DATASHEET_TEXT_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[7]/textarea";
+        self::$DESCRIPTION_TEXT_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[6]/textarea";
+        self::$DATASHEET_TEXT_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[7]/textarea";
         self::$CUSTOMER_PART_NUMBER_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[8]/input";
-        self::$REMARKS_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[9]/textarea";
-        self::$QUANTITY_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[10]/input";
-        self::$TOLERANCE_INPUTS = ".//*[@id='selected-properties']/table/tbody/tr/td[11]/input";
+        self::$REMARKS_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[9]/textarea";
+        self::$QUANTITY_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[10]/input";
+        self::$TOLERANCE_INPUTS = ".//*[@id='selected-properties']/div[2]/table/tbody/tr/td[11]/input";
         self::$SELECT_CUSTOM_VALUE_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"VALUE\"]/div/select ";
         self::$OPTION_CUSTOM_VALUE_IN_CONNECTOR_TABLE = ".//*[@id='selectProductModal']/div/div/div[1]/div/div[.//h3/text()=\"LABEL\"]/div/select/option[text()=\"VALUE\"]";
-        self::$CONNECTOR_DESCRIPTION_TEXT = ".//*[@id='selected-properties']/table/tbody/tr[./td/button/span[text()=\"Connector\"]]/td[6]";
-        self::$ALTERNATIVE_BUTTONS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[2]/div/button";
-        self::$PART_NUMBER_TEXTS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[4]";
-        self::$DESCRIPTIONS_TEXTS = "//*[@id=\"selected-properties\"]/table/tbody/tr/td[6]";
+        self::$CONNECTOR_DESCRIPTION_TEXT = ".//*[@id='selected-properties']/div[2]/table/tbody/tr[./td/button/span[text()=\"Connector\"]]/td[6]";
+        self::$ALTERNATIVE_BUTTONS = "//*[@id=\"selected-properties\"]/div[2]/table/tbody/tr/td[2]/div/button";
+        self::$PART_NUMBER_TEXTS = "//*[@id=\"selected-properties\"]/div[2]/table/tbody/tr/td[4]";
+        self::$DESCRIPTIONS_TEXTS = "//*[@id=\"selected-properties\"]/div[2]/table/tbody/tr/td[6]";
+        self::$CUSTOM_INPUT_BY_NAME_IN_TABLE = "//*[@id=\"selectProductModal\"]/div/div/div[1]/div/div[3][h3/text()=\"VALUE\"]/div/input[2]";
     }
 
     /**
@@ -569,12 +572,13 @@ class BOMCreateRevisionPageObject implements PageObject
     }
 
     /**
-     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDrive
      * @param int $numberCable
      */
     public static function clickOnConnectorButton($webDrive, $numberCable)
     {
         LastPhrase::setPhrase("Кнопки [Connector] не были найдены. Xpath элемента: ".self::$CONNECTOR_BUTTON);
+        SimpleWait::waitShow($webDrive,self::$CONNECTOR_BUTTON);
         $buttons = $webDrive->findElements(WebDriverBy::xpath(self::$CONNECTOR_BUTTON));
         if ($numberCable == null) {
             LastPhrase::setPhrase("Кнопка [Connector] под номером 1 не были найдена или нажата.");
@@ -728,7 +732,6 @@ class BOMCreateRevisionPageObject implements PageObject
         LastPhrase::setPhrase("Кнопка раскрывающий спискок ".$nameLabel." небыла нажата");
         SimpleWait::waitingOfClick($webDriver, $select);
     }
-
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param string $nameLabel
@@ -756,7 +759,6 @@ class BOMCreateRevisionPageObject implements PageObject
         self::clickOnCustomOptionByNameLabelAndValue($webDriver, $nameLabel, $valueOption);
     }
 
-
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
      * @param int $numberCable
@@ -779,6 +781,7 @@ class BOMCreateRevisionPageObject implements PageObject
         self::clickOnCategorySelect($webDriver);
         self::setCategoryOption($webDriver, $categoryCable);
     }
+
 
     /**
      * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
@@ -977,7 +980,7 @@ class BOMCreateRevisionPageObject implements PageObject
     public static function checkCategoryInputByNumberInputs($webDriver, $number)
     {
         $categoryTextInputs = $webDriver->findElements(WebDriverBy::xpath(self::$CATEGORY_TEXT_INPUTS));
-        $countCategoryTextInputs = count($categoryTextInputs);
+        $countCategoryTextInputs = count($categoryTextInputs)/2;
         if($countCategoryTextInputs!=$number){
             throw new Exception("In bom not be found ".$number." custom part. In BOM ".$countCategoryTextInputs." custom part");
         }
@@ -1004,11 +1007,8 @@ class BOMCreateRevisionPageObject implements PageObject
      */
     public static function checkAlternativeLineByNumber($webDriver, $number)
     {
-        $lines = $webDriver->findElements(WebDriverBy::xpath("//*[@id=\"selected-properties\"]/table/tbody/tr"));
-        $buttons = $webDriver->findElements(WebDriverBy::xpath("//*[@id=\"selected-properties\"]/table/tbody/tr/td[2]/button"));
-        $countLines = count($lines)-1;
-        $countButtons = count($buttons);
-        $altLines = $countLines-$countButtons;
+        $lines = $webDriver->findElements(WebDriverBy::xpath(".//tr[@ng-repeat=\"alternativeProduct in selectedProduct.alternativeProducts\"]"));
+        $altLines = count($lines);
         if($altLines != $number){
             throw new Exception("Count alternative lines no be equal ".$number." Number of alt. lines in page = ".$altLines);
         }
@@ -1077,6 +1077,17 @@ class BOMCreateRevisionPageObject implements PageObject
         }
 
         return $partNumbersValues;
+    }
+
+    /**
+     * @param Facebook\WebDriver\Remote\RemoteWebDriver $webDriver
+     */
+    public static function setValueInCustomInputInTable($webDriver,$nameLabel,$value){
+        $xpath = str_replace("VALUE",$nameLabel,self::$CUSTOM_INPUT_BY_NAME_IN_TABLE);
+        SimpleWait::waitShow($webDriver,$xpath);
+        $input = $webDriver->findElement(WebDriverBy::xpath($xpath));
+        $input->sendKeys($value);
+
     }
 
 

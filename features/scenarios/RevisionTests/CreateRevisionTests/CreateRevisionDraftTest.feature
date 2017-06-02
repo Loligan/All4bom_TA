@@ -1,6 +1,6 @@
 Feature: Cоздание объектов в Draft без сохранения
 
-  @Smoke @Revision @ID=03-00 @PRIORITY=5 @ASSIGNED=1
+   @Smoke @Revision @ID=03-00 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -204,7 +204,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Front           | SizeNumber | Color  |
       | Arial           | 26         | 000000 |
-  @Draft @Create @Text @ID=03-02-10 @PRIORITY=5 @ASSIGNED=1
+   @Draft @Create @Text @ID=03-02-10 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -333,7 +333,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
-  @Draft @Create @Cable @PlainCable @ID=03-06-01 @PRIORITY=5 @ASSIGNED=1
+ @Draft @Create @Cable @PlainCable @ID=03-06-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -353,7 +353,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thin     |
-  @Draft @Create @Cable @PlainCable @ID=03-06-02 @PRIORITY=5 @ASSIGNED=1
+ @Draft @Create @Cable @PlainCable @ID=03-06-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -394,7 +394,7 @@ Feature: Cоздание объектов в Draft без сохранения
       | Weight   |
       | Thick    |
 
-  @Draft @Create @Cable @CurveCable @Smoke @ID=03-07 @PRIORITY=5 @ASSIGNED=1
+ @Draft @Create @Cable @CurveCable @Smoke @ID=03-07 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

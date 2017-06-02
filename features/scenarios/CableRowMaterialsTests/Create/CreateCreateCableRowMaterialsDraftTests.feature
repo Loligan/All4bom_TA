@@ -100,6 +100,7 @@ Feature: Создание объектов на Draft CRM без сохране�
     Then Объект Text появился на Draft
     Examples:
       | Front           | SizeNumber | Color  |
+      | Front           | SizeNumber | Color  |
       | Times New Roman | 18         | 000000 |
 
   @CableRowMaterials @Draft @Text @ID=12-02-05 @PRIORITY=5 @ASSIGNED=1
@@ -278,7 +279,7 @@ Feature: Создание объектов на Draft CRM без сохране�
     And Кликнуть на полотне по координатам X = "140" Y= "200"
     Then Проверить что последний добавленный элемент является Custom Dimention
 
-  @Smoke @CableRowMaterials @Draft @CRMObject @ID=12-04 @PRIORITY=5 @ASSIGNED=1
+ @CableRowMaterials @Draft @CRMObject @ID=12-04 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

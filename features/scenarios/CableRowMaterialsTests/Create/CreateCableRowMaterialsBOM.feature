@@ -20,7 +20,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
     Then Проверить что в BOM в "1" Select Part в столбце Part Number не пустое значение
 
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-00 @PRIORITY=5 @ASSIGNED=1
+ @CableRowMaterials @BOM @ID=13-01-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -42,7 +42,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | RF Cable    | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-01 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-01-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -64,7 +64,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | Flat Cable  | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-02 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-01-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -86,7 +86,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable  |
       | Multicondactor / Multipair Cable / Wire | Multiconductor |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-03 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-01-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -108,7 +108,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable |
       | Multicondactor / Multipair Cable / Wire | Miltipair     |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-04 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-01-04 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -130,7 +130,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable       |
       | Multicondactor / Multipair Cable / Wire | Multiconductor flex |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-05 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-01-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -152,7 +152,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable  |
       | Multicondactor / Multipair Cable / Wire | Miltipair flex |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-06 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-01-06 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -174,7 +174,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable |
       | Multicondactor / Multipair Cable / Wire | Wire          |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-07 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-01-07 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -196,7 +196,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Foil          |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-08 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-01-08 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -218,7 +218,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Air tube      |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-09 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-01-09 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -240,7 +240,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Water tube    |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-10 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-01-10 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -262,7 +262,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Fiber optic   |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-11 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-01-11 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -284,7 +284,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Drain wire    |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-01-12 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-01-12 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -306,7 +306,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Braid         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-03 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-03 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -333,7 +333,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
     And Проверить что в BOM CRM присутствует 2 кнопки [Select Part]
     And Ждать "10" секунды
 
-  @Smoke @CableRowMaterials @BOM @ID=13-04 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-04 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -360,7 +360,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
     And Проверить что в BOM CRM присутствует 6 кнопки [Select Part]
     And Ждать "10" секунды
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-00 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-05-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -390,7 +390,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | RF Cable    | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-01 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-05-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -420,7 +420,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | RF Cable    | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-02 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-05-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -450,7 +450,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | Flat Cable  | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-03 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-05-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -480,7 +480,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable  |
       | Multicondactor / Multipair Cable / Wire | Multiconductor |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-04 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-05-04 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -510,7 +510,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable |
       | Multicondactor / Multipair Cable / Wire | Miltipair     |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-05 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-05-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -540,7 +540,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable       |
       | Multicondactor / Multipair Cable / Wire | Multiconductor flex |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-06 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-05-06 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -570,7 +570,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable  |
       | Multicondactor / Multipair Cable / Wire | Miltipair flex |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-07 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-05-07 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -600,7 +600,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable |
       | Multicondactor / Multipair Cable / Wire | Wire          |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-08 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-05-08 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -630,7 +630,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Foil          |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-09 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-05-09 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -660,7 +660,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Air tube      |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-10 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-05-10 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -690,7 +690,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Water tube    |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-11 @PRIORITY=5 @ASSIGNED=1
+ @CableRowMaterials @BOM @ID=13-05-11 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -720,7 +720,8 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Fiber optic   |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-12 @PRIORITY=5 @ASSIGNED=1
+
+ @CableRowMaterials @BOM @ID=13-05-12 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -750,7 +751,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Drain wire    |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-05-13 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-05-13 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -781,7 +782,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | Row Material Additional | Braid         |
 
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-00 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-06-00 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -811,7 +812,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | RF Cable    | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-01 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-06-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -841,7 +842,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable | CategoryCable |
       | Flat Cable  | Cable         |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-02 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-06-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -871,7 +872,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable  |
       | Multicondactor / Multipair Cable / Wire | Multiconductor |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-03 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-06-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -901,7 +902,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable |
       | Multicondactor / Multipair Cable / Wire | Miltipair     |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-04 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-06-04 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -931,7 +932,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable       |
       | Multicondactor / Multipair Cable / Wire | Multiconductor flex |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-05 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-06-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -961,7 +962,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable  |
       | Multicondactor / Multipair Cable / Wire | Miltipair flex |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-06 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-06-06 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -991,7 +992,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable                             | CategoryCable |
       | Multicondactor / Multipair Cable / Wire | Wire          |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-07 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-06-07 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1021,7 +1022,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Foil          |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-08 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-06-08 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1051,7 +1052,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Air tube      |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-09 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-06-09 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1081,7 +1082,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Water tube    |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-10 @PRIORITY=5 @ASSIGNED=1
+ @CableRowMaterials @BOM @ID=13-06-10 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1111,7 +1112,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Fiber optic   |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-11 @PRIORITY=5 @ASSIGNED=1
+  @CableRowMaterials @BOM @ID=13-06-11 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -1141,7 +1142,7 @@ Feature: BOM Create Cable Row Materials Test without saving revisions
       | FamilyCable             | CategoryCable |
       | Row Material Additional | Drain wire    |
 
-  @Smoke @CableRowMaterials @BOM @ID=13-06-12 @PRIORITY=5 @ASSIGNED=1
+   @CableRowMaterials @BOM @ID=13-06-12 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Cable Row Materials
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]

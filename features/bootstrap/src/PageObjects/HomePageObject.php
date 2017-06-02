@@ -55,7 +55,7 @@ class HomePageObject implements PageObject
     {
         LastPhrase::setPhrase("Сайт не открыт по URL: ".AppValues::getUrl());
         $webDriver->get(AppValues::getUrl());
-        self::closeSymfonyTab($webDriver);
+//        self::closeSymfonyTab($webDriver);
     }
 
     /**

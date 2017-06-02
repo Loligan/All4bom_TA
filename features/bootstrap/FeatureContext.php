@@ -5,6 +5,8 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\Remote\WebDriverCapabilityType;
+use Facebook\WebDriver\WebDriverBy;
 
 
 require_once "src/GettingValues/AppValues.php";
@@ -15,6 +17,7 @@ require_once "src/PageObjects/CreateCableAssembliesPageObject.php";
 require_once "src/PageObjects/DraftCreateRevisionsPageObject.php";
 require_once "src/PageObjects/TabCreateRevisionTabPageObject.php";
 require_once "src/PageObjects/BOMCreateRevisionPageObject.php";
+require_once "src/CheckDraftJSON/Checker.php";
 require_once "src/PageObjects/RevisionsPageObjects.php";
 require_once "src/PageObjects/PinoutSchemasCreateRevisionPageObject.php";
 require_once "src/PageObjects/NotesCreateRevisionsPageObject.php";
@@ -59,9 +62,11 @@ class FeatureContext implements Context
     private $bufFirstBOMTableValueForCheck;
     private $bufSecondBOMTableValueForCheck;
     private $report;
+    private $checkerJSON;
 
     public function __construct()
     {
+
         $this->appValue = new AppValues();
         LastPhrase::init();
         HomePageObject::init();
@@ -105,6 +110,7 @@ class FeatureContext implements Context
         ParserJSON::getParamsObject("accessories");
         ParserJSON::getParamsObject("crm");
         ParserJSON::getParamsObject("customPart");
+        $this->checkerJSON = new Checker();
     }
 
     /**
@@ -114,7 +120,9 @@ class FeatureContext implements Context
     {
 
         $capabilities = DesiredCapabilities::chrome();
+//        $capabilities = DesiredCapabilities::phantomjs();
         $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", $capabilities, 90 * 1000, 90 * 1000);
+//        $this->webDriver = RemoteWebDriver::create("http://localhost:8910", $capabilities, 90 * 1000, 90 * 1000);
 //        $this->webDriver = RemoteWebDriver::create("http://localhost:4444/wd/hub", DesiredCapabilities::firefox(), 90 * 1000, 90 * 1000);
         $this->webDriver->manage()->window();
         $this->webDriver->manage()->window()->maximize();
@@ -133,75 +141,82 @@ class FeatureContext implements Context
     public function AfterScenario(Behat\Behat\Hook\Scope\AfterScenarioScope $scope)
     {
 
+        try {
+            $modulTag = null;
+            $isSave = false;
+            $tags = $scope->getScenario()->getTags();
+            foreach ($tags as $tag) {
+                if ($tag == "CableRowMaterials" || $tag == "Revision" || $tag == "Tender" || $tag == "CableAssemblies" || $tag == "RevisionPDF") {
+                    $modulTag = $tag;
+                }
+                if ($tag === "Save" || $tag === "Edit" || $tag === "Create") {
+                    $isSave = true;
+                }
+            }
 
-        $modulTag = null;
-        $isSave = false;
-        $tags = $scope->getScenario()->getTags();
-        foreach ($tags as $tag) {
-            if ($tag == "CableRowMaterials" || $tag == "Revision" || $tag == "Tender" || $tag == "CableAssemblies" || $tag == "RevisionPDF") {
-                $modulTag = $tag;
-            }
-            if ($tag === "Save" || $tag === "Edit" || $tag === "Create") {
-                $isSave = true;
-            }
-        }
-
-        if ($modulTag == "Revision" && $isSave == true) {
+            if ($modulTag == "Revision" && $isSave == true) {
 //            $this->webDriver->get("http://all4cables.com/user/project/");
-            try {
-                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-                CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
-                RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
-            } catch (Exception $e) {
+                try {
+//                    $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                    $this->webDriver->get("http://all4cables.com/user/project/");
+                    CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+                    RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+                } catch (Exception $e) {
+                }
             }
-        }
-        if ($modulTag == "RevisionPDF" && $isSave == true) {
+            if ($modulTag == "RevisionPDF" && $isSave == true) {
 //            $this->webDriver->get("http://all4cables.com/user/project/");
-            try {
-                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-                CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
-                RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
-            } catch (Exception $e) {
+                try {
+//                    $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                    $this->webDriver->get("http://all4cables.com/user/project/");
+                    CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+                    RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+                } catch (Exception $e) {
+                }
             }
-        }
-        if ($modulTag == "CableRowMaterials" && $isSave == true) {
+            if ($modulTag == "CableRowMaterials" && $isSave == true) {
 //            $this->webDriver->get("http://all4cables.com/multicable/");
-            try {
-                $this->webDriver->get("http://all4bom.smartdesign.by/multicable/");
-                CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver, $this->bufRevision);
-            } catch (Exception $e) {
+                try {
+//                    $this->webDriver->get("http://all4bom.smartdesign.by/multicable/");
+                    $this->webDriver->get("http://all4cables.com/multicable/");
+                    CableRowMaterialsPageObject::deleteAllCRMByName($this->webDriver, $this->bufRevision);
+                } catch (Exception $e) {
+                }
             }
-        }
-        if ($modulTag == "Tender" && $isSave == true) {
-            try {
-                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-                CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
-                RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
-                $this->webDriver->get("http://all4bom.smartdesign.by/tender/");
-                TendersPageObject::deleteAll($this->webDriver);
-            } catch (Exception $e) {
+            if ($modulTag == "Tender" && $isSave == true) {
+                try {
+//                    $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                    $this->webDriver->get("http://all4cables.com/user/project/");
+                    CableAssembliesPageObject::clickOnRevisionsLinkByNameCableAssemblies($this->webDriver, $this->bufCableAssemblies);
+                    RevisionsPageObjects::deleteAllRevisionsByName($this->webDriver, $this->bufRevision);
+//                    $this->webDriver->get("http://all4bom.smartdesign.by/tender/");
+                    $this->webDriver->get("http://all4cables.com/tender/");
+                    TendersPageObject::deleteAll($this->webDriver);
+                } catch (Exception $e) {
+                }
             }
-        }
 
-        if ($modulTag == "CableAssemblies" && $isSave == true) {
+            if ($modulTag == "CableAssemblies" && $isSave == true) {
 //            $this->webDriver->get("http://all4cables.com/user/project/");
-            try {
-                $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
-                CableAssembliesPageObject::deleteAllCableAssembliesByName($this->webDriver, $this->bufRevision);
-            } catch (Exception $e) {
+                try {
+                    $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+                    CableAssembliesPageObject::deleteAllCableAssembliesByName($this->webDriver, $this->bufRevision);
+                } catch (Exception $e) {
+                }
             }
-        }
 
-        CompareRevisions::reset();
-        $this->bufFirstBOMTableValueForCheck = null;
-        $this->bufSecondBOMTableValueForCheck = null;
+            CompareRevisions::reset();
+            $this->bufFirstBOMTableValueForCheck = null;
+            $this->bufSecondBOMTableValueForCheck = null;
 
-        $this->webDriver->quit();
+            $this->webDriver->quit();
 
 //        REPORT
-        try {
-            $this->report->afterScenario($scope);
+            try {
+                $this->report->afterScenario($scope);
 //            shell_exec("killall chrome");
+            } catch (Exception $e) {
+            }
         } catch (Exception $e) {
         }
 
@@ -429,7 +444,8 @@ class FeatureContext implements Context
     public function iSetConnectorInTable($numberConnector, $NumberLine)
     {
         TabCreateRevisionTabPageObject::clickOnBOMTab($this->webDriver);
-        BOMCreateRevisionPageObject::setConnectorData($this->webDriver, $numberConnector, $NumberLine);
+        BOMCreateRevisionPageObject::clickOnConnectorButtonByNumberConnector($this->webDriver,$numberConnector);
+        BOMCreateRevisionPageObject::clickOnFirstLineInTable($this->webDriver);
     }
 
     /**
@@ -584,7 +600,8 @@ class FeatureContext implements Context
     public function iSetFilterByNameWithValue($FilterName, $ValueFilter)
     {
 
-        BOMCreateRevisionPageObject::selectCustomValueByName($this->webDriver, $FilterName, $ValueFilter);
+//        BOMCreateRevisionPageObject::selectCustomValueByName($this->webDriver, $FilterName, $ValueFilter);
+        BOMCreateRevisionPageObject::setValueInCustomInputInTable($this->webDriver,$FilterName,$ValueFilter);
         if ($this->bufFirstBOMTableValueForCheck === null) {
             $this->bufFirstBOMTableValueForCheck = BOMCreateRevisionPageObject::getValueInFirstLineInTableByNameColumn($this->webDriver, $FilterName);
         } else {
@@ -775,8 +792,8 @@ class FeatureContext implements Context
      */
     public function openCableAssembliesURL()
     {
-//        $this->webDriver->get("http://all4cables.com/user/project/");
-        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+        $this->webDriver->get("http://all4cables.com/user/project/");
+//        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
     }
 
     /**
@@ -809,8 +826,8 @@ class FeatureContext implements Context
      */
     public function openLinkCableAssembliesMain()
     {
-//        $this->webDriver->get("http://all4cables.com/user/project/");
-        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
+        $this->webDriver->get("http://all4cables.com/user/project/");
+//        $this->webDriver->get("http://all4bom.smartdesign.by/user/project/");
     }
 
     /**
@@ -1850,7 +1867,7 @@ class FeatureContext implements Context
     public function setTextInRevDescOnCreateRevFromPDF($arg1)
     {
         RevisionFromPDF::setTextInRevisionDescInput($this->webDriver, $arg1);
-        $this->bufRevision=$arg1;
+        $this->bufRevision = $arg1;
     }
 
     /**
@@ -1939,7 +1956,7 @@ class FeatureContext implements Context
      */
     public function setTargPriceInCreateTenderPage($arg1)
     {
-        $arg1 = str_replace(".",",",$arg1);
+        $arg1 = str_replace(".", ",", $arg1);
         TenderPageObject::setTargetPrice($this->webDriver, $arg1);
     }
 
@@ -2060,7 +2077,7 @@ class FeatureContext implements Context
      */
     public function clickOnLastEditButton()
     {
-            SupplierPanelPageObject::clickOnTendersButton($this->webDriver);
+        SupplierPanelPageObject::clickOnTendersButton($this->webDriver);
     }
 
     /**
@@ -2084,7 +2101,7 @@ class FeatureContext implements Context
      */
     public function checkSupplierTenderInformation($arg1, $arg2)
     {
-        TenderAnswerPageObject::checkValueByName($this->webDriver,$arg1,$arg2);
+        TenderAnswerPageObject::checkValueByName($this->webDriver, $arg1, $arg2);
     }
 
     /**
@@ -2100,9 +2117,10 @@ class FeatureContext implements Context
      */
     public function loginByCustomUsernameAndPassword($arg1, $arg2)
     {
-       $this->webDriver->get("http://all4bom.smartdesign.by/login");
-       LoginPageObject::setCustomInformation($this->webDriver,$arg1,$arg2);
-       LoginPageObject::pressLoginButton($this->webDriver);
+//        $this->webDriver->get("http://all4bom.smartdesign.by/login");
+        $this->webDriver->get("http://all4cables.com//login");
+        LoginPageObject::setCustomInformation($this->webDriver, $arg1, $arg2);
+        LoginPageObject::pressLoginButton($this->webDriver);
     }
 
     /**
@@ -2110,7 +2128,7 @@ class FeatureContext implements Context
      */
     public function setInPriceFixedSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInTargetPriceInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInTargetPriceInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2118,7 +2136,7 @@ class FeatureContext implements Context
      */
     public function setMinimumOrderInSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInMinimumOrderQTYInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInMinimumOrderQTYInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2126,7 +2144,7 @@ class FeatureContext implements Context
      */
     public function setMinimumPackQTYInSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInMinimumPackageQTYInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInMinimumPackageQTYInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2134,7 +2152,7 @@ class FeatureContext implements Context
      */
     public function setLeadTimeInSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInLeadTimeInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInLeadTimeInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2142,7 +2160,7 @@ class FeatureContext implements Context
      */
     public function setShipmentMethodInSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInShipmentMethodInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInShipmentMethodInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2150,7 +2168,7 @@ class FeatureContext implements Context
      */
     public function setShipmentToInSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInShipmentToInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInShipmentToInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2158,7 +2176,7 @@ class FeatureContext implements Context
      */
     public function setPaymentTermsInSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInPaymentTermsInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInPaymentTermsInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2166,7 +2184,7 @@ class FeatureContext implements Context
      */
     public function setAddotopmaInformationinSTA($arg1)
     {
-        TenderAnswerPageObject::setTextInAdditionalInformationInput($this->webDriver,$arg1);
+        TenderAnswerPageObject::setTextInAdditionalInformationInput($this->webDriver, $arg1);
     }
 
     /**
@@ -2198,7 +2216,7 @@ class FeatureContext implements Context
      */
     public function checkValueByNameOnViewTenderAnswerPage($arg1, $arg2)
     {
-        TenderAnswerViewPageObject::checkAnswerFromSite($this->webDriver,$arg1,$arg2);
+        TenderAnswerViewPageObject::checkAnswerFromSite($this->webDriver, $arg1, $arg2);
     }
 
     /**
@@ -2206,7 +2224,7 @@ class FeatureContext implements Context
      */
     public function checkCustomPartNumbAndDescOnTenderAnswerPage()
     {
-        TenderAnswerViewPageObject::checkPartNumberAndDescription($this->webDriver,$this->bufPartNumberInBom,$this->bufDescInBom);
+        TenderAnswerViewPageObject::checkPartNumberAndDescription($this->webDriver, $this->bufPartNumberInBom, $this->bufDescInBom);
     }
 
     /**
@@ -2222,7 +2240,7 @@ class FeatureContext implements Context
      */
     public function checkPriceOnEditTenderPage($arg1)
     {
-        ChangeTenderPageObject::checkDetailsPage($this->webDriver,$arg1);
+        ChangeTenderPageObject::checkDetailsPage($this->webDriver, $arg1);
     }
 
     /**
@@ -2230,14 +2248,41 @@ class FeatureContext implements Context
      */
     public function консоль($arg1)
     {
-        echo PHP_EOL.$arg1.PHP_EOL;
+        echo PHP_EOL . $arg1 . PHP_EOL;
+    }
+
+
+    /**
+     * @Then /^Открыть get\-draft page ревизии с именем (.*)$/
+     */
+    public function openGetDraftByRevisionName($nameRevision)
+    {
+        RevisionsPageObjects::openGetDraftPageByRevisionName($this->webDriver, $nameRevision);
     }
 
     /**
-     * @Then /^Начать трэш$/
+     * @Given /^Проверить что в json присутствуют объекты "(.*)"$/
      */
-    public function начатьТрэш()
+    public function checkJSONDraftSave($objectsNames)
     {
+        $objects = preg_split("/[,]+/", $objectsNames);
+        foreach ($objects as $object) {
+            $object = trim($object);
+            $this->checkerJSON->addObject($object, null);
+        }
+        $json = $this->webDriver->findElement(WebDriverBy::xpath("/html/body"))->getText();
+        var_dump($json);
+        if (!$this->checkerJSON->Check($json)) {
+            throw new Exception("No save all objects");
+        }
+    }
+
+    /**
+     * @Given /^На странице CA Edit Будут следующие данные: "([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)","([^"]*)"$/
+     */
+    public function checkValuesOnCAEditPage1($arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10)
+    {
+        CreateCableAssembliesPageObject::checkValues($this->webDriver, $arg1, $arg2, $arg3, $arg4, $arg5, $arg6, $arg7, $arg8, $arg9, $arg10);
     }
 
 

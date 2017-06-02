@@ -698,6 +698,1007 @@
                             ]
                           },
                           {
+                            "tag": "15-00",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-01",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-02",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-03",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-04",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-05",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-06",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-07",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-08",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-09",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-10",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-11",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-12",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-13",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-14",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-15",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-16",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-17",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-18",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-19",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-20",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-21",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-22",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-23",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-24",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-25",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-26",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-27",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-28",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-29",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-30",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-31",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-32",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-33",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-34",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-35",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-36",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-37",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-38",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-39",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-40",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-41",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-42",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-43",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-44",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-45",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-46",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-47",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-48",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-49",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-50",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-51",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-52",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-53",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-54",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-55",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-56",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-57",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-58",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-59",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-60",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-61",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-62",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-63",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-64",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-65",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-66",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-67",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-68",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-69",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-70",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-71",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-72",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-73",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-74",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-75",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-76",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-77",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-78",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-79",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-80",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-81",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-82",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-83",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-84",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-85",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-86",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-87",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-88",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-89",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-90",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-91",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-92",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-93",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-94",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-95",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-96",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-97",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-98",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-99",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-100",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-101",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-102",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-103",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-104",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-105",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-106",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-107",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-108",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-109",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-110",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-111",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-112",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-113",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-114",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-115",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-116",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-117",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-118",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-119",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-120",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-121",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-122",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-123",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-124",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-125",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-126",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-127",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-128",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-129",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-130",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-131",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-132",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-133",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-134",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-135",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-136",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-137",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-138",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-139",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-140",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-141",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
+                            "tag": "15-142",
+                            "responsible": "1",
+                            "description": "Проверка совместимости объектов разного типа и колличество на Draft",
+                            "isSmoke": false,
+                            "dependent": []
+                          },
+                          {
                             "tag": "03-41",
                             "responsible": "1",
                             "description": "Создание копии объекта Broken Cable",
@@ -1033,7 +2034,6 @@
                     "description": "Редактирование Cable Assemblies c валидными данными @Smoke",
                     "isSmoke": true,
                     "dependent": [
-
                       {
                         "tag": "02-01",
                         "responsible": "1",

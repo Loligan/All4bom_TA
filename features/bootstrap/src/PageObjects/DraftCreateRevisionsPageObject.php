@@ -92,7 +92,7 @@ class DraftCreateRevisionsPageObject implements PageObject
         DraftCreateRevisionsPageObject::$ACCESSORIES_CELL = "html/body/main/form/div[1]/div/div/div/div[1]/div[4]/ul/li[VALUE]/a";
         DraftCreateRevisionsPageObject::$CUSTOM_PART_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[9]/button";
         DraftCreateRevisionsPageObject::$COPY_ICON = "html/body/main/form/div[1]/div/div/div/div[1]/ul/li[10]/button";
-        DraftCreateRevisionsPageObject::$COPY_BUTTON = "html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[1]/button";
+        DraftCreateRevisionsPageObject::$COPY_BUTTON = "/html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[1]/button/i";
         DraftCreateRevisionsPageObject::$COPY_QUANTITY = "html/body/main/form/div[1]/div/div/div/div[1]/div[7]/ul/li[2]/input";
     }
 

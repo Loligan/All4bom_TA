@@ -22,13 +22,14 @@ class CableAssembliesPageObject implements PageObject
     static function init()
     {
         self::$CREATE_CABLE_ASSEMLIES_BUTTON = ".btn.btn__create";
-        self::$REVISION_LINKS = "html/body/main/div/div/table/tbody/tr/td[5]/a";
-        self::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME = "html/body/main/div/div/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/a";
+        self::$REVISION_LINKS = "html/body/main/div/div/div[3]/table/tbody/tr/td[5]/a";
+        self::$LINK_TO_CABLE_ASSEMBLIES_PAGE_BY_NAME = "html/body/main/div/div/div[3]/table/tbody/tr[.//td[text()=\"VALUE\"]]/td[5]/a";
+
         self::$CABLE_ROW_MATERIALS_TAB = "html/body/header/div/div/div[1]/nav/ul/li[3]/a";
-        self::$DELETE_BUTTOM = "html/body/main/div/div/table/tbody/tr/td[7]/div[.//a[@data-target=\"#deleteModalVALUE\"]]/a[2]/i";
-        self::$LINKS = "html/body/main/div/div/table/tbody/tr/td[text()[.='VALUE']]/following-sibling::td[position()=4]/div/a[1]";
+        self::$DELETE_BUTTOM = "html/body/main/div/div/div[3]/table/tbody/tr/td[7]/div[.//a[@data-target=\"#deleteModalVALUE\"]]/a[2]/i";
+        self::$LINKS = "html/body/main/div/div/div[3]/table/tbody/tr/td[text()[.='VALUE']]/following-sibling::td[position()=4]/div/a[1]";
         self::$ACCEPT_DELETE_REVISION_BUTTON = ".//*[@id='deleteModalVALUE']/div/div/form/div[2]/button[1]";
-        self::$EDIT_ACTION_BUTTONS = "html/body/main/div/div/table/tbody/tr/td[7]/div[1]/a[1]/i";
+        self::$EDIT_ACTION_BUTTONS = "html/body/main/div/div/div[3]/table/tbody/tr/td[7]/div[1]/a[1]/i";
         self::$CREATE_FOR_PDF_BUTTON = "/html/body/main/div/div/div/div/a[2]";
     }
 

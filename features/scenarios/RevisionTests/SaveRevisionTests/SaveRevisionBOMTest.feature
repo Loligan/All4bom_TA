@@ -2233,3 +2233,123 @@ Feature: Создание объектов в Draft и BOM. Проверка д�
     Examples:
       | Category | PartNumber | ManufactureName | Description | Datasheet | CustomerPartNumber | Remarks | Quantity | Tolerance |
       | 1        | 2          | 3               | 4           | 5         | 6                  | 7       | 8        | 9         |
+
+
+  @Save @Revision @Labels @Labels @Smoke @ID=08-01 @PRIORITY=5 @ASSIGNED=1
+  Scenario Outline: Сохранение данных в вкладке Labels
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Добавить Label с следующей информацией: <num> Description: <desc> Height: <hght> Width: <wdth> Distance: <dstc> Tolerance: <tlrnc>
+    And Сохранить ревизию с именем Test save
+    Then Открыть последнюю ревизию с именем Test save
+    And В ревизии все объекты на месте
+    Examples:
+      | num   | desc        | hght  | wdth  | dstc  | tlrnc |
+      | Text  | Description | 1     | 2     | 3     | 4     |
+
+
+  @Test2 @Tender @Create
+  Scenario Outline: Создание объекта Tender типа Fixed и проверка данные в Supplier Panel
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'tst'
+    And Нажать кнопку [CREATE REVISION]
+    When Создать объект Cable типа Plain и толщиной Normal в Draft
+    And Выбрать семейство кабелей Lan Cable
+    And Выбрать категорию кабеля Cable
+    And Выбрать 1 строку в таблице
+    And Перейти на вкладку BOM
+    And Сохранить ревизию с именем Test Save
+    And Нажать кнопку Create Tender рядом с последней ревизией с именем "Test Save"
+    And Выбрать данные в Price type: "<price type>" на странице Create Tender
+    And Ввести Target price "<set t. price>" на странице Create Tender
+    And Ввести Quantity "<QTY>" на странице Create Tender
+    And Ввести Supply at "<set month>", "<set day>","<set year>" на странице Create Tender
+    And Ввести Shipment method "<ship. meth.>" на странице Create Tender
+    And Ввести Shipment to "<ship. to>" на странице Create Tender
+    And Ввести Special requirments "<spec. req.>" на странице Create Tender
+    And Ввести Additional information "<add. inform.>" на странице Create Tender
+    And Ввести Countries information "<countr.>" на странице Create Tender
+    And Нажать кнопку [Create] на странице Create Tender
+    And Разлогиниться
+    And Авторизоваться. Логин: "Test", пароль "1234"
+    And Перейти в Supplier Panel
+    And Нажать кнопку Tenders на странице Supplier Panel
+    And Нажать кнопку [Edit] рядом с последней записью на странице SuplierPanel
+    And Развернуть список Tender Information
+    And Ввести в поле Price Fixed значение "<t. prise s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Minimum Order Quantity значение "<ord. qty. s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Minimum Package Quantity значение "<min. p. qty. s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Lead Time значение "<l. time s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Shipment method значение "<shpmnt. meth. s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Shipment to значение "<shpmntg. s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Payment Terms значение "<pay. s.>" на странице Supplier->Tender->Answer
+    And Ввести в поле Additional information значение "<add. inf. s.>" на странице Supplier->Tender->Answer
+    And Нажать кнопку [Answer] на странице Supplier->Tender->Answer
+    And Разлогиниться
+    And Авторизоваться. Логин: "baruch", пароль "testtest"
+    And Кликнуть на таб TENDERS
+    And Нажать кнопку [Tenders] на странице Buyer Tenders
+    And Нажать на последнюю кнопку [new answers]
+    And Нажать на последнюю кнопку [View] на странице tender answers
+    And Проверить что в поле "Price type" значение "<price type>" на странице view tender answer
+    And Проверить что в поле "Minimum Order Quantity" значение "<ord. qty. s.>" на странице view tender answer
+    And Проверить что в поле "Minimum Package Quantity" значение "<min. p. qty. s.>" на странице view tender answer
+    And Проверить что в поле "Lead Time" значение "<l. time s.>" на странице view tender answer
+    And Проверить что в поле "Shipment method" значение "<shpmnt. meth. s.>" на странице view tender answer
+    And Проверить что в поле "Shipment to" значение "<shpmntg. s.>" на странице view tender answer
+    And Проверить что в поле "Payment Terms" значение "<pay. s.>" на странице view tender answer
+    And Проверить что в поле "Additional information" значение "<add. inf. s.>" на странице view tender answer
+    Examples:
+      | price type | set t. price | QTY | set month | set day | set year | ship. meth. | ship. to | spec. req. | add. inform. | countr. | t. prise s. | ord. qty. s. | min. p. qty. s. | l. time s.        | shpmnt. meth. s.  | shpmntg. s.    | pay. s.           | add. inf. s.   |
+      | Fixed      | 1.12         | 10  | October   | 12      | 2017     | Walk        | Minsk    | Nope       | Nope         | Belarus | 0,01        | 1            | 1               | Two day           | Walk              | Minsk          | Visa              | Nope           |
+
+  @Tes2t  @Tender @Create
+  Scenario Outline: Проверка работы добавления альтернативных деталей
+    Given Открыть главную страницу
+    And Кликнуть на кнопку [LOGIN]
+    And Ввести стандартный логин и пароль
+    And Нажать кнопку [LOGIN]
+    And Кликнуть на [CABLE ASSEMBLIES] в шапке
+    And Нажать кнопку [EDIT] рядом с cable assmblies с именем 'asd'
+    And Нажать кнопку [CREATE FROM PDF]
+    When Ввести в поле Revision description данные "Test Save" на странице CREATE REVISION FROM PDF
+    And Выбрать стандартный файл для PDF input на странице CREATE REVISION FROM PDF
+    And Выбрать стандартный файл для Excel input на странице CREATE REVISION FROM PDF
+    Then Ждать "2" секунды
+    And Нажать на чекбокс дочерней категории "Connector" с именем "RJ" на страницу Create From PDF
+    And Нажать на чекбокс дочерней категории "Cable" с именем "Flat Cable" на страницу Create From PDF
+    Then Ждать "2" секунды
+    And Нажать на кнопку [Create] на странице CREATE REVISION FROM PDF
+    And Нажать кнопку Create Tender рядом с последней ревизией с именем "Test Save"
+    And Ждать "1" секунды
+    And Ввести Target price "<set t. price>" на странице Create Tender
+    And Ввести Quantity "<QTY>" на странице Create Tender
+    And Ввести Supply at "<set month>", "<set day>","<set year>" на странице Create Tender
+    And Ввести Shipment method "<ship. meth.>" на странице Create Tender
+    And Ввести Shipment to "<ship. to>" на странице Create Tender
+    And Ввести Special requirments "<spec. req.>" на странице Create Tender
+    And Ввести Additional information "<add. inform.>" на странице Create Tender
+    And Ввести Countries information "<countr.>" на странице Create Tender
+    And Нажать кнопку [Create] на странице Create Tender
+    And Нажать кнопку [Edit] рядом с первым тендером в списке
+    And Проверить что в поле "Target price" значение "<set t. price>"
+    And Проверить что в поле "Price type" значение "<price type>"
+    And Проверить что в поле "Quantity" значение "<QTY>"
+    And Проверить что в поле "Supply at" значение "<view date>"
+    And Проверить что в поле "Shipment method" значение "<ship. meth.>"
+    And Проверить что в поле "Shipment to" значение "<ship. to>"
+    And Проверить что в поле "Special requirments" значение "<spec. req.>"
+    And Проверить что в поле "Additional information" значение "<add. inform.>"
+    And Проверить что в поле "Countries" значение "<countr.>"
+    Examples:
+      | price type | set t. price | QTY    | set month | set day | set year | view date  | ship. meth.         | ship. to             | spec. req.         | add. inform.        | countr.   |
+      | Fixed      | 1            | 1      | October   | 12      | 2017     | 12-10-2017 | Walk                | Minsk                | Nope               | Nope                | Belarus   |

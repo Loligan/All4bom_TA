@@ -6,9 +6,6 @@
     "strokeDashArray": null,
     "strokeLineCap": "butt",
     "strokeLineJoin": "miter",
-    "flipX": false,
-    "flipY": false,
-    "opacity": 1,
     "visible": true,
     "backgroundColor": "",
     "fillRule": "nonzero",
@@ -26,16 +23,12 @@
     "lockScalingFlip": false,
     "editable": true,
     "canFocusControl": true,
-    "zIndex": 0,
     "fontSize": "18",
     "fontWeight": "normal",
     "fontFamily": "Arial",
     "fontStyle": "",
-    "lineHeight": 1.16,
     "textDecoration": "",
     "textAlign": "left",
-    "textBackgroundColor": "",
-    "charSpacing": 0,
-    "styles": {}
+    "textBackgroundColor": ""
   }
 ]

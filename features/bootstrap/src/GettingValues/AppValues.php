@@ -4,8 +4,8 @@ class AppValues
 {
     private static $login = "baruch";
     private static $password = "testtest";
-//    private static $url = "http://all4cables.com";
-    private static $url = "http://all4bom.smartdesign.by";
+    private static $url = "http://all4cables.com";
+//    private static $url = "http://all4bom.smartdesign.by";
 
     /**
      * AppValues constructor.
@@ -15,8 +15,8 @@ class AppValues
      */
 
 
-    public function __construct($url = "http://all4bom.smartdesign.by", $login = "baruch", $password = "testtest")    {
-//    public function __construct($url = "http://all4cables.com", $login = "baruch", $password = "testtest")    {
+//    public function __construct($url = "http://all4bom.smartdesign.by", $login = "baruch", $password = "testtest")    {
+    public function __construct($url = "http://all4cables.com", $login = "baruch", $password = "testtest")    {
         $this->$login = $login;
         $this->$password = $password;
         $this->$url = $url;
