@@ -1,6 +1,6 @@
 Feature: Cоздание объектов в Draft без сохранения
 
-   @Smoke @Revision @ID=03-00 @PRIORITY=5 @ASSIGNED=1
+  @Smoke @Revision @ID=03-00 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -40,8 +40,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 18         | 000000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 18         | 000000 |
+
   @Draft @Create @Text @ID=03-02-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -58,8 +59,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Tahoma          | 18         | 000000 |
+      | Front  | SizeNumber | Color  |
+      | Tahoma | 18         | 000000 |
+
   @Draft @Create @Text @ID=03-02-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -76,8 +78,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Verdana         | 18         | 000000 |
+      | Front   | SizeNumber | Color  |
+      | Verdana | 18         | 000000 |
+
   @Draft @Create @Text @ID=03-02-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -96,6 +99,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Front           | SizeNumber | Color  |
       | Times New Roman | 18         | 000000 |
+
   @Draft @Create @Text @ID=03-02-04 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -114,6 +118,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Front           | SizeNumber | Color  |
       | Times New Roman | 18         | 000000 |
+
   @Draft @Create @Text @ID=03-02-05 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -130,8 +135,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Courier New     | 18         | 000000 |
+      | Front       | SizeNumber | Color  |
+      | Courier New | 18         | 000000 |
+
   @Draft @Create @Text @ID=03-02-06 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -148,8 +154,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 6          | 000000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 6          | 000000 |
+
   @Draft @Create @Text @ID=03-02-07 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -166,8 +173,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 14         | 000000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 14         | 000000 |
+
   @Draft @Create @Text @ID=03-02-08 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -184,8 +192,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 22         | 000000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 22         | 000000 |
+
   @Draft @Create @Text @ID=03-02-09 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -202,9 +211,10 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 26         | 000000 |
-   @Draft @Create @Text @ID=03-02-10 @PRIORITY=5 @ASSIGNED=1
+      | Front | SizeNumber | Color  |
+      | Arial | 26         | 000000 |
+
+  @Draft @Create @Text @ID=03-02-10 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -220,8 +230,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 26         | 000000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 26         | 000000 |
+
   @Draft @Create @Text @ID=03-02-11 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -238,8 +249,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 30         | 000000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 30         | 000000 |
+
   @Draft @Create @Text @ID=03-02-12 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -256,8 +268,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 18         | ff0000 |
+      | Front | SizeNumber | Color  |
+      | Arial | 18         | ff0000 |
+
   @Draft @Create @Text @ID=03-02-13 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Text
     Given Открыть главную страницу
@@ -274,8 +287,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Нажать кнопку [TEXT] на панели иструментов
     Then Объект Text появился на Draft
     Examples:
-      | Front           | SizeNumber | Color  |
-      | Arial           | 18         | 800080 |
+      | Front | SizeNumber | Color  |
+      | Arial | 18         | 800080 |
 
 
   @Draft @Smoke @Create @CustomDimention @ID=03-04 @PRIORITY=5 @ASSIGNED=1
@@ -333,7 +346,8 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
- @Draft @Create @Cable @PlainCable @ID=03-06-01 @PRIORITY=5 @ASSIGNED=1
+
+  @Draft @Create @Cable @PlainCable @ID=03-06-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -351,9 +365,10 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Cable
     Examples:
-      | Weight   |
-      | Thin     |
- @Draft @Create @Cable @PlainCable @ID=03-06-02 @PRIORITY=5 @ASSIGNED=1
+      | Weight |
+      | Thin   |
+
+  @Draft @Create @Cable @PlainCable @ID=03-06-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -371,8 +386,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @PlainCable @ID=03-06-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Cable
     Given Открыть главную страницу
@@ -391,10 +407,10 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
- @Draft @Create @Cable @CurveCable @Smoke @ID=03-07 @PRIORITY=5 @ASSIGNED=1
+  @Draft @Create @Cable @CurveCable @Smoke @ID=03-07 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
     And Кликнуть на кнопку [LOGIN]
@@ -432,6 +448,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @CurveCable @ID=03-08-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
@@ -450,8 +467,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @CurveCable @ID=03-08-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
@@ -470,8 +488,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @CurveCable @ID=03-08-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Cable
     Given Открыть главную страницу
@@ -490,8 +509,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Cable @BrokenCable @Smoke @ID=03-09 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Broken Cable
@@ -531,6 +550,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @BrokenCable @ID=03-10-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Broken Cable
     Given Открыть главную страницу
@@ -549,8 +569,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @BrokenCable @ID=03-10-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Broken Cable
     Given Открыть главную страницу
@@ -569,8 +590,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @BrokenCable @ID=03-10-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Broken Cable
     Given Открыть главную страницу
@@ -589,8 +611,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Line @PlainLine @Smoke @ID=03-11 @PRIORITY=5 @ASSIGNED=1
@@ -631,6 +653,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @PlainLine @ID=03-12-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Line
     Given Открыть главную страницу
@@ -649,8 +672,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @PlainLine @ID=03-12-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Line
     Given Открыть главную страницу
@@ -669,8 +693,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @PlainLine @ID=03-12-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Plain Line
     Given Открыть главную страницу
@@ -689,8 +714,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Smoke @Create @Line @CurveLine @ID=03-13 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Line
@@ -730,6 +755,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Smoke @Create @Line @CurveLine @ID=03-14-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
@@ -748,8 +774,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Smoke @Create @Line @CurveLine @ID=03-14-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
@@ -768,8 +795,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Smoke @Create @Line @CurveLine @ID=03-14-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
@@ -788,8 +816,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Line @BrokenLine @Smoke @ID=03-15 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание на полотне объекта Curve Line
@@ -830,6 +858,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @BrokenLine @ID=03-16-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
@@ -848,8 +877,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @BrokenLine @ID=03-16-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
@@ -868,8 +898,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @BrokenLine @ID=03-16-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Curve Line
     Given Открыть главную страницу
@@ -888,8 +919,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "240" Y= "200"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Connector @Smoke @ID=03-17 @PRIORITY=5 @ASSIGNED=1
@@ -934,8 +965,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "1" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | RF      | Connector | 2      |
+      | Family | Category  | Number |
+      | RF     | Connector | 2      |
+
   @Draft @Create @Connector @ID=03-18-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Connector
     Given Открыть главную страницу
@@ -957,8 +989,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "1" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | IDC     | IDC pitch | 1      |
+      | Family | Category  | Number |
+      | IDC    | IDC pitch | 1      |
+
   @Draft @Create @Connector @ID=03-18-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Connector
     Given Открыть главную страницу
@@ -982,6 +1015,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Family  | Category  | Number |
       | Headers | Connector | 2      |
+
   @Draft @Create @Connector @ID=03-18-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание на полотне объекта Connector
     Given Открыть главную страницу
@@ -1003,8 +1037,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "1" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | RJ      | Connector | 2      |
+      | Family | Category  | Number |
+      | RJ     | Connector | 2      |
 
 
   @Draft @Create @UserImage @Smoke @ID=03-19 @PRIORITY=5 @ASSIGNED=1
@@ -1155,6 +1189,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @Smoke @PlainCable @Copy @ID=03-25-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1182,8 +1217,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @Smoke @PlainCable @Copy @ID=03-25-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1211,8 +1247,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
 
   @Draft @Create @Cable @Smoke @PlainCable @Copy @ID=03-25-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
@@ -1241,8 +1277,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Cable @PlainCable @Copy @ID=03-26-00 @PRIORITY=5 @ASSIGNED=1
@@ -1274,6 +1310,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @PlainCable @Copy @ID=03-26-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1301,8 +1338,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @PlainCable @Copy @ID=03-26-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1330,8 +1368,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @PlainCable @Copy @ID=03-26-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1359,8 +1398,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Cable @CurveCable @Smoke @Copy @ID=03-27 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Curve Cable
@@ -1419,6 +1458,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @CurveCable @Copy @ID=03-28-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -1446,8 +1486,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @CurveCable @Copy @ID=03-28-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -1475,8 +1516,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @CurveCable @Copy @ID=03-28-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -1504,8 +1546,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Cable @CurveCable @Copy @ID=03-29-00 @PRIORITY=5 @ASSIGNED=1
@@ -1537,6 +1579,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @CurveCable @Copy @ID=03-29-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -1564,8 +1607,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @CurveCable @Copy @ID=03-29-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -1593,8 +1637,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @CurveCable @Copy @ID=03-29-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -1622,8 +1667,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Cable @BrokenCable @Smoke @Copy @ID=03-30 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Broken Cable
@@ -1680,8 +1725,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @BrokenCable @Copy @ID=03-31-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -1709,8 +1755,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @BrokenCable @Copy @ID=03-31-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -1738,8 +1785,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Cable @BrokenCable @Copy @ID=03-32-00 @PRIORITY=5 @ASSIGNED=1
@@ -1769,8 +1816,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @BrokenCable @Copy @ID=03-32-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -1798,8 +1846,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @BrokenCable @Copy @ID=03-32-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -1827,8 +1876,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Cable
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Line @PlainLine @Smoke @Copy @ID=03-33 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Plain Line
@@ -1881,6 +1930,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @PlainLine @Copy @ID=03-34-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1905,8 +1955,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @PlainLine @Copy @ID=03-34-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1931,8 +1982,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @PlainLine @Copy @ID=03-34-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Cable
     Given Открыть главную страницу
@@ -1957,8 +2009,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Line @PlainLine @Copy @ID=03-35-00 @PRIORITY=5 @ASSIGNED=1
@@ -1987,6 +2039,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @PlainLine @Copy @ID=03-35-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Line
     Given Открыть главную страницу
@@ -2011,8 +2064,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @PlainLine @Copy @ID=03-35-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Line
     Given Открыть главную страницу
@@ -2037,8 +2091,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @PlainLine @Copy @ID=03-35-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Plain Line
     Given Открыть главную страницу
@@ -2063,8 +2118,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Plain Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Line @CurveLine @Smoke @Copy @ID=03-36 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Curve Cable
@@ -2117,6 +2172,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @CurveLine @Copy @ID=03-37-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -2141,8 +2197,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @CurveLine @Copy @ID=03-37-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -2167,8 +2224,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @CurveLine @Copy @ID=03-37-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -2193,8 +2251,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Line @CurveLine @Copy @ID=03-38-00 @PRIORITY=5 @ASSIGNED=1
@@ -2223,6 +2281,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @CurveLine @Copy @ID=03-38-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -2247,8 +2306,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @CurveLine @Copy @ID=03-38-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -2273,8 +2333,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @CurveLine @Copy @ID=03-38-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Curve Cable
     Given Открыть главную страницу
@@ -2299,8 +2360,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Curve Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Line @BrokenLine @Smoke @Copy @ID=03-39 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Broken Cable
@@ -2353,6 +2414,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Cable @BrokenLine @Copy @ID=03-40-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -2377,8 +2439,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Cable @BrokenLine @Copy @ID=03-40-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -2403,8 +2466,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Cable @BrokenLine @Copy @ID=03-40-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -2429,8 +2493,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
 
   @Draft @Create @Line @BrokenLine @Copy @ID=03-41-00 @PRIORITY=5 @ASSIGNED=1
@@ -2459,6 +2523,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Weight   |
       | Thinnest |
+
   @Draft @Create @Line @BrokenLine @Copy @ID=03-41-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -2483,8 +2548,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Thin     |
+      | Weight |
+      | Thin   |
+
   @Draft @Create @Line @BrokenLine @Copy @ID=03-41-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -2509,8 +2575,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Normal   |
+      | Weight |
+      | Normal |
+
   @Draft @Create @Line @BrokenLine @Copy @ID=03-41-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Broken Cable
     Given Открыть главную страницу
@@ -2535,8 +2602,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Кликнуть на полотне по координатам X = "300" Y= "1300"
     Then Проверить что последний добавленный элемент является Broken Line
     Examples:
-      | Weight   |
-      | Thick    |
+      | Weight |
+      | Thick  |
 
   @Draft @Create @Connector @Copy @Smoke @ID=03-42 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Connector
@@ -2590,8 +2657,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | RF      | Connector | 2      |
+      | Family | Category  | Number |
+      | RF     | Connector | 2      |
+
   @Draft @Create @Connector @Copy @ID=03-43-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
@@ -2618,8 +2686,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | IDC     | IDC pitch | 1      |
+      | Family | Category  | Number |
+      | IDC    | IDC pitch | 1      |
+
   @Draft @Create @Connector @Copy @ID=03-43-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
@@ -2648,6 +2717,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Family  | Category  | Number |
       | Headers | Connector | 2      |
+
   @Draft @Create @Connector @Copy @ID=03-43-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
@@ -2674,8 +2744,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "2" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | RJ      | Connector | 2      |
+      | Family | Category  | Number |
+      | RJ     | Connector | 2      |
 
   @Draft @Create @Connector @Copy @Smoke  @ID=03-44 @PRIORITY=5 @ASSIGNED=1
   Scenario: Создание копии объекта Connector
@@ -2729,8 +2799,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | RF      | Connector | 2      |
+      | Family | Category  | Number |
+      | RF     | Connector | 2      |
+
   @Draft @Create @Connector @Copy  @ID=03-45-01 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
@@ -2757,8 +2828,9 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | IDC     | IDC pitch | 1      |
+      | Family | Category  | Number |
+      | IDC    | IDC pitch | 1      |
+
   @Draft @Create @Connector @Copy  @ID=03-45-02 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
@@ -2787,6 +2859,7 @@ Feature: Cоздание объектов в Draft без сохранения
     Examples:
       | Family  | Category  | Number |
       | Headers | Connector | 2      |
+
   @Draft @Create @Connector @Copy  @ID=03-45-03 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта Connector
     Given Открыть главную страницу
@@ -2813,8 +2886,8 @@ Feature: Cоздание объектов в Draft без сохранения
     And Перейти на вкладку BOM
     And В BOM присутствует "6" объект Connector
     Examples:
-      | Family  | Category  | Number |
-      | RJ      | Connector | 2      |
+      | Family | Category  | Number |
+      | RJ     | Connector | 2      |
 
   @Draft @Create @UserImage @Copy  @ID=03-46 @PRIORITY=5 @ASSIGNED=1
   Scenario Outline: Создание копии объекта User images

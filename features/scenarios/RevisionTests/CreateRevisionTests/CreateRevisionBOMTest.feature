@@ -2110,7 +2110,6 @@ Feature: Создание ревизии без сохранения с данн
     And Создать объект типа Connector семейства <FamilyConnector>, категории <CategoryConnector> и выбрать кабель №<NumberCellConnector>
     And Выбрать семейство кабелей <FamilyCable>
     And Выбрать категорию кабеля <CategoryCable>
-#    And Установить в фильтер <FilterCableName> значение <ValueCableFilter>
     And Выбрать 1 строку в таблице
     And Ждать "3" секунды
     And Выбрать первое значение в Connected With
